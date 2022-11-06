@@ -2,9 +2,10 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-**/.vs/
-**/.idea/
-**/bin/
-**/obj/
-*/.user
-**/Debug/
+.vs/
+NoarJobBL/bin/
+NoarJobBL/obj/
+NoarJobDAL/bin/
+NoarJobDAL/obj/
+NoarJobUI/bin/
+NoarJobUI/obj/
