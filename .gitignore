@@ -2,5 +2,8 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/NoarJob/FileContentIndex/d559ec5f-6a1b-4672-b88b-aace78b0b302.vsidx
-/.vs/NoarJob/FileContentIndex
+**/.vs/
+**/.idea/
+**/bin/
+**/obj/
+*/.user
