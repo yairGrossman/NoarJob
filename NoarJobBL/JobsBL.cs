@@ -97,17 +97,17 @@ namespace NoarJobBL
             string companyName;//שם החברה
             for (int i = 0; i < jobsArr.Length; i++)
             {
-                jobID = (int)arrDt[0].Rows[i][0];
-                title = arrDt[0].Rows[i][3].ToString();
-                description = arrDt[0].Rows[i][4].ToString();
-                requirements = arrDt[0].Rows[i][5].ToString();
-                employerName = arrDt[0].Rows[i][6].ToString();
-                numOfEmployees = (int)arrDt[0].Rows[i][7];
-                companyTypeName = arrDt[0].Rows[i][8].ToString();
-                phone = arrDt[0].Rows[i][9].ToString();
-                email = arrDt[0].Rows[i][10].ToString();
-                isActive = (bool)arrDt[0].Rows[i][11];
-                companyName = arrDt[0].Rows[i][12].ToString();
+                jobID = (int)arrDt[0].Rows[i]["JobID"];
+                title = arrDt[0].Rows[i]["Title"].ToString();
+                description = arrDt[0].Rows[i]["Description"].ToString();
+                requirements = arrDt[0].Rows[i]["Requirements"].ToString();
+                employerName = arrDt[0].Rows[i]["EmployerName"].ToString();
+                numOfEmployees = (int)arrDt[0].Rows[i]["NumOfEmployees"];
+                companyTypeName = arrDt[0].Rows[i]["CompanyTypeName"].ToString();
+                phone = arrDt[0].Rows[i]["Phone"].ToString();
+                email = arrDt[0].Rows[i]["Email"].ToString();
+                isActive = (bool)arrDt[0].Rows[i]["IsActive"];
+                companyName = arrDt[0].Rows[i]["CompanyName"].ToString();
                 jobsArr[i] = new Job(jobID,
                                      title,
                                      description,
