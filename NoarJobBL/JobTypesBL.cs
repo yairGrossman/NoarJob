@@ -43,7 +43,8 @@ namespace NoarJobBL
         public Dictionary<int, string> GetAllJobTypes()
         {
             DataTable dt = JobTypes.GetAllJobTypes();
-            return ShowData(dt);
+            Dictionary<int, string> dictionary = ShowData(dt);
+            return dictionary;
         }
 
         /// <summary>
@@ -53,7 +54,8 @@ namespace NoarJobBL
         public Dictionary<int, string> GetAllSubTypes()
         {
             DataTable dt = JobTypes.GetAllSubTypes();
-            return ShowData(dt);
+            Dictionary<int, string> dictionary = ShowData(dt);
+            return dictionary;
         }
     }
 }

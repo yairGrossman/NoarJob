@@ -20,7 +20,7 @@ namespace NoarJobBL
         private List<string> notesLst;//הערות של המעסיק
 
         /// <summary>
-        /// פונקציה המחזירה את המשרות המשתמשת הגיש אליהם מועמדות
+        /// פונקציה המחזירה את המשרות שהמשתמש הגיש אליהם מועמדות
         /// </summary>
         /// <param name="userID"></param>
         /// <returns></returns>
@@ -32,7 +32,7 @@ namespace NoarJobBL
         }
 
         /// <summary>
-        /// פונקציה המחזירה את המשרות המשתמשת הגיש אליהם מועמדות
+        /// פונקציה המחזירה את המשרות שהמשתמש אהב
         /// </summary>
         /// <param name="userID"></param>
         /// <returns></returns>

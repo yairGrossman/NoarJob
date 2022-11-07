@@ -20,7 +20,8 @@ namespace NoarJobBL
         public Job[] GetJobsBySearchAgent(int searchAgentID, int userID)
         {
             DataTable[] arrDt = SearchAgents.GetJobsBySearchAgent(searchAgentID, userID);
-            return JobsBL.GetJobs(arrDt);
+            Job[] arrJobs = JobsBL.GetJobs(arrDt);
+            return arrJobs;
         }
 
         /// <summary>

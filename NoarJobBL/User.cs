@@ -16,7 +16,7 @@ namespace NoarJobBL
         protected string firstName;//שם פרטי
         protected string lastName;//שם משפחה
         private string phone;//מספר הטלפון של המועמד
-        private string cityName;
+        private string cityName;//שם העיר שבה גר המשתמש
         private Cv[] arrCvs;//מערך קורות החיים של המשתמש
         private Cv chosenCvForJob;//קורות חיים ספציפיים שהמשתמש החליט לשלוח למשרה
 
@@ -80,12 +80,13 @@ namespace NoarJobBL
             DataTable dt = Users.GetUser(email, password);
             if (dt != null && dt.Rows.Count > 0)
             {
-                this.userID = (int)dt.Rows[0][0];
-                this.email = dt.Rows[0][1].ToString();
-                this.userPassword = dt.Rows[0][2].ToString();
-                this.firstName = dt.Rows[0][3].ToString();
-                this.lastName = dt.Rows[0][4].ToString();
-
+                this.userID = (int)dt.Rows[0]["UserID"];
+                this.email = dt.Rows[0]["Email"].ToString();
+                this.userPassword = dt.Rows[0]["UserPassword"].ToString();
+                this.firstName = dt.Rows[0]["FirstName"].ToString();
+                this.lastName = dt.Rows[0]["LastName"].ToString();
+                this.phone = dt.Rows[0]["Phone"].ToString();
+                this.cityName = dt.Rows[0]["CityName"].ToString();
                 return true;
             }
             return false;
@@ -95,7 +96,6 @@ namespace NoarJobBL
         /// פונקציה שיוצרת משתמש חדש במידה שהוא לא קיים כבר במערכת
         /// ומחזירה אמת אם הוא היה כבר קיים במערכת ושקר אחרת
         /// </summary>
-        /// <param name="userType"></param>
         /// <param name="email"></param>
         /// <param name="userPassword"></param>
         /// <param name="firstName"></param>

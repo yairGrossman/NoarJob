@@ -19,7 +19,8 @@ namespace NoarJobBL
         public static Job[] GetJobsByID(int[] arrJobsID, int userID)
         {
             DataTable[] arrDt = NoarJobDAL.Jobs.GetJobs(arrJobsID, userID);
-            return GetJobs(arrDt);
+            Job[] arrJob = GetJobs(arrDt);
+            return arrJob;
         }
 
         /// <summary>
@@ -35,7 +36,8 @@ namespace NoarJobBL
         public Job[] GetJobsSearch(int parentCategory, List<int> jobCategories, List<int> jobTypes, int city, string text, int userID)
         {
             DataTable[] arrDt = NoarJobDAL.Jobs.JobsSearch(parentCategory, jobCategories, jobTypes, city, text, userID);
-            return GetJobs(arrDt);
+            Job[] arrJob = GetJobs(arrDt);
+            return arrJob;
         }
 
         /// <summary>
@@ -48,7 +50,8 @@ namespace NoarJobBL
         public Job[] GetEmployerJobsByJobActivity(int employerID, bool isActive)
         {
             DataTable[] arrDt = Jobs.GetJobsByEmployerAndJobActivity(employerID, isActive);
-            return GetJobs(arrDt);
+            Job[] arrJob = GetJobs(arrDt);
+            return arrJob;
         }
 
         /// <summary>
@@ -58,7 +61,8 @@ namespace NoarJobBL
         {
             DataTable dt = NoarJobDAL.MostSoughtJobs.GetTheMostSoughtJob(childCategoriesLst, citiesLst, typesLst);
             int[] arrJobsID = ConvertDtToArr(dt);
-            return GetJobsByID(arrJobsID, userID);
+            Job[] arrJob = GetJobsByID(arrJobsID, userID);
+            return arrJob;
         }
 
         /// <summary>

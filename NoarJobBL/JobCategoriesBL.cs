@@ -50,7 +50,8 @@ namespace NoarJobBL
         public Dictionary<int, string> GetParentJobCategories()
         {
             DataTable dt = JobCategories.GetParentJobCategories();
-            return ShowData(dt);
+            Dictionary<int, string> dictionary = ShowData(dt);
+            return dictionary;
         }
 
         /// <summary>
@@ -60,7 +61,8 @@ namespace NoarJobBL
         public Dictionary<int, string> GetJobCategoriesByParentID()
         {
             DataTable dt = JobCategories.GetJobCategoriesByParentID(this.chosenJobCategory);
-            return ShowData(dt);
+            Dictionary<int, string> dictionary = ShowData(dt);
+            return dictionary;
         }
 
         /// <summary>
@@ -71,7 +73,8 @@ namespace NoarJobBL
         public Dictionary<int, string> GetParentJobCategoriesByText(string text)
         {
             DataTable dt = JobCategories.GetParentJobCategoriesByText(text);
-            return ShowData(dt);
+            Dictionary<int, string> dictionary = ShowData(dt);
+            return dictionary;
         }
 
         /// <summary>
@@ -82,7 +85,8 @@ namespace NoarJobBL
         public Dictionary<int, string> GetJobCategoriesByParentIDAndByText(string text)
         {
             DataTable dt = JobCategories.GetJobCategoriesByParentIDByText(this.chosenJobCategory, text);
-            return ShowData(dt);
+            Dictionary<int, string> dictionary = ShowData(dt);
+            return dictionary;
         }
     }
 }
