@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="NoarJobBL.CitiesBL">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAEAAAAAAAAAAAAAAAAAAAAAAIEAAQAAAAAAA=</HashCode>
+      <FileName>CitiesBL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoarJobBL.CompanyType">
+    <Position X="6.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAAgAAAAIACAAAAAgAAAA=</HashCode>
+      <FileName>CompanyType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoarJobBL.Cv">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgIAAAACAAAAAAAAAAAAAAAAEAAAAAAAAAAIA=</HashCode>
+      <FileName>Cv.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoarJobBL.Employer">
+    <Position X="1.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAFAkAAAAAAAAAAAQAEAgAAAEAAAAAAAAEAAEA=</HashCode>
+      <FileName>Employer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoarJobBL.Job">
+    <Position X="9.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AgDAQACAQCAoEEAgOAAAABAAAwICEAIiAyAAIAEAAUA=</HashCode>
+      <FileName>Job.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoarJobBL.JobCategoriesBL">
+    <Position X="12" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAIABAAAQAAACgAAAAIABAAAAAAAAAAAEA=</HashCode>
+      <FileName>JobCategoriesBL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoarJobBL.JobsBL">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEEAAAAAAAAABAAAAAAAAAAACAAAAAAAAAAAgAQA=</HashCode>
+      <FileName>JobsBL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoarJobBL.JobTypesBL">
+    <Position X="8" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAEAAAgIAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>JobTypesBL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoarJobBL.SameSearchesOfUsersBL">
+    <Position X="5.25" Y="3" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAICgAAAAwAAAAIAAAAAAAgAAACAAAAAAAABAAA=</HashCode>
+      <FileName>SameSearchesOfUsersBL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoarJobBL.SearchAgent">
+    <Position X="12.25" Y="3.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAEAQAAAQAEACAABAAgAIQAEAAAAAgAEAAIAYQA=</HashCode>
+      <FileName>SearchAgent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoarJobBL.SearchAgentsBL">
+    <Position X="5.5" Y="7" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SearchAgentsBL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoarJobBL.User">
+    <Position X="3.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAgEAAAASBAQAAgCAAAAAgAAAAAAAAgAAARCAIAAAA=</HashCode>
+      <FileName>User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoarJobBL.User_Job">
+    <Position X="1.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BIAABAAAAQAAAAAACAAAAAAAAAAAEAIAAMAEAACQAgA=</HashCode>
+      <FileName>User_Job.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
