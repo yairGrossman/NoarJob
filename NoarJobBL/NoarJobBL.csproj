@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="UmlBL.cd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NoarJobDAL\NoarJobDAL.csproj">
