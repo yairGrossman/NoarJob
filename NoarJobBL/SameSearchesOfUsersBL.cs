@@ -77,7 +77,7 @@ namespace NoarJobBL
         }
 
         /// <summary>
-        /// פונקציה שעושה סכום למספר המשתמשים שחיפשו אותו סוגי משרות שהמעסיק בחר 
+        /// פונקציה שעושה סכום למספר המשתמשים שחיפשו אותו תחום תפקיד ואותם תפקידים ואותם ערים ואותם סוגי משרות שהמעסיק בחר 
         /// </summary>
         /// <param name="typesLst"></param>
         public void SameChildCategoriesAndCitiesAndTypes(List<int> childCategoriesLst, List<int> citiesLst, List<int> typesLst)

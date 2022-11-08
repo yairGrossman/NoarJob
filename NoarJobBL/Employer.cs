@@ -40,6 +40,13 @@ namespace NoarJobBL
             this.companyEmail = companyEmail;
         }
 
+
+        /// <summary>
+        /// למעסיק Login פונקצית 
+        /// </summary>
+        /// <param name="companyEmail"></param>
+        /// <param name="employerPassword"></param>
+        /// <returns></returns>
         public bool GetEmployer(string companyEmail, string employerPassword)
         {
             DataTable dt = Employers.GetEmployer(companyEmail, employerPassword);
@@ -61,7 +68,7 @@ namespace NoarJobBL
         }
 
         /// <summary>
-        /// פונקיה שיוצרת מעסיק חדש
+        /// פונקציה שיוצרת מעסיק חדש
         /// </summary>
         /// <param name="employerName"></param>
         /// <param name="numOfEmployees"></param>

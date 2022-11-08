@@ -104,7 +104,7 @@ namespace NoarJobBL
         }
 
         /// <summary>
-        /// שאילתה לעדכון הסוכן החכם כלא פעיל
+        /// פונקציה לעדכון הסוכן החכם כלא פעיל
         /// </summary>
         /// <param name="searchAgentID">של סוכן חכם ID</param>
         /// <returns></returns>
