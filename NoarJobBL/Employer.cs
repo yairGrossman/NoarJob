@@ -46,13 +46,13 @@ namespace NoarJobBL
             if (dt != null && dt.Rows.Count > 0)
             {
                 SetData(
-                    (int)dt.Rows[0][0], 
-                    dt.Rows[0][1].ToString(), 
-                    (int)dt.Rows[0][2], 
-                    dt.Rows[0][3].ToString(), 
-                    dt.Rows[0][4].ToString(), 
-                    dt.Rows[0][5].ToString(),
-                    dt.Rows[0][6].ToString()
+                    (int)dt.Rows[0]["EmployerID"], 
+                    dt.Rows[0]["EmployerName"].ToString(), 
+                    (int)dt.Rows[0]["NumOfEmployees"], 
+                    dt.Rows[0]["CompanyTypeName"].ToString(), 
+                    dt.Rows[0]["CompanyName"].ToString(), 
+                    dt.Rows[0]["EmployerPassword"].ToString(),
+                    dt.Rows[0]["CompanyEmail"].ToString()
                     );
 
                 return true;

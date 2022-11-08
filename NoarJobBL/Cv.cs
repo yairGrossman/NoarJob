@@ -19,6 +19,11 @@ namespace NoarJobBL
             this.cvID = cvID;
         }
 
+        public Cv()
+        {
+
+        }
+
         /// <summary>
         /// שאילתה להוספה של רשומת קורות חיים חדשים למשתמש
         /// </summary>
@@ -28,6 +33,7 @@ namespace NoarJobBL
         {
             this.cvID = NoarJobDAL.Cvs.InsertUserCv(cvFilePath, userID);
             this.cvFilePath = cvFilePath;
+            this.cvIsActive = true;
         }
 
         /// <summary>
@@ -36,6 +42,7 @@ namespace NoarJobBL
         public void UpdateCvActivity()
         {
             NoarJobDAL.Cvs.UpdateCvActivity(this.cvID, false);
+            this.cvIsActive = false;
         }
     }
 }

@@ -17,7 +17,7 @@ namespace NoarJobBL
         protected string lastName;//שם משפחה
         private string phone;//מספר הטלפון של המועמד
         private string cityName;//שם העיר שבה גר המשתמש
-        private Cv[] arrCvs;//מערך קורות החיים של המשתמש
+        private List<Cv> lstCvs;//מערך קורות החיים של המשתמש
         private Cv chosenCvForJob;//קורות חיים ספציפיים שהמשתמש החליט לשלוח למשרה
 
         /// <summary>
@@ -60,11 +60,11 @@ namespace NoarJobBL
         public void SetUserCvs()
         {
             DataTable dt = NoarJobDAL.Cvs.GetUserCvs(this.userID);
-            this.arrCvs = new Cv[dt.Rows.Count];
+            this.lstCvs = new List<Cv>();
 
-            for (int i = 0; i < arrCvs.Length; i++)
+            for (int i = 0; i < this.lstCvs.Count; i++)
             {
-                this.arrCvs[i] = new Cv((int)dt.Rows[i]["CvID"], dt.Rows[i]["CvFilePath"].ToString(), (bool)dt.Rows[i]["IsActive"]);
+                this.lstCvs.Add(new Cv((int)dt.Rows[i]["CvID"], dt.Rows[i]["CvFilePath"].ToString(), (bool)dt.Rows[i]["IsActive"]));
             }
         }
 

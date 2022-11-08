@@ -43,8 +43,8 @@ namespace NoarJobBL
             string cityName;//שם העיר
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                cityID = (int)dt.Rows[i][0];
-                cityName = dt.Rows[i][1].ToString();
+                cityID = (int)dt.Rows[i]["CityID"];
+                cityName = dt.Rows[i]["CityName"].ToString();
                 citiesDictionary.Add(cityID, cityName);
             }
             return citiesDictionary;
