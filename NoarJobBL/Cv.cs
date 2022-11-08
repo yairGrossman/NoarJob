@@ -8,7 +8,7 @@ namespace NoarJobBL
 {
     public class Cv
     {
-        private int cvID;
+        private int cvID;//של הקורות חיים ID
         private string cvFilePath;//הכתובת של קובץ הקורות חיים
         private bool cvIsActive;//פעילות קורות החיים
 
@@ -25,7 +25,7 @@ namespace NoarJobBL
         }
 
         /// <summary>
-        /// שאילתה להוספה של רשומת קורות חיים חדשים למשתמש
+        /// פונקציה להוספה של רשומת קורות חיים חדשים למשתמש
         /// </summary>
         /// <param name="cvFilePath">המיקום של קובץ קורות החיים</param>
         /// <param name="userID">של משתמש ID</param>
@@ -37,7 +37,7 @@ namespace NoarJobBL
         }
 
         /// <summary>
-        /// שאילתה לעדכון רשומת קורות חיים ללא פעיל
+        /// פונקציה לעדכון רשומת קורות חיים ללא פעיל
         /// </summary>
         public void UpdateCvActivity()
         {
