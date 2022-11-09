@@ -70,6 +70,12 @@ namespace NoarJobDAL
             //Console.WriteLine(SameSearchesOfUsers.SameParentCategory(31));
             //Console.WriteLine(SameSearchesOfUsers.SameChildCategoriesAndCities(new List<int> { 32, 33 }, new List<int> {23}));
             //DataTable[] arrDt = SearchAgents.GetSearchAgentsByUser(48);
+            //DataTable dt = MostSoughtJobs.GetTheMostSoughtJob(new List<int> {33 }, new List<int> { 23}, new List<int> { 1});
+            //for (int i = 0; i < dt.Rows.Count; i++)
+            //{
+            //    Console.WriteLine(dt.Rows[i]["JobID"]);
+            //    Console.WriteLine(dt.Rows[i]["UsersApplyCount"]);
+            //}
         }
 
         public static void PrintDt(DataTable[] dt)

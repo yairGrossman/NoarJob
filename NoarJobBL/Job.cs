@@ -192,11 +192,9 @@ namespace NoarJobBL
         /// <summary>
         /// פונקציה שמשנה את פעילות המשרה
         /// </summary>
-        /// <param name="jobID"></param>
-        /// <returns></returns>
-        public bool UpdateJobActivity(int jobID)
+        public bool UpdateJobActivity()
         {
-            int rows = NoarJobDAL.Jobs.UpdateJobActivity(jobID, this.isActive);
+            int rows = NoarJobDAL.Jobs.UpdateJobActivity(this.jobID, this.isActive);
             if (rows > 0)
             {
                 return true;

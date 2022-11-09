@@ -16,7 +16,7 @@ namespace NoarJobBL
         /// <param name="arrJobsID"></param>
         /// <param name="userID"></param>
         /// <returns></returns>
-        public static Job[] GetJobsByID(int[] arrJobsID, int userID)
+        private Job[] GetJobsByID(int[] arrJobsID, int userID)
         {
             DataTable[] arrDt = NoarJobDAL.Jobs.GetJobs(arrJobsID, userID);
             Job[] arrJob = GetJobs(arrDt);

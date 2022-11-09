@@ -25,7 +25,18 @@ namespace NoarJobBL
             //Cv cv = new Cv(29, "sdaa", true);
             //cv.InsertCv("C:\\Users\\fdadfsd\\Downloads\\blabla.docx", 50);
             //cv.UpdateCvActivity();
-
+            //Employer employer = new Employer();
+            //employer.GetEmployer("etgarFood@gmail.com", "88");
+            //employer.CreateEmployer("self", 100, 2, "חברות אבטחה ישראליות", "netflix", "123", "aelf@gmail.com");
+            //Job job = new Job();
+            //job.IsActive = false;
+            //job.CreateJob("Bip boop", "Boop bip", "Boop bip Boop", 15, "055-5555555", "boopbip@gmail.com", new List<int>() { 31, 40}, new List<int>() { 23}, new List<int>() { 1 });
+            //job.UpdateJob("Bip Lollll", "Boop bip", "Boop bip Boop", 15, "055-5555555", "boopbip@gmail.com", new List<int>() { 31, 40 }, new List<int>() { 23 }, new List<int>() { 1 });
+            //job.UpdateJobActivity(18);
+            //JobsBL jobsBL = new JobsBL();
+            //jobsBL.GetJobsSearch(31, new List<int>() { 33}, new List<int>() { 1}, 23, null, -1);
+            //jobsBL.GetEmployerJobsByJobActivity(14, true);
+            //jobsBL.GetTheMostSoughtJobBL(48, new List<int>() { 33, 32}, new List<int>() { 23 }, new List<int>() { 1 });
         }
     }
 }

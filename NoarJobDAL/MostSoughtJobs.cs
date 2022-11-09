@@ -21,15 +21,12 @@ namespace NoarJobDAL
             string sql = $@"	
 							SELECT 	top 10
 									Users_Jobs.JobID,
-									COUNT(Users_Jobs.UserID) as 'Users apply count'
-									-- שאילתה שמחזירה את 10 המשרות שמשתמשים שדומים לי שלחו אליהם הכי הרבה מועמדויות
-							FROM 	Users_Jobs INNER JOIN 
+									COUNT(Users_Jobs.UserID) as UsersApplyCount
+							FROM 	(Users_Jobs INNER JOIN 
 									(
-									  -- שאילתה שמחזירה משתמשים שדומים לי עם אותם תפקידים ערים וסוגי/היקפי משרה
 			                          SELECT DISTINCT tblUsersByCategories.UserID
 			                          FROM	(
 												(
-												  -- שאילתה להחזרת המשתמשים שמחפשים אותם תפקידים כמוני
 												  SELECT SearchAgents.UserID
 												  FROM   SearchAgents
 														 INNER JOIN SearchAgentsValues 
@@ -42,7 +39,6 @@ namespace NoarJobDAL
 												) tblUsersByCategories
 												INNER JOIN
 												(
-												  -- שאילתה להחזרת המשתמשים שמחפשים אותם ערים כמוני
 												  SELECT SearchAgents.UserID
 												  FROM   SearchAgents
 														 INNER JOIN SearchAgentsValues 
@@ -55,7 +51,6 @@ namespace NoarJobDAL
 												) tblUsersByCities ON tblUsersByCategories.UserID = tblUsersByCities.UserID)
 												INNER JOIN
 												(
-												   -- שאילתה להחזרת המשתמשים שמחפשים אותם היקפי/סוגי משרה כמוני
 												   SELECT SearchAgents.UserID
 												   FROM   SearchAgents
 														  INNER JOIN SearchAgentsValues 
@@ -66,8 +61,11 @@ namespace NoarJobDAL
 														  AND
 														  SearchAgentsValues.ValueID IN ({String.Join(",", TypesLst)})
 												) tblUsersByTypes ON tblUsersByCategories.UserID = tblUsersByTypes.UserID
-		                            ) tblMatchUsers ON Users_Jobs.UserID = tblMatchUsers.UserID
+		                            ) tblMatchUsers ON Users_Jobs.UserID = tblMatchUsers.UserID)
+									INNER JOIN Jobs ON Users_Jobs.JobID=Jobs.JobID
 							WHERE   Users_Jobs.UserJobType=1
+									AND
+									Jobs.IsActive=true
 							GROUP BY Users_Jobs.JobID
 							ORDER BY COUNT(Users_Jobs.UserID) DESC;
                            ";
