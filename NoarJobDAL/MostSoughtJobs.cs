@@ -12,9 +12,6 @@ namespace NoarJobDAL
 		/// <summary>
 		/// שאילתה שמחזירה את המשרות שהמשתמשים הדומים לי הגישו הכי הרבה מעומדויות
 		/// </summary>
-		/// <param name="ChildCategoriesLst"></param>
-		/// <param name="CitiesLst"></param>
-		/// <param name="TypesLst"></param>
 		/// <returns></returns>
         public static DataTable GetTheMostSoughtJob(List<int> ChildCategoriesLst, List<int> CitiesLst, List<int> TypesLst)
         {
