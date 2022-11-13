@@ -12,6 +12,21 @@ namespace NoarJobBL
         private string cvFilePath;//הכתובת של קובץ הקורות חיים
         private bool cvIsActive;//פעילות קורות החיים
 
+        public int CvID
+        {
+            get { return cvID; }
+        }
+
+        public string CvFilePath
+        {
+            get { return cvFilePath; }
+        }
+
+        public bool CvIsActive
+        {
+            get { return cvIsActive; }
+        }
+
         public Cv(int cvID, string cvFilePath, bool isActive)
         {
             this.cvFilePath = cvFilePath;

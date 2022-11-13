@@ -56,7 +56,10 @@ namespace NoarJobBL
             this.jobID = jobID;
             for (int i = 0; i < arrUsers.Length; i++)
             {
-                this.notesLst.Add(dt.Rows[i]["Notes"].ToString());
+                if (dt.Rows[i]["Notes"].ToString() != "")
+                {
+                    this.notesLst.Add(dt.Rows[i]["Notes"].ToString());
+                }
                 arrUsers[i] = new User(
                     (int)dt.Rows[i]["UserID"],
                     (int)dt.Rows[i]["CvID"],

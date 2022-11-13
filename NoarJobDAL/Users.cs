@@ -27,7 +27,7 @@ namespace NoarJobDAL
                                     Cities.CityName
                              FROM   Users
                                     INNER JOIN Cities 
-                                    ON Users.CityID = Cities.CityID;
+                                    ON Users.CityID = Cities.CityID
                              WHERE  Users.Email='{Email}' 
                                     AND 
                                     Users.UserPassword='{UserPassword}';

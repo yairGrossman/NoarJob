@@ -633,7 +633,7 @@ namespace NoarJobUI
             if (this.form is JobManagementPage)
             {
                 int jobIndex = arr[1];
-                bool succeeded = this.arrJobs[jobIndex].UpdateJobActivity(jobID);
+                bool succeeded = this.arrJobs[jobIndex].UpdateJobActivity();
                 if (!succeeded)
                     MessageBox.Show("משהו השתבש");
 
@@ -658,7 +658,7 @@ namespace NoarJobUI
             int[] arr = (int[])pic.Tag;
             int jobID = arr[0];
             int jobIndex = arr[1];
-            bool succeeded = this.arrJobs[jobIndex].UpdateJobActivity(jobID);
+            bool succeeded = this.arrJobs[jobIndex].UpdateJobActivity();
             if (!succeeded)
                 MessageBox.Show("משהו השתבש");
 

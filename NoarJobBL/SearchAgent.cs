@@ -108,9 +108,9 @@ namespace NoarJobBL
         /// </summary>
         /// <param name="searchAgentID">של סוכן חכם ID</param>
         /// <returns></returns>
-        public void UpdateSearchAgentActivity(int searchAgentID)
+        public void UpdateSearchAgentActivity()
         {
-            NoarJobDAL.SearchAgents.UpdateSearchAgentActivity(searchAgentID);
+            NoarJobDAL.SearchAgents.UpdateSearchAgentActivity(this.searchAgentID);
         }
     }
 }

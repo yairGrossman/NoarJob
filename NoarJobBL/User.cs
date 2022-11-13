@@ -31,12 +31,13 @@ namespace NoarJobBL
             this.lastName = lastName;
             this.phone = phone;
             this.cityName = cityName;
+            this.lstCvs = new List<Cv>();
             this.chosenCvForJob = new Cv(cvID, cvFilePath, isActive);
         }
 
         public User()
         {
-
+            this.lstCvs = new List<Cv>();
         }
 
         public int UserID
@@ -54,15 +55,44 @@ namespace NoarJobBL
             get { return this.userPassword; }
         }
 
+        public string FirstName
+        {
+            get { return this.firstName; }
+        }
+
+        public string LastName
+        {
+            get { return this.lastName; }
+        }
+
+        public string Phone
+        {
+            get { return this.phone; }
+        }
+
+        public string CityName
+        {
+            get { return this.cityName; }
+        }
+
+        public List<Cv> LstCvs
+        {
+            get { return this.lstCvs; }
+        }
+
+        public Cv ChosenCvForJob
+        {
+            get { return this.chosenCvForJob; }
+        }
+
         /// <summary>
         /// פונקציה ששמה את רשומות קורות החיים של משתמש ספציפי בתוך מערך קורות החיים
         /// </summary>
         public void SetUserCvs()
         {
             DataTable dt = NoarJobDAL.Cvs.GetUserCvs(this.userID);
-            this.lstCvs = new List<Cv>();
 
-            for (int i = 0; i < this.lstCvs.Count; i++)
+            for (int i = 0; i < dt.Rows.Count; i++)
             {
                 this.lstCvs.Add(new Cv((int)dt.Rows[i]["CvID"], dt.Rows[i]["CvFilePath"].ToString(), (bool)dt.Rows[i]["IsActive"]));
             }

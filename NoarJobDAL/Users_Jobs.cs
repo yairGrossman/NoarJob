@@ -60,26 +60,36 @@ namespace NoarJobDAL
         {
             string sql = $@"
                             SELECT Users_Jobs.UserID, 
-                                   Jobs.JobID, 
-                                   Users_Jobs.UserID, 
-                                   Users_Jobs.DateApplicated, 
-                                   Jobs.Title, 
-                                   Jobs.Description, 
-                                   Jobs.Requirements, 
-                                   Employers.EmployerName, 
-                                   Employers.NumOfEmployees, 
-                                   CompanyTypes.CompanyTypeName, 
-                                   Jobs.Phone, 
-                                   Jobs.Email, 
-                                   Jobs.IsActive,
-                                   Employers.CompanyName
-                            FROM   Employers 
-                                   INNER JOIN (Jobs INNER JOIN Users_Jobs 
-                                   ON Jobs.JobID = Users_Jobs.JobID) 
-                                   ON Employers.EmployerID = Jobs.EmployerID
+	                               Jobs.JobID, 
+	                               Users_Jobs.UserID, 
+	                               Users_Jobs.DateApplicated, 
+	                               Jobs.Title, 
+	                               Jobs.Description, 
+	                               Jobs.Requirements, 
+	                               Employers.EmployerName, 
+	                               Employers.NumOfEmployees, 
+	                               CompanyTypes.CompanyTypeName, 
+	                               Jobs.Phone, 
+	                               Jobs.Email, 
+	                               Jobs.IsActive,
+	                               Employers.CompanyName
+                            FROM   (
+		                               Employers 
+		                               INNER JOIN 
+		                               (
+			                               Jobs 
+			                               INNER JOIN 
+			                               Users_Jobs 
+			                               ON Jobs.JobID = Users_Jobs.JobID
+		                               ) 
+		                               ON Employers.EmployerID = Jobs.EmployerID
+	                               )
+	                               INNER JOIN
+	                               CompanyTypes
+	                               ON CompanyTypes.CompanyTypeID = Employers.CompanyTypeID
                             WHERE  Users_Jobs.UserID={UserID}
-                                   AND 
-                                   Users_Jobs.UserJobType={UserJobType};
+	                               AND 
+	                               Users_Jobs.UserJobType={UserJobType};
                            ";
 
             DataTable dtJobs = DAL.DBHelper.GetDataTable(sql);
@@ -105,7 +115,7 @@ namespace NoarJobDAL
         {
             string sql = $@"
                          INSERT INTO Users_Jobs (JobID, UserID, CvID, DateApplicated, UserJobType, TabType)
-                         VALUES ({JobID}, {UserID}, {CvID} {DateApplicated}, 1, 1);
+                         VALUES ({JobID}, {UserID}, {CvID}, '{DateApplicated}', 1, 1);
                         ";
             DAL.DBHelper.ExecuteNonQuery(sql);
         }
@@ -119,8 +129,8 @@ namespace NoarJobDAL
         public static void InsertUser_Job(int JobID, int UserID, int UserJobType)
         {
             string sql = $@"
-                         INSERT INTO Users_Jobs (JobID, UserID, UserJobType)
-                         VALUES ({JobID}, {UserID}, {UserJobType});
+                         INSERT INTO Users_Jobs (JobID, UserID, UserJobType, CvID)
+                         VALUES ({JobID}, {UserID}, {UserJobType}, {30});
                         ";
 
             DAL.DBHelper.ExecuteNonQuery(sql);
@@ -175,7 +185,7 @@ namespace NoarJobDAL
             {
                 sql = $@"
                     UPDATE Users_Jobs SET Users_Jobs.UserJobType = {UserJobType},
-                                          Users_Jobs.TabType = 1;
+                                          Users_Jobs.TabType = 1
                     WHERE  Users_Jobs.JobID={JobID} AND Users_Jobs.UserID={UserID};
                    ";
             }
@@ -183,7 +193,7 @@ namespace NoarJobDAL
             {
                 sql = $@"
                     UPDATE Users_Jobs SET Users_Jobs.UserJobType = {UserJobType},
-                                          Users_Jobs.TabType = 0;
+                                          Users_Jobs.TabType = 0
                     WHERE  Users_Jobs.JobID={JobID} AND Users_Jobs.UserID={UserID};
                    ";
             }
