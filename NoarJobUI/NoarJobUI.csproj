@@ -52,6 +52,12 @@
     <Compile Include="ApplyForPage.Designer.cs">
       <DependentUpon>ApplyForPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="ATSPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ATSPage.Designer.cs">
+      <DependentUpon>ATSPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="EmployerLoginPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +122,9 @@
     </Compile>
     <EmbeddedResource Include="ApplyForPage.resx">
       <DependentUpon>ApplyForPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ATSPage.resx">
+      <DependentUpon>ATSPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EmployerLoginPage.resx">
       <DependentUpon>EmployerLoginPage.cs</DependentUpon>
