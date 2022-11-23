@@ -114,6 +114,12 @@
     <Compile Include="ucChoices.Designer.cs">
       <DependentUpon>ucChoices.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucCv.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucCv.Designer.cs">
+      <DependentUpon>ucCv.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucJob.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -163,6 +169,9 @@
     <EmbeddedResource Include="ucChoices.resx">
       <DependentUpon>ucChoices.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ucCv.resx">
+      <DependentUpon>ucCv.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ucJob.resx">
       <DependentUpon>ucJob.cs</DependentUpon>
     </EmbeddedResource>
@@ -205,6 +214,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AddFileIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PlusIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

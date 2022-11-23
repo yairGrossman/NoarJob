@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             this.TapTypePanel = new System.Windows.Forms.Panel();
-            this.NotCatalogedBtn = new System.Windows.Forms.Button();
-            this.FoundSuitableBtn = new System.Windows.Forms.Button();
-            this.NotFoundSuitableBtn = new System.Windows.Forms.Button();
-            this.TelephoneInterviewBאמ = new System.Windows.Forms.Button();
+            this.EmploymentContractBtn = new System.Windows.Forms.Button();
             this.ProfessionalInterviewBtn = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.TelephoneInterviewBאמ = new System.Windows.Forms.Button();
+            this.NotFoundSuitableBtn = new System.Windows.Forms.Button();
+            this.FoundSuitableBtn = new System.Windows.Forms.Button();
+            this.NotCatalogedBtn = new System.Windows.Forms.Button();
             this.TapTypePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // TapTypePanel
             // 
-            this.TapTypePanel.Controls.Add(this.button1);
+            this.TapTypePanel.Controls.Add(this.EmploymentContractBtn);
             this.TapTypePanel.Controls.Add(this.ProfessionalInterviewBtn);
             this.TapTypePanel.Controls.Add(this.TelephoneInterviewBאמ);
             this.TapTypePanel.Controls.Add(this.NotFoundSuitableBtn);
@@ -51,57 +51,18 @@
             this.TapTypePanel.Size = new System.Drawing.Size(1129, 86);
             this.TapTypePanel.TabIndex = 0;
             // 
-            // NotCatalogedBtn
+            // EmploymentContractBtn
             // 
-            this.NotCatalogedBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(179)))), ((int)(((byte)(144)))));
-            this.NotCatalogedBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.NotCatalogedBtn.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.NotCatalogedBtn.Location = new System.Drawing.Point(940, 1);
-            this.NotCatalogedBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.NotCatalogedBtn.Name = "NotCatalogedBtn";
-            this.NotCatalogedBtn.Size = new System.Drawing.Size(188, 85);
-            this.NotCatalogedBtn.TabIndex = 6;
-            this.NotCatalogedBtn.Text = "לא קוטלגו\r\n(הגישו מועמדות)";
-            this.NotCatalogedBtn.UseVisualStyleBackColor = false;
-            // 
-            // FoundSuitableBtn
-            // 
-            this.FoundSuitableBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(179)))), ((int)(((byte)(144)))));
-            this.FoundSuitableBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.FoundSuitableBtn.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.FoundSuitableBtn.Location = new System.Drawing.Point(752, 1);
-            this.FoundSuitableBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.FoundSuitableBtn.Name = "FoundSuitableBtn";
-            this.FoundSuitableBtn.Size = new System.Drawing.Size(188, 85);
-            this.FoundSuitableBtn.TabIndex = 7;
-            this.FoundSuitableBtn.Text = "נמצאו מתאימים למשרה";
-            this.FoundSuitableBtn.UseVisualStyleBackColor = false;
-            // 
-            // NotFoundSuitableBtn
-            // 
-            this.NotFoundSuitableBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(179)))), ((int)(((byte)(144)))));
-            this.NotFoundSuitableBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.NotFoundSuitableBtn.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.NotFoundSuitableBtn.Location = new System.Drawing.Point(564, 1);
-            this.NotFoundSuitableBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.NotFoundSuitableBtn.Name = "NotFoundSuitableBtn";
-            this.NotFoundSuitableBtn.Size = new System.Drawing.Size(188, 85);
-            this.NotFoundSuitableBtn.TabIndex = 8;
-            this.NotFoundSuitableBtn.Text = "נמצאו לא מתאימים למשרה";
-            this.NotFoundSuitableBtn.UseVisualStyleBackColor = false;
-            // 
-            // TelephoneInterviewBאמ
-            // 
-            this.TelephoneInterviewBאמ.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(179)))), ((int)(((byte)(144)))));
-            this.TelephoneInterviewBאמ.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.TelephoneInterviewBאמ.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.TelephoneInterviewBאמ.Location = new System.Drawing.Point(376, 1);
-            this.TelephoneInterviewBאמ.Margin = new System.Windows.Forms.Padding(0);
-            this.TelephoneInterviewBאמ.Name = "TelephoneInterviewBאמ";
-            this.TelephoneInterviewBאמ.Size = new System.Drawing.Size(188, 85);
-            this.TelephoneInterviewBאמ.TabIndex = 9;
-            this.TelephoneInterviewBאמ.Text = "עברו ראיון טלפוני ראשוני";
-            this.TelephoneInterviewBאמ.UseVisualStyleBackColor = false;
+            this.EmploymentContractBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(179)))), ((int)(((byte)(144)))));
+            this.EmploymentContractBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.EmploymentContractBtn.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.EmploymentContractBtn.Location = new System.Drawing.Point(0, 1);
+            this.EmploymentContractBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.EmploymentContractBtn.Name = "EmploymentContractBtn";
+            this.EmploymentContractBtn.Size = new System.Drawing.Size(188, 85);
+            this.EmploymentContractBtn.TabIndex = 11;
+            this.EmploymentContractBtn.Text = "עברו חתימה על חוזה העסקה";
+            this.EmploymentContractBtn.UseVisualStyleBackColor = false;
             // 
             // ProfessionalInterviewBtn
             // 
@@ -116,18 +77,57 @@
             this.ProfessionalInterviewBtn.Text = "עברו ראיון מקצועי";
             this.ProfessionalInterviewBtn.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // TelephoneInterviewBאמ
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(179)))), ((int)(((byte)(144)))));
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.button1.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.button1.Location = new System.Drawing.Point(0, 1);
-            this.button1.Margin = new System.Windows.Forms.Padding(0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(188, 85);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "עברו חתימה על חוזה העסקה";
-            this.button1.UseVisualStyleBackColor = false;
+            this.TelephoneInterviewBאמ.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(179)))), ((int)(((byte)(144)))));
+            this.TelephoneInterviewBאמ.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.TelephoneInterviewBאמ.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.TelephoneInterviewBאמ.Location = new System.Drawing.Point(376, 1);
+            this.TelephoneInterviewBאמ.Margin = new System.Windows.Forms.Padding(0);
+            this.TelephoneInterviewBאמ.Name = "TelephoneInterviewBאמ";
+            this.TelephoneInterviewBאמ.Size = new System.Drawing.Size(188, 85);
+            this.TelephoneInterviewBאמ.TabIndex = 9;
+            this.TelephoneInterviewBאמ.Text = "עברו ראיון טלפוני ראשוני";
+            this.TelephoneInterviewBאמ.UseVisualStyleBackColor = false;
+            // 
+            // NotFoundSuitableBtn
+            // 
+            this.NotFoundSuitableBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(179)))), ((int)(((byte)(144)))));
+            this.NotFoundSuitableBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.NotFoundSuitableBtn.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.NotFoundSuitableBtn.Location = new System.Drawing.Point(564, 1);
+            this.NotFoundSuitableBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.NotFoundSuitableBtn.Name = "NotFoundSuitableBtn";
+            this.NotFoundSuitableBtn.Size = new System.Drawing.Size(188, 85);
+            this.NotFoundSuitableBtn.TabIndex = 8;
+            this.NotFoundSuitableBtn.Text = "נמצאו לא מתאימים למשרה";
+            this.NotFoundSuitableBtn.UseVisualStyleBackColor = false;
+            // 
+            // FoundSuitableBtn
+            // 
+            this.FoundSuitableBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(179)))), ((int)(((byte)(144)))));
+            this.FoundSuitableBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.FoundSuitableBtn.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.FoundSuitableBtn.Location = new System.Drawing.Point(752, 1);
+            this.FoundSuitableBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.FoundSuitableBtn.Name = "FoundSuitableBtn";
+            this.FoundSuitableBtn.Size = new System.Drawing.Size(188, 85);
+            this.FoundSuitableBtn.TabIndex = 7;
+            this.FoundSuitableBtn.Text = "נמצאו מתאימים למשרה";
+            this.FoundSuitableBtn.UseVisualStyleBackColor = false;
+            // 
+            // NotCatalogedBtn
+            // 
+            this.NotCatalogedBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(179)))), ((int)(((byte)(144)))));
+            this.NotCatalogedBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.NotCatalogedBtn.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.NotCatalogedBtn.Location = new System.Drawing.Point(940, 1);
+            this.NotCatalogedBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.NotCatalogedBtn.Name = "NotCatalogedBtn";
+            this.NotCatalogedBtn.Size = new System.Drawing.Size(188, 85);
+            this.NotCatalogedBtn.TabIndex = 6;
+            this.NotCatalogedBtn.Text = "לא קוטלגו\r\n(הגישו מועמדות)";
+            this.NotCatalogedBtn.UseVisualStyleBackColor = false;
             // 
             // ATSPage
             // 
@@ -138,6 +138,8 @@
             this.Controls.Add(this.TapTypePanel);
             this.Name = "ATSPage";
             this.Text = "ATSPage";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.ATSPage_Load);
             this.TapTypePanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -147,7 +149,7 @@
 
         private System.Windows.Forms.Panel TapTypePanel;
         public System.Windows.Forms.Button NotCatalogedBtn;
-        public System.Windows.Forms.Button button1;
+        public System.Windows.Forms.Button EmploymentContractBtn;
         public System.Windows.Forms.Button ProfessionalInterviewBtn;
         public System.Windows.Forms.Button TelephoneInterviewBאמ;
         public System.Windows.Forms.Button NotFoundSuitableBtn;

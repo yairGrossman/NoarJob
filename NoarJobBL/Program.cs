@@ -138,7 +138,7 @@ namespace NoarJobBL
             //}
             //Console.WriteLine();
 
-            User_Job user_Job = new User_Job();
+            //User_Job user_Job = new User_Job();
             //Job[] jobs = user_Job.GetApplyForJobs(48);
             //Job[] jobs = user_Job.GetLovedJobs(48);
             //foreach (Job job in jobs)
