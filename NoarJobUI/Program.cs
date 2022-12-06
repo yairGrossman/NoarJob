@@ -16,7 +16,7 @@ namespace NoarJobUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ATSPage());
+            Application.Run(new MainPage());
         }
     }
 }
