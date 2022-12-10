@@ -7,20 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using NoarJobBL;
+using NoarJobUI.ServiceReference1;
 
 namespace NoarJobUI
 {
     public partial class LoginPage : Form
     {
-        private User user;// עצם מטיפוס משתמש
+        private WUser user;// עצם מטיפוס משתמש
         private MainPage mainPage;
 
         public LoginPage(MainPage mainPage)
         {
             InitializeComponent();
-            this.user = new User();
-
             this.mainPage = mainPage;
         }
 
@@ -63,13 +61,12 @@ namespace NoarJobUI
         /// <param name="e"></param>
         private void LoginBtn_Click(object sender, EventArgs e)
         {
-            bool succeeded;
             HomePage homePage;
-
-            succeeded = this.user.SetUser(this.EmailTxt.Text, this.PasswordTxt.Text);
+            WcfNoarJobClient wcfNoarJobClient = new WcfNoarJobClient();
+            this.user = wcfNoarJobClient.UserLogin(this.EmailTxt.Text,this.PasswordTxt.Text);
+            wcfNoarJobClient.Close();
             homePage = new HomePage(this.user, this.mainPage);
-
-            if (succeeded)
+            if (this.user != null)
             { 
                 homePage.Show();
                 this.Close();

@@ -4,10 +4,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoarJobUI", "NoarJobUI\NoarJobUI.csproj", "{C96D86A9-BAAC-4A8C-BB96-4DA28BCE3CD4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C4D0C6E0-BE45-45A9-B8C8-A88EEA45C2FC} = {C4D0C6E0-BE45-45A9-B8C8-A88EEA45C2FC}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoarJobDAL", "NoarJobDAL\NoarJobDAL.csproj", "{824E14E5-8CEE-46B9-9675-6DDB90B09186}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoarJobBL", "NoarJobBL\NoarJobBL.csproj", "{914500BE-C730-4540-A19B-229178FE5D53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfNoarJob", "WcfNoarJob\WcfNoarJob.csproj", "{C4D0C6E0-BE45-45A9-B8C8-A88EEA45C2FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +32,10 @@ Global
 		{914500BE-C730-4540-A19B-229178FE5D53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{914500BE-C730-4540-A19B-229178FE5D53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{914500BE-C730-4540-A19B-229178FE5D53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4D0C6E0-BE45-45A9-B8C8-A88EEA45C2FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4D0C6E0-BE45-45A9-B8C8-A88EEA45C2FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4D0C6E0-BE45-45A9-B8C8-A88EEA45C2FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4D0C6E0-BE45-45A9-B8C8-A88EEA45C2FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

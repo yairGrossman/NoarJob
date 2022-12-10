@@ -10,11 +10,11 @@ namespace NoarJobBL
 {
     public class User
     {
-        protected int userID;//מספר המשתמש
-        protected string email;//אימייל
+        private int userID;//מספר המשתמש
+        private string email;//אימייל
         private string userPassword;//סיסמא
-        protected string firstName;//שם פרטי
-        protected string lastName;//שם משפחה
+        private string firstName;//שם פרטי
+        private string lastName;//שם משפחה
         private string phone;//מספר הטלפון של המועמד
         private string cityName;//שם העיר שבה גר המשתמש
         private List<Cv> lstCvs;//מערך קורות החיים של המשתמש
@@ -43,6 +43,7 @@ namespace NoarJobBL
         public int UserID
         {
             get { return this.userID; }
+            set {this.userID = value;}
         }
 
         public string Email
