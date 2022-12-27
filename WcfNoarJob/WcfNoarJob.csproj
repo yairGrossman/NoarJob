@@ -71,6 +71,8 @@
     </Compile>
     <Compile Include="IWcfNoarJob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WCities.cs" />
+    <Compile Include="WUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

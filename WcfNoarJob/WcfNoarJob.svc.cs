@@ -45,7 +45,13 @@ namespace WcfNoarJob
             wUser.LstCvs = user.LstCvs;
             return wUser;
         }
-        
+
+        public Dictionary<int, string> GetCities(string city)
+        {
+            CitiesBL citiesBL = new CitiesBL();
+            Dictionary<int, string> citiesDictionary = citiesBL.GetCities(city);
+            return citiesDictionary;
+        }
 
         public string GetData(int value)
         {
