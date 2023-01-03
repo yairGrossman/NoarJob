@@ -84,26 +84,6 @@ namespace NoarJobDAL
         }
 
         /// <summary>
-        /// שאילתה שבודקת האם מעסיק קיים במערכת
-        /// </summary>
-        /// <param name="Email">האמייל של המעסיק</param>
-        /// <param name="EmployerPassword">הסיסמא של המעסיק</param>
-        /// <returns></returns>
-        public static DataTable IsEmployerExist(string Email, string EmployerPassword)
-        {
-            string sql = $@"
-                            SELECT Employers.EmployerID
-                            FROM   Employers
-                            WHERE  Employers.CompanyEmail='{Email}'
-                                   AND
-                                   Employers.EmployerPassword='{EmployerPassword}';
-                           ";
-
-            DataTable dt = DAL.DBHelper.GetDataTable(sql);
-            return dt;
-        }
-
-        /// <summary>
         /// שאילתה לעדכון פרטי רשומת מעסיק
         /// </summary>
         /// <param name="employerID">של המעסיק ID</param>

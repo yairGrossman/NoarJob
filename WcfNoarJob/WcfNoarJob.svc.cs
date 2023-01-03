@@ -36,7 +36,7 @@ namespace WcfNoarJob
             }
             return null;
         }
-        
+
         public WUser SetUserCvs(WUser wUser)
         {
             User user = new User();
@@ -53,22 +53,16 @@ namespace WcfNoarJob
             return citiesDictionary;
         }
 
-        public string GetData(int value)
+        public WCompanyType[] GetAllCompanyTypes()
         {
-            return string.Format("You entered: {0}", value);
-        }
-
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
-        {
-            if (composite == null)
+            CompanyType companyType = new CompanyType();
+            CompanyType[] companyTypeArr = companyType.GetAllCompanyTypes();
+            WCompanyType[] wcompanyTypeArr = new WCompanyType[companyTypeArr.Length];
+            for (int i = 0; i < wcompanyTypeArr.Length; i++)
             {
-                throw new ArgumentNullException("composite");
+                wcompanyTypeArr[i] = new WCompanyType(companyTypeArr[i]);
             }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
+            return wcompanyTypeArr;
         }
     }
 }

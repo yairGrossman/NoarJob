@@ -14,12 +14,6 @@ namespace WcfNoarJob
     public interface IWcfNoarJob
     {
         [OperationContract]
-        string GetData(int value);
-
-        [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
-
-        [OperationContract]
         WUser CreateUser(string email, string userPassword, string firstName, string lastName, string phone, int cityID, string cityName);
         [OperationContract]
         WUser UserLogin(string email, string password);

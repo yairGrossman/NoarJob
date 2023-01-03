@@ -13,51 +13,46 @@ namespace NoarJobDAL
         {
             //Console.OutputEncoding = Encoding.UTF8;
 
-            //PrintDt(Cities.GetCityByStart("Ne"));
-            //PrintDt(CompanyTypes.GetAllCompanyTypes());
-            //PrintDt(Cvs.GetUserCvs(1));
-            ////Console.WriteLine(Cvs.InsertUserCv("file:///C:/Users/Adar/Documents/blabla.docx", "Adar", "Barak", "Adar@gmail.com", "055-7836462", 12, 18));
-            //PrintDt(Cvs.GetUserCvs(3));
-            ////Console.WriteLine(Cvs.UpdateCvActivity(5, true));
-            //PrintDt(Employers.GetEmployerByID(1));
-            ////Console.WriteLine(Employers.UpdateEmployerByID(1, "Yair", 500, 1));
-            ////Console.WriteLine(Employers.InsertEmployer("Alon", 200, 1));
-            //PrintDt(JobCategories.GetParentJobCategories());
-            //PrintDt(JobCategories.GetJobCategoriesByParentID(19));
-            //PrintDt(JobCategories.GetParentJobCategoriesByText("ו"));
-            //PrintDt(JobCategories.GetJobCategoriesByParentIDByText(1, "מ"));
-            ////Jobs_Cities.SetJob_Cities(1, new int[] {1, 2, 3});
+            //PrintDt(new DataTable[] { Cities.GetCityByStart("נת") });
+            //PrintDt(new DataTable[] { CompanyTypes.GetAllCompanyTypes() });
+            //PrintDt(new DataTable[] { Cvs.GetUserCvs(48) });
+            ////Console.WriteLine(Cvs.InsertUserCv("file:///C:/Users/Adar/Documents/blabla.docx", 48));
+            //Console.WriteLine(Cvs.UpdateCvActivity(25, false));
+            //PrintDt(new DataTable[] { Employers.GetEmployerByID(12) });
+            //Console.WriteLine(Employers.IsEmployerExist("smartTech@gmail.com", "00", "סמארט טק"));
+            //Console.WriteLine(Employers.UpdateEmployerByID(12, "חיים כהן", 1000, 30, "סמארט טק"));
+            //Console.WriteLine(Employers.InsertEmployer("אלון", 200, 1,"Moofasa", "123", "123"));
+            //PrintDt(new DataTable[] { JobCategories.GetParentJobCategories() });
+            //PrintDt(new DataTable[] { JobCategories.GetJobCategoriesByParentID(19) });
+            //PrintDt(new DataTable[] { JobCategories.GetParentJobCategoriesByText("ו") });
+            //PrintDt(new DataTable[] { JobCategories.GetJobCategoriesByParentIDByText(1, "מ") });
+            ////Jobs_Cities.SetJob_Cities(15, new List<int> {24, 22});
             ////Jobs_JobCategories.SetJob_JobCategories(1, new int[] {1, 5, 9});
             //PrintDt(Jobs_Cities.GetAllCitiesByJobID(1));
             //PrintDt(Jobs_JobCategories.GetAllJobCategoriesByJob(1));
             ////Jobs_JobTypes.SetJob_JobTypes(1, new int[] { 1, 2 });
             //PrintDt(Jobs_JobTypes.GetAllJobTypesByJobID(1));
-            ////Console.WriteLine(Jobs.InsertJob("מוכר נעליים בקניון עיר ימים", "לחברת נעליים בעמ דרוש מוכר בחנות נעליים, עבודה ממש משתלמת.", "חובה נעלי נייק, התייחסות בצורה נחמדה ללקוחות, יכולת עבודה בצוות.", 1, "056-5656565", "Yair@gmail.com"));
-            ////Console.WriteLine(Jobs.UpdateJob(1, "מוכר בגדים בקניון עיר ימים", "לחברת בגדים בעמ דרוש מוכר בחנות בגדים, עבודה ממש משתלמת", "חובה חולצת נייק, התייחסות בצורה נחמדה ללקוחות, יכולת עבודה בצוות", 2, "059-7965432", "Alon@gmail.com", false));
+            ////Console.WriteLine(Jobs.InsertJob("test", "test", "test", 12, "056-5656565", "Yair@gmail.com", new List<int> { 1}, new List<int> { 23}, new List<int> { 1 }));
+            ////Console.WriteLine(Jobs.UpdateJob(26,"test", "test", "test", 12, "056-5656565", "Yair@gmail.com", false, new List<int> { 1 }, new List<int> { 23 }, new List<int> { 1 }));
             ////Console.WriteLine(Jobs.UpdateJobActivity(2));
-            //PrintDt(Jobs.GetJob(1));
-            //PrintDt(Jobs.GetJobsByEmployerAndJobActivity(6, false));
-            ////Console.WriteLine(Users.InsertUser(1, "Lior@gmail.com", "098kjh765", "Lior", "Gilboa"));
-            ////Console.WriteLine(Users.UpdateUser(7, 2, "Smart@gmail.com", "7654390", "Smart", "Brown"));
-            //PrintDt(Users.GetUser(7));
-            ////Console.WriteLine(SearchAgents.InsertSearchAgent(7));
-            ////Console.WriteLine(SearchAgents.UpdateSearchAgentActivity(3));
-            ////Console.WriteLine(SearchAgentsValues.InsertSearchAgentValues(3, 4, 1));
-            ////Console.WriteLine(SearchAgentsValues.UpdateSearchAgentValues(6, 3, 3 , 10));
+            //PrintDt(Jobs.GetJobs(new int[] {15, 20}, 48));
+            //PrintDt(Jobs.GetJobsByEmployerAndJobActivity(14, false));
+            ////Console.WriteLine(Users.InsertUser("Lior@gmail.com", "098kjh765", "Lior", "Gilboa", "000-0000000",23));
+            //Console.WriteLine(Users.UpdateUser(7, "Smart@gmail.com", "7654390", "Smart", "Brown", "000-0000000", 23));
+            //PrintDt(new DataTable[] { Users.GetUser("test", "test") });
+            ////Console.WriteLine(SearchAgents.InsertSearchAgent(48));
+            ////Console.WriteLine(SearchAgents.UpdateSearchAgentActivity(15));
+            ////SearchAgentsValues.SetSearchAgentValues(15, 4, new List<int> { 1, 2});
             //PrintDt(JobTypes.GetAllJobTypes());
             //PrintDt(JobTypes.GetAllSubTypes());
 
-            //PrintDt(Jobs.JobsSearch(new List<int> {1}, null, new List<int> { 1 }, null, 8));
-            //PrintDt(Jobs.JobsSearch(null, null, null, "בקניון", -1));
-            //PrintDt(SearchAgents.GetJobsBySearchAgent(3, 7));
+            //PrintDt(Jobs.JobsSearch(1,new List<int> { 3 }, null, 0, null, 48));
+            //PrintDt(Jobs.JobsSearch(0, null, null, 0, "מוכר", -1));
+            //PrintDt(SearchAgents.GetJobsBySearchAgent(6, 48));
             //PrintDt(SearchAgents.GetJobsBySearchAgent(4, 9));
             //PrintDt(SearchAgents.GetJobsBySearchAgent(5, 8));
 
-            //DataTable[] valueTypeDtArr = SearchAgents.GetSearchAgentsByUser(9);
-            //for (int i = 0; i < valueTypeDtArr.Length; i++)
-            //{
-            //    PrintDt(valueTypeDtArr[i]);
-            //}
+            //PrintDt(new DataTable[] { SearchAgents.GetSearchAgentsByUser(48) });
 
             //PrintDt(Users_Jobs.GetLovedJobs(8));
             //Console.ReadKey();
