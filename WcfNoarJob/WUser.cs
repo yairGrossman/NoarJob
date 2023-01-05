@@ -16,8 +16,8 @@ namespace WcfNoarJob
         private string lastName;//שם משפחה
         private string phone;//מספר הטלפון של המועמד
         private string cityName;//שם העיר שבה גר המשתמש
-        private List<Cv> lstCvs;//מערך קורות החיים של המשתמש
-        private Cv chosenCvForJob;//קורות חיים ספציפיים שהמשתמש החליט לשלוח למשרה
+        private List<WCv> lstCvs;//מערך קורות החיים של המשתמש
+        private WCv chosenCvForJob;//קורות חיים ספציפיים שהמשתמש החליט לשלוח למשרה
 
         public WUser(User user)
         {
@@ -42,8 +42,8 @@ namespace WcfNoarJob
         [DataMember]
         public string CityName { get => cityName; set => cityName = value; }
         [DataMember]
-        public List<Cv> LstCvs { get => lstCvs; set => lstCvs = value; }
+        public List<WCv> LstCvs { get => lstCvs; set => lstCvs = value; }
         [DataMember]
-        public Cv ChosenCvForJob { get => chosenCvForJob; set => chosenCvForJob = value; }
+        public WCv ChosenCvForJob { get => chosenCvForJob; set => chosenCvForJob = value; }
     }
 }

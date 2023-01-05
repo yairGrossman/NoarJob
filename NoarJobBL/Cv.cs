@@ -15,6 +15,7 @@ namespace NoarJobBL
         public int CvID
         {
             get { return cvID; }
+            set { this.CvID = value; }
         }
 
         public string CvFilePath

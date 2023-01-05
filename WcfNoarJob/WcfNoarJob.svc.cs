@@ -42,7 +42,11 @@ namespace WcfNoarJob
             User user = new User();
             user.UserID = wUser.UserID;
             user.SetUserCvs();
-            wUser.LstCvs = user.LstCvs;
+            foreach (Cv cv in user.LstCvs)
+            {
+                WCv Wcv = new WCv(cv);
+                wUser.LstCvs.Add(Wcv);
+            }
             return wUser;
         }
 
@@ -63,6 +67,24 @@ namespace WcfNoarJob
                 wcompanyTypeArr[i] = new WCompanyType(companyTypeArr[i]);
             }
             return wcompanyTypeArr;
+        }
+
+        public void InsertCv(string cvFilePath, int userID, WUser wUser)
+        {
+            Cv cv = new Cv();
+            cv.InsertCv(cvFilePath, userID);
+            WCv wCv = new WCv(cv);
+            wUser.LstCvs.Add(wCv);
+        }
+
+
+        public WCv UpdateCvActivity(WCv wCv)
+        {
+            Cv cv = new Cv();
+            cv.CvID = wCv.CvID;
+            cv.UpdateCvActivity();
+            wCv.CvIsActive = false;
+            return wCv;
         }
     }
 }
