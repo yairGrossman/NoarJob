@@ -15,11 +15,18 @@ namespace WcfNoarJob
     {
         [OperationContract]
         WUser CreateUser(string email, string userPassword, string firstName, string lastName, string phone, int cityID, string cityName);
+
         [OperationContract]
         WUser UserLogin(string email, string password);
+
         [OperationContract]
         Dictionary<int, string> GetCities(string city);
 
+        [OperationContract]
+        void InsertCv(string cvFilePath, int userID, WUser wUser);
+
+        [OperationContract]
+        WCv UpdateCvActivity(WCv wCv);
         //[OperationContract]
         // WUser SetUserCvs(WUser wUser);
 

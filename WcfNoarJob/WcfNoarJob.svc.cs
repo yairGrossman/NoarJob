@@ -36,7 +36,7 @@ namespace WcfNoarJob
             }
             return null;
         }
-
+        
         public WUser SetUserCvs(WUser wUser)
         {
             User user = new User();
@@ -49,14 +49,14 @@ namespace WcfNoarJob
             }
             return wUser;
         }
-
+        
         public Dictionary<int, string> GetCities(string city)
         {
             CitiesBL citiesBL = new CitiesBL();
             Dictionary<int, string> citiesDictionary = citiesBL.GetCities(city);
             return citiesDictionary;
         }
-
+        
         public WCompanyType[] GetAllCompanyTypes()
         {
             CompanyType companyType = new CompanyType();

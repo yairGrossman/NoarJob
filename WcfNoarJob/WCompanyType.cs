@@ -7,12 +7,15 @@ using System.Web;
 
 namespace WcfNoarJob
 {
+    [DataContract]
     public class WCompanyType
     {
         private int companyTypeID;//מספר קטגוריית החברה
         private string companyTypeName;//שם הקטגורייה של החברה
 
+        [DataMember]
         public int CompanyTypeID { get => companyTypeID; set => companyTypeID = value; }
+        [DataMember]
         public string CompanyTypeName { get => companyTypeName; set => companyTypeName = value; }
 
         public WCompanyType(CompanyType companyType)

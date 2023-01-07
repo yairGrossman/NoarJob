@@ -7,15 +7,12 @@ using System.Web;
 
 namespace WcfNoarJob
 {
+    [DataContract]
     public class WCv
     {
         private int cvID;//של הקורות חיים ID
         private string cvFilePath;//הכתובת של קובץ הקורות חיים
         private bool cvIsActive;//פעילות קורות החיים
-
-        public int CvID { get => cvID; set => cvID = value; }
-        public string CvFilePath { get => cvFilePath; set => cvFilePath = value; }
-        public bool CvIsActive { get => cvIsActive; set => cvIsActive = value; }
 
         public WCv(Cv cv)
         {
@@ -23,5 +20,12 @@ namespace WcfNoarJob
             this.cvFilePath = cv.CvFilePath;
             this.cvIsActive = cv.CvIsActive;
         }
+
+        [DataMember]
+        public int CvID { get => cvID; set => cvID = value; }
+        [DataMember]
+        public string CvFilePath { get => cvFilePath; set => cvFilePath = value; }
+        [DataMember]
+        public bool CvIsActive { get => cvIsActive; set => cvIsActive = value; }
     }
 }
