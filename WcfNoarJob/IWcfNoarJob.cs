@@ -23,14 +23,28 @@ namespace WcfNoarJob
         Dictionary<int, string> GetCities(string city);
 
         [OperationContract]
+        WCompanyType[] GetAllCompanyTypes();
+
+        [OperationContract]
         void InsertCv(string cvFilePath, int userID, WUser wUser);
 
         [OperationContract]
         WCv UpdateCvActivity(WCv wCv);
-        //[OperationContract]
-        // WUser SetUserCvs(WUser wUser);
 
-        // TODO: Add your service operations here
+        [OperationContract]
+        WEmployer EmployerLogin(string companyEmail, string employerPassword);
+
+        [OperationContract]
+        WEmployer CreateEmployer(string employerName, int numOfEmployees, int companyTypeID, string companyTypeName,
+            string companyName, string employerPassword, string companyEmail);
+
+        [OperationContract]
+        WJob CreateJob(string title, string description, string requirements, int employerID,
+            string phone, string email, List<int> jobCategories, List<int> cities, List<int> jobTypes);
+
+        [OperationContract]
+        void UpdateJob(WJob wJob, string title, string description, string requirements, int employerID,
+            string phone, string email, List<int> jobCategories, List<int> cities, List<int> jobTypes);
     }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.

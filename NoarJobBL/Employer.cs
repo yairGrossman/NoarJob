@@ -23,6 +23,43 @@ namespace NoarJobBL
             get { return this.employerID; }
         }
 
+        public string EmployerName
+        {
+            get { return this.employerName; }
+            set { this.employerName = value; }
+        }
+
+        public int NumOfEmployees
+        {
+            get { return this.numOfEmployees; }
+            set { this.numOfEmployees = value; }
+        }
+
+        public string CompanyTypeName
+        {
+            get { return this.companyTypeName; }
+            set { this.companyTypeName = value; }
+        }
+
+        public string CompanyName
+        {
+            get { return this.companyName; }
+            set { this.companyName = value; }
+        }
+
+        public string EmployerPassword
+        {
+            get { return this.employerPassword; }
+            set { this.employerPassword = value; }
+        }
+
+        public string CompanyEmail
+        {
+            get { return this.companyEmail; }
+            set { this.companyEmail = value; }
+        }
+
+
         /// <summary>
         /// פונקציה שמכניסה את נתוני המעסיק לשדות המחלקה
         /// </summary>
