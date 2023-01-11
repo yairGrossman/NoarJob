@@ -45,6 +45,18 @@ namespace WcfNoarJob
         [OperationContract]
         void UpdateJob(WJob wJob, string title, string description, string requirements, int employerID,
             string phone, string email, List<int> jobCategories, List<int> cities, List<int> jobTypes);
+
+        [OperationContract]
+        bool UpdateJobActivity(WJob wJob);
+
+        [OperationContract]
+        WJob[] GetJobsSearch(int parentCategory, List<int> jobCategories, List<int> jobTypes, int city, string text, int userID);
+
+        [OperationContract]
+        WJob[] GetEmployerJobsByJobActivity(int employerID, bool isActive);
+
+        [OperationContract]
+        WJob[] GetTheMostSoughtJobBL(int userID, List<int> childCategoriesLst, List<int> citiesLst, List<int> typesLst);
     }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.

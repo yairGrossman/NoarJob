@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace WcfNoarJob
 {
@@ -13,6 +14,7 @@ namespace WcfNoarJob
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class Service1 : IWcfNoarJob
     {
+        #region קשור למחלקת משתמש
         /// <summary>
         /// פונקציה שיוצרת משתמש חדש במידה שהוא לא קיים כבר במערכת
         /// ומחזירה אמת אם הוא היה כבר קיים במערכת ושקר אחרת
@@ -67,7 +69,9 @@ namespace WcfNoarJob
             }
             return wUser;
         }
+        #endregion
 
+        #region קשור למחלקת ערים
         /// <summary>
         /// פונקציה שמקבלת חלק משם של ישוב או את שם הישוב המלא
         /// ומחזירה יומן של ישובים שמתחילים במחרוזת שהמשתמש חיפש
@@ -80,7 +84,9 @@ namespace WcfNoarJob
             Dictionary<int, string> citiesDictionary = citiesBL.GetCities(city);
             return citiesDictionary;
         }
+        #endregion
 
+        #region קשור למחלקת קטגוריות של חברות
         /// <summary>
         /// פונקציה שמחזירה את כל קטגוריות החברות
         /// </summary>
@@ -96,7 +102,9 @@ namespace WcfNoarJob
             }
             return wcompanyTypeArr;
         }
+        #endregion
 
+        #region קשור למחלקת קורות חיים
         /// <summary>
         /// פונקציה להוספה של רשומת קורות חיים חדשים למשתמש
         /// </summary>
@@ -121,7 +129,9 @@ namespace WcfNoarJob
             wCv.CvIsActive = false;
             return wCv;
         }
+        #endregion
 
+        #region קשור למחלקת מעסיק
         /// <summary>
         /// למעסיק Login פונקצית 
         /// </summary>
@@ -156,7 +166,9 @@ namespace WcfNoarJob
             }
             return null;
         }
+        #endregion
 
+        #region קשור למחלקת משרה
         /// <summary>
         /// פונקציה שיוצרת משרה חדשה
         /// </summary>
@@ -187,5 +199,68 @@ namespace WcfNoarJob
             job.UpdateJob(title, description, requirements, employerID,
              phone, email, jobCategories, cities, jobTypes);
         }
+
+        /// <summary>
+        /// פונקציה שמשנה את פעילות המשרה
+        /// </summary>
+        public bool UpdateJobActivity(WJob wJob)
+        {
+            Job job = new Job();
+            job.JobID = wJob.JobID;
+            job.IsActive = wJob.IsActive;
+            bool succeed = job.UpdateJobActivity();
+            return succeed;
+        }
+        #endregion
+
+        #region קשור למחלקת הרבים של משרה
+        /// <summary>
+        /// פונקציה שהופכת מערך של משרות של הלוגיק למערך של משרות של הדאבל יו סי אף
+        /// </summary>
+        /// <param name="arrJobs"></param>
+        /// <returns></returns>
+        private WJob[] ConvertJobsToWJob(Job[] arrJobs)
+        {
+            WJob[] wArrJobs = new WJob[arrJobs.Length];
+            for (int i = 0; i < arrJobs.Length; i++)
+            {
+                wArrJobs[i] = new WJob(arrJobs[i]);
+            }
+            return wArrJobs;
+        }
+
+        /// <summary>
+        /// מחזירה מערך של משרות לפי מה שהמשתמש חיפש
+        /// </summary>
+        public WJob[] GetJobsSearch(int parentCategory, List<int> jobCategories, List<int> jobTypes, int city, string text, int userID)
+        {
+            JobsBL jobsBL = new JobsBL();
+            Job[] arrJobs = jobsBL.GetJobsSearch(parentCategory, jobCategories, jobTypes, city, text, userID);
+            WJob[] wArrJobs = ConvertJobsToWJob(arrJobs);
+            return wArrJobs;
+        }
+
+        /// <summary>
+        /// מחזירה מערך של משרות המעסיק לפי פעילות המשרות
+        /// </summary>
+        public WJob[] GetEmployerJobsByJobActivity(int employerID, bool isActive)
+        {
+            JobsBL jobsBL = new JobsBL();
+            Job[] arrJobs = jobsBL.GetEmployerJobsByJobActivity(employerID, isActive);
+            WJob[] wArrJobs = ConvertJobsToWJob(arrJobs);
+            return wArrJobs;
+        }
+
+        /// <summary>
+        /// פונקציה שמחזירה את המשרות שהמשתמשים הדומים לי הגישו הכי הרבה מעומדויות
+        /// </summary>
+        public WJob[] GetTheMostSoughtJobBL(int userID, List<int> childCategoriesLst, List<int> citiesLst, List<int> typesLst)
+        {
+            JobsBL jobsBL = new JobsBL();
+            Job[] arrJobs = jobsBL.GetTheMostSoughtJobBL(userID, childCategoriesLst ,citiesLst ,typesLst);
+            WJob[] wArrJobs = ConvertJobsToWJob(arrJobs);
+            return wArrJobs;
+        }
+        #endregion
     }
 }
