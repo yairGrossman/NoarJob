@@ -57,6 +57,18 @@ namespace WcfNoarJob
 
         [OperationContract]
         WJob[] GetTheMostSoughtJobBL(int userID, List<int> childCategoriesLst, List<int> citiesLst, List<int> typesLst);
+
+        [OperationContract]
+        Dictionary<int, string> GetParentJobCategories();
+
+        [OperationContract]
+        Dictionary<int, string> GetJobCategoriesByParentID(WJobCategories wJobCategories);
+
+        [OperationContract]
+        Dictionary<int, string> GetParentJobCategoriesByText(string text);
+
+        [OperationContract]
+        Dictionary<int, string> GetJobCategoriesByParentIDAndByText(WJobCategories wJobCategories, string text);
     }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.

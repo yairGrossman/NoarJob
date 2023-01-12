@@ -76,6 +76,7 @@
     <Compile Include="WCv.cs" />
     <Compile Include="WEmployer.cs" />
     <Compile Include="WJob.cs" />
+    <Compile Include="WJobCategories.cs" />
     <Compile Include="WUser.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -262,5 +262,45 @@ namespace WcfNoarJob
             return wArrJobs;
         }
         #endregion
+
+        #region קשור למחלקת קטגוריות משרה
+        /// <summary>
+        /// פונקציה שמחזירה יומן שבו כל תחומי התפקיד
+        /// </summary>
+        public Dictionary<int, string> GetParentJobCategories()
+        {
+            JobCategoriesBL jobCategories = new JobCategoriesBL();
+            return jobCategories.GetParentJobCategories();
+        }
+
+        /// <summary>
+        /// פונקציה שמחזירה מערך שבו כל התפקידים
+        /// </summary>
+        public Dictionary<int, string> GetJobCategoriesByParentID(WJobCategories wJobCategories)
+        {
+            JobCategoriesBL jobCategories = new JobCategoriesBL();
+            jobCategories.ChosenJobCategory = wJobCategories.ChosenJobCategory;
+            return jobCategories.GetJobCategoriesByParentID();
+        }
+
+        /// <summary>
+        /// פונקציה שמחזירה את כל תחומי התפקיד שנמצא בהם המחרוזת שהמשתמש הקליד
+        /// </summary>
+        public Dictionary<int, string> GetParentJobCategoriesByText(string text)
+        {
+            JobCategoriesBL jobCategories = new JobCategoriesBL();
+            return jobCategories.GetParentJobCategoriesByText(text);
+        }
+
+        /// <summary>
+        /// פונקציה שמחזירה את כל התפקידים שנמצא בהם המחרוזת שהמשתמש הקליד
+        /// </summary>
+        public Dictionary<int, string> GetJobCategoriesByParentIDAndByText(WJobCategories wJobCategories, string text)
+        {
+            JobCategoriesBL jobCategories = new JobCategoriesBL();
+            jobCategories.ChosenJobCategory = wJobCategories.ChosenJobCategory;
+            return jobCategories.GetJobCategoriesByParentIDAndByText(text);
+        }
+        #endregion
     }
 }
