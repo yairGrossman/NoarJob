@@ -324,5 +324,56 @@ namespace WcfNoarJob
             return jobTypes.GetAllSubTypes();
         }
         #endregion
+
+        #region קשור למחלקת חיפושים של משתמשים דומים
+        /// <summary>
+        /// פונקציה שעושה סכום למספר המשתמשים שחיפשו אותו תחום תפקיד שהמעסיק בחר 
+        /// </summary>
+        /// <param name="parentCategory"></param>
+        public WSameSearchesOfUsers GetSameParentCategory(int parentCategory, WSameSearchesOfUsers wSSOU)
+        {
+            SameSearchesOfUsersBL sameSearchesOfUsers = new SameSearchesOfUsersBL();
+            sameSearchesOfUsers.GetSameParentCategory(parentCategory);
+            wSSOU.CountSameParentCategory = sameSearchesOfUsers.CountSameParentCategory;
+            return wSSOU;
+        }
+
+        /// <summary>
+        /// פונקציה שעושה סכום למספר המשתמשים שחיפשו אותו תחום תפקיד ואותם תפקידים שהמעסיק בחר 
+        /// </summary>
+        /// <param name="childCategoriesLst"></param>
+        public WSameSearchesOfUsers GetSameChildCategories(List<int> childCategoriesLst, WSameSearchesOfUsers wSSOU)
+        {
+            SameSearchesOfUsersBL sameSearchesOfUsers = new SameSearchesOfUsersBL();
+            sameSearchesOfUsers.GetSameChildCategories(childCategoriesLst);
+            wSSOU.CountSameParentCategoryAndChildCategories = sameSearchesOfUsers.CountSameParentCategoryAndChildCategories;
+            return wSSOU;
+        }
+
+        /// <summary>
+        /// פונקציה שעושה סכום למספר המשתמשים שחיפשו אותו תחום תפקיד ואותם תפקידים ואותם ערים שהמעסיק בחר 
+        /// </summary>
+        /// <param name="citiesLst"></param>
+        public WSameSearchesOfUsers SameChildCategoriesAndCities(List<int> childCategoriesLst, List<int> citiesLst, WSameSearchesOfUsers wSSOU)
+        {
+            SameSearchesOfUsersBL sameSearchesOfUsers = new SameSearchesOfUsersBL();
+            sameSearchesOfUsers.SameChildCategoriesAndCities(childCategoriesLst, citiesLst);
+            wSSOU.CountSameParentCategoryAndChildCategoriesAndCities = sameSearchesOfUsers.CountSameParentCategoryAndChildCategoriesAndCities;
+            return wSSOU;
+        }
+
+        /// <summary>
+        /// פונקציה שעושה סכום למספר המשתמשים שחיפשו אותו תחום תפקיד ואותם תפקידים ואותם ערים ואותם סוגי משרות שהמעסיק בחר 
+        /// </summary>
+        /// <param name="typesLst"></param>
+        public WSameSearchesOfUsers SameChildCategoriesAndCitiesAndTypes(List<int> childCategoriesLst, 
+            List<int> citiesLst, List<int> typesLst, WSameSearchesOfUsers wSSOU)
+        {
+            SameSearchesOfUsersBL sameSearchesOfUsers = new SameSearchesOfUsersBL();
+            sameSearchesOfUsers.SameChildCategoriesAndCitiesAndTypes(childCategoriesLst, citiesLst, typesLst);
+            wSSOU.CountSameParentCategoryAndChildCategoriesAndCitiesAndTypes = sameSearchesOfUsers.CountSameParentCategoryAndChildCategoriesAndCitiesAndTypes;
+            return wSSOU;
+        }
+        #endregion
     }
 }

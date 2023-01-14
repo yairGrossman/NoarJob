@@ -75,6 +75,18 @@ namespace WcfNoarJob
 
         [OperationContract]
         Dictionary<int, string> GetAllSubTypes();
+
+        [OperationContract]
+        WSameSearchesOfUsers GetSameParentCategory(int parentCategory, WSameSearchesOfUsers wSSOU);
+
+        [OperationContract]
+        WSameSearchesOfUsers GetSameChildCategories(List<int> childCategoriesLst, WSameSearchesOfUsers wSSOU);
+
+        [OperationContract]
+        WSameSearchesOfUsers SameChildCategoriesAndCities(List<int> childCategoriesLst, List<int> citiesLst, WSameSearchesOfUsers wSSOU);
+
+        [OperationContract]
+        WSameSearchesOfUsers SameChildCategoriesAndCitiesAndTypes(List<int> childCategoriesLst, List<int> citiesLst, List<int> typesLst, WSameSearchesOfUsers wSSOU);
     }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.

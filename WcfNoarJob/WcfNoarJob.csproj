@@ -78,6 +78,7 @@
     <Compile Include="WJob.cs" />
     <Compile Include="WJobCategories.cs" />
     <Compile Include="WJobTypes.cs" />
+    <Compile Include="WSameSearchesOfUsers.cs" />
     <Compile Include="WUser.cs" />
   </ItemGroup>
   <ItemGroup>
