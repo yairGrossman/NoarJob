@@ -375,5 +375,79 @@ namespace WcfNoarJob
             return wSSOU;
         }
         #endregion
+
+        #region קשור למחלקת סוכן חכם
+        /// <summary>
+        /// פונקציה ליצירה של רשומות בטבלה זו כחלק מתהליך יצירת סוכן
+        /// </summary>
+        public void InsertSearchAgentValues(WSearchAgent wSearchAgent)
+        {
+            SearchAgent searchAgent = new SearchAgent(wSearchAgent.UserID);
+            searchAgent.ParentCategoryKvp = wSearchAgent.ParentCategoryKvp;
+            searchAgent.ChildCategoriesDictionary = wSearchAgent.ChildCategoriesDictionary;
+            wSearchAgent.CitiesDictionary = wSearchAgent.CitiesDictionary;
+            searchAgent.TypesDictionary = wSearchAgent.TypesDictionary;
+            searchAgent.InsertSearchAgentValues();
+            wSearchAgent.SearchAgentID = searchAgent.SearchAgentID;
+        }
+
+        /// <summary>
+        /// פונקציה לעדכון של רשומות בטבלה זו כחלק מתהליך עדכון סוכן
+        /// </summary>
+        public void UpdateSearchAgentValues(WSearchAgent wSearchAgent)
+        {
+            SearchAgent searchAgent = new SearchAgent(wSearchAgent.UserID);
+            searchAgent.ParentCategoryKvp = wSearchAgent.ParentCategoryKvp;
+            searchAgent.ChildCategoriesDictionary = wSearchAgent.ChildCategoriesDictionary;
+            wSearchAgent.CitiesDictionary = wSearchAgent.CitiesDictionary;
+            searchAgent.TypesDictionary = wSearchAgent.TypesDictionary;
+            searchAgent.UpdateSearchAgentValues();
+        }
+
+        /// <summary>
+        /// פונקציה לעדכון הסוכן החכם כלא פעיל
+        /// </summary>
+        public void UpdateSearchAgentActivity(int userID, int searchAgentID)
+        {
+            SearchAgent searchAgent = new SearchAgent(userID);
+            searchAgent.SearchAgentID = searchAgentID;
+            searchAgent.UpdateSearchAgentActivity();
+        }
+        #endregion
+
+        #region קשור למחלקת הרבים של סוכן חכם
+        /// <summary>
+        /// פונקציה לחיפוש משרות לפי סוכן
+        /// </summary>
+        public WJob[] GetJobsBySearchAgent(int searchAgentID, int userID)
+        {
+            SearchAgentsBL searchAgentsBL = new SearchAgentsBL();
+            Job[] arrJobs = searchAgentsBL.GetJobsBySearchAgent(searchAgentID, userID);
+            WJob[] wArrJobs = ConvertJobsToWJob(arrJobs);
+            return wArrJobs;
+        }
+
+        /// <summary>
+        /// פונקציה המחזירה את כל הסוכנים החכמים לפי משתמש
+        /// </summary>
+        public List<WSearchAgent> GetSearchAgentsByUser(int userID)
+        {
+            SearchAgentsBL searchAgentsBL = new SearchAgentsBL();
+            List<SearchAgent> searchAgentsLst = searchAgentsBL.GetSearchAgentsByUser(userID);
+            List<WSearchAgent> wSearchAgentsLst = ConvertSAgentLstToWSAgentLst(searchAgentsLst);
+            return wSearchAgentsLst;
+        }
+
+        private List<WSearchAgent> ConvertSAgentLstToWSAgentLst(List<SearchAgent> searchAgentsLst)
+        {
+            List<WSearchAgent> wSearchAgentsLst = new List<WSearchAgent>();
+            foreach (SearchAgent searchAgent in searchAgentsLst)
+            {
+                wSearchAgentsLst.Add(new WSearchAgent (searchAgent));
+            }
+
+            return wSearchAgentsLst;
+        }
+        #endregion
     }
 }

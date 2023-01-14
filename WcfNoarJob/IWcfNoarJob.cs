@@ -87,27 +87,20 @@ namespace WcfNoarJob
 
         [OperationContract]
         WSameSearchesOfUsers SameChildCategoriesAndCitiesAndTypes(List<int> childCategoriesLst, List<int> citiesLst, List<int> typesLst, WSameSearchesOfUsers wSSOU);
-    }
 
-    // Use a data contract as illustrated in the sample below to add composite types to service operations.
-    [DataContract]
-    public class CompositeType
-    {
-        bool boolValue = true;
-        string stringValue = "Hello ";
+        [OperationContract]
+        void InsertSearchAgentValues(WSearchAgent wSearchAgent);
 
-        [DataMember]
-        public bool BoolValue
-        {
-            get { return boolValue; }
-            set { boolValue = value; }
-        }
+        [OperationContract]
+        void UpdateSearchAgentValues(WSearchAgent wSearchAgent);
 
-        [DataMember]
-        public string StringValue
-        {
-            get { return stringValue; }
-            set { stringValue = value; }
-        }
+        [OperationContract]
+        void UpdateSearchAgentActivity(int userID, int searchAgentID);
+
+        [OperationContract]
+        WJob[] GetJobsBySearchAgent(int searchAgentID, int userID);
+
+        [OperationContract]
+        List<WSearchAgent> GetSearchAgentsByUser(int userID);
     }
 }

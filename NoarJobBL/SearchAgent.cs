@@ -37,16 +37,19 @@ namespace NoarJobBL
         public Dictionary<int, string> ChildCategoriesDictionary
         {
             get { return this.childCategoriesDictionary; }
+            set { this.childCategoriesDictionary = value; }
         }
 
         public Dictionary<int, string> CitiesDictionary
         {
             get { return this.citiesDictionary; }
+            set { this.citiesDictionary = value; }
         }
 
         public Dictionary<int, string> TypesDictionary
         {
             get { return this.typesDictionary; }
+            set { this.typesDictionary = value; }
         }
         #endregion
 
