@@ -302,5 +302,27 @@ namespace WcfNoarJob
             return jobCategories.GetJobCategoriesByParentIDAndByText(text);
         }
         #endregion
+
+        #region קשור למחלקת טיפוסי משרה
+        /// <summary>
+        /// פונקציה המחזירה את כל היקפי המשרות
+        /// </summary>
+        /// <returns></returns>
+        public Dictionary<int, string> GetAllJobTypes()
+        {
+            JobTypesBL jobTypes = new JobTypesBL();
+            return jobTypes.GetAllJobTypes();
+        }
+
+        /// <summary>
+        /// פונקציה המחזירה את כל סוגי המשרות
+        /// </summary>
+        /// <returns></returns>
+        public Dictionary<int, string> GetAllSubTypes()
+        {
+            JobTypesBL jobTypes = new JobTypesBL();
+            return jobTypes.GetAllSubTypes();
+        }
+        #endregion
     }
 }

@@ -69,6 +69,12 @@ namespace WcfNoarJob
 
         [OperationContract]
         Dictionary<int, string> GetJobCategoriesByParentIDAndByText(WJobCategories wJobCategories, string text);
+
+        [OperationContract]
+        Dictionary<int, string> GetAllJobTypes();
+
+        [OperationContract]
+        Dictionary<int, string> GetAllSubTypes();
     }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
