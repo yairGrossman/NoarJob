@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Web.Security;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace WcfNoarJob
@@ -377,6 +378,16 @@ namespace WcfNoarJob
         #endregion
 
         #region קשור למחלקת סוכן חכם
+
+        public WSearchAgent ResetWSearchAgent(WSearchAgent wSearchAgent, int userID)
+        {
+            wSearchAgent.UserID = userID;
+            wSearchAgent.ChildCategoriesDictionary = new Dictionary<int, string>();
+            wSearchAgent.CitiesDictionary = new Dictionary<int, string>();
+            wSearchAgent.TypesDictionary = new Dictionary<int, string>();
+            return wSearchAgent;
+        }
+
         /// <summary>
         /// פונקציה ליצירה של רשומות בטבלה זו כחלק מתהליך יצירת סוכן
         /// </summary>
@@ -385,7 +396,7 @@ namespace WcfNoarJob
             SearchAgent searchAgent = new SearchAgent(wSearchAgent.UserID);
             searchAgent.ParentCategoryKvp = wSearchAgent.ParentCategoryKvp;
             searchAgent.ChildCategoriesDictionary = wSearchAgent.ChildCategoriesDictionary;
-            wSearchAgent.CitiesDictionary = wSearchAgent.CitiesDictionary;
+            searchAgent.CitiesDictionary = wSearchAgent.CitiesDictionary;
             searchAgent.TypesDictionary = wSearchAgent.TypesDictionary;
             searchAgent.InsertSearchAgentValues();
             wSearchAgent.SearchAgentID = searchAgent.SearchAgentID;
@@ -447,6 +458,98 @@ namespace WcfNoarJob
             }
 
             return wSearchAgentsLst;
+        }
+        #endregion
+
+        #region קשור למחלקת הקישור של משרה ומועמד
+        /// <summary>
+        /// פונקציה המחזירה את המשרות שהמשתמש הגיש אליהם מועמדות
+        /// </summary>
+        public WJob[] GetApplyForJobs(int userID)
+        {
+            User_Job user_Job = new User_Job();
+            Job[] arrJobs = user_Job.GetApplyForJobs(userID);
+            WJob[] wArrJobs = ConvertJobsToWJob(arrJobs);
+            return wArrJobs;
+        }
+
+        /// <summary>
+        /// פונקציה המחזירה את המשרות שהמשתמש אהב
+        /// </summary>
+        public WJob[] GetLovedJobs(int userID)
+        {
+            User_Job user_Job = new User_Job();
+            Job[] arrJobs = user_Job.GetLovedJobs(userID);
+            WJob[] wArrJobs = ConvertJobsToWJob(arrJobs);
+            return wArrJobs;
+        }
+
+        /// <summary>
+        /// פונקציה המחזירה את רשימת המועמדים של משרה לפי משרה וגם לפי סוג הקיטלוג
+        /// </summary>
+        public WUser[] GetUsersByJobAndTabType(int jobID, int tabType)
+        {
+            User_Job user_Job = new User_Job();
+            User[] arrUsers = user_Job.GetUsersByJobAndTabType(jobID, tabType);
+            WUser[] wArrUsers = ConvertUsersToWUsers(arrUsers);
+            return wArrUsers;
+        }
+
+        private WUser[] ConvertUsersToWUsers(User[] arrUsers)
+        {
+            WUser[] wArrUsers = new WUser[arrUsers.Length];
+            for (int i = 0; i < arrUsers.Length; i++)
+            {
+                wArrUsers[i] = new WUser(arrUsers[i]);
+            }
+            return wArrUsers;
+        }
+
+        /// <summary>
+        /// פונקציה לעדכון הערת המעסיק למועמד
+        /// </summary>
+        public void UpdateEmployerNotes(int jobID, int userID, string notes)
+        {
+            User_Job user_Job = new User_Job();
+            user_Job.UpdateEmployerNotes(jobID, userID, notes);
+        }
+
+        /// <summary>
+        /// ATSפונקצית עדכון להעברת מועמד בין הקיטלוגים השונים במערכת ה
+        /// </summary>
+        public void UpdateTabType(int jobID, int userID, int tabType)
+        {
+            User_Job user_Job = new User_Job();
+            user_Job.UpdateTabType(jobID, userID, tabType);
+        }
+
+        /// <summary>
+        /// פונקצית עדכון שמעבירה את הסוג שהמשתמש בחר למשרה
+        /// אחד שליחת מועמדות, 2 - אהבתי את המשרה, 3 - מחקתי את המשרה
+        /// </summary>
+        public void UpdateUserJobType(int jobID, int userID, int userJobType)
+        {
+            User_Job user_Job = new User_Job();
+            user_Job.UpdateUserJobType(jobID, userID, userJobType);
+        }
+
+        /// <summary>
+        /// פונקציה ליצירת רשומה חדשה בעת הגשת מועמדות של משתמש למשרה
+        /// </summary>
+        public void CreateUser_Job(int jobID, int userID, int cvID, DateTime dateApplicated)
+        {
+            User_Job user_Job = new User_Job();
+            user_Job.CreateUser_Job(jobID, userID, cvID, dateApplicated);
+        }
+
+
+        /// <summary>
+        /// פונקציה ליצירת רשומה חדשה בעת מחיקת משרה/אהבת משרה
+        /// </summary>
+        public void CreateUser_JobAtDeleteOrLove(int jobID, int userID, int userJobType)
+        {
+            User_Job user_Job = new User_Job();
+            user_Job.CreateUser_Job(jobID, userID, userJobType);
         }
         #endregion
     }

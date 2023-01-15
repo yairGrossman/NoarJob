@@ -89,6 +89,9 @@ namespace WcfNoarJob
         WSameSearchesOfUsers SameChildCategoriesAndCitiesAndTypes(List<int> childCategoriesLst, List<int> citiesLst, List<int> typesLst, WSameSearchesOfUsers wSSOU);
 
         [OperationContract]
+        WSearchAgent ResetWSearchAgent(WSearchAgent wSearchAgent, int userID);
+
+        [OperationContract]
         void InsertSearchAgentValues(WSearchAgent wSearchAgent);
 
         [OperationContract]
@@ -102,5 +105,29 @@ namespace WcfNoarJob
 
         [OperationContract]
         List<WSearchAgent> GetSearchAgentsByUser(int userID);
+
+        [OperationContract]
+        WJob[] GetApplyForJobs(int userID);
+
+        [OperationContract]
+        WJob[] GetLovedJobs(int userID);
+
+        [OperationContract]
+        WUser[] GetUsersByJobAndTabType(int jobID, int tabType);
+
+        [OperationContract]
+        void UpdateEmployerNotes(int jobID, int userID, string notes);
+
+        [OperationContract]
+        void UpdateTabType(int jobID, int userID, int tabType);
+
+        [OperationContract]
+        void UpdateUserJobType(int jobID, int userID, int userJobType);
+
+        [OperationContract]
+        void CreateUser_Job(int jobID, int userID, int cvID, DateTime dateApplicated);
+
+        [OperationContract]
+        void CreateUser_JobAtDeleteOrLove(int jobID, int userID, int userJobType);
     }
 }

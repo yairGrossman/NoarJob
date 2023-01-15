@@ -27,14 +27,6 @@ namespace WcfNoarJob
             this.typesDictionary = searchAgent.TypesDictionary;
         }
 
-        public WSearchAgent(int userID)
-        {
-            this.userID = userID;
-            this.childCategoriesDictionary = new Dictionary<int, string>();
-            this.citiesDictionary = new Dictionary<int, string>();
-            this.typesDictionary = new Dictionary<int, string>();
-        }
-
         [DataMember]
         public int SearchAgentID { get => searchAgentID; set => searchAgentID = value; }
         [DataMember]
