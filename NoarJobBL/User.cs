@@ -150,5 +150,56 @@ namespace NoarJobBL
             else
                 return false;
         }
+
+        /// <summary>
+        /// פונקציה המחזירה את המשרות שהמשתמש הגיש אליהם מועמדות
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <returns></returns>
+        public Job[] GetApplyForJobs()
+        {
+            DataTable[] arrDt = NoarJobDAL.Users_Jobs.GetApplyForOrLovedJobs(this.userID, 1);
+            Job[] arrJob = JobsBL.GetJobs(arrDt);
+            return arrJob;
+        }
+
+        /// <summary>
+        /// פונקציה המחזירה את המשרות שהמשתמש אהב
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <returns></returns>
+        public Job[] GetLovedJobs()
+        {
+            DataTable[] arrDt = NoarJobDAL.Users_Jobs.GetApplyForOrLovedJobs(this.userID, 2);
+            Job[] arrJob = JobsBL.GetJobs(arrDt);
+            return arrJob;
+        }
+
+        /// <summary>
+        /// פונקצית עדכון שמעבירה את הסוג שהמשתמש בחר למשרה
+        /// אחד שליחת מועמדות, 2 - אהבתי את המשרה, 3 - מחקתי את המשרה
+        /// </summary>
+        /// <param name="jobID"></param>
+        /// <param name="userJobType"></param>
+        public void UpdateUserJobType(int jobID, int userJobType)
+        {
+            NoarJobDAL.Users_Jobs.UpdateUserJobType(jobID, this.userID, userJobType);
+        }
+
+        /// <summary>
+        /// פונקציה ליצירת רשומה חדשה בעת הגשת מועמדות של משתמש למשרה
+        /// </summary>
+        public void CreateUser_Job(int jobID, int cvID, DateTime dateApplicated)
+        {
+            Users_Jobs.InsertUser_Job(jobID, this.userID, cvID, dateApplicated);
+        }
+
+        /// <summary>
+        /// פונקציה ליצירת רשומה חדשה בעת מחיקת משרה/אהבת משרה
+        /// </summary>
+        public void CreateUser_Job(int jobID, int userJobType)
+        {
+            Users_Jobs.InsertUser_Job(jobID, this.userID, userJobType);
+        }
     }
 }

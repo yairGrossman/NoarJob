@@ -18,7 +18,7 @@ namespace NoarJobUI
         private Form form;
         private bool isJobActive;
         private Employer employer;
-        private User_Job user_Job;
+        //private User_Job user_Job;
         private User user;
         private MainPage mainPage;
 
@@ -32,7 +32,7 @@ namespace NoarJobUI
             InitializeComponent();
             this.arrJobs = arrJobs;
             this.form = form;
-            this.user_Job = new User_Job();
+            //this.user_Job = new User_Job();
             this.user = user;
         }
 
@@ -642,8 +642,8 @@ namespace NoarJobUI
             else
             {
                 DialogResult dialogResult = MessageBox.Show("אתה בטוח שאתה רוצה למחוק את המשרה?, אם תמחק את המשרה לעולם לא תראה יותר את המשרה הזאת", "",MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                    this.user_Job.CreateUser_Job(jobID, this.user.UserID, 3);
+                //if (dialogResult == DialogResult.Yes)
+                    //this.user_Job.CreateUser_Job(jobID, this.user.UserID, 3);
             }
         }
 

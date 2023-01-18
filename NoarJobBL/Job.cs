@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using NoarJobDAL;
+using System.Collections.Generic;
 using System.Data;
 
 namespace NoarJobBL
@@ -21,6 +22,8 @@ namespace NoarJobBL
         private Dictionary<int, string> citiesDictionary;//רשימת הערים שהמשרה נמצאת בה
         private Dictionary<int, string> typesDictionary;//רשימת סוגי המשרות שלמשרה יש 
         private Dictionary<int, string> categoriesDictionary;//רשימת הקטגוריות שלמשרה יש 
+
+        private List<string> notesLst;//הערות של המעסיק
 
         public Job(int jobID, 
             string title, 
@@ -202,6 +205,64 @@ namespace NoarJobBL
                 return true;
             }
             return false;
+        }
+
+        /// <summary>
+        /// פונקציה המחזירה את רשימת המועמדים של משרה לפי משרה וגם לפי סוג הקיטלוג
+        /// </summary>
+        /// <param name="jobID"></param>
+        /// <param name="tabType"></param>
+        /// <returns></returns>
+        public User[] GetUsersByJobAndTabType(int tabType)
+        {
+            DataTable dt = Users_Jobs.GetUsersByJobAndTabType(this.jobID, tabType);
+            User[] arrUsers = new User[dt.Rows.Count];
+            for (int i = 0; i < arrUsers.Length; i++)
+            {
+                if (dt.Rows[i]["Notes"].ToString() != "")
+                {
+                    this.notesLst.Add(dt.Rows[i]["Notes"].ToString());
+                }
+                arrUsers[i] = new User(
+                    (int)dt.Rows[i]["UserID"],
+                    (int)dt.Rows[i]["CvID"],
+                    dt.Rows[i]["Email"].ToString(),
+                    dt.Rows[i]["FirstName"].ToString(),
+                    dt.Rows[i]["LastName"].ToString(),
+                    dt.Rows[i]["Phone"].ToString(),
+                    dt.Rows[i]["CityName"].ToString(),
+                    dt.Rows[i]["CvFilePath"].ToString(),
+                    (bool)dt.Rows[i]["IsActive"]
+                    );
+            }
+            return arrUsers;
+        }
+
+        /// <summary>
+        /// פונקציה לעדכון הערת המעסיק למועמד
+        /// </summary>
+        /// <param name="jobID">של משרה ID</param>
+        /// <param name="userID">של משתמש ID</param>
+        /// <param name="notes">הערות של המעסיק</param>
+        public void UpdateEmployerNotes(int userID, string notes)
+        {
+            NoarJobDAL.Users_Jobs.UpdateEmployerNotes(this.jobID, userID, notes);
+        }
+
+        /// <summary>
+        /// ATSפונקצית עדכון להעברת מועמד בין הקיטלוגים השונים במערכת ה
+        /// </summary>
+        /// <param name="jobID">של משרה ID</param>
+        /// <param name="userID">של משתמש ID</param>
+        /// <param name="tabType">אחד - מועמד לא קוטלג,
+        /// 2 - מועמד נמצא מתאים למשרה,
+        /// 3 - מועמד לא נמצא מתאים למשרה,
+        /// 4 - מועמד עבר ראיון טלפוני,
+        /// 5 - מועמד עבר ראיון מקצועי,
+        /// 6 - מועמד עבר חתימה על החוזה</param>
+        public void UpdateTabType(int userID, int tabType)
+        {
+            NoarJobDAL.Users_Jobs.UpdateTabType(this.jobID, userID, tabType);
         }
     }
 }

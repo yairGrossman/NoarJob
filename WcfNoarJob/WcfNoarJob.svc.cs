@@ -467,8 +467,9 @@ namespace WcfNoarJob
         /// </summary>
         public WJob[] GetApplyForJobs(int userID)
         {
-            User_Job user_Job = new User_Job();
-            Job[] arrJobs = user_Job.GetApplyForJobs(userID);
+            User user = new User();
+            user.UserID = userID;
+            Job[] arrJobs = user.GetApplyForJobs();
             WJob[] wArrJobs = ConvertJobsToWJob(arrJobs);
             return wArrJobs;
         }
@@ -478,8 +479,9 @@ namespace WcfNoarJob
         /// </summary>
         public WJob[] GetLovedJobs(int userID)
         {
-            User_Job user_Job = new User_Job();
-            Job[] arrJobs = user_Job.GetLovedJobs(userID);
+            User user = new User();
+            user.UserID = userID;
+            Job[] arrJobs = user.GetLovedJobs();
             WJob[] wArrJobs = ConvertJobsToWJob(arrJobs);
             return wArrJobs;
         }
@@ -489,8 +491,9 @@ namespace WcfNoarJob
         /// </summary>
         public WUser[] GetUsersByJobAndTabType(int jobID, int tabType)
         {
-            User_Job user_Job = new User_Job();
-            User[] arrUsers = user_Job.GetUsersByJobAndTabType(jobID, tabType);
+            Job job = new Job();
+            job.JobID = jobID;
+            User[] arrUsers = job.GetUsersByJobAndTabType(tabType);
             WUser[] wArrUsers = ConvertUsersToWUsers(arrUsers);
             return wArrUsers;
         }
@@ -510,8 +513,9 @@ namespace WcfNoarJob
         /// </summary>
         public void UpdateEmployerNotes(int jobID, int userID, string notes)
         {
-            User_Job user_Job = new User_Job();
-            user_Job.UpdateEmployerNotes(jobID, userID, notes);
+            Job job = new Job();
+            job.JobID = jobID;
+            job.UpdateEmployerNotes(userID, notes);
         }
 
         /// <summary>
@@ -519,8 +523,9 @@ namespace WcfNoarJob
         /// </summary>
         public void UpdateTabType(int jobID, int userID, int tabType)
         {
-            User_Job user_Job = new User_Job();
-            user_Job.UpdateTabType(jobID, userID, tabType);
+            Job job = new Job();
+            job.JobID = jobID;
+            job.UpdateTabType(userID, tabType);
         }
 
         /// <summary>
@@ -529,8 +534,9 @@ namespace WcfNoarJob
         /// </summary>
         public void UpdateUserJobType(int jobID, int userID, int userJobType)
         {
-            User_Job user_Job = new User_Job();
-            user_Job.UpdateUserJobType(jobID, userID, userJobType);
+            User user = new User();
+            user.UserID = userID;
+            user.UpdateUserJobType(jobID, userJobType);
         }
 
         /// <summary>
@@ -538,8 +544,9 @@ namespace WcfNoarJob
         /// </summary>
         public void CreateUser_Job(int jobID, int userID, int cvID, DateTime dateApplicated)
         {
-            User_Job user_Job = new User_Job();
-            user_Job.CreateUser_Job(jobID, userID, cvID, dateApplicated);
+            User user = new User();
+            user.UserID = userID;
+            user.CreateUser_Job(jobID, cvID, dateApplicated);
         }
 
 
@@ -548,8 +555,9 @@ namespace WcfNoarJob
         /// </summary>
         public void CreateUser_JobAtDeleteOrLove(int jobID, int userID, int userJobType)
         {
-            User_Job user_Job = new User_Job();
-            user_Job.CreateUser_Job(jobID, userID, userJobType);
+            User user = new User();
+            user.UserID = userID;
+            user.CreateUser_Job(jobID, userJobType);
         }
         #endregion
     }

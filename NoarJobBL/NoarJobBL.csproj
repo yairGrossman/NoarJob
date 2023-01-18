@@ -60,7 +60,6 @@
     <Compile Include="SearchAgent.cs" />
     <Compile Include="SearchAgentsBL.cs" />
     <Compile Include="User.cs" />
-    <Compile Include="User_Job.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
