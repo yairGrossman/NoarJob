@@ -11,43 +11,43 @@ namespace WebNoarJob
 {
 
 
-    public partial class LoginPage
+    public partial class HomePage
     {
 
         /// <summary>
-        /// loginForm control.
+        /// homeForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm loginForm;
+        protected global::System.Web.UI.HtmlControls.HtmlForm homeForm;
 
         /// <summary>
-        /// email control.
+        /// searchPageBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox email;
+        protected global::System.Web.UI.WebControls.Button searchPageBtn;
 
         /// <summary>
-        /// myPassword control.
+        /// historyPageBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox myPassword;
+        protected global::System.Web.UI.WebControls.Button historyPageBtn;
 
         /// <summary>
-        /// loginBtn control.
+        /// smartSearchPageBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button loginBtn;
+        protected global::System.Web.UI.WebControls.Button smartSearchPageBtn;
     }
 }

@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <link href="Styles/LoginPage.css" rel="stylesheet" />
+    <link href="Styles/MyCard.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/e7acfa4d17.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
     <title>NoarJob</title>
@@ -17,7 +17,6 @@
                     <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                         <div class="card" style="border-radius: 1rem;">
                             <div class="card-body p-5 text-center">
-
                                 <div class="mb-md-5 mt-md-4 pb-5">
                                     <h1 class="fw-bold mb-2 title">NoarJob</h1>
                                     <h2 class="fw-bold mb-5 text-uppercase subTitle">התחברות</h2>

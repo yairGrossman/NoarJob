@@ -16,7 +16,10 @@ namespace WebNoarJob
 
         protected void LoginBtn_Click(object sender, EventArgs e)
         {
-            
+            if (email.Text == "test@gmail.com" && myPassword.Text== "123")
+            {
+                Response.Redirect("HomePage.aspx");
+            }
         }
     }
 }

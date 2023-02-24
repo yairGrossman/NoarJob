@@ -75,6 +75,10 @@ namespace NoarJobUI
             this.mainPage.Show();
             this.Close();
         }
-        
+
+        private void AutoSearchPageBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

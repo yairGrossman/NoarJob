@@ -94,6 +94,7 @@ namespace NoarJobUI
             this.AutoSearchPageBtn.TabIndex = 10;
             this.AutoSearchPageBtn.Text = "כניסה לדף חיפוש אוטומטי";
             this.AutoSearchPageBtn.UseVisualStyleBackColor = false;
+            this.AutoSearchPageBtn.Click += new System.EventHandler(this.AutoSearchPageBtn_Click);
             // 
             // HistoryPageBtn
             // 

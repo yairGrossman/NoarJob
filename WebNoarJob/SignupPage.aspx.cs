@@ -16,7 +16,14 @@ namespace WebNoarJob
 
         protected void SignupBtn_Click(object sender, EventArgs e)
         {
-            
+            if (email.Text == "test@gmail.com"
+                && myPassword.Text == "123"
+                && fName.Text == "Yair"
+                && lName.Text == "Grossman"
+                && phone.Text == "0123456789")
+            {
+                Response.Redirect("HomePage.aspx");
+            }
         }
     }
 }
