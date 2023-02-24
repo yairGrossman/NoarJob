@@ -1,0 +1,20 @@
+﻿.gradient-custom {
+    background: #FCF8E8;
+}
+
+.card {
+    background-color: #94B49F !important;
+}
+
+.btn {
+    background-color: #ECB390 !important;
+}
+
+.title {
+    color: #ECB390;
+    font-style: italic;
+}
+
+.subTitle {
+    color: #DF7861;
+}
