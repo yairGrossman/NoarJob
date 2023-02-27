@@ -7,19 +7,21 @@ using System.Web.UI.WebControls;
 
 namespace WebNoarJob
 {
-    public partial class LoginPage : System.Web.UI.Page
+    public partial class MasterPage : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
+        protected void SignupBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("SignupPage.aspx");
+        }
+
         protected void LoginBtn_Click(object sender, EventArgs e)
         {
-            if (email.Text == "test@gmail.com" && myPassword.Text == "123")
-            {
-                Response.Redirect("HomePage.aspx");
-            }
+            Response.Redirect("LoginPage.aspx");
         }
     }
 }
