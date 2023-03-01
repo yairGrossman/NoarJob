@@ -33,7 +33,7 @@
                                         <asp:TextBox ID="phone" type="text" CssClass="form-control form-control-lg" placeholder="Phone" runat="server"></asp:TextBox>
                                     </div>
 
-                                    <asp:Button ID="signupBtn" CssClass="btn btn-outline-light btn-lg px-5" runat="server" Text="הרשם" onClick="SignupBtn_Click"/>
+                                    <asp:Button ID="signupBtn" CssClass="btn btn-outline-light btn-lg px-5 myBtn" runat="server" Text="הרשם" onClick="SignupBtn_Click"/>
 
                                     <div class="d-flex justify-content-center text-center mt-4 pt-1">
                                         <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>

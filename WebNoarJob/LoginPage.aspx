@@ -20,7 +20,7 @@
                                         <asp:TextBox ID="myPassword" type="password" CssClass="form-control form-control-lg" placeholder="Password" runat="server"></asp:TextBox>
                                     </div>
 
-                                    <asp:Button ID="loginBtn" CssClass="btn btn-outline-light btn-lg px-5" runat="server" Text="התחבר" OnClick="LoginBtn_Click" />
+                                    <asp:Button ID="loginBtn" CssClass="btn btn-outline-light btn-lg px-5 myBtn" runat="server" Text="התחבר" OnClick="LoginBtn_Click" />
 
                                     <div class="d-flex justify-content-center text-center mt-4 pt-1">
                                         <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>

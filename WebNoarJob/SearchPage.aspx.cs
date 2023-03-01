@@ -13,5 +13,10 @@ namespace WebNoarJob
         {
 
         }
+
+        protected void SearchBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

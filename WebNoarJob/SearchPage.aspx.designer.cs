@@ -15,30 +15,39 @@ namespace WebNoarJob
     {
 
         /// <summary>
-        /// loginBtn control.
+        /// SearchByTxtBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button loginBtn;
+        protected global::System.Web.UI.WebControls.Button SearchByTxtBtn;
 
         /// <summary>
-        /// Button1 control.
+        /// SearchByDomainBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button SearchByDomainBtn;
 
         /// <summary>
-        /// email control.
+        /// SearchBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox email;
+        protected global::System.Web.UI.WebControls.LinkButton SearchBtn;
+
+        /// <summary>
+        /// SearchTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox SearchTxt;
     }
 }

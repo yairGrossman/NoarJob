@@ -32,7 +32,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -73,6 +73,7 @@
     <Content Include="SignupPage.aspx" />
     <Content Include="Styles\MasterCss.css" />
     <Content Include="Styles\MyCard.css" />
+    <Content Include="Styles\SearchCss.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

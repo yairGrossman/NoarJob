@@ -1,0 +1,11 @@
+﻿.bi-search{
+    font-size: xx-large;
+}
+
+.searchBtn {
+    color: #ECB390;
+}
+
+.searchBtn:hover {
+    color: #DF7861;
+}
