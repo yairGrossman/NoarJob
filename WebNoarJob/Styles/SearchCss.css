@@ -13,3 +13,7 @@
 .visibleFalse{
     display: none;
 }
+
+.contentCard {
+    --bs-card-spacer-y: 15rem;
+}

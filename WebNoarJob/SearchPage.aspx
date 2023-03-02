@@ -8,11 +8,11 @@
         <div class="container py-5 h-70">
             <div class="d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-12">
-                    <div class="card" style="border-radius: 1rem;">
+                    <div class="card myCard mb-5" style="border-radius: 1rem;">
                         <div class="card-body p-5 text-center">
                             <div class="mb-5">
                                 <asp:Button ID="SearchByDomainBtn" CssClass="btn btn-outline-light btn-lg px-5 mx-5 myBtn" runat="server" Text="חיפוש משרות לפי תחום" OnClick="SearchByDomainBtn_Click" />
-                                <asp:Button ID="SearchByTxtBtn" CssClass="btn btn-outline-light btn-lg px-5 mx-5 myBtn" runat="server" Text="חיפוש משרות חופשי" />
+                                <asp:Button ID="SearchByTxtBtn" CssClass="btn btn-outline-light btn-lg px-5 mx-5 myBtn" runat="server" Text="חיפוש משרות חופשי" OnClick="SearchByTxtBtn_Click" />
                             </div>
                             <div id="searchByTxtDiv" runat="server">
                                 <div class="row form-outline form-white mb-4">
@@ -33,6 +33,12 @@
                             </div>
                         </div>
                     </div>
+
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body contentCard">
+                    
                 </div>
             </div>
         </div>

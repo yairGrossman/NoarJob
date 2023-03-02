@@ -28,5 +28,12 @@ namespace WebNoarJob
             searchByDomainDiv.Attributes.Add("class", "row");
 
         }
+
+        protected void SearchByTxtBtn_Click(object sender, EventArgs e)
+        {
+            searchByDomainDiv.Attributes.Add("class", "visibleFalse");
+
+            searchByTxtDiv.Attributes.Remove("class");
+        }
     }
 }
