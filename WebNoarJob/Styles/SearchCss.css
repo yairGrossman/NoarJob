@@ -3,9 +3,13 @@
 }
 
 .searchBtn {
-    color: #ECB390;
+    color: #DF7861;
 }
 
 .searchBtn:hover {
-    color: #DF7861;
+    color: #ECB390;
+}
+
+.visibleFalse{
+    display: none;
 }

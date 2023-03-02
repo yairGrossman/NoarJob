@@ -30,6 +30,10 @@ namespace NoarJobUI
         private void InitializeComponent()
         {
             this.ContentPanel = new System.Windows.Forms.Panel();
+            this.CountTypesLbl = new System.Windows.Forms.Label();
+            this.CountCitiesLbl = new System.Windows.Forms.Label();
+            this.CountRolesLbl = new System.Windows.Forms.Label();
+            this.CountDomainLbl = new System.Windows.Forms.Label();
             this.CleanChoiceBtn = new System.Windows.Forms.Button();
             this.CitiesDropDown = new System.Windows.Forms.ComboBox();
             this.JobTypesDropDown = new System.Windows.Forms.ComboBox();
@@ -51,10 +55,6 @@ namespace NoarJobUI
             this.LocationBtn = new System.Windows.Forms.Button();
             this.RoleBtn = new System.Windows.Forms.Button();
             this.DomainBtn = new System.Windows.Forms.Button();
-            this.CountDomainLbl = new System.Windows.Forms.Label();
-            this.CountRolesLbl = new System.Windows.Forms.Label();
-            this.CountCitiesLbl = new System.Windows.Forms.Label();
-            this.CountTypesLbl = new System.Windows.Forms.Label();
             this.ContentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.navbar.SuspendLayout();
@@ -67,6 +67,7 @@ namespace NoarJobUI
             this.ContentPanel.Controls.Add(this.CountTypesLbl);
             this.ContentPanel.Controls.Add(this.CountCitiesLbl);
             this.ContentPanel.Controls.Add(this.CountRolesLbl);
+            this.ContentPanel.Controls.Add(this.SearchTxt);
             this.ContentPanel.Controls.Add(this.CountDomainLbl);
             this.ContentPanel.Controls.Add(this.CleanChoiceBtn);
             this.ContentPanel.Controls.Add(this.CitiesDropDown);
@@ -83,6 +84,50 @@ namespace NoarJobUI
             this.ContentPanel.Name = "ContentPanel";
             this.ContentPanel.Size = new System.Drawing.Size(830, 484);
             this.ContentPanel.TabIndex = 5;
+            // 
+            // CountTypesLbl
+            // 
+            this.CountTypesLbl.AutoSize = true;
+            this.CountTypesLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.CountTypesLbl.Location = new System.Drawing.Point(73, 2);
+            this.CountTypesLbl.Name = "CountTypesLbl";
+            this.CountTypesLbl.Size = new System.Drawing.Size(28, 20);
+            this.CountTypesLbl.TabIndex = 13;
+            this.CountTypesLbl.Text = "(0)";
+            this.CountTypesLbl.Visible = false;
+            // 
+            // CountCitiesLbl
+            // 
+            this.CountCitiesLbl.AutoSize = true;
+            this.CountCitiesLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.CountCitiesLbl.Location = new System.Drawing.Point(268, 4);
+            this.CountCitiesLbl.Name = "CountCitiesLbl";
+            this.CountCitiesLbl.Size = new System.Drawing.Size(28, 20);
+            this.CountCitiesLbl.TabIndex = 12;
+            this.CountCitiesLbl.Text = "(0)";
+            this.CountCitiesLbl.Visible = false;
+            // 
+            // CountRolesLbl
+            // 
+            this.CountRolesLbl.AutoSize = true;
+            this.CountRolesLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.CountRolesLbl.Location = new System.Drawing.Point(451, 2);
+            this.CountRolesLbl.Name = "CountRolesLbl";
+            this.CountRolesLbl.Size = new System.Drawing.Size(28, 20);
+            this.CountRolesLbl.TabIndex = 11;
+            this.CountRolesLbl.Text = "(0)";
+            this.CountRolesLbl.Visible = false;
+            // 
+            // CountDomainLbl
+            // 
+            this.CountDomainLbl.AutoSize = true;
+            this.CountDomainLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.CountDomainLbl.Location = new System.Drawing.Point(699, 2);
+            this.CountDomainLbl.Name = "CountDomainLbl";
+            this.CountDomainLbl.Size = new System.Drawing.Size(28, 20);
+            this.CountDomainLbl.TabIndex = 10;
+            this.CountDomainLbl.Text = "(0)";
+            this.CountDomainLbl.Visible = false;
             // 
             // CleanChoiceBtn
             // 
@@ -247,7 +292,6 @@ namespace NoarJobUI
             this.navbar.Controls.Add(this.SearchBtn);
             this.navbar.Controls.Add(this.SearchByDomainBtn);
             this.navbar.Controls.Add(this.SearchByTxtBtn);
-            this.navbar.Controls.Add(this.SearchTxt);
             this.navbar.Controls.Add(this.JobTypeBtn);
             this.navbar.Controls.Add(this.LocationBtn);
             this.navbar.Controls.Add(this.RoleBtn);
@@ -303,7 +347,7 @@ namespace NoarJobUI
             this.SearchTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.SearchTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.SearchTxt.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.SearchTxt.Location = new System.Drawing.Point(77, 117);
+            this.SearchTxt.Location = new System.Drawing.Point(81, -4);
             this.SearchTxt.Multiline = true;
             this.SearchTxt.Name = "SearchTxt";
             this.SearchTxt.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -368,50 +412,6 @@ namespace NoarJobUI
             this.DomainBtn.UseVisualStyleBackColor = false;
             this.DomainBtn.Click += new System.EventHandler(this.DomainBtn_Click);
             // 
-            // CountDomainLbl
-            // 
-            this.CountDomainLbl.AutoSize = true;
-            this.CountDomainLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.CountDomainLbl.Location = new System.Drawing.Point(699, 2);
-            this.CountDomainLbl.Name = "CountDomainLbl";
-            this.CountDomainLbl.Size = new System.Drawing.Size(28, 20);
-            this.CountDomainLbl.TabIndex = 10;
-            this.CountDomainLbl.Text = "(0)";
-            this.CountDomainLbl.Visible = false;
-            // 
-            // CountRolesLbl
-            // 
-            this.CountRolesLbl.AutoSize = true;
-            this.CountRolesLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.CountRolesLbl.Location = new System.Drawing.Point(451, 2);
-            this.CountRolesLbl.Name = "CountRolesLbl";
-            this.CountRolesLbl.Size = new System.Drawing.Size(28, 20);
-            this.CountRolesLbl.TabIndex = 11;
-            this.CountRolesLbl.Text = "(0)";
-            this.CountRolesLbl.Visible = false;
-            // 
-            // CountCitiesLbl
-            // 
-            this.CountCitiesLbl.AutoSize = true;
-            this.CountCitiesLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.CountCitiesLbl.Location = new System.Drawing.Point(268, 4);
-            this.CountCitiesLbl.Name = "CountCitiesLbl";
-            this.CountCitiesLbl.Size = new System.Drawing.Size(28, 20);
-            this.CountCitiesLbl.TabIndex = 12;
-            this.CountCitiesLbl.Text = "(0)";
-            this.CountCitiesLbl.Visible = false;
-            // 
-            // CountTypesLbl
-            // 
-            this.CountTypesLbl.AutoSize = true;
-            this.CountTypesLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.CountTypesLbl.Location = new System.Drawing.Point(73, 2);
-            this.CountTypesLbl.Name = "CountTypesLbl";
-            this.CountTypesLbl.Size = new System.Drawing.Size(28, 20);
-            this.CountTypesLbl.TabIndex = 13;
-            this.CountTypesLbl.Text = "(0)";
-            this.CountTypesLbl.Visible = false;
-            // 
             // ucChoices
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -427,7 +427,6 @@ namespace NoarJobUI
             this.ContentPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.navbar.ResumeLayout(false);
-            this.navbar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SearchBtn)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

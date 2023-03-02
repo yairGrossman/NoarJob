@@ -15,15 +15,6 @@ namespace WebNoarJob
     {
 
         /// <summary>
-        /// SearchByTxtBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SearchByTxtBtn;
-
-        /// <summary>
         /// SearchByDomainBtn control.
         /// </summary>
         /// <remarks>
@@ -33,13 +24,31 @@ namespace WebNoarJob
         protected global::System.Web.UI.WebControls.Button SearchByDomainBtn;
 
         /// <summary>
-        /// SearchBtn control.
+        /// SearchByTxtBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton SearchBtn;
+        protected global::System.Web.UI.WebControls.Button SearchByTxtBtn;
+
+        /// <summary>
+        /// searchByTxtDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl searchByTxtDiv;
+
+        /// <summary>
+        /// goJobsPageByTxtBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton goJobsPageByTxtBtn;
 
         /// <summary>
         /// SearchTxt control.
@@ -49,5 +58,59 @@ namespace WebNoarJob
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox SearchTxt;
+
+        /// <summary>
+        /// searchByDomainDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl searchByDomainDiv;
+
+        /// <summary>
+        /// goJobsPageByDomainBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton goJobsPageByDomainBtn;
+
+        /// <summary>
+        /// JobTypeBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button JobTypeBtn;
+
+        /// <summary>
+        /// LocationBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button LocationBtn;
+
+        /// <summary>
+        /// RoleBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button RoleBtn;
+
+        /// <summary>
+        /// DomainBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button DomainBtn;
     }
 }
