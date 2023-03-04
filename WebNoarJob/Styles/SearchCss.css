@@ -15,5 +15,11 @@
 }
 
 .contentCard {
-    --bs-card-spacer-y: 15rem;
+    --bs-card-spacer-y: 0;
+    width: 33.33%;
+}
+
+.myBodyCard{
+    height: 28rem;
+    padding: 5% 7% 5% 30%;
 }

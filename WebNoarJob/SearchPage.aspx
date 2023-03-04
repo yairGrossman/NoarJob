@@ -29,16 +29,21 @@
                                 <asp:Button ID="JobTypeBtn" CssClass="btn btn-outline-light btn-lg px-5 mx-3 myBtn col" runat="server" Text="בחירת סוג משרה" />
                                 <asp:Button ID="LocationBtn" CssClass="btn btn-outline-light btn-lg px-5 mx-3 myBtn col" runat="server" Text="בחירת מיקום" />
                                 <asp:Button ID="RoleBtn" CssClass="btn btn-outline-light btn-lg px-5 mx-3 myBtn col" runat="server" Text="בחירת תפקיד" />
-                                <asp:Button ID="DomainBtn" CssClass="btn btn-outline-light btn-lg px-5 mx-3 myBtn col" runat="server" Text="בחירת תחום" />
+                                <asp:Button ID="DomainBtn" CssClass="btn btn-outline-light btn-lg px-5 mx-3 myBtn col" runat="server" Text="בחירת תחום" OnClick="DomainBtn_Click"/>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-            <div class="card">
-                <div class="card-body contentCard">
-                    
+            <div class="card contentCard float-end">
+                <div class="card-body myBodyCard overflow-auto">
+                    <div class="row">
+                        <i class="bi bi-search col-2" style="font-size: 1.5rem"></i>
+                         <asp:TextBox dir="rtl" ID="searchBtnByTxt" type="text" CssClass="form-control border-0 border-bottom rounded-0 col" placeholder="חיפוש" runat="server"></asp:TextBox>
+                    </div>
+                    <div id="btnDiv" class="mt-4" runat="server">
+
+                    </div>
                 </div>
             </div>
         </div>

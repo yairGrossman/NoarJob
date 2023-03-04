@@ -33,6 +33,7 @@ namespace NoarJobUI
             this.CountTypesLbl = new System.Windows.Forms.Label();
             this.CountCitiesLbl = new System.Windows.Forms.Label();
             this.CountRolesLbl = new System.Windows.Forms.Label();
+            this.SearchTxt = new System.Windows.Forms.TextBox();
             this.CountDomainLbl = new System.Windows.Forms.Label();
             this.CleanChoiceBtn = new System.Windows.Forms.Button();
             this.CitiesDropDown = new System.Windows.Forms.ComboBox();
@@ -50,7 +51,6 @@ namespace NoarJobUI
             this.SearchBtn = new System.Windows.Forms.PictureBox();
             this.SearchByDomainBtn = new System.Windows.Forms.Button();
             this.SearchByTxtBtn = new System.Windows.Forms.Button();
-            this.SearchTxt = new System.Windows.Forms.TextBox();
             this.JobTypeBtn = new System.Windows.Forms.Button();
             this.LocationBtn = new System.Windows.Forms.Button();
             this.RoleBtn = new System.Windows.Forms.Button();
@@ -67,7 +67,6 @@ namespace NoarJobUI
             this.ContentPanel.Controls.Add(this.CountTypesLbl);
             this.ContentPanel.Controls.Add(this.CountCitiesLbl);
             this.ContentPanel.Controls.Add(this.CountRolesLbl);
-            this.ContentPanel.Controls.Add(this.SearchTxt);
             this.ContentPanel.Controls.Add(this.CountDomainLbl);
             this.ContentPanel.Controls.Add(this.CleanChoiceBtn);
             this.ContentPanel.Controls.Add(this.CitiesDropDown);
@@ -117,6 +116,20 @@ namespace NoarJobUI
             this.CountRolesLbl.TabIndex = 11;
             this.CountRolesLbl.Text = "(0)";
             this.CountRolesLbl.Visible = false;
+            // 
+            // SearchTxt
+            // 
+            this.SearchTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(180)))), ((int)(((byte)(159)))));
+            this.SearchTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SearchTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.SearchTxt.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.SearchTxt.Location = new System.Drawing.Point(77, 117);
+            this.SearchTxt.Multiline = true;
+            this.SearchTxt.Name = "SearchTxt";
+            this.SearchTxt.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.SearchTxt.Size = new System.Drawing.Size(750, 44);
+            this.SearchTxt.TabIndex = 7;
+            this.SearchTxt.Text = "לדוגמא: מוכר בחנות";
             // 
             // CountDomainLbl
             // 
@@ -292,6 +305,7 @@ namespace NoarJobUI
             this.navbar.Controls.Add(this.SearchBtn);
             this.navbar.Controls.Add(this.SearchByDomainBtn);
             this.navbar.Controls.Add(this.SearchByTxtBtn);
+            this.navbar.Controls.Add(this.SearchTxt);
             this.navbar.Controls.Add(this.JobTypeBtn);
             this.navbar.Controls.Add(this.LocationBtn);
             this.navbar.Controls.Add(this.RoleBtn);
@@ -340,20 +354,6 @@ namespace NoarJobUI
             this.SearchByTxtBtn.Text = "חיפוש משרות חופשי";
             this.SearchByTxtBtn.UseVisualStyleBackColor = false;
             this.SearchByTxtBtn.Click += new System.EventHandler(this.SearchByTxtBtn_Click);
-            // 
-            // SearchTxt
-            // 
-            this.SearchTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(180)))), ((int)(((byte)(159)))));
-            this.SearchTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SearchTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.SearchTxt.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.SearchTxt.Location = new System.Drawing.Point(81, -4);
-            this.SearchTxt.Multiline = true;
-            this.SearchTxt.Name = "SearchTxt";
-            this.SearchTxt.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.SearchTxt.Size = new System.Drawing.Size(750, 44);
-            this.SearchTxt.TabIndex = 7;
-            this.SearchTxt.Text = "לדוגמא: מוכר בחנות";
             // 
             // JobTypeBtn
             // 
@@ -427,6 +427,7 @@ namespace NoarJobUI
             this.ContentPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.navbar.ResumeLayout(false);
+            this.navbar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SearchBtn)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
