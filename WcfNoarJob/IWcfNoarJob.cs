@@ -98,7 +98,7 @@ namespace WcfNoarJob
         void UpdateSearchAgentValues(WSearchAgent wSearchAgent);
 
         [OperationContract]
-        void UpdateSearchAgentActivity(int userID, int searchAgentID);
+        void UpdateSearchAgentActivity(int searchAgentID);
 
         [OperationContract]
         WJob[] GetJobsBySearchAgent(int searchAgentID, int userID);

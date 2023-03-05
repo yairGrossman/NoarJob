@@ -40,6 +40,7 @@ namespace NoarJobBL
             this.lstCvs = new List<Cv>();
         }
 
+        #region תכונות
         public int UserID
         {
             get { return this.userID; }
@@ -85,6 +86,7 @@ namespace NoarJobBL
         {
             get { return this.chosenCvForJob; }
         }
+        #endregion
 
         /// <summary>
         /// פונקציה ששמה את רשומות קורות החיים של משתמש ספציפי בתוך מערך קורות החיים

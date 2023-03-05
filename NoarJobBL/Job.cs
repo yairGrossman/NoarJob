@@ -68,11 +68,7 @@ namespace NoarJobBL
         }
 
         #region תכונות
-        public int JobID
-        {
-            get { return this.jobID; }
-            set { this.jobID = value; }
-        }
+        public int JobID{ get { return this.jobID; } set { this.jobID = value; }}
 
         public string Title
         {
@@ -114,11 +110,7 @@ namespace NoarJobBL
             get { return this.email; }
         }
 
-        public bool IsActive
-        {
-            get { return this.isActive; }
-            set { this.isActive = value; }
-        }
+        public bool IsActive{get { return this.isActive; }set { this.isActive = value; }}
 
         public string CompanyName
         {

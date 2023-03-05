@@ -418,9 +418,9 @@ namespace WcfNoarJob
         /// <summary>
         /// פונקציה לעדכון הסוכן החכם כלא פעיל
         /// </summary>
-        public void UpdateSearchAgentActivity(int userID, int searchAgentID)
+        public void UpdateSearchAgentActivity(int searchAgentID)
         {
-            SearchAgent searchAgent = new SearchAgent(userID);
+            SearchAgent searchAgent = new SearchAgent();
             searchAgent.SearchAgentID = searchAgentID;
             searchAgent.UpdateSearchAgentActivity();
         }

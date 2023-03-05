@@ -12,11 +12,7 @@ namespace NoarJobBL
         private string cvFilePath;//הכתובת של קובץ הקורות חיים
         private bool cvIsActive;//פעילות קורות החיים
 
-        public int CvID
-        {
-            get { return cvID; }
-            set { this.CvID = value; }
-        }
+        
 
         public string CvFilePath
         {
@@ -28,11 +24,13 @@ namespace NoarJobBL
             get { return cvIsActive; }
         }
 
+        public int CvID { get {return cvID; } set { cvID = value; } }
+
         public Cv(int cvID, string cvFilePath, bool isActive)
         {
             this.cvFilePath = cvFilePath;
             this.cvIsActive = isActive;
-            this.cvID = cvID;
+            this.CvID = cvID;
         }
 
         public Cv()
@@ -47,7 +45,7 @@ namespace NoarJobBL
         /// <param name="userID">של משתמש ID</param>
         public void InsertCv(string cvFilePath, int userID)
         {
-            this.cvID = NoarJobDAL.Cvs.InsertUserCv(cvFilePath, userID);
+            this.CvID = NoarJobDAL.Cvs.InsertUserCv(cvFilePath, userID);
             this.cvFilePath = cvFilePath;
             this.cvIsActive = true;
         }
@@ -57,7 +55,7 @@ namespace NoarJobBL
         /// </summary>
         public void UpdateCvActivity()
         {
-            NoarJobDAL.Cvs.UpdateCvActivity(this.cvID, false);
+            NoarJobDAL.Cvs.UpdateCvActivity(this.CvID, false);
             this.cvIsActive = false;
         }
     }

@@ -61,6 +61,11 @@ namespace NoarJobBL
             this.typesDictionary = new Dictionary<int, string>();
         }
 
+        public SearchAgent()
+        {
+
+        }
+
         /// <summary>
         /// פונקציית עזר שממירה יומן לרשימה
         /// </summary>
