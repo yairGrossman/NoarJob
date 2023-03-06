@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WcfNoarJob" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WcfNoarJob" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:62581/WcfNoarJob.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://localhost:62581/WcfNoarJob.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
+  <xs:complexType name="WUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChosenCvForJob" nillable="true" type="tns:WCv" />
+      <xs:element minOccurs="0" name="CityName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LstCvs" nillable="true" type="tns:ArrayOfWCv" />
+      <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WUser" nillable="true" type="tns:WUser" />
+  <xs:complexType name="WCv">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CvFilePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CvID" type="xs:int" />
+      <xs:element minOccurs="0" name="CvIsActive" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WCv" nillable="true" type="tns:WCv" />
+  <xs:complexType name="ArrayOfWCv">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WCv" nillable="true" type="tns:WCv" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWCv" nillable="true" type="tns:ArrayOfWCv" />
+  <xs:complexType name="ArrayOfWCompanyType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WCompanyType" nillable="true" type="tns:WCompanyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWCompanyType" nillable="true" type="tns:ArrayOfWCompanyType" />
+  <xs:complexType name="WCompanyType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyTypeID" type="xs:int" />
+      <xs:element minOccurs="0" name="CompanyTypeName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WCompanyType" nillable="true" type="tns:WCompanyType" />
+  <xs:complexType name="WEmployer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyEmail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyTypeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmployerID" type="xs:int" />
+      <xs:element minOccurs="0" name="EmployerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmployerPassword" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumOfEmployees" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WEmployer" nillable="true" type="tns:WEmployer" />
+  <xs:complexType name="WJob">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="CategoriesDictionary" nillable="true" type="q1:ArrayOfKeyValueOfintstring" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="CitiesDictionary" nillable="true" type="q2:ArrayOfKeyValueOfintstring" />
+      <xs:element minOccurs="0" name="CompanyName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyTypeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmployerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="JobID" type="xs:int" />
+      <xs:element minOccurs="0" name="NumOfEmployees" type="xs:int" />
+      <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Requirements" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+      <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="TypesDictionary" nillable="true" type="q3:ArrayOfKeyValueOfintstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WJob" nillable="true" type="tns:WJob" />
+  <xs:complexType name="ArrayOfWJob">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WJob" nillable="true" type="tns:WJob" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWJob" nillable="true" type="tns:ArrayOfWJob" />
+  <xs:complexType name="WJobCategories">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChosenJobCategory" type="xs:int" />
+      <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ChosenJobCategoryLst" nillable="true" type="q4:ArrayOfint" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WJobCategories" nillable="true" type="tns:WJobCategories" />
+  <xs:complexType name="WSameSearchesOfUsers">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CountSameParentCategory" type="xs:int" />
+      <xs:element minOccurs="0" name="CountSameParentCategoryAndChildCategories" type="xs:int" />
+      <xs:element minOccurs="0" name="CountSameParentCategoryAndChildCategoriesAndCities" type="xs:int" />
+      <xs:element minOccurs="0" name="CountSameParentCategoryAndChildCategoriesAndCitiesAndTypes" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WSameSearchesOfUsers" nillable="true" type="tns:WSameSearchesOfUsers" />
+  <xs:complexType name="WSearchAgent">
+    <xs:sequence>
+      <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ChildCategoriesDictionary" nillable="true" type="q5:ArrayOfKeyValueOfintstring" />
+      <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="CitiesDictionary" nillable="true" type="q6:ArrayOfKeyValueOfintstring" />
+      <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="ParentCategoryKvp" type="q7:KeyValuePairOfintstring" />
+      <xs:element minOccurs="0" name="SearchAgentID" type="xs:int" />
+      <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="TypesDictionary" nillable="true" type="q8:ArrayOfKeyValueOfintstring" />
+      <xs:element minOccurs="0" name="UserID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WSearchAgent" nillable="true" type="tns:WSearchAgent" />
+  <xs:complexType name="ArrayOfWSearchAgent">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WSearchAgent" nillable="true" type="tns:WSearchAgent" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWSearchAgent" nillable="true" type="tns:ArrayOfWSearchAgent" />
+  <xs:complexType name="ArrayOfWUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WUser" nillable="true" type="tns:WUser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWUser" nillable="true" type="tns:ArrayOfWUser" />
+</xs:schema>

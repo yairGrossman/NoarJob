@@ -1,0 +1,16 @@
+body {
+  background-color: #fcf8e8 !important;
+}
+
+.myBtn {
+  background-color: #ecb390 !important;
+}
+
+.myBtn:hover {
+  color: #94b49f !important;
+}
+
+.title {
+  color: #ecb390;
+  font-style: italic;
+}
