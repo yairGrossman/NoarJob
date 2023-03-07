@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NoarJobUI.ServiceReference1;
 using NoarJobBL;
 
 namespace NoarJobUI
@@ -23,11 +24,10 @@ namespace NoarJobUI
         /// </summary>
         /// <param name="employer"></param>
         /// <param name="mainPage"></param>
-        public PostingJobPage(Employer employer, MainPage mainPage)
+        public PostingJobPage(WEmployer employer, MainPage mainPage)
         {
             InitializeComponent();
-            this.employer = employer;
-            this.job = new Job();
+            //this.employer = employer;
             CreateUcChoicesJob(false);
             this.mainPage = mainPage;
         }
@@ -44,7 +44,7 @@ namespace NoarJobUI
             this.mainPage = mainPage;
             this.employer = employer;
 
-            this.job = job;
+            //this.job = job;
             this.UpdateJobBtn.Location = new Point(this.PostJobBtn.Location.X, this.PostJobBtn.Location.Y);
             this.UpdateJobBtn.Visible = true;
             this.PostJobBtn.Visible = false;
@@ -121,9 +121,9 @@ namespace NoarJobUI
 
                 MessageBox.Show("המשרה נרשמה במערכת!");
                 JobManagementPage jobManagementPage;
-                jobManagementPage = new JobManagementPage(this.employer, this.mainPage);
+                //jobManagementPage = new JobManagementPage(this.employer, this.mainPage);
 
-                jobManagementPage.Show();
+                //jobManagementPage.Show();
                 this.Close();
             }
             else
@@ -154,9 +154,9 @@ namespace NoarJobUI
                 MessageBox.Show("המשרה עודכנה במערכת!");
 
                 JobManagementPage jobManagementPage;
-                jobManagementPage = new JobManagementPage(this.employer, this.mainPage);
+                //jobManagementPage = new JobManagementPage(this.employer, this.mainPage);
 
-                jobManagementPage.Show();
+                //jobManagementPage.Show();
                 this.Close();
             }
             else

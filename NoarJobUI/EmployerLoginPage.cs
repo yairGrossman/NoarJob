@@ -7,20 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using NoarJobBL;
+using NoarJobUI.ServiceReference1;
 
 namespace NoarJobUI
 {
     public partial class EmployerLoginPage : Form
     {
+        private WcfNoarJobClient wcfNoar;
         private bool loginAccount;//משתנה שמטרתו לבדוק האם המשתמש בחר בהתחברות למערכת או יצירת חשבון
         private string firstName;//שם פרטי
         private string lastName;//שם משפחה
         private string email;//האמייל של המשתמש
         private string userPassword;//הסיסמא של המשתמש
-        private Employer employer;//עצם מטיפוס מעסיק
-        private CompanyType companyTypes;//עצם מטיפוס קטגוריית חברה
-        private CompanyType chosenCompanyType;//הקטגוריית החברה שבחר המשתמש
+        private WEmployer employer;//עצם מטיפוס מעסיק
+        private WCompanyType companyTypes;//עצם מטיפוס קטגוריית חברה
+        private WCompanyType chosenCompanyType;//הקטגוריית החברה שבחר המשתמש
         private bool userChoose;//משתנה שמטרתו לבדוק האם המשתמש בחר קטגוריית חברה
         private MainPage mainPage;
         private Point companyEmailLblLoc;
@@ -37,15 +38,15 @@ namespace NoarJobUI
             this.email = email;
             this.userPassword = userPassword;
             this.mainPage = mainPage;
+            wcfNoar = new WcfNoarJobClient();
         }
 
         public EmployerLoginPage(bool loginAccount, MainPage mainPage)
         {
             InitializeComponent();
             this.loginAccount = loginAccount;
-            this.employer = new Employer();
-            this.companyTypes = new CompanyType();
             this.mainPage = mainPage;
+            wcfNoar = new WcfNoarJobClient();
         }
 
         /// <summary>
@@ -108,7 +109,7 @@ namespace NoarJobUI
             {
                 this.CompanyTypeDropDown.DisplayMember = "CompanyTypeName";
                 this.CompanyTypeDropDown.ValueMember = "CompanyTypeID";
-                this.CompanyTypeDropDown.DataSource = companyTypes.GetAllCompanyTypes();
+                this.CompanyTypeDropDown.DataSource = wcfNoar.GetAllCompanyTypes();
             }
             
         }
@@ -123,10 +124,10 @@ namespace NoarJobUI
             if (this.EmployerNameTxt.Text != "" && this.NumOfEmployeesTxt.Text != "" && this.userChoose
                 && this.CompanyNameTxt.Text != "" && this.CompanyEmailTxt.Text != "" && this.EmployerPasswordTxt.Text != "")
             {
-                bool succeeded = employer.CreateEmployer(this.EmployerNameTxt.Text, int.Parse(this.NumOfEmployeesTxt.Text), this.chosenCompanyType.CompanyTypeID,
+                WEmployer wEmployer = wcfNoar.CreateEmployer(this.EmployerNameTxt.Text, int.Parse(this.NumOfEmployeesTxt.Text), this.chosenCompanyType.CompanyTypeID,
                                  this.chosenCompanyType.CompanyTypeName, this.CompanyNameTxt.Text,
                                  this.EmployerPasswordTxt.Text, this.CompanyEmailTxt.Text);
-                if (succeeded)
+                if (wEmployer != null)
                 {
                     HomePage homePage = new HomePage(this.employer, this.mainPage);
                     homePage.Show();
@@ -158,9 +159,9 @@ namespace NoarJobUI
         /// <param name="e"></param>
         private void LoginBtn_Click(object sender, EventArgs e)
         {
-            bool succeeded = this.employer.GetEmployer(this.CompanyEmailTxt.Text, this.EmployerPasswordTxt.Text);
+            this.employer = wcfNoar.EmployerLogin(this.CompanyEmailTxt.Text, this.EmployerPasswordTxt.Text);
 
-            if (succeeded)
+            if (this.employer != null)
             {
                 HomePage homePage = new HomePage(this.employer, this.mainPage);
                 homePage.Show();
@@ -170,7 +171,7 @@ namespace NoarJobUI
         
         private void CompanyTypeDropDown_SelectedIndexChanged(object sender, EventArgs e)
         {
-           this.chosenCompanyType = (CompanyType)this.CompanyTypeDropDown.SelectedItem;
+           this.chosenCompanyType = (WCompanyType)this.CompanyTypeDropDown.SelectedItem;
            this.userChoose = true;
         }
 

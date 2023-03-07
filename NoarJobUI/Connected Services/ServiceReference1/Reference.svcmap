@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="8e52d802-e96a-4ab3-8727-a50ef1e95de2" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:62581/WcfNoarJob.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="WcfNoarJob.xsd" MetadataType="Schema" ID="47cbb7db-119a-4eac-b902-86a4da5fd551" SourceId="1" SourceUrl="http://localhost:62581/WcfNoarJob.svc?xsd=xsd4" />
+    <MetadataFile FileName="Service1.wsdl" MetadataType="Wsdl" ID="76986114-ff81-4995-b119-c45a3837d8f8" SourceId="1" SourceUrl="http://localhost:62581/WcfNoarJob.svc?wsdl" />
+    <MetadataFile FileName="WcfNoarJob.disco" MetadataType="Disco" ID="5b4f3e9f-a647-4d84-8ecd-42337212d31d" SourceId="1" SourceUrl="http://localhost:62581/WcfNoarJob.svc?disco" />
+    <MetadataFile FileName="WcfNoarJob1.xsd" MetadataType="Schema" ID="32d79810-5767-4ed8-9745-4a1f8262834e" SourceId="1" SourceUrl="http://localhost:62581/WcfNoarJob.svc?xsd=xsd1" />
+    <MetadataFile FileName="WcfNoarJob2.xsd" MetadataType="Schema" ID="376a5d6d-6402-45d9-8e50-53d1158f3f54" SourceId="1" SourceUrl="http://localhost:62581/WcfNoarJob.svc?xsd=xsd2" />
+    <MetadataFile FileName="WcfNoarJob3.xsd" MetadataType="Schema" ID="97d3b022-61e4-4d6d-a692-34cf0572a39b" SourceId="1" SourceUrl="http://localhost:62581/WcfNoarJob.svc?xsd=xsd0" />
+    <MetadataFile FileName="WcfNoarJob4.xsd" MetadataType="Schema" ID="b05f11a8-b6b5-4ff3-acb0-6726658576e5" SourceId="1" SourceUrl="http://localhost:62581/WcfNoarJob.svc?xsd=xsd3" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

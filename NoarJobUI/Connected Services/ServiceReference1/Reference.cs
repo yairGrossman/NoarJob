@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NoarJobUI.WcfNoarJob {
+namespace NoarJobUI.ServiceReference1 {
     using System.Runtime.Serialization;
     using System;
     
@@ -23,7 +23,7 @@ namespace NoarJobUI.WcfNoarJob {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private NoarJobUI.WcfNoarJob.WCv ChosenCvForJobField;
+        private NoarJobUI.ServiceReference1.WCv ChosenCvForJobField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string CityNameField;
@@ -38,7 +38,7 @@ namespace NoarJobUI.WcfNoarJob {
         private string LastNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private NoarJobUI.WcfNoarJob.WCv[] LstCvsField;
+        private NoarJobUI.ServiceReference1.WCv[] LstCvsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PhoneField;
@@ -57,7 +57,7 @@ namespace NoarJobUI.WcfNoarJob {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public NoarJobUI.WcfNoarJob.WCv ChosenCvForJob {
+        public NoarJobUI.ServiceReference1.WCv ChosenCvForJob {
             get {
                 return this.ChosenCvForJobField;
             }
@@ -122,7 +122,7 @@ namespace NoarJobUI.WcfNoarJob {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public NoarJobUI.WcfNoarJob.WCv[] LstCvs {
+        public NoarJobUI.ServiceReference1.WCv[] LstCvs {
             get {
                 return this.LstCvsField;
             }
@@ -982,20 +982,20 @@ namespace NoarJobUI.WcfNoarJob {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="WcfNoarJob.IWcfNoarJob")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IWcfNoarJob")]
     public interface IWcfNoarJob {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/CreateUser", ReplyAction="http://tempuri.org/IWcfNoarJob/CreateUserResponse")]
-        NoarJobUI.WcfNoarJob.WUser CreateUser(string email, string userPassword, string firstName, string lastName, string phone, int cityID, string cityName);
+        NoarJobUI.ServiceReference1.WUser CreateUser(string email, string userPassword, string firstName, string lastName, string phone, int cityID, string cityName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/CreateUser", ReplyAction="http://tempuri.org/IWcfNoarJob/CreateUserResponse")]
-        System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WUser> CreateUserAsync(string email, string userPassword, string firstName, string lastName, string phone, int cityID, string cityName);
+        System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WUser> CreateUserAsync(string email, string userPassword, string firstName, string lastName, string phone, int cityID, string cityName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/UserLogin", ReplyAction="http://tempuri.org/IWcfNoarJob/UserLoginResponse")]
-        NoarJobUI.WcfNoarJob.WUser UserLogin(string email, string password);
+        NoarJobUI.ServiceReference1.WUser UserLogin(string email, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/UserLogin", ReplyAction="http://tempuri.org/IWcfNoarJob/UserLoginResponse")]
-        System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WUser> UserLoginAsync(string email, string password);
+        System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WUser> UserLoginAsync(string email, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/GetCities", ReplyAction="http://tempuri.org/IWcfNoarJob/GetCitiesResponse")]
         System.Collections.Generic.Dictionary<int, string> GetCities(string city);
@@ -1004,70 +1004,70 @@ namespace NoarJobUI.WcfNoarJob {
         System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<int, string>> GetCitiesAsync(string city);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/GetAllCompanyTypes", ReplyAction="http://tempuri.org/IWcfNoarJob/GetAllCompanyTypesResponse")]
-        NoarJobUI.WcfNoarJob.WCompanyType[] GetAllCompanyTypes();
+        NoarJobUI.ServiceReference1.WCompanyType[] GetAllCompanyTypes();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/GetAllCompanyTypes", ReplyAction="http://tempuri.org/IWcfNoarJob/GetAllCompanyTypesResponse")]
-        System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WCompanyType[]> GetAllCompanyTypesAsync();
+        System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WCompanyType[]> GetAllCompanyTypesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/InsertCv", ReplyAction="http://tempuri.org/IWcfNoarJob/InsertCvResponse")]
-        void InsertCv(string cvFilePath, int userID, NoarJobUI.WcfNoarJob.WUser wUser);
+        void InsertCv(string cvFilePath, int userID, NoarJobUI.ServiceReference1.WUser wUser);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/InsertCv", ReplyAction="http://tempuri.org/IWcfNoarJob/InsertCvResponse")]
-        System.Threading.Tasks.Task InsertCvAsync(string cvFilePath, int userID, NoarJobUI.WcfNoarJob.WUser wUser);
+        System.Threading.Tasks.Task InsertCvAsync(string cvFilePath, int userID, NoarJobUI.ServiceReference1.WUser wUser);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/UpdateCvActivity", ReplyAction="http://tempuri.org/IWcfNoarJob/UpdateCvActivityResponse")]
-        NoarJobUI.WcfNoarJob.WCv UpdateCvActivity(NoarJobUI.WcfNoarJob.WCv wCv);
+        NoarJobUI.ServiceReference1.WCv UpdateCvActivity(NoarJobUI.ServiceReference1.WCv wCv);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/UpdateCvActivity", ReplyAction="http://tempuri.org/IWcfNoarJob/UpdateCvActivityResponse")]
-        System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WCv> UpdateCvActivityAsync(NoarJobUI.WcfNoarJob.WCv wCv);
+        System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WCv> UpdateCvActivityAsync(NoarJobUI.ServiceReference1.WCv wCv);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/EmployerLogin", ReplyAction="http://tempuri.org/IWcfNoarJob/EmployerLoginResponse")]
-        NoarJobUI.WcfNoarJob.WEmployer EmployerLogin(string companyEmail, string employerPassword);
+        NoarJobUI.ServiceReference1.WEmployer EmployerLogin(string companyEmail, string employerPassword);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/EmployerLogin", ReplyAction="http://tempuri.org/IWcfNoarJob/EmployerLoginResponse")]
-        System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WEmployer> EmployerLoginAsync(string companyEmail, string employerPassword);
+        System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WEmployer> EmployerLoginAsync(string companyEmail, string employerPassword);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/CreateEmployer", ReplyAction="http://tempuri.org/IWcfNoarJob/CreateEmployerResponse")]
-        NoarJobUI.WcfNoarJob.WEmployer CreateEmployer(string employerName, int numOfEmployees, int companyTypeID, string companyTypeName, string companyName, string employerPassword, string companyEmail);
+        NoarJobUI.ServiceReference1.WEmployer CreateEmployer(string employerName, int numOfEmployees, int companyTypeID, string companyTypeName, string companyName, string employerPassword, string companyEmail);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/CreateEmployer", ReplyAction="http://tempuri.org/IWcfNoarJob/CreateEmployerResponse")]
-        System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WEmployer> CreateEmployerAsync(string employerName, int numOfEmployees, int companyTypeID, string companyTypeName, string companyName, string employerPassword, string companyEmail);
+        System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WEmployer> CreateEmployerAsync(string employerName, int numOfEmployees, int companyTypeID, string companyTypeName, string companyName, string employerPassword, string companyEmail);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/CreateJob", ReplyAction="http://tempuri.org/IWcfNoarJob/CreateJobResponse")]
-        NoarJobUI.WcfNoarJob.WJob CreateJob(string title, string description, string requirements, int employerID, string phone, string email, int[] jobCategories, int[] cities, int[] jobTypes);
+        NoarJobUI.ServiceReference1.WJob CreateJob(string title, string description, string requirements, int employerID, string phone, string email, int[] jobCategories, int[] cities, int[] jobTypes);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/CreateJob", ReplyAction="http://tempuri.org/IWcfNoarJob/CreateJobResponse")]
-        System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WJob> CreateJobAsync(string title, string description, string requirements, int employerID, string phone, string email, int[] jobCategories, int[] cities, int[] jobTypes);
+        System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WJob> CreateJobAsync(string title, string description, string requirements, int employerID, string phone, string email, int[] jobCategories, int[] cities, int[] jobTypes);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/UpdateJob", ReplyAction="http://tempuri.org/IWcfNoarJob/UpdateJobResponse")]
-        void UpdateJob(NoarJobUI.WcfNoarJob.WJob wJob, string title, string description, string requirements, int employerID, string phone, string email, int[] jobCategories, int[] cities, int[] jobTypes);
+        void UpdateJob(NoarJobUI.ServiceReference1.WJob wJob, string title, string description, string requirements, int employerID, string phone, string email, int[] jobCategories, int[] cities, int[] jobTypes);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/UpdateJob", ReplyAction="http://tempuri.org/IWcfNoarJob/UpdateJobResponse")]
-        System.Threading.Tasks.Task UpdateJobAsync(NoarJobUI.WcfNoarJob.WJob wJob, string title, string description, string requirements, int employerID, string phone, string email, int[] jobCategories, int[] cities, int[] jobTypes);
+        System.Threading.Tasks.Task UpdateJobAsync(NoarJobUI.ServiceReference1.WJob wJob, string title, string description, string requirements, int employerID, string phone, string email, int[] jobCategories, int[] cities, int[] jobTypes);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/UpdateJobActivity", ReplyAction="http://tempuri.org/IWcfNoarJob/UpdateJobActivityResponse")]
-        bool UpdateJobActivity(NoarJobUI.WcfNoarJob.WJob wJob);
+        bool UpdateJobActivity(NoarJobUI.ServiceReference1.WJob wJob);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/UpdateJobActivity", ReplyAction="http://tempuri.org/IWcfNoarJob/UpdateJobActivityResponse")]
-        System.Threading.Tasks.Task<bool> UpdateJobActivityAsync(NoarJobUI.WcfNoarJob.WJob wJob);
+        System.Threading.Tasks.Task<bool> UpdateJobActivityAsync(NoarJobUI.ServiceReference1.WJob wJob);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/GetJobsSearch", ReplyAction="http://tempuri.org/IWcfNoarJob/GetJobsSearchResponse")]
-        NoarJobUI.WcfNoarJob.WJob[] GetJobsSearch(int parentCategory, int[] jobCategories, int[] jobTypes, int city, string text, int userID);
+        NoarJobUI.ServiceReference1.WJob[] GetJobsSearch(int parentCategory, int[] jobCategories, int[] jobTypes, int city, string text, int userID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/GetJobsSearch", ReplyAction="http://tempuri.org/IWcfNoarJob/GetJobsSearchResponse")]
-        System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WJob[]> GetJobsSearchAsync(int parentCategory, int[] jobCategories, int[] jobTypes, int city, string text, int userID);
+        System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WJob[]> GetJobsSearchAsync(int parentCategory, int[] jobCategories, int[] jobTypes, int city, string text, int userID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/GetEmployerJobsByJobActivity", ReplyAction="http://tempuri.org/IWcfNoarJob/GetEmployerJobsByJobActivityResponse")]
-        NoarJobUI.WcfNoarJob.WJob[] GetEmployerJobsByJobActivity(int employerID, bool isActive);
+        NoarJobUI.ServiceReference1.WJob[] GetEmployerJobsByJobActivity(int employerID, bool isActive);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/GetEmployerJobsByJobActivity", ReplyAction="http://tempuri.org/IWcfNoarJob/GetEmployerJobsByJobActivityResponse")]
-        System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WJob[]> GetEmployerJobsByJobActivityAsync(int employerID, bool isActive);
+        System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WJob[]> GetEmployerJobsByJobActivityAsync(int employerID, bool isActive);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/GetTheMostSoughtJobBL", ReplyAction="http://tempuri.org/IWcfNoarJob/GetTheMostSoughtJobBLResponse")]
-        NoarJobUI.WcfNoarJob.WJob[] GetTheMostSoughtJobBL(int userID, int[] childCategoriesLst, int[] citiesLst, int[] typesLst);
+        NoarJobUI.ServiceReference1.WJob[] GetTheMostSoughtJobBL(int userID, int[] childCategoriesLst, int[] citiesLst, int[] typesLst);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/GetTheMostSoughtJobBL", ReplyAction="http://tempuri.org/IWcfNoarJob/GetTheMostSoughtJobBLResponse")]
-        System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WJob[]> GetTheMostSoughtJobBLAsync(int userID, int[] childCategoriesLst, int[] citiesLst, int[] typesLst);
+        System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WJob[]> GetTheMostSoughtJobBLAsync(int userID, int[] childCategoriesLst, int[] citiesLst, int[] typesLst);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/GetParentJobCategories", ReplyAction="http://tempuri.org/IWcfNoarJob/GetParentJobCategoriesResponse")]
         System.Collections.Generic.Dictionary<int, string> GetParentJobCategories();
@@ -1076,10 +1076,10 @@ namespace NoarJobUI.WcfNoarJob {
         System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<int, string>> GetParentJobCategoriesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/GetJobCategoriesByParentID", ReplyAction="http://tempuri.org/IWcfNoarJob/GetJobCategoriesByParentIDResponse")]
-        System.Collections.Generic.Dictionary<int, string> GetJobCategoriesByParentID(NoarJobUI.WcfNoarJob.WJobCategories wJobCategories);
+        System.Collections.Generic.Dictionary<int, string> GetJobCategoriesByParentID(NoarJobUI.ServiceReference1.WJobCategories wJobCategories);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/GetJobCategoriesByParentID", ReplyAction="http://tempuri.org/IWcfNoarJob/GetJobCategoriesByParentIDResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<int, string>> GetJobCategoriesByParentIDAsync(NoarJobUI.WcfNoarJob.WJobCategories wJobCategories);
+        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<int, string>> GetJobCategoriesByParentIDAsync(NoarJobUI.ServiceReference1.WJobCategories wJobCategories);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/GetParentJobCategoriesByText", ReplyAction="http://tempuri.org/IWcfNoarJob/GetParentJobCategoriesByTextResponse")]
         System.Collections.Generic.Dictionary<int, string> GetParentJobCategoriesByText(string text);
@@ -1088,10 +1088,10 @@ namespace NoarJobUI.WcfNoarJob {
         System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<int, string>> GetParentJobCategoriesByTextAsync(string text);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/GetJobCategoriesByParentIDAndByText", ReplyAction="http://tempuri.org/IWcfNoarJob/GetJobCategoriesByParentIDAndByTextResponse")]
-        System.Collections.Generic.Dictionary<int, string> GetJobCategoriesByParentIDAndByText(NoarJobUI.WcfNoarJob.WJobCategories wJobCategories, string text);
+        System.Collections.Generic.Dictionary<int, string> GetJobCategoriesByParentIDAndByText(NoarJobUI.ServiceReference1.WJobCategories wJobCategories, string text);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/GetJobCategoriesByParentIDAndByText", ReplyAction="http://tempuri.org/IWcfNoarJob/GetJobCategoriesByParentIDAndByTextResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<int, string>> GetJobCategoriesByParentIDAndByTextAsync(NoarJobUI.WcfNoarJob.WJobCategories wJobCategories, string text);
+        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<int, string>> GetJobCategoriesByParentIDAndByTextAsync(NoarJobUI.ServiceReference1.WJobCategories wJobCategories, string text);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/GetAllJobTypes", ReplyAction="http://tempuri.org/IWcfNoarJob/GetAllJobTypesResponse")]
         System.Collections.Generic.Dictionary<int, string> GetAllJobTypes();
@@ -1106,82 +1106,82 @@ namespace NoarJobUI.WcfNoarJob {
         System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<int, string>> GetAllSubTypesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/GetSameParentCategory", ReplyAction="http://tempuri.org/IWcfNoarJob/GetSameParentCategoryResponse")]
-        NoarJobUI.WcfNoarJob.WSameSearchesOfUsers GetSameParentCategory(int parentCategory, NoarJobUI.WcfNoarJob.WSameSearchesOfUsers wSSOU);
+        NoarJobUI.ServiceReference1.WSameSearchesOfUsers GetSameParentCategory(int parentCategory, NoarJobUI.ServiceReference1.WSameSearchesOfUsers wSSOU);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/GetSameParentCategory", ReplyAction="http://tempuri.org/IWcfNoarJob/GetSameParentCategoryResponse")]
-        System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WSameSearchesOfUsers> GetSameParentCategoryAsync(int parentCategory, NoarJobUI.WcfNoarJob.WSameSearchesOfUsers wSSOU);
+        System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WSameSearchesOfUsers> GetSameParentCategoryAsync(int parentCategory, NoarJobUI.ServiceReference1.WSameSearchesOfUsers wSSOU);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/GetSameChildCategories", ReplyAction="http://tempuri.org/IWcfNoarJob/GetSameChildCategoriesResponse")]
-        NoarJobUI.WcfNoarJob.WSameSearchesOfUsers GetSameChildCategories(int[] childCategoriesLst, NoarJobUI.WcfNoarJob.WSameSearchesOfUsers wSSOU);
+        NoarJobUI.ServiceReference1.WSameSearchesOfUsers GetSameChildCategories(int[] childCategoriesLst, NoarJobUI.ServiceReference1.WSameSearchesOfUsers wSSOU);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/GetSameChildCategories", ReplyAction="http://tempuri.org/IWcfNoarJob/GetSameChildCategoriesResponse")]
-        System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WSameSearchesOfUsers> GetSameChildCategoriesAsync(int[] childCategoriesLst, NoarJobUI.WcfNoarJob.WSameSearchesOfUsers wSSOU);
+        System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WSameSearchesOfUsers> GetSameChildCategoriesAsync(int[] childCategoriesLst, NoarJobUI.ServiceReference1.WSameSearchesOfUsers wSSOU);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/SameChildCategoriesAndCities", ReplyAction="http://tempuri.org/IWcfNoarJob/SameChildCategoriesAndCitiesResponse")]
-        NoarJobUI.WcfNoarJob.WSameSearchesOfUsers SameChildCategoriesAndCities(int[] childCategoriesLst, int[] citiesLst, NoarJobUI.WcfNoarJob.WSameSearchesOfUsers wSSOU);
+        NoarJobUI.ServiceReference1.WSameSearchesOfUsers SameChildCategoriesAndCities(int[] childCategoriesLst, int[] citiesLst, NoarJobUI.ServiceReference1.WSameSearchesOfUsers wSSOU);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/SameChildCategoriesAndCities", ReplyAction="http://tempuri.org/IWcfNoarJob/SameChildCategoriesAndCitiesResponse")]
-        System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WSameSearchesOfUsers> SameChildCategoriesAndCitiesAsync(int[] childCategoriesLst, int[] citiesLst, NoarJobUI.WcfNoarJob.WSameSearchesOfUsers wSSOU);
+        System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WSameSearchesOfUsers> SameChildCategoriesAndCitiesAsync(int[] childCategoriesLst, int[] citiesLst, NoarJobUI.ServiceReference1.WSameSearchesOfUsers wSSOU);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/SameChildCategoriesAndCitiesAndTypes", ReplyAction="http://tempuri.org/IWcfNoarJob/SameChildCategoriesAndCitiesAndTypesResponse")]
-        NoarJobUI.WcfNoarJob.WSameSearchesOfUsers SameChildCategoriesAndCitiesAndTypes(int[] childCategoriesLst, int[] citiesLst, int[] typesLst, NoarJobUI.WcfNoarJob.WSameSearchesOfUsers wSSOU);
+        NoarJobUI.ServiceReference1.WSameSearchesOfUsers SameChildCategoriesAndCitiesAndTypes(int[] childCategoriesLst, int[] citiesLst, int[] typesLst, NoarJobUI.ServiceReference1.WSameSearchesOfUsers wSSOU);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/SameChildCategoriesAndCitiesAndTypes", ReplyAction="http://tempuri.org/IWcfNoarJob/SameChildCategoriesAndCitiesAndTypesResponse")]
-        System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WSameSearchesOfUsers> SameChildCategoriesAndCitiesAndTypesAsync(int[] childCategoriesLst, int[] citiesLst, int[] typesLst, NoarJobUI.WcfNoarJob.WSameSearchesOfUsers wSSOU);
+        System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WSameSearchesOfUsers> SameChildCategoriesAndCitiesAndTypesAsync(int[] childCategoriesLst, int[] citiesLst, int[] typesLst, NoarJobUI.ServiceReference1.WSameSearchesOfUsers wSSOU);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/ResetWSearchAgent", ReplyAction="http://tempuri.org/IWcfNoarJob/ResetWSearchAgentResponse")]
-        NoarJobUI.WcfNoarJob.WSearchAgent ResetWSearchAgent(NoarJobUI.WcfNoarJob.WSearchAgent wSearchAgent, int userID);
+        NoarJobUI.ServiceReference1.WSearchAgent ResetWSearchAgent(NoarJobUI.ServiceReference1.WSearchAgent wSearchAgent, int userID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/ResetWSearchAgent", ReplyAction="http://tempuri.org/IWcfNoarJob/ResetWSearchAgentResponse")]
-        System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WSearchAgent> ResetWSearchAgentAsync(NoarJobUI.WcfNoarJob.WSearchAgent wSearchAgent, int userID);
+        System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WSearchAgent> ResetWSearchAgentAsync(NoarJobUI.ServiceReference1.WSearchAgent wSearchAgent, int userID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/InsertSearchAgentValues", ReplyAction="http://tempuri.org/IWcfNoarJob/InsertSearchAgentValuesResponse")]
-        void InsertSearchAgentValues(NoarJobUI.WcfNoarJob.WSearchAgent wSearchAgent);
+        void InsertSearchAgentValues(NoarJobUI.ServiceReference1.WSearchAgent wSearchAgent);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/InsertSearchAgentValues", ReplyAction="http://tempuri.org/IWcfNoarJob/InsertSearchAgentValuesResponse")]
-        System.Threading.Tasks.Task InsertSearchAgentValuesAsync(NoarJobUI.WcfNoarJob.WSearchAgent wSearchAgent);
+        System.Threading.Tasks.Task InsertSearchAgentValuesAsync(NoarJobUI.ServiceReference1.WSearchAgent wSearchAgent);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/UpdateSearchAgentValues", ReplyAction="http://tempuri.org/IWcfNoarJob/UpdateSearchAgentValuesResponse")]
-        void UpdateSearchAgentValues(NoarJobUI.WcfNoarJob.WSearchAgent wSearchAgent);
+        void UpdateSearchAgentValues(NoarJobUI.ServiceReference1.WSearchAgent wSearchAgent);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/UpdateSearchAgentValues", ReplyAction="http://tempuri.org/IWcfNoarJob/UpdateSearchAgentValuesResponse")]
-        System.Threading.Tasks.Task UpdateSearchAgentValuesAsync(NoarJobUI.WcfNoarJob.WSearchAgent wSearchAgent);
+        System.Threading.Tasks.Task UpdateSearchAgentValuesAsync(NoarJobUI.ServiceReference1.WSearchAgent wSearchAgent);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/UpdateSearchAgentActivity", ReplyAction="http://tempuri.org/IWcfNoarJob/UpdateSearchAgentActivityResponse")]
-        void UpdateSearchAgentActivity(int userID, int searchAgentID);
+        void UpdateSearchAgentActivity(int searchAgentID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/UpdateSearchAgentActivity", ReplyAction="http://tempuri.org/IWcfNoarJob/UpdateSearchAgentActivityResponse")]
-        System.Threading.Tasks.Task UpdateSearchAgentActivityAsync(int userID, int searchAgentID);
+        System.Threading.Tasks.Task UpdateSearchAgentActivityAsync(int searchAgentID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/GetJobsBySearchAgent", ReplyAction="http://tempuri.org/IWcfNoarJob/GetJobsBySearchAgentResponse")]
-        NoarJobUI.WcfNoarJob.WJob[] GetJobsBySearchAgent(int searchAgentID, int userID);
+        NoarJobUI.ServiceReference1.WJob[] GetJobsBySearchAgent(int searchAgentID, int userID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/GetJobsBySearchAgent", ReplyAction="http://tempuri.org/IWcfNoarJob/GetJobsBySearchAgentResponse")]
-        System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WJob[]> GetJobsBySearchAgentAsync(int searchAgentID, int userID);
+        System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WJob[]> GetJobsBySearchAgentAsync(int searchAgentID, int userID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/GetSearchAgentsByUser", ReplyAction="http://tempuri.org/IWcfNoarJob/GetSearchAgentsByUserResponse")]
-        NoarJobUI.WcfNoarJob.WSearchAgent[] GetSearchAgentsByUser(int userID);
+        NoarJobUI.ServiceReference1.WSearchAgent[] GetSearchAgentsByUser(int userID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/GetSearchAgentsByUser", ReplyAction="http://tempuri.org/IWcfNoarJob/GetSearchAgentsByUserResponse")]
-        System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WSearchAgent[]> GetSearchAgentsByUserAsync(int userID);
+        System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WSearchAgent[]> GetSearchAgentsByUserAsync(int userID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/GetApplyForJobs", ReplyAction="http://tempuri.org/IWcfNoarJob/GetApplyForJobsResponse")]
-        NoarJobUI.WcfNoarJob.WJob[] GetApplyForJobs(int userID);
+        NoarJobUI.ServiceReference1.WJob[] GetApplyForJobs(int userID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/GetApplyForJobs", ReplyAction="http://tempuri.org/IWcfNoarJob/GetApplyForJobsResponse")]
-        System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WJob[]> GetApplyForJobsAsync(int userID);
+        System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WJob[]> GetApplyForJobsAsync(int userID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/GetLovedJobs", ReplyAction="http://tempuri.org/IWcfNoarJob/GetLovedJobsResponse")]
-        NoarJobUI.WcfNoarJob.WJob[] GetLovedJobs(int userID);
+        NoarJobUI.ServiceReference1.WJob[] GetLovedJobs(int userID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/GetLovedJobs", ReplyAction="http://tempuri.org/IWcfNoarJob/GetLovedJobsResponse")]
-        System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WJob[]> GetLovedJobsAsync(int userID);
+        System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WJob[]> GetLovedJobsAsync(int userID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/GetUsersByJobAndTabType", ReplyAction="http://tempuri.org/IWcfNoarJob/GetUsersByJobAndTabTypeResponse")]
-        NoarJobUI.WcfNoarJob.WUser[] GetUsersByJobAndTabType(int jobID, int tabType);
+        NoarJobUI.ServiceReference1.WUser[] GetUsersByJobAndTabType(int jobID, int tabType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/GetUsersByJobAndTabType", ReplyAction="http://tempuri.org/IWcfNoarJob/GetUsersByJobAndTabTypeResponse")]
-        System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WUser[]> GetUsersByJobAndTabTypeAsync(int jobID, int tabType);
+        System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WUser[]> GetUsersByJobAndTabTypeAsync(int jobID, int tabType);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfNoarJob/UpdateEmployerNotes", ReplyAction="http://tempuri.org/IWcfNoarJob/UpdateEmployerNotesResponse")]
         void UpdateEmployerNotes(int jobID, int userID, string notes);
@@ -1215,12 +1215,12 @@ namespace NoarJobUI.WcfNoarJob {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IWcfNoarJobChannel : NoarJobUI.WcfNoarJob.IWcfNoarJob, System.ServiceModel.IClientChannel {
+    public interface IWcfNoarJobChannel : NoarJobUI.ServiceReference1.IWcfNoarJob, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class WcfNoarJobClient : System.ServiceModel.ClientBase<NoarJobUI.WcfNoarJob.IWcfNoarJob>, NoarJobUI.WcfNoarJob.IWcfNoarJob {
+    public partial class WcfNoarJobClient : System.ServiceModel.ClientBase<NoarJobUI.ServiceReference1.IWcfNoarJob>, NoarJobUI.ServiceReference1.IWcfNoarJob {
         
         public WcfNoarJobClient() {
         }
@@ -1241,19 +1241,19 @@ namespace NoarJobUI.WcfNoarJob {
                 base(binding, remoteAddress) {
         }
         
-        public NoarJobUI.WcfNoarJob.WUser CreateUser(string email, string userPassword, string firstName, string lastName, string phone, int cityID, string cityName) {
+        public NoarJobUI.ServiceReference1.WUser CreateUser(string email, string userPassword, string firstName, string lastName, string phone, int cityID, string cityName) {
             return base.Channel.CreateUser(email, userPassword, firstName, lastName, phone, cityID, cityName);
         }
         
-        public System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WUser> CreateUserAsync(string email, string userPassword, string firstName, string lastName, string phone, int cityID, string cityName) {
+        public System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WUser> CreateUserAsync(string email, string userPassword, string firstName, string lastName, string phone, int cityID, string cityName) {
             return base.Channel.CreateUserAsync(email, userPassword, firstName, lastName, phone, cityID, cityName);
         }
         
-        public NoarJobUI.WcfNoarJob.WUser UserLogin(string email, string password) {
+        public NoarJobUI.ServiceReference1.WUser UserLogin(string email, string password) {
             return base.Channel.UserLogin(email, password);
         }
         
-        public System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WUser> UserLoginAsync(string email, string password) {
+        public System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WUser> UserLoginAsync(string email, string password) {
             return base.Channel.UserLoginAsync(email, password);
         }
         
@@ -1265,91 +1265,91 @@ namespace NoarJobUI.WcfNoarJob {
             return base.Channel.GetCitiesAsync(city);
         }
         
-        public NoarJobUI.WcfNoarJob.WCompanyType[] GetAllCompanyTypes() {
+        public NoarJobUI.ServiceReference1.WCompanyType[] GetAllCompanyTypes() {
             return base.Channel.GetAllCompanyTypes();
         }
         
-        public System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WCompanyType[]> GetAllCompanyTypesAsync() {
+        public System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WCompanyType[]> GetAllCompanyTypesAsync() {
             return base.Channel.GetAllCompanyTypesAsync();
         }
         
-        public void InsertCv(string cvFilePath, int userID, NoarJobUI.WcfNoarJob.WUser wUser) {
+        public void InsertCv(string cvFilePath, int userID, NoarJobUI.ServiceReference1.WUser wUser) {
             base.Channel.InsertCv(cvFilePath, userID, wUser);
         }
         
-        public System.Threading.Tasks.Task InsertCvAsync(string cvFilePath, int userID, NoarJobUI.WcfNoarJob.WUser wUser) {
+        public System.Threading.Tasks.Task InsertCvAsync(string cvFilePath, int userID, NoarJobUI.ServiceReference1.WUser wUser) {
             return base.Channel.InsertCvAsync(cvFilePath, userID, wUser);
         }
         
-        public NoarJobUI.WcfNoarJob.WCv UpdateCvActivity(NoarJobUI.WcfNoarJob.WCv wCv) {
+        public NoarJobUI.ServiceReference1.WCv UpdateCvActivity(NoarJobUI.ServiceReference1.WCv wCv) {
             return base.Channel.UpdateCvActivity(wCv);
         }
         
-        public System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WCv> UpdateCvActivityAsync(NoarJobUI.WcfNoarJob.WCv wCv) {
+        public System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WCv> UpdateCvActivityAsync(NoarJobUI.ServiceReference1.WCv wCv) {
             return base.Channel.UpdateCvActivityAsync(wCv);
         }
         
-        public NoarJobUI.WcfNoarJob.WEmployer EmployerLogin(string companyEmail, string employerPassword) {
+        public NoarJobUI.ServiceReference1.WEmployer EmployerLogin(string companyEmail, string employerPassword) {
             return base.Channel.EmployerLogin(companyEmail, employerPassword);
         }
         
-        public System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WEmployer> EmployerLoginAsync(string companyEmail, string employerPassword) {
+        public System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WEmployer> EmployerLoginAsync(string companyEmail, string employerPassword) {
             return base.Channel.EmployerLoginAsync(companyEmail, employerPassword);
         }
         
-        public NoarJobUI.WcfNoarJob.WEmployer CreateEmployer(string employerName, int numOfEmployees, int companyTypeID, string companyTypeName, string companyName, string employerPassword, string companyEmail) {
+        public NoarJobUI.ServiceReference1.WEmployer CreateEmployer(string employerName, int numOfEmployees, int companyTypeID, string companyTypeName, string companyName, string employerPassword, string companyEmail) {
             return base.Channel.CreateEmployer(employerName, numOfEmployees, companyTypeID, companyTypeName, companyName, employerPassword, companyEmail);
         }
         
-        public System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WEmployer> CreateEmployerAsync(string employerName, int numOfEmployees, int companyTypeID, string companyTypeName, string companyName, string employerPassword, string companyEmail) {
+        public System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WEmployer> CreateEmployerAsync(string employerName, int numOfEmployees, int companyTypeID, string companyTypeName, string companyName, string employerPassword, string companyEmail) {
             return base.Channel.CreateEmployerAsync(employerName, numOfEmployees, companyTypeID, companyTypeName, companyName, employerPassword, companyEmail);
         }
         
-        public NoarJobUI.WcfNoarJob.WJob CreateJob(string title, string description, string requirements, int employerID, string phone, string email, int[] jobCategories, int[] cities, int[] jobTypes) {
+        public NoarJobUI.ServiceReference1.WJob CreateJob(string title, string description, string requirements, int employerID, string phone, string email, int[] jobCategories, int[] cities, int[] jobTypes) {
             return base.Channel.CreateJob(title, description, requirements, employerID, phone, email, jobCategories, cities, jobTypes);
         }
         
-        public System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WJob> CreateJobAsync(string title, string description, string requirements, int employerID, string phone, string email, int[] jobCategories, int[] cities, int[] jobTypes) {
+        public System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WJob> CreateJobAsync(string title, string description, string requirements, int employerID, string phone, string email, int[] jobCategories, int[] cities, int[] jobTypes) {
             return base.Channel.CreateJobAsync(title, description, requirements, employerID, phone, email, jobCategories, cities, jobTypes);
         }
         
-        public void UpdateJob(NoarJobUI.WcfNoarJob.WJob wJob, string title, string description, string requirements, int employerID, string phone, string email, int[] jobCategories, int[] cities, int[] jobTypes) {
+        public void UpdateJob(NoarJobUI.ServiceReference1.WJob wJob, string title, string description, string requirements, int employerID, string phone, string email, int[] jobCategories, int[] cities, int[] jobTypes) {
             base.Channel.UpdateJob(wJob, title, description, requirements, employerID, phone, email, jobCategories, cities, jobTypes);
         }
         
-        public System.Threading.Tasks.Task UpdateJobAsync(NoarJobUI.WcfNoarJob.WJob wJob, string title, string description, string requirements, int employerID, string phone, string email, int[] jobCategories, int[] cities, int[] jobTypes) {
+        public System.Threading.Tasks.Task UpdateJobAsync(NoarJobUI.ServiceReference1.WJob wJob, string title, string description, string requirements, int employerID, string phone, string email, int[] jobCategories, int[] cities, int[] jobTypes) {
             return base.Channel.UpdateJobAsync(wJob, title, description, requirements, employerID, phone, email, jobCategories, cities, jobTypes);
         }
         
-        public bool UpdateJobActivity(NoarJobUI.WcfNoarJob.WJob wJob) {
+        public bool UpdateJobActivity(NoarJobUI.ServiceReference1.WJob wJob) {
             return base.Channel.UpdateJobActivity(wJob);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdateJobActivityAsync(NoarJobUI.WcfNoarJob.WJob wJob) {
+        public System.Threading.Tasks.Task<bool> UpdateJobActivityAsync(NoarJobUI.ServiceReference1.WJob wJob) {
             return base.Channel.UpdateJobActivityAsync(wJob);
         }
         
-        public NoarJobUI.WcfNoarJob.WJob[] GetJobsSearch(int parentCategory, int[] jobCategories, int[] jobTypes, int city, string text, int userID) {
+        public NoarJobUI.ServiceReference1.WJob[] GetJobsSearch(int parentCategory, int[] jobCategories, int[] jobTypes, int city, string text, int userID) {
             return base.Channel.GetJobsSearch(parentCategory, jobCategories, jobTypes, city, text, userID);
         }
         
-        public System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WJob[]> GetJobsSearchAsync(int parentCategory, int[] jobCategories, int[] jobTypes, int city, string text, int userID) {
+        public System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WJob[]> GetJobsSearchAsync(int parentCategory, int[] jobCategories, int[] jobTypes, int city, string text, int userID) {
             return base.Channel.GetJobsSearchAsync(parentCategory, jobCategories, jobTypes, city, text, userID);
         }
         
-        public NoarJobUI.WcfNoarJob.WJob[] GetEmployerJobsByJobActivity(int employerID, bool isActive) {
+        public NoarJobUI.ServiceReference1.WJob[] GetEmployerJobsByJobActivity(int employerID, bool isActive) {
             return base.Channel.GetEmployerJobsByJobActivity(employerID, isActive);
         }
         
-        public System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WJob[]> GetEmployerJobsByJobActivityAsync(int employerID, bool isActive) {
+        public System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WJob[]> GetEmployerJobsByJobActivityAsync(int employerID, bool isActive) {
             return base.Channel.GetEmployerJobsByJobActivityAsync(employerID, isActive);
         }
         
-        public NoarJobUI.WcfNoarJob.WJob[] GetTheMostSoughtJobBL(int userID, int[] childCategoriesLst, int[] citiesLst, int[] typesLst) {
+        public NoarJobUI.ServiceReference1.WJob[] GetTheMostSoughtJobBL(int userID, int[] childCategoriesLst, int[] citiesLst, int[] typesLst) {
             return base.Channel.GetTheMostSoughtJobBL(userID, childCategoriesLst, citiesLst, typesLst);
         }
         
-        public System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WJob[]> GetTheMostSoughtJobBLAsync(int userID, int[] childCategoriesLst, int[] citiesLst, int[] typesLst) {
+        public System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WJob[]> GetTheMostSoughtJobBLAsync(int userID, int[] childCategoriesLst, int[] citiesLst, int[] typesLst) {
             return base.Channel.GetTheMostSoughtJobBLAsync(userID, childCategoriesLst, citiesLst, typesLst);
         }
         
@@ -1361,11 +1361,11 @@ namespace NoarJobUI.WcfNoarJob {
             return base.Channel.GetParentJobCategoriesAsync();
         }
         
-        public System.Collections.Generic.Dictionary<int, string> GetJobCategoriesByParentID(NoarJobUI.WcfNoarJob.WJobCategories wJobCategories) {
+        public System.Collections.Generic.Dictionary<int, string> GetJobCategoriesByParentID(NoarJobUI.ServiceReference1.WJobCategories wJobCategories) {
             return base.Channel.GetJobCategoriesByParentID(wJobCategories);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<int, string>> GetJobCategoriesByParentIDAsync(NoarJobUI.WcfNoarJob.WJobCategories wJobCategories) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<int, string>> GetJobCategoriesByParentIDAsync(NoarJobUI.ServiceReference1.WJobCategories wJobCategories) {
             return base.Channel.GetJobCategoriesByParentIDAsync(wJobCategories);
         }
         
@@ -1377,11 +1377,11 @@ namespace NoarJobUI.WcfNoarJob {
             return base.Channel.GetParentJobCategoriesByTextAsync(text);
         }
         
-        public System.Collections.Generic.Dictionary<int, string> GetJobCategoriesByParentIDAndByText(NoarJobUI.WcfNoarJob.WJobCategories wJobCategories, string text) {
+        public System.Collections.Generic.Dictionary<int, string> GetJobCategoriesByParentIDAndByText(NoarJobUI.ServiceReference1.WJobCategories wJobCategories, string text) {
             return base.Channel.GetJobCategoriesByParentIDAndByText(wJobCategories, text);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<int, string>> GetJobCategoriesByParentIDAndByTextAsync(NoarJobUI.WcfNoarJob.WJobCategories wJobCategories, string text) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<int, string>> GetJobCategoriesByParentIDAndByTextAsync(NoarJobUI.ServiceReference1.WJobCategories wJobCategories, string text) {
             return base.Channel.GetJobCategoriesByParentIDAndByTextAsync(wJobCategories, text);
         }
         
@@ -1401,107 +1401,107 @@ namespace NoarJobUI.WcfNoarJob {
             return base.Channel.GetAllSubTypesAsync();
         }
         
-        public NoarJobUI.WcfNoarJob.WSameSearchesOfUsers GetSameParentCategory(int parentCategory, NoarJobUI.WcfNoarJob.WSameSearchesOfUsers wSSOU) {
+        public NoarJobUI.ServiceReference1.WSameSearchesOfUsers GetSameParentCategory(int parentCategory, NoarJobUI.ServiceReference1.WSameSearchesOfUsers wSSOU) {
             return base.Channel.GetSameParentCategory(parentCategory, wSSOU);
         }
         
-        public System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WSameSearchesOfUsers> GetSameParentCategoryAsync(int parentCategory, NoarJobUI.WcfNoarJob.WSameSearchesOfUsers wSSOU) {
+        public System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WSameSearchesOfUsers> GetSameParentCategoryAsync(int parentCategory, NoarJobUI.ServiceReference1.WSameSearchesOfUsers wSSOU) {
             return base.Channel.GetSameParentCategoryAsync(parentCategory, wSSOU);
         }
         
-        public NoarJobUI.WcfNoarJob.WSameSearchesOfUsers GetSameChildCategories(int[] childCategoriesLst, NoarJobUI.WcfNoarJob.WSameSearchesOfUsers wSSOU) {
+        public NoarJobUI.ServiceReference1.WSameSearchesOfUsers GetSameChildCategories(int[] childCategoriesLst, NoarJobUI.ServiceReference1.WSameSearchesOfUsers wSSOU) {
             return base.Channel.GetSameChildCategories(childCategoriesLst, wSSOU);
         }
         
-        public System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WSameSearchesOfUsers> GetSameChildCategoriesAsync(int[] childCategoriesLst, NoarJobUI.WcfNoarJob.WSameSearchesOfUsers wSSOU) {
+        public System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WSameSearchesOfUsers> GetSameChildCategoriesAsync(int[] childCategoriesLst, NoarJobUI.ServiceReference1.WSameSearchesOfUsers wSSOU) {
             return base.Channel.GetSameChildCategoriesAsync(childCategoriesLst, wSSOU);
         }
         
-        public NoarJobUI.WcfNoarJob.WSameSearchesOfUsers SameChildCategoriesAndCities(int[] childCategoriesLst, int[] citiesLst, NoarJobUI.WcfNoarJob.WSameSearchesOfUsers wSSOU) {
+        public NoarJobUI.ServiceReference1.WSameSearchesOfUsers SameChildCategoriesAndCities(int[] childCategoriesLst, int[] citiesLst, NoarJobUI.ServiceReference1.WSameSearchesOfUsers wSSOU) {
             return base.Channel.SameChildCategoriesAndCities(childCategoriesLst, citiesLst, wSSOU);
         }
         
-        public System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WSameSearchesOfUsers> SameChildCategoriesAndCitiesAsync(int[] childCategoriesLst, int[] citiesLst, NoarJobUI.WcfNoarJob.WSameSearchesOfUsers wSSOU) {
+        public System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WSameSearchesOfUsers> SameChildCategoriesAndCitiesAsync(int[] childCategoriesLst, int[] citiesLst, NoarJobUI.ServiceReference1.WSameSearchesOfUsers wSSOU) {
             return base.Channel.SameChildCategoriesAndCitiesAsync(childCategoriesLst, citiesLst, wSSOU);
         }
         
-        public NoarJobUI.WcfNoarJob.WSameSearchesOfUsers SameChildCategoriesAndCitiesAndTypes(int[] childCategoriesLst, int[] citiesLst, int[] typesLst, NoarJobUI.WcfNoarJob.WSameSearchesOfUsers wSSOU) {
+        public NoarJobUI.ServiceReference1.WSameSearchesOfUsers SameChildCategoriesAndCitiesAndTypes(int[] childCategoriesLst, int[] citiesLst, int[] typesLst, NoarJobUI.ServiceReference1.WSameSearchesOfUsers wSSOU) {
             return base.Channel.SameChildCategoriesAndCitiesAndTypes(childCategoriesLst, citiesLst, typesLst, wSSOU);
         }
         
-        public System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WSameSearchesOfUsers> SameChildCategoriesAndCitiesAndTypesAsync(int[] childCategoriesLst, int[] citiesLst, int[] typesLst, NoarJobUI.WcfNoarJob.WSameSearchesOfUsers wSSOU) {
+        public System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WSameSearchesOfUsers> SameChildCategoriesAndCitiesAndTypesAsync(int[] childCategoriesLst, int[] citiesLst, int[] typesLst, NoarJobUI.ServiceReference1.WSameSearchesOfUsers wSSOU) {
             return base.Channel.SameChildCategoriesAndCitiesAndTypesAsync(childCategoriesLst, citiesLst, typesLst, wSSOU);
         }
         
-        public NoarJobUI.WcfNoarJob.WSearchAgent ResetWSearchAgent(NoarJobUI.WcfNoarJob.WSearchAgent wSearchAgent, int userID) {
+        public NoarJobUI.ServiceReference1.WSearchAgent ResetWSearchAgent(NoarJobUI.ServiceReference1.WSearchAgent wSearchAgent, int userID) {
             return base.Channel.ResetWSearchAgent(wSearchAgent, userID);
         }
         
-        public System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WSearchAgent> ResetWSearchAgentAsync(NoarJobUI.WcfNoarJob.WSearchAgent wSearchAgent, int userID) {
+        public System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WSearchAgent> ResetWSearchAgentAsync(NoarJobUI.ServiceReference1.WSearchAgent wSearchAgent, int userID) {
             return base.Channel.ResetWSearchAgentAsync(wSearchAgent, userID);
         }
         
-        public void InsertSearchAgentValues(NoarJobUI.WcfNoarJob.WSearchAgent wSearchAgent) {
+        public void InsertSearchAgentValues(NoarJobUI.ServiceReference1.WSearchAgent wSearchAgent) {
             base.Channel.InsertSearchAgentValues(wSearchAgent);
         }
         
-        public System.Threading.Tasks.Task InsertSearchAgentValuesAsync(NoarJobUI.WcfNoarJob.WSearchAgent wSearchAgent) {
+        public System.Threading.Tasks.Task InsertSearchAgentValuesAsync(NoarJobUI.ServiceReference1.WSearchAgent wSearchAgent) {
             return base.Channel.InsertSearchAgentValuesAsync(wSearchAgent);
         }
         
-        public void UpdateSearchAgentValues(NoarJobUI.WcfNoarJob.WSearchAgent wSearchAgent) {
+        public void UpdateSearchAgentValues(NoarJobUI.ServiceReference1.WSearchAgent wSearchAgent) {
             base.Channel.UpdateSearchAgentValues(wSearchAgent);
         }
         
-        public System.Threading.Tasks.Task UpdateSearchAgentValuesAsync(NoarJobUI.WcfNoarJob.WSearchAgent wSearchAgent) {
+        public System.Threading.Tasks.Task UpdateSearchAgentValuesAsync(NoarJobUI.ServiceReference1.WSearchAgent wSearchAgent) {
             return base.Channel.UpdateSearchAgentValuesAsync(wSearchAgent);
         }
         
-        public void UpdateSearchAgentActivity(int userID, int searchAgentID) {
-            base.Channel.UpdateSearchAgentActivity(userID, searchAgentID);
+        public void UpdateSearchAgentActivity(int searchAgentID) {
+            base.Channel.UpdateSearchAgentActivity(searchAgentID);
         }
         
-        public System.Threading.Tasks.Task UpdateSearchAgentActivityAsync(int userID, int searchAgentID) {
-            return base.Channel.UpdateSearchAgentActivityAsync(userID, searchAgentID);
+        public System.Threading.Tasks.Task UpdateSearchAgentActivityAsync(int searchAgentID) {
+            return base.Channel.UpdateSearchAgentActivityAsync(searchAgentID);
         }
         
-        public NoarJobUI.WcfNoarJob.WJob[] GetJobsBySearchAgent(int searchAgentID, int userID) {
+        public NoarJobUI.ServiceReference1.WJob[] GetJobsBySearchAgent(int searchAgentID, int userID) {
             return base.Channel.GetJobsBySearchAgent(searchAgentID, userID);
         }
         
-        public System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WJob[]> GetJobsBySearchAgentAsync(int searchAgentID, int userID) {
+        public System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WJob[]> GetJobsBySearchAgentAsync(int searchAgentID, int userID) {
             return base.Channel.GetJobsBySearchAgentAsync(searchAgentID, userID);
         }
         
-        public NoarJobUI.WcfNoarJob.WSearchAgent[] GetSearchAgentsByUser(int userID) {
+        public NoarJobUI.ServiceReference1.WSearchAgent[] GetSearchAgentsByUser(int userID) {
             return base.Channel.GetSearchAgentsByUser(userID);
         }
         
-        public System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WSearchAgent[]> GetSearchAgentsByUserAsync(int userID) {
+        public System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WSearchAgent[]> GetSearchAgentsByUserAsync(int userID) {
             return base.Channel.GetSearchAgentsByUserAsync(userID);
         }
         
-        public NoarJobUI.WcfNoarJob.WJob[] GetApplyForJobs(int userID) {
+        public NoarJobUI.ServiceReference1.WJob[] GetApplyForJobs(int userID) {
             return base.Channel.GetApplyForJobs(userID);
         }
         
-        public System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WJob[]> GetApplyForJobsAsync(int userID) {
+        public System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WJob[]> GetApplyForJobsAsync(int userID) {
             return base.Channel.GetApplyForJobsAsync(userID);
         }
         
-        public NoarJobUI.WcfNoarJob.WJob[] GetLovedJobs(int userID) {
+        public NoarJobUI.ServiceReference1.WJob[] GetLovedJobs(int userID) {
             return base.Channel.GetLovedJobs(userID);
         }
         
-        public System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WJob[]> GetLovedJobsAsync(int userID) {
+        public System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WJob[]> GetLovedJobsAsync(int userID) {
             return base.Channel.GetLovedJobsAsync(userID);
         }
         
-        public NoarJobUI.WcfNoarJob.WUser[] GetUsersByJobAndTabType(int jobID, int tabType) {
+        public NoarJobUI.ServiceReference1.WUser[] GetUsersByJobAndTabType(int jobID, int tabType) {
             return base.Channel.GetUsersByJobAndTabType(jobID, tabType);
         }
         
-        public System.Threading.Tasks.Task<NoarJobUI.WcfNoarJob.WUser[]> GetUsersByJobAndTabTypeAsync(int jobID, int tabType) {
+        public System.Threading.Tasks.Task<NoarJobUI.ServiceReference1.WUser[]> GetUsersByJobAndTabTypeAsync(int jobID, int tabType) {
             return base.Channel.GetUsersByJobAndTabTypeAsync(jobID, tabType);
         }
         

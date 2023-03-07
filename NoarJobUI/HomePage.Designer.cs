@@ -121,7 +121,7 @@ namespace NoarJobUI
             this.SearchPageBtn.TabIndex = 8;
             this.SearchPageBtn.Text = "כניסה לדף חיפוש משרות";
             this.SearchPageBtn.UseVisualStyleBackColor = false;
-            this.SearchPageBtn.Click += new System.EventHandler(this.SearchPageBtn_Click);
+            //this.SearchPageBtn.Click += new System.EventHandler(this.SearchPageBtn_Click);
             // 
             // ProjectTitleLbl
             // 

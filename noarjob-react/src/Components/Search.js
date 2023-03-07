@@ -6,8 +6,8 @@ import { variables } from "../Variables";
 
 const Search = () => {
   const [visible, setVisible] = useState(true);
-  const [categories, setCategories] = useState({ categories: [] });
-  const [btnClicked, setBtnClicked] = useState(false);
+  const [content, setContent] = useState([]);
+  const [contentID, setContentID] = useState(0);
 
   const SearchByDomainBtn_Click = () => {
     setVisible(false);
@@ -17,12 +17,47 @@ const Search = () => {
     setVisible(true);
   };
 
+  const Choose_Click = (contentId) => {
+    setContentID(contentId);
+  };
+
+  const Search_TxtChanged = (text) => {
+    if (text !== "") {
+      fetch(
+        variables.API_URL +
+          "JobCategories/GetParentJobCategoriesByText?text=" +
+          text
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setContent(data);
+        });
+    } else {
+      fetch(variables.API_URL + "JobCategories/GetParentJobCategories")
+        .then((response) => response.json())
+        .then((data) => {
+          setContent(data);
+        });
+    }
+  };
+
   const DomainBtn_Click = () => {
-    setBtnClicked(true);
     fetch(variables.API_URL + "JobCategories/GetParentJobCategories")
       .then((response) => response.json())
       .then((data) => {
-        setCategories({ categories: data });
+        setContent(data);
+      });
+  };
+
+  const RoleBtn_Click = () => {
+    fetch(
+      variables.API_URL +
+        "JobCategories/GetJobCategoriesByParentID?chosenJobCategory=" +
+        contentID
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setContent(data);
       });
   };
 
@@ -81,6 +116,7 @@ const Search = () => {
           <button
             id="RoleBtn"
             className="btn btn-outline-light btn-lg px-5 mx-3 myBtn col"
+            onClick={RoleBtn_Click}
           >
             בחירת תפקיד
           </button>
@@ -92,9 +128,14 @@ const Search = () => {
             בחירת תחום
           </button>
         </div>
-        {categories.categories.length != 0 && (
+        {console.log(content)}
+        {content.length !== 0 && (
           <div className={visible ? "visibleFalse" : ""}>
-            <SearchBody content={categories.categories} />
+            <SearchBody
+              content={content}
+              onChoose={Choose_Click}
+              onChangeTxt={Search_TxtChanged}
+            />
           </div>
         )}
       </Card>

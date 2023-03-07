@@ -65,11 +65,11 @@ namespace NoarJobUI
             WcfNoarJobClient wcfNoarJobClient = new WcfNoarJobClient();
             this.user = wcfNoarJobClient.UserLogin(this.EmailTxt.Text,this.PasswordTxt.Text);
             wcfNoarJobClient.Close();
-            homePage = new HomePage(this.user, this.mainPage);
+            //homePage = new HomePage(this.user, this.mainPage);
             if (this.user != null)
             { 
-                homePage.Show();
-                this.Close();
+                //homePage.Show();
+               // this.Close();
             }
             else
                 MessageBox.Show("משתמש לא קיים");

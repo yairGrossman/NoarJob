@@ -1,3 +1,11 @@
 .BtnBlock {
   margin-left: 100px;
 }
+
+.chosenBtn {
+  background-color: #df7861 !important;
+}
+
+.chosenBtn:hover {
+  color: #94b49f !important;
+}

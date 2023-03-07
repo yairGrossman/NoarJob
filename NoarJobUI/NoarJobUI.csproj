@@ -75,7 +75,7 @@
     <Compile Include="ATSPage.Designer.cs">
       <DependentUpon>ATSPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Connected Services\WcfNoarJob\Reference.cs">
+    <Compile Include="Connected Services\ServiceReference1\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -197,41 +197,41 @@
     <EmbeddedResource Include="ucJob.resx">
       <DependentUpon>ucJob.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Connected Services\WcfNoarJob\NoarJobUI.WcfNoarJob.WCompanyType.datasource">
+    <None Include="Connected Services\ServiceReference1\NoarJobUI.ServiceReference1.WCompanyType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\WcfNoarJob\NoarJobUI.WcfNoarJob.WCv.datasource">
+    <None Include="Connected Services\ServiceReference1\NoarJobUI.ServiceReference1.WCv.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\WcfNoarJob\NoarJobUI.WcfNoarJob.WEmployer.datasource">
+    <None Include="Connected Services\ServiceReference1\NoarJobUI.ServiceReference1.WEmployer.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\WcfNoarJob\NoarJobUI.WcfNoarJob.WJob.datasource">
+    <None Include="Connected Services\ServiceReference1\NoarJobUI.ServiceReference1.WJob.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\WcfNoarJob\NoarJobUI.WcfNoarJob.WSameSearchesOfUsers.datasource">
+    <None Include="Connected Services\ServiceReference1\NoarJobUI.ServiceReference1.WSameSearchesOfUsers.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\WcfNoarJob\NoarJobUI.WcfNoarJob.WSearchAgent.datasource">
+    <None Include="Connected Services\ServiceReference1\NoarJobUI.ServiceReference1.WSearchAgent.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\WcfNoarJob\NoarJobUI.WcfNoarJob.WUser.datasource">
+    <None Include="Connected Services\ServiceReference1\NoarJobUI.ServiceReference1.WUser.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\WcfNoarJob\Service1.wsdl" />
-    <None Include="Connected Services\WcfNoarJob\WcfNoarJob.xsd">
+    <None Include="Connected Services\ServiceReference1\Service1.wsdl" />
+    <None Include="Connected Services\ServiceReference1\WcfNoarJob.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\WcfNoarJob\WcfNoarJob1.xsd">
+    <None Include="Connected Services\ServiceReference1\WcfNoarJob1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\WcfNoarJob\WcfNoarJob2.xsd">
+    <None Include="Connected Services\ServiceReference1\WcfNoarJob2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\WcfNoarJob\WcfNoarJob3.xsd">
+    <None Include="Connected Services\ServiceReference1\WcfNoarJob3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\WcfNoarJob\WcfNoarJob4.xsd">
+    <None Include="Connected Services\ServiceReference1\WcfNoarJob4.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">
@@ -263,12 +263,6 @@
     <None Include="Resources\edit.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NoarJobBL\NoarJobBL.csproj">
-      <Project>{914500be-c730-4540-a19b-229178fe5d53}</Project>
-      <Name>NoarJobBL</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Upload Icon.png" />
   </ItemGroup>
   <ItemGroup>
@@ -293,19 +287,25 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\WcfNoarJob\" />
+    <ProjectReference Include="..\NoarJobBL\NoarJobBL.csproj">
+      <Project>{914500be-c730-4540-a19b-229178fe5d53}</Project>
+      <Name>NoarJobBL</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\WcfNoarJob\WcfNoarJob.disco" />
+    <WCFMetadataStorage Include="Connected Services\ServiceReference1\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\WcfNoarJob\configuration91.svcinfo" />
+    <None Include="Connected Services\ServiceReference1\WcfNoarJob.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\WcfNoarJob\configuration.svcinfo" />
+    <None Include="Connected Services\ServiceReference1\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\WcfNoarJob\Reference.svcmap">
+    <None Include="Connected Services\ServiceReference1\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReference1\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
