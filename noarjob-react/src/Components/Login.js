@@ -10,7 +10,6 @@ const Login = () => {
 
         <div className="form-outline form-white mb-4">
           <input
-            id="email"
             type="email"
             className="form-control form-control-lg"
             placeholder="Email"
@@ -19,17 +18,13 @@ const Login = () => {
 
         <div className="form-outline form-white mb-5">
           <input
-            id="myPassword"
             type="password"
             className="form-control form-control-lg"
             placeholder="Password"
           />
         </div>
 
-        <button
-          id="loginBtn"
-          className="btn btn-outline-light btn-lg px-5 myBtn"
-        >
+        <button className="btn btn-outline-light btn-lg px-5 myBtn">
           התחבר
         </button>
 

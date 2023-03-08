@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./Search.css";
 import "./SearchBody.css";
 
 const SearchBody = (props) => {
   const contentsKey = Object.keys(props.content);
-  console.log(props.content);
+  const optionsBtnRef = useRef(null);
 
   const CategoryBtn_Click = (event) => {
     props.onChoose(event.target.value);
+    if (props.btnClicked === "domainBtn") {
+      const optionsBtn = optionsBtnRef.current.querySelectorAll(".chosenBtn");
+      optionsBtn.forEach((optionBtn) => {
+        optionBtn.classList.remove("chosenBtn");
+        optionBtn.classList.add("myBtn");
+      });
+    }
+
     event.target.classList.remove("myBtn");
     event.target.classList.add("chosenBtn");
   };
@@ -24,14 +32,13 @@ const SearchBody = (props) => {
           <i className="bi bi-search col-2" style={{ fontSize: "1.5rem" }}></i>
           <input
             dir="rtl"
-            id="searchBtnByTxt"
             type="text"
             className="form-control border-0 border-bottom rounded-0 col"
             placeholder="חיפוש"
             onChange={Search_TxtChanged}
           />
         </div>
-        <div id="btnDiv" className="mt-4">
+        <div className="mt-4" ref={optionsBtnRef}>
           {contentsKey.map((contentId) => {
             return (
               <button

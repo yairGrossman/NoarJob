@@ -60,14 +60,12 @@ const Header = () => {
 
           <div className="col-md-3 text-end">
             <button
-              id="loginBtn"
               className="btn btn-outline-light me-3 myBtn"
               onClick={MoveToLogin}
             >
               כניסה
             </button>
             <button
-              id="signupBtn"
               className="btn btn-outline-light myBtn"
               onClick={MoveToSignup}
             >

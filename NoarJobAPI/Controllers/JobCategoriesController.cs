@@ -37,7 +37,7 @@ namespace NoarJobAPI.Controllers
         {
             JobCategoriesBL jobCategories = new JobCategoriesBL();
             jobCategories.ChosenJobCategory = chosenJobCategory;
-            Dictionary<int, string> dic = jobCategories.GetParentJobCategoriesByText(text);
+            Dictionary<int, string> dic = jobCategories.GetJobCategoriesByParentIDAndByText(text);
             return new JsonResult(dic);
         }
     }
