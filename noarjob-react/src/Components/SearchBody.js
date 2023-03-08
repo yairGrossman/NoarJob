@@ -6,7 +6,11 @@ const SearchBody = (props) => {
   const contentsKey = Object.keys(props.content);
   const optionsBtnRef = useRef(null);
 
-  const CategoryBtn_Click = (event) => {
+  /*
+  פונקציה שמופעלת כאשר המשתמש בחר ושולחת את בחירתו לרכיב החיפוש 
+  וגם צובעת את הכפתור שהמשתמש בחר
+  */
+  const ChooseBtn_Click = (event) => {
     props.onChoose(event.target.value);
     if (props.btnClicked === "domainBtn") {
       const optionsBtn = optionsBtnRef.current.querySelectorAll(".chosenBtn");
@@ -20,9 +24,32 @@ const SearchBody = (props) => {
     event.target.classList.add("chosenBtn");
   };
 
+  /*פונקציה שמופעלת כאשר המשתמש מחפש קטגורייה כלשהי ושולחת את חיפושו לרכיב החיפוש */
   const Search_TxtChanged = (event) => {
     const text = event.target.value;
     props.onChangeTxt(text);
+  };
+
+  /*
+  פונקציה שמופעלת כאשר הרכיב מתרענן 
+  וצובעת את הכפתורים שהמשתמש בחר
+   */
+  const ChosenBtns = (contentId) => {
+    let regularStyle =
+      "btn btn-outline-light mb-2 btn-lg px-3 myBtn float-end BtnBlock ";
+    if (props.btnClicked === "domainBtn") {
+      if (props.chosenBtns.domainID === contentId) {
+        regularStyle += "chosenBtn";
+      }
+    } else if (props.btnClicked === "roleBtn") {
+      props.chosenBtns.roleIds.forEach((roleID) => {
+        if (roleID === contentId) {
+          regularStyle += "chosenBtn";
+        }
+      });
+    }
+
+    return regularStyle;
   };
 
   return (
@@ -44,9 +71,9 @@ const SearchBody = (props) => {
               <button
                 key={contentId}
                 value={contentId}
-                className="btn btn-outline-light mb-2 btn-lg px-3 myBtn float-end BtnBlock"
+                className={ChosenBtns(contentId)}
                 style={{ width: "230px" }}
-                onClick={CategoryBtn_Click}
+                onClick={ChooseBtn_Click}
               >
                 {props.content[contentId]}
               </button>

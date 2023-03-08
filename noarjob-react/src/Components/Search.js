@@ -15,26 +15,60 @@ const Search = () => {
   */
   const [content, setContent] = useState([]);
   /*
-  משתנה ששומר את הבחירה של תחום התפקיד של המשתמש
+  משתנה ששומר את הבחירה של המשתמש
   */
-  const [domainID, setDomainID] = useState(0);
+  const [contentIds, setContentIds] = useState({
+    domainID: 0,
+    roleIds: [],
+    cityIds: [],
+    typeIds: [],
+  });
   /*
   משתנה לשמירת איזה כפתור בחירה המשתמש בחר (תחום תפקיד, תפקיד...)
   */
   const [btnClicked, setBtnClicked] = useState("");
 
+  /*
+  כאשר לוחצים על הכפתור של חיפוש לפי קטגוריות החיפוש לפי טקסט נעלם
+  */
   const SearchByDomainBtn_Click = () => {
     setVisible(false);
   };
 
+  /*
+  כאשר לוחצים על הכפתור של חיפוש לפי טקסט החיפוש לפי קטגוריות נעלם
+  */
   const SearchByTxtBtn_Click = () => {
     setVisible(true);
   };
 
+  /*
+  פונקציה שמופעלת כאשר המשתמש בוחר קטגורייה כלשהי(תחום תפקיד, תפקיד, עיר ...) 
+  כאשר הוא בחר אז נשמר בחירתו על ידי המשתנה לשמירת הבחירות של המשתמש
+  */
   const Choose_Click = (contentId) => {
-    if (btnClicked === "domainBtn") setDomainID(contentId);
+    if (btnClicked === "domainBtn") {
+      setContentIds((prevState) => {
+        return {
+          ...prevState,
+          domainID: contentId,
+        };
+      });
+    } else if (btnClicked === "roleBtn") {
+      setContentIds((prevState) => {
+        return {
+          ...prevState,
+          roleIds: [...prevState.roleIds, contentId],
+        };
+      });
+    }
   };
 
+  /*
+  פונקציה שמופעלת כאשר המתמש מחפש קטגורייה כלשהי על ידי טקסט הכוונה בקטגורייה זה תחום תפקידתפקיד וכו
+  ואז היא שמה במשתנה לתוכן שיהיה בתוך רכיב גוף החיפוש 
+  -את התוכן שהיא קיבלה מהJson
+   */
   const Search_TxtChanged = (text) => {
     if (btnClicked === "domainBtn") {
       if (text !== "") {
@@ -59,7 +93,7 @@ const Search = () => {
         fetch(
           variables.API_URL +
             "JobCategories/GetJobCategoriesByParentIDAndByText?chosenJobCategory=" +
-            domainID +
+            contentIds.domainID +
             "&text=" +
             text
         )
@@ -71,7 +105,7 @@ const Search = () => {
         fetch(
           variables.API_URL +
             "JobCategories/GetJobCategoriesByParentID?chosenJobCategory=" +
-            domainID
+            contentIds.domainID
         )
           .then((response) => response.json())
           .then((data) => {
@@ -81,7 +115,12 @@ const Search = () => {
     }
   };
 
+  /*פונקציה שמופעלת כאשר המשתמש לחץ על הכפתור: תחום תפקיד
+  ואז שמה את את כל תחומי התפקיד בתוך המשתנה של התוכן */
   const DomainBtn_Click = (event) => {
+    setContentIds((prevState) => {
+      return { ...prevState, roleIds: [] };
+    });
     setBtnClicked(event.target.value);
     fetch(variables.API_URL + "JobCategories/GetParentJobCategories")
       .then((response) => response.json())
@@ -90,12 +129,14 @@ const Search = () => {
       });
   };
 
+  /*פונקציה שמופעלת כאשר המשתמש לחץ על הכפתור: תפקיד
+  ואז שמה את את כל התפקידים בתוך המשתנה של התוכן */
   const RoleBtn_Click = (event) => {
     setBtnClicked(event.target.value);
     fetch(
       variables.API_URL +
         "JobCategories/GetJobCategoriesByParentID?chosenJobCategory=" +
-        domainID
+        contentIds.domainID
     )
       .then((response) => response.json())
       .then((data) => {
@@ -122,7 +163,7 @@ const Search = () => {
         </div>
         <div className={visible ? "" : "visibleFalse"}>
           <div className="row form-outline form-white mb-4">
-            <a id="goJobsPageByTxtBtn" className="col-1 searchBtn">
+            <a className="col-1 searchBtn">
               <i className="bi bi-search"></i>
             </a>
             <input
@@ -134,7 +175,7 @@ const Search = () => {
           </div>
         </div>
         <div className={"row " + (visible ? "visibleFalse" : "")}>
-          <a id="goJobsPageByDomainBtn" className="col-1 searchBtn">
+          <a className="col-1 searchBtn">
             <i className="bi bi-search"></i>
           </a>
           <button className="btn btn-outline-light btn-lg px-5 mx-3 myBtn col">
@@ -165,6 +206,7 @@ const Search = () => {
               onChoose={Choose_Click}
               onChangeTxt={Search_TxtChanged}
               btnClicked={btnClicked}
+              chosenBtns={contentIds}
             />
           </div>
         )}
