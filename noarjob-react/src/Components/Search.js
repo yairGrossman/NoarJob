@@ -20,7 +20,7 @@ const Search = () => {
   const [contentIds, setContentIds] = useState({
     domainID: 0,
     roleIds: [],
-    cityIds: [],
+    cityId: 0,
     typeIds: [],
   });
   /*
@@ -52,6 +52,7 @@ const Search = () => {
         return {
           ...prevState,
           domainID: contentId,
+          roleIds: [],
         };
       });
     } else if (btnClicked === "roleBtn") {
@@ -61,6 +62,14 @@ const Search = () => {
           roleIds: [...prevState.roleIds, contentId],
         };
       });
+    } else if (btnClicked === "cityBtn") {
+      setContentIds((prevState) => {
+        return {
+          ...prevState,
+          cityId: contentId,
+        };
+      });
+      console.log(contentIds.cityId);
     }
   };
 
@@ -112,15 +121,26 @@ const Search = () => {
             setContent(data);
           });
       }
+    } else if (btnClicked === "cityBtn") {
+      if (text !== "") {
+        fetch(variables.API_URL + "Cities/GetCities?text=" + text)
+          .then((response) => response.json())
+          .then((data) => {
+            setContent(data);
+          });
+      } else {
+        fetch(variables.API_URL + "Cities/GetCities?text=")
+          .then((response) => response.json())
+          .then((data) => {
+            setContent(data);
+          });
+      }
     }
   };
 
   /*פונקציה שמופעלת כאשר המשתמש לחץ על הכפתור: תחום תפקיד
   ואז שמה את את כל תחומי התפקיד בתוך המשתנה של התוכן */
   const DomainBtn_Click = (event) => {
-    setContentIds((prevState) => {
-      return { ...prevState, roleIds: [] };
-    });
     setBtnClicked(event.target.value);
     fetch(variables.API_URL + "JobCategories/GetParentJobCategories")
       .then((response) => response.json())
@@ -138,6 +158,15 @@ const Search = () => {
         "JobCategories/GetJobCategoriesByParentID?chosenJobCategory=" +
         contentIds.domainID
     )
+      .then((response) => response.json())
+      .then((data) => {
+        setContent(data);
+      });
+  };
+
+  const CityBtn_Click = (event) => {
+    setBtnClicked(event.target.value);
+    fetch(variables.API_URL + "Cities/GetCities?text=")
       .then((response) => response.json())
       .then((data) => {
         setContent(data);
@@ -181,7 +210,11 @@ const Search = () => {
           <button className="btn btn-outline-light btn-lg px-5 mx-3 myBtn col">
             בחירת סוג משרה
           </button>
-          <button className="btn btn-outline-light btn-lg px-5 mx-3 myBtn col">
+          <button
+            value="cityBtn"
+            className="btn btn-outline-light btn-lg px-5 mx-3 myBtn col"
+            onClick={CityBtn_Click}
+          >
             בחירת מיקום
           </button>
           <button

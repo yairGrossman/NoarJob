@@ -12,7 +12,7 @@ const SearchBody = (props) => {
   */
   const ChooseBtn_Click = (event) => {
     props.onChoose(event.target.value);
-    if (props.btnClicked === "domainBtn") {
+    if (props.btnClicked === "domainBtn" || props.btnClicked === "cityBtn") {
       const optionsBtn = optionsBtnRef.current.querySelectorAll(".chosenBtn");
       optionsBtn.forEach((optionBtn) => {
         optionBtn.classList.remove("chosenBtn");
@@ -37,8 +37,11 @@ const SearchBody = (props) => {
   const ChosenBtns = (contentId) => {
     let regularStyle =
       "btn btn-outline-light mb-2 btn-lg px-3 myBtn float-end BtnBlock ";
-    if (props.btnClicked === "domainBtn") {
-      if (props.chosenBtns.domainID === contentId) {
+    if (props.btnClicked === "domainBtn" || props.btnClicked === "cityBtn") {
+      if (
+        props.chosenBtns.domainID === contentId ||
+        props.chosenBtns.cityId === contentId
+      ) {
         regularStyle += "chosenBtn";
       }
     } else if (props.btnClicked === "roleBtn") {
