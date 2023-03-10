@@ -1,0 +1,16 @@
+.dropdownBtn {
+  width: 300px;
+}
+
+.flipArrow {
+  transform: rotate(180deg);
+}
+
+p {
+  margin: 0;
+}
+
+.dropdownBtn:hover {
+  background-color: #df7861 !important;
+  color: white;
+}

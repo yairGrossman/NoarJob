@@ -14,11 +14,18 @@ const Search = () => {
   משתנה לתוכן שיהיה בתוך רכיב גוף החיפוש
   */
   const [content, setContent] = useState([]);
+
+  //משתנה ספציפי לשימרת טיפוסי המשרות אני לא משתמש בטיפוסי המשרות במשתנה content
+  // כי הוא מכיל רק מערך של נתונים אחד ולעומת זאת לטיפוסי משרות יש שני מערכי נתונים
+  const [typesContent, setTypesContent] = useState({
+    types: [],
+    subTypes: [],
+  });
   /*
   משתנה ששומר את הבחירה של המשתמש
   */
   const [contentIds, setContentIds] = useState({
-    domainID: 0,
+    domainId: 0,
     roleIds: [],
     cityId: 0,
     typeIds: [],
@@ -51,7 +58,7 @@ const Search = () => {
       setContentIds((prevState) => {
         return {
           ...prevState,
-          domainID: contentId,
+          domainId: contentId,
           roleIds: [],
         };
       });
@@ -69,7 +76,13 @@ const Search = () => {
           cityId: contentId,
         };
       });
-      console.log(contentIds.cityId);
+    } else {
+      setContentIds((prevState) => {
+        return {
+          ...prevState,
+          typeIds: [...prevState.typeIds, contentId],
+        };
+      });
     }
   };
 
@@ -102,7 +115,7 @@ const Search = () => {
         fetch(
           variables.API_URL +
             "JobCategories/GetJobCategoriesByParentIDAndByText?chosenJobCategory=" +
-            contentIds.domainID +
+            contentIds.domainId +
             "&text=" +
             text
         )
@@ -114,7 +127,7 @@ const Search = () => {
         fetch(
           variables.API_URL +
             "JobCategories/GetJobCategoriesByParentID?chosenJobCategory=" +
-            contentIds.domainID
+            contentIds.domainId
         )
           .then((response) => response.json())
           .then((data) => {
@@ -156,7 +169,7 @@ const Search = () => {
     fetch(
       variables.API_URL +
         "JobCategories/GetJobCategoriesByParentID?chosenJobCategory=" +
-        contentIds.domainID
+        contentIds.domainId
     )
       .then((response) => response.json())
       .then((data) => {
@@ -171,6 +184,47 @@ const Search = () => {
       .then((data) => {
         setContent(data);
       });
+  };
+
+  const TypeBtn_Click = (event) => {
+    setBtnClicked(event.target.value);
+
+    fetch(variables.API_URL + "JobTypes/GetAllJobTypes")
+      .then((response) => response.json())
+      .then((data) => {
+        setTypesContent((prevState) => {
+          return { ...prevState, types: data };
+        });
+      });
+
+    fetch(variables.API_URL + "JobTypes/GetAllSubTypes")
+      .then((response) => response.json())
+      .then((data) => {
+        setTypesContent((prevState) => {
+          return { ...prevState, subTypes: data };
+        });
+      });
+  };
+
+  const CleanBtn_Click = () => {
+    if (btnClicked === "domainBtn") {
+      setContentIds((prevState) => {
+        return { ...prevState, domainId: 0 };
+      });
+    } else if (btnClicked === "roleBtn") {
+      setContentIds((prevState) => {
+        return { ...prevState, roleIds: [] };
+      });
+    } else if (btnClicked === "cityBtn") {
+      setContentIds((prevState) => {
+        return { ...prevState, cityId: 0 };
+      });
+    } else {
+      setContentIds((prevState) => {
+        return { ...prevState, typeIds: [] };
+      });
+    }
+    console.log(contentIds);
   };
 
   return (
@@ -207,7 +261,11 @@ const Search = () => {
           <a className="col-1 searchBtn">
             <i className="bi bi-search"></i>
           </a>
-          <button className="btn btn-outline-light btn-lg px-5 mx-3 myBtn col">
+          <button
+            value="typeBtn"
+            className="btn btn-outline-light btn-lg px-5 mx-3 myBtn col"
+            onClick={TypeBtn_Click}
+          >
             בחירת סוג משרה
           </button>
           <button
@@ -232,14 +290,15 @@ const Search = () => {
             בחירת תחום
           </button>
         </div>
-        {content.length !== 0 && (
+        {(content.length !== 0 || typesContent.types.length !== 0) && (
           <div className={visible ? "visibleFalse" : ""}>
             <SearchBody
-              content={content}
+              content={btnClicked !== "typeBtn" ? content : typesContent}
               onChoose={Choose_Click}
               onChangeTxt={Search_TxtChanged}
               btnClicked={btnClicked}
               chosenBtns={contentIds}
+              CleanBtn_Click={CleanBtn_Click}
             />
           </div>
         )}

@@ -1,5 +1,13 @@
 .BtnBlock {
-  margin-left: 100px;
+  margin-left: 200px;
+}
+
+.cleanBtn {
+  background-color: #df7861;
+}
+
+.cleanBtn:hover {
+  background-color: #94b49f;
 }
 
 .chosenBtn {
@@ -8,4 +16,8 @@
 
 .chosenBtn:hover {
   color: #94b49f !important;
+}
+
+.dropdown-toggle::after {
+  margin-right: 13rem;
 }

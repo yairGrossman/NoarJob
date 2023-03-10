@@ -37,23 +37,18 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              <a href="#" className="nav-link px-2 link-dark">
-                Features
+              <a href="#" className="nav-link px-2 link-dark myLink">
+                סוכן חכם
               </a>
             </li>
             <li>
-              <a href="#" className="nav-link px-2 link-dark">
-                Pricing
+              <a href="#" className="nav-link px-2 link-dark myLink">
+                המשרות המתאימות לך
               </a>
             </li>
             <li>
-              <a href="#" className="nav-link px-2 link-dark">
-                FAQs
-              </a>
-            </li>
-            <li>
-              <a href="#" className="nav-link px-2 link-dark">
-                About
+              <a href="#" className="nav-link px-2 link-dark myLink">
+                הגדרות
               </a>
             </li>
           </ul>

@@ -14,3 +14,7 @@ body {
   color: #ecb390;
   font-style: italic;
 }
+
+.myLink:hover {
+  color: #df7861 !important;
+}
