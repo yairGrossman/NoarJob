@@ -1,7 +1,29 @@
-import React from "react";
+import React, { useRef, useState, useNavigate, navigate } from "react";
 import Card from "./Card";
+import { variables } from "../Variables";
 
-const Login = () => {
+const Login = (props) => {
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  const [user, setUser] = useState();
+
+  const Login_Click = () => {
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+    fetch(
+      variables.API_URL +
+        "User/UserLogin?email=" +
+        email +
+        "&password=" +
+        password
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setUser(data);
+        props.onLogin(data.firstName);
+      });
+  };
+
   return (
     <Card cardSize={"col-xl-5"}>
       <div className="mb-md-5 mt-md-4 pb-5">
@@ -13,6 +35,7 @@ const Login = () => {
             type="email"
             className="form-control form-control-lg"
             placeholder="Email"
+            ref={emailRef}
           />
         </div>
 
@@ -21,10 +44,14 @@ const Login = () => {
             type="password"
             className="form-control form-control-lg"
             placeholder="Password"
+            ref={passwordRef}
           />
         </div>
 
-        <button className="btn btn-outline-light btn-lg px-5 myBtn">
+        <button
+          className="btn btn-outline-light btn-lg px-5 myBtn"
+          onClick={Login_Click}
+        >
           התחבר
         </button>
 

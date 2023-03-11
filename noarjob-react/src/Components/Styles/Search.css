@@ -14,9 +14,29 @@
   display: none;
 }
 
+.showChoiceMargin {
+  margin-left: 5.5rem;
+}
+
+.showChoiceColor {
+  color: #ecb390;
+}
+
 .contentCard {
   --bs-card-spacer-y: 0;
   width: 33.33%;
+}
+
+.dropdown-toggle::after {
+  margin-right: 1rem;
+}
+
+.btn.show {
+  color: white !important;
+}
+
+.dropdown-item.disabled {
+  color: #ecb390;
 }
 
 .myBodyCard {

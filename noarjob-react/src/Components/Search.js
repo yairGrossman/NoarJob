@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Card from "./Card";
-import "./Search.css";
+import "./Styles/Search.css";
 import SearchBody from "./SearchBody";
 import { variables } from "../Variables";
+import ShowChoice from "./ShowChoice";
 
 const Search = () => {
   /*
@@ -30,6 +31,14 @@ const Search = () => {
     cityId: 0,
     typeIds: [],
   });
+
+  const [contentNames, setContentNames] = useState({
+    domainName: "",
+    roleNames: [],
+    cityName: "",
+    typeNames: [],
+  });
+
   /*
   משתנה לשמירת איזה כפתור בחירה המשתמש בחר (תחום תפקיד, תפקיד...)
   */
@@ -53,34 +62,63 @@ const Search = () => {
   פונקציה שמופעלת כאשר המשתמש בוחר קטגורייה כלשהי(תחום תפקיד, תפקיד, עיר ...) 
   כאשר הוא בחר אז נשמר בחירתו על ידי המשתנה לשמירת הבחירות של המשתמש
   */
-  const Choose_Click = (contentId) => {
+  const Choose_Click = (content) => {
     if (btnClicked === "domainBtn") {
       setContentIds((prevState) => {
         return {
           ...prevState,
-          domainId: contentId,
+          domainId: content.contentId,
           roleIds: [],
+        };
+      });
+
+      setContentNames((prevState) => {
+        return {
+          ...prevState,
+          domainName: content.contentName,
+          roleNames: [],
         };
       });
     } else if (btnClicked === "roleBtn") {
       setContentIds((prevState) => {
         return {
           ...prevState,
-          roleIds: [...prevState.roleIds, contentId],
+          roleIds: [...prevState.roleIds, content.contentId],
+        };
+      });
+
+      setContentNames((prevState) => {
+        return {
+          ...prevState,
+          roleNames: [...prevState.roleNames, content.contentName],
         };
       });
     } else if (btnClicked === "cityBtn") {
       setContentIds((prevState) => {
         return {
           ...prevState,
-          cityId: contentId,
+          cityId: content.contentId,
+        };
+      });
+
+      setContentNames((prevState) => {
+        return {
+          ...prevState,
+          cityName: content.contentName,
         };
       });
     } else {
       setContentIds((prevState) => {
         return {
           ...prevState,
-          typeIds: [...prevState.typeIds, contentId],
+          typeIds: [...prevState.typeIds, content.contentId],
+        };
+      });
+
+      setContentNames((prevState) => {
+        return {
+          ...prevState,
+          typeNames: [...prevState.typeNames, content.contentName],
         };
       });
     }
@@ -211,20 +249,35 @@ const Search = () => {
       setContentIds((prevState) => {
         return { ...prevState, domainId: 0 };
       });
+
+      setContentNames((prevState) => {
+        return { ...prevState, domainName: "" };
+      });
     } else if (btnClicked === "roleBtn") {
       setContentIds((prevState) => {
         return { ...prevState, roleIds: [] };
+      });
+
+      setContentNames((prevState) => {
+        return { ...prevState, roleNames: [] };
       });
     } else if (btnClicked === "cityBtn") {
       setContentIds((prevState) => {
         return { ...prevState, cityId: 0 };
       });
+
+      setContentNames((prevState) => {
+        return { ...prevState, cityName: [] };
+      });
     } else {
       setContentIds((prevState) => {
         return { ...prevState, typeIds: [] };
       });
+
+      setContentNames((prevState) => {
+        return { ...prevState, typeNames: [] };
+      });
     }
-    console.log(contentIds);
   };
 
   return (
@@ -290,6 +343,22 @@ const Search = () => {
             בחירת תחום
           </button>
         </div>
+
+        <div dir="rtl" className="row showChoiceMargin mt-3 mb-0">
+          <div className="col m-0 p-0">
+            <ShowChoice isList={false} choices={contentNames.domainName} />
+          </div>
+          <div className="col m-0 p-0">
+            <ShowChoice isList={true} choices={contentNames.roleNames} />
+          </div>
+          <div className="col m-0 p-0">
+            <ShowChoice isList={false} choices={contentNames.cityName} />
+          </div>
+          <div className="col m-0 p-0">
+            <ShowChoice isList={true} choices={contentNames.typeNames} />
+          </div>
+        </div>
+
         {(content.length !== 0 || typesContent.types.length !== 0) && (
           <div className={visible ? "visibleFalse" : ""}>
             <SearchBody

@@ -1,18 +1,14 @@
 import React, { useState } from "react";
-import "./Header.css";
-import {
-  HashRouter,
-  NavLink,
-  Route,
-  Routes,
-  useNavigate,
-} from "react-router-dom";
+import "./Styles/Header.css";
+import { NavLink, Route, Routes, useNavigate } from "react-router-dom";
 import Login from "./Login";
 import Search from "./Search";
 import Signup from "./Signup";
 
 const Header = () => {
   const navigate = useNavigate();
+  const [logged, setLogged] = useState(false);
+  const [userName, setUserName] = useState("");
 
   const MoveToLogin = () => {
     navigate("/Login");
@@ -20,6 +16,12 @@ const Header = () => {
 
   const MoveToSignup = () => {
     navigate("/Signup");
+  };
+
+  const OnLogin = (pUserName) => {
+    setUserName(pUserName);
+    setLogged(true);
+    navigate("/");
   };
 
   return (
@@ -54,24 +56,32 @@ const Header = () => {
           </ul>
 
           <div className="col-md-3 text-end">
-            <button
-              className="btn btn-outline-light me-3 myBtn"
-              onClick={MoveToLogin}
-            >
-              כניסה
-            </button>
-            <button
-              className="btn btn-outline-light myBtn"
-              onClick={MoveToSignup}
-            >
-              הרשם
-            </button>
+            {logged ? (
+              <h3 dir="rtl" className="fw-bold mb-2 me-3 userName">
+                שלום {userName}
+              </h3>
+            ) : (
+              <div>
+                <button
+                  className="btn btn-outline-light me-3 myBtn"
+                  onClick={MoveToLogin}
+                >
+                  כניסה
+                </button>
+                <button
+                  className="btn btn-outline-light myBtn"
+                  onClick={MoveToSignup}
+                >
+                  הרשם
+                </button>
+              </div>
+            )}
           </div>
         </header>
       </div>
       <Routes>
         <Route path="/" element={<Search />} />
-        <Route path="/Login" element={<Login />} />
+        <Route path="/Login" element={<Login onLogin={OnLogin} />} />
         <Route path="/Signup" element={<Signup />} />
       </Routes>
     </div>

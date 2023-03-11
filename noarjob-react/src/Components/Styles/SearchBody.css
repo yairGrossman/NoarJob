@@ -17,7 +17,3 @@
 .chosenBtn:hover {
   color: #94b49f !important;
 }
-
-.dropdown-toggle::after {
-  margin-right: 13rem;
-}

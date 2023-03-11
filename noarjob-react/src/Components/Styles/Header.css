@@ -15,6 +15,10 @@ body {
   font-style: italic;
 }
 
+.userName {
+  color: #ecb390;
+}
+
 .myLink:hover {
   color: #df7861 !important;
 }

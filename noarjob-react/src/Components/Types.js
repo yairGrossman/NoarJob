@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./Search.css";
-import "./SearchBody.css";
-import "./Types.css";
+import "./Styles/Search.css";
+import "./Styles/SearchBody.css";
+import "./Styles/Types.css";
 
 const Types = (props) => {
   const [flipArrow, setFlipArrow] = useState(false);
@@ -39,16 +39,19 @@ const Types = (props) => {
         ></i>
       </button>
       <div className="collapse float-end" id={props.collapseId}>
-        {props.typeIds.map((contentId) => {
+        {props.typeIds.map((contentID) => {
           return (
             <button
-              key={contentId}
-              value={contentId}
-              className={props.ChosenBtns(contentId) + " mt-1"}
+              key={contentID}
+              value={JSON.stringify({
+                contentId: contentID,
+                contentName: props.types[contentID],
+              })}
+              className={props.ChosenBtns(contentID) + " mt-1"}
               style={{ width: "230px" }}
               onClick={ChooseBtn_Click}
             >
-              {props.types[contentId]}
+              {props.types[contentID]}
             </button>
           );
         })}

@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
-import "./Search.css";
-import "./SearchBody.css";
+import "./Styles/Search.css";
+import "./Styles/SearchBody.css";
 import Types from "./Types";
 
 const SearchBody = (props) => {
@@ -22,7 +22,8 @@ const SearchBody = (props) => {
   וגם צובעת את הכפתור שהמשתמש בחר
   */
   const ChooseBtn_Click = (event) => {
-    props.onChoose(event.target.value);
+    const content = JSON.parse(event.target.value);
+    props.onChoose(content);
     if (props.btnClicked === "domainBtn" || props.btnClicked === "cityBtn") {
       const optionsBtn = optionsBtnRef.current.querySelectorAll(".chosenBtn");
       optionsBtn.forEach((optionBtn) => {
@@ -98,16 +99,19 @@ const SearchBody = (props) => {
         </div>
         <div className="mt-4" ref={optionsBtnRef}>
           {isNotType ? (
-            contentsKey.map((contentId) => {
+            contentsKey.map((contentID) => {
               return (
                 <button
-                  key={contentId}
-                  value={contentId}
-                  className={ChosenBtns(contentId)}
+                  key={contentID}
+                  value={JSON.stringify({
+                    contentId: contentID,
+                    contentName: props.content[contentID],
+                  })}
+                  className={ChosenBtns(contentID)}
                   style={{ width: "230px" }}
                   onClick={ChooseBtn_Click}
                 >
-                  {props.content[contentId]}
+                  {props.content[contentID]}
                 </button>
               );
             })
