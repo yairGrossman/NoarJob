@@ -9,7 +9,7 @@ namespace NoarJobAPI.Controllers
     public class CitiesController : ControllerBase
     {
         [HttpGet("GetCities")]
-        public JsonResult GetCities(string? text)
+        public JsonResult GetCities(string text)
         {
             CitiesBL cities = new CitiesBL();
             Dictionary<int, string> cidCities = cities.GetCities(text);

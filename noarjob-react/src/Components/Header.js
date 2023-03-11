@@ -19,6 +19,7 @@ const Header = () => {
   };
 
   const OnLogin = (pUserName) => {
+    console.log("working");
     setUserName(pUserName);
     setLogged(true);
     navigate("/");
@@ -82,7 +83,7 @@ const Header = () => {
       <Routes>
         <Route path="/" element={<Search />} />
         <Route path="/Login" element={<Login onLogin={OnLogin} />} />
-        <Route path="/Signup" element={<Signup />} />
+        <Route path="/Signup" element={<Signup onLogin={OnLogin} />} />
       </Routes>
     </div>
   );

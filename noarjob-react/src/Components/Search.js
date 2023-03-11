@@ -180,11 +180,7 @@ const Search = () => {
             setContent(data);
           });
       } else {
-        fetch(variables.API_URL + "Cities/GetCities?text=")
-          .then((response) => response.json())
-          .then((data) => {
-            setContent(data);
-          });
+        setContent({});
       }
     }
   };
@@ -217,11 +213,7 @@ const Search = () => {
 
   const CityBtn_Click = (event) => {
     setBtnClicked(event.target.value);
-    fetch(variables.API_URL + "Cities/GetCities?text=")
-      .then((response) => response.json())
-      .then((data) => {
-        setContent(data);
-      });
+    setContent({});
   };
 
   const TypeBtn_Click = (event) => {

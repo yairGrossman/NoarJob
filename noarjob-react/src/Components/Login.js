@@ -32,18 +32,20 @@ const Login = (props) => {
 
         <div className="form-outline form-white mb-4">
           <input
+            dir="rtl"
             type="email"
             className="form-control form-control-lg"
-            placeholder="Email"
+            placeholder="אמייל"
             ref={emailRef}
           />
         </div>
 
         <div className="form-outline form-white mb-5">
           <input
+            dir="rtl"
             type="password"
             className="form-control form-control-lg"
-            placeholder="Password"
+            placeholder="סיסמה"
             ref={passwordRef}
           />
         </div>
