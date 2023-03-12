@@ -336,7 +336,12 @@ const Search = () => {
           </button>
         </div>
 
-        <div dir="rtl" className="row showChoiceMargin mt-3 mb-0">
+        <div
+          dir="rtl"
+          className={
+            "row showChoiceMargin mt-3 mb-0 " + (visible ? "visibleFalse" : "")
+          }
+        >
           <div className="col m-0 p-0">
             <ShowChoice isList={false} choices={contentNames.domainName} />
           </div>

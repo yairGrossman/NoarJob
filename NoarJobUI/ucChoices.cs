@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using NoarJobUI.ServiceReference1;
 using NoarJobBL;
 
 namespace NoarJobUI

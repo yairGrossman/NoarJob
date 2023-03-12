@@ -7,18 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using NoarJobUI.ServiceReference1;
+using NoarJobBL;
 
 namespace NoarJobUI
 {
     public partial class LoginPage : Form
     {
-        private WUser user;// עצם מטיפוס משתמש
+        private User user;// עצם מטיפוס משתמש
         private MainPage mainPage;
 
         public LoginPage(MainPage mainPage)
         {
             InitializeComponent();
+            this.user = new User();
+
             this.mainPage = mainPage;
         }
 
@@ -61,15 +63,16 @@ namespace NoarJobUI
         /// <param name="e"></param>
         private void LoginBtn_Click(object sender, EventArgs e)
         {
+            bool succeeded;
             HomePage homePage;
-            WcfNoarJobClient wcfNoarJobClient = new WcfNoarJobClient();
-            this.user = wcfNoarJobClient.UserLogin(this.EmailTxt.Text,this.PasswordTxt.Text);
-            wcfNoarJobClient.Close();
-            //homePage = new HomePage(this.user, this.mainPage);
-            if (this.user != null)
+
+            succeeded = this.user.SetUser(this.EmailTxt.Text, this.PasswordTxt.Text);
+            homePage = new HomePage(this.user, this.mainPage);
+
+            if (succeeded)
             { 
-                //homePage.Show();
-               // this.Close();
+                homePage.Show();
+                this.Close();
             }
             else
                 MessageBox.Show("משתמש לא קיים");

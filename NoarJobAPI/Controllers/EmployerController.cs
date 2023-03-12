@@ -12,8 +12,15 @@ namespace NoarJobAPI.Controllers
         public JsonResult GetEmployer(string companyEmail, string employerPassword)
         {
             Employer employer = new Employer();
-            employer.GetEmployer(companyEmail, employerPassword);
-            return new JsonResult(employer);
+            bool succeed = employer.GetEmployer(companyEmail, employerPassword);
+            if (succeed)
+            {
+                return new JsonResult(employer);
+            }
+            else
+            {
+                return new JsonResult(null);
+            }
         }
 
         [HttpGet("CreateEmployer")]

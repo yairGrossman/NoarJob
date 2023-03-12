@@ -641,7 +641,7 @@ namespace NoarJobUI
             }
             else
             {
-                DialogResult dialogResult = MessageBox.Show("אתה בטוח שאתה רוצה למחוק את המשרה?, אם תמחק את המשרה לעולם לא תראה יותר את המשרה הזאת", "",MessageBoxButtons.YesNo);
+                //DialogResult dialogResult = MessageBox.Show("אתה בטוח שאתה רוצה למחוק את המשרה?, אם תמחק את המשרה לעולם לא תראה יותר את המשרה הזאת", "",MessageBoxButtons.YesNo);
                 //if (dialogResult == DialogResult.Yes)
                     //this.user_Job.CreateUser_Job(jobID, this.user.UserID, 3);
             }
