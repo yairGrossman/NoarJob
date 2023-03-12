@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NoarJobBL;
+using NoarJobAPI.Models;
 
 namespace NoarJobAPI.Controllers
 {
@@ -8,10 +9,10 @@ namespace NoarJobAPI.Controllers
     public class JobsController : ControllerBase
     {
         [HttpPost("GetJobsSearch")]
-        public JsonResult GetJobsSearch(int parentCategory, [FromQuery] List<int> jobCategories, [FromQuery] List<int> jobTypes, int city, string text, int userID)
+        public JsonResult GetJobsSearch([FromBody] JobSearchRequest searchRequest)
         {
             JobsBL jobs = new JobsBL();
-            Job[] arrJobs = jobs.GetJobsSearch(parentCategory, jobCategories, jobTypes, city, text, userID);
+            Job[] arrJobs = jobs.GetJobsSearch(searchRequest.ParentCategory, searchRequest.JobCategories, searchRequest.JobTypes, searchRequest.City, searchRequest.Text, searchRequest.UserID);
             return new JsonResult(arrJobs);
         }
 

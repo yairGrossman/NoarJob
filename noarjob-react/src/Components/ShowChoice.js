@@ -4,10 +4,12 @@ import "./Styles/Search.css";
 const ShowChoice = (props) => {
   let keys;
   let count;
+  //אם המשתמש לא בחר אל תציג לא בחירות
   if (props.choices.length === 0) {
     return;
   }
 
+  //אם זה הבחירות זה רשימה/מערך תיצור מפתחות בשביל הmap
   if (props.isList) {
     keys = [];
     count = 0;

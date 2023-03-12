@@ -7,19 +7,23 @@ import Signup from "./Signup";
 
 const Header = () => {
   const navigate = useNavigate();
+  //משתנה שעוזר לי לדעת האם המשתמש התחבר לאתר
   const [logged, setLogged] = useState(false);
+  //משתנה שלמירת השם של המשתמש
   const [userName, setUserName] = useState("");
 
+  /*פונקציה שמופעלת כאשר לוחצים על הכפתור של כניסה */
   const MoveToLogin = () => {
     navigate("/Login");
   };
 
+  /*פונקציה שמופעלת כאשר לוחצים על הכפתור של הרשם */
   const MoveToSignup = () => {
     navigate("/Signup");
   };
 
+  /*פונקציה שמופעלת כאשר המתמש נרשם/התחבר לאתר */
   const OnLogin = (pUserName) => {
-    console.log("working");
     setUserName(pUserName);
     setLogged(true);
     navigate("/");

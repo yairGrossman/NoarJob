@@ -6,6 +6,11 @@ import { variables } from "../Variables";
 import ShowChoice from "./ShowChoice";
 
 const Search = () => {
+  //משתנה ששומר את החיפוש לפי טקסט של המשתמש
+  const [searchTxt, setSearchTxt] = useState("");
+
+  //משתנה שעוזר לי לדעת האם המשתמש מחפש לי תחומים או לפי טקסט משרות
+  const [byDomain, setByDomain] = useState(false);
   /*
    המשתנה לנראות הכפתורי בחירה(תחום תפקיד, תפקיד...) 
    וגם הנראות של כפתורי התוכן (למשל אם המשתמש בחר תחום תפקיד אז זה יציע לו את כל תחומי התפקיד)
@@ -23,7 +28,7 @@ const Search = () => {
     subTypes: [],
   });
   /*
-  משתנה ששומר את הבחירה של המשתמש
+  משתנה ששומר את המזהה של הבחירה של המשתמש
   */
   const [contentIds, setContentIds] = useState({
     domainId: 0,
@@ -32,6 +37,7 @@ const Search = () => {
     typeIds: [],
   });
 
+  //משתנה ששומר את השם של הבחירה של המשתמש
   const [contentNames, setContentNames] = useState({
     domainName: "",
     roleNames: [],
@@ -49,6 +55,7 @@ const Search = () => {
   */
   const SearchByDomainBtn_Click = () => {
     setVisible(false);
+    setByDomain(true);
   };
 
   /*
@@ -56,6 +63,7 @@ const Search = () => {
   */
   const SearchByTxtBtn_Click = () => {
     setVisible(true);
+    setByDomain(false);
   };
 
   /*
@@ -211,11 +219,17 @@ const Search = () => {
       });
   };
 
+  /*
+  פונקציה שמופעלת כאשר המשתמש בוחר על הכפתור לבחירת עיר
+   */
   const CityBtn_Click = (event) => {
     setBtnClicked(event.target.value);
     setContent({});
   };
 
+  /*פונקציה שמופעלת כאשר המשתמש לוחץ על הכפתור לבחירת סוגי/הקפי משרה 
+  ושמה בתוך המשתנה שלמירת סוגי משרה והקפי משרה את התוכן שקיבלה
+  */
   const TypeBtn_Click = (event) => {
     setBtnClicked(event.target.value);
 
@@ -236,6 +250,7 @@ const Search = () => {
       });
   };
 
+  /*פונקציה שמופעלת כאשר המתמש לוחץ על הכפתור נקה ומאפס את אותו תחום שבו המשתמש נמצא */
   const CleanBtn_Click = () => {
     if (btnClicked === "domainBtn") {
       setContentIds((prevState) => {
@@ -272,6 +287,46 @@ const Search = () => {
     }
   };
 
+  /*פונקציה שמופעלת כאשר המשתמש מחפש משרה לפי טקסט ושומרת את מה שהוא רשם */
+  const SearchByText_TxtChanged = (event) => {
+    setSearchTxt(event.target.value);
+  };
+
+  /*פונקציה שמופעלת כאשר המשתמש מחליט לחפש משרה, לעבור למסך משרות */
+  const Search_Click = () => {
+    let req;
+    if (byDomain) {
+      req = {
+        parentCategory: contentIds.domainId,
+        jobCategories: contentIds.roleIds,
+        jobTypes: contentIds.typeIds,
+        city: contentIds.cityId,
+        text: null,
+        userID: -1,
+      };
+    } else {
+      req = {
+        parentCategory: 0,
+        jobCategories: [],
+        jobTypes: [],
+        city: 0,
+        text: searchTxt,
+        userID: -1,
+      };
+    }
+
+    fetch(variables.API_URL + "Jobs/GetJobsSearch", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(req),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error(error));
+  };
+
   return (
     <div>
       <Card cardSize={"col-xl-12"}>
@@ -291,7 +346,7 @@ const Search = () => {
         </div>
         <div className={visible ? "" : "visibleFalse"}>
           <div className="row form-outline form-white mb-4">
-            <a className="col-1 searchBtn">
+            <a className="col-1 searchBtn" onClick={Search_Click}>
               <i className="bi bi-search"></i>
             </a>
             <input
@@ -299,11 +354,12 @@ const Search = () => {
               type="text"
               className="form-control form-control-lg col"
               placeholder="לדוגמא: מוכר שווארמה"
+              onChange={SearchByText_TxtChanged}
             />
           </div>
         </div>
         <div className={"row " + (visible ? "visibleFalse" : "")}>
-          <a className="col-1 searchBtn">
+          <a className="col-1 searchBtn" onClick={Search_Click}>
             <i className="bi bi-search"></i>
           </a>
           <button
