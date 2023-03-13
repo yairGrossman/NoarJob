@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./Styles/Search.css";
-import "./Styles/SearchBody.css";
-import "./Styles/Types.css";
+import "../Styles/Search.css";
+import "../Styles/SearchBody.css";
+import "../Styles/Types.css";
 
 const Types = (props) => {
   const [flipArrow, setFlipArrow] = useState(false);

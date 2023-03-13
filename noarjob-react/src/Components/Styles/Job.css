@@ -1,0 +1,15 @@
+.jobTitle {
+  color: #ecb390;
+}
+
+.text-align-right {
+  text-align: right !important;
+}
+
+.div-size {
+  width: 60%;
+}
+
+.div-size p {
+  clear: both;
+}

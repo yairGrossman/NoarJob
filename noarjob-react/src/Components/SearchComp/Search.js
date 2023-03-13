@@ -1,11 +1,15 @@
 import React, { useState } from "react";
-import Card from "./Card";
-import "./Styles/Search.css";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import Card from "../Card";
+import "../Styles/Search.css";
 import SearchBody from "./SearchBody";
-import { variables } from "../Variables";
+import { variables } from "../../Variables";
 import ShowChoice from "./ShowChoice";
+import Jobs from "../JobComp/Jobs";
 
 const Search = () => {
+  const navigate = useNavigate();
+
   //משתנה ששומר את החיפוש לפי טקסט של המשתמש
   const [searchTxt, setSearchTxt] = useState("");
 
@@ -323,12 +327,14 @@ const Search = () => {
       body: JSON.stringify(req),
     })
       .then((response) => response.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        navigate("/Jobs", { state: { jobs: data } });
+      })
       .catch((error) => console.error(error));
   };
 
   return (
-    <div>
+    <React.Fragment>
       <Card cardSize={"col-xl-12"}>
         <div className="mb-5">
           <button
@@ -425,7 +431,10 @@ const Search = () => {
           </div>
         )}
       </Card>
-    </div>
+      <Routes>
+        <Route path="/Jobs" element={<Jobs />} />
+      </Routes>
+    </React.Fragment>
   );
 };
 

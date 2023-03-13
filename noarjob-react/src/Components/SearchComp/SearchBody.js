@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
-import "./Styles/Search.css";
-import "./Styles/SearchBody.css";
+import "../Styles/Search.css";
+import "../Styles/SearchBody.css";
 import Types from "./Types";
 
 const SearchBody = (props) => {

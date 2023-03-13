@@ -1,0 +1,17 @@
+.divStyle {
+  background-color: #ecb390;
+  width: 100%;
+}
+
+.iconStyle {
+  font-size: 2.5rem;
+}
+
+.sendCvBtn {
+  background-color: #df7861;
+}
+
+.sendCvBtn:hover {
+  background-color: #df7861;
+  color: #94b49f;
+}

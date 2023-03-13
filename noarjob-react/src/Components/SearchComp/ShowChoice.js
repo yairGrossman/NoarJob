@@ -1,5 +1,5 @@
 import React from "react";
-import "./Styles/Search.css";
+import "../Styles/Search.css";
 
 const ShowChoice = (props) => {
   let keys;

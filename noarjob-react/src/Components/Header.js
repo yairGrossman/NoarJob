@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Styles/Header.css";
 import { NavLink, Route, Routes, useNavigate } from "react-router-dom";
 import Login from "./Login";
-import Search from "./Search";
+import Search from "./SearchComp/Search";
 import Signup from "./Signup";
 
 const Header = () => {
@@ -85,7 +85,7 @@ const Header = () => {
         </header>
       </div>
       <Routes>
-        <Route path="/" element={<Search />} />
+        <Route path="*" element={<Search />} />
         <Route path="/Login" element={<Login onLogin={OnLogin} />} />
         <Route path="/Signup" element={<Signup onLogin={OnLogin} />} />
       </Routes>
