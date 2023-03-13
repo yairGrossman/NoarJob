@@ -127,7 +127,7 @@ const Signup = (props) => {
             dir="rtl"
             type="text"
             className="form-control border-0 border-bottom rounded-2 col me-3"
-            placeholder="חיפוש עיר"
+            placeholder="איפה את/ה גר?"
             onChange={Search_TxtChanged}
           />
         </div>

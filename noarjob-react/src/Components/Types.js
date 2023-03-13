@@ -32,9 +32,8 @@ const Types = (props) => {
         <p className="float-end">{props.typeName}</p>
         <i
           className={
-            flipArrow
-              ? "bi bi-caret-down-fill float-start flipArrow"
-              : "bi bi-caret-down-fill float-start"
+            "bi bi-caret-down-fill float-start " +
+            (flipArrow ? "flipArrow" : "")
           }
         ></i>
       </button>
