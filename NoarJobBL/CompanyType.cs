@@ -10,35 +10,19 @@ namespace NoarJobBL
 {
     public class CompanyType
     {
-        private int companyTypeID;//מספר קטגוריית החברה
-        private string companyTypeName;//שם הקטגורייה של החברה
-
-        #region תכונות
-        public int CompanyTypeID 
-        { 
-            get { return this.companyTypeID; } 
-        }
-        public string CompanyTypeName 
-        {
-            get { return this.companyTypeName; }
-        }
-        #endregion
-
         /// <summary>
         /// פונקציה שמחזירה את כל קטגוריות החברות
         /// </summary>
         /// <returns></returns>
-        public CompanyType[] GetAllCompanyTypes()
+        public Dictionary<int, string> GetAllCompanyTypes()
         {
             DataTable dt = NoarJobDAL.CompanyTypes.GetAllCompanyTypes();
-            CompanyType[] arrCompanyTypes = new CompanyType[dt.Rows.Count];
+            Dictionary<int,string> companyTypesDictionary = new Dictionary<int, string>();
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                arrCompanyTypes[i] = new CompanyType();
-                arrCompanyTypes[i].companyTypeID = (int)dt.Rows[i][0];
-                arrCompanyTypes[i].companyTypeName = dt.Rows[i][1].ToString();
+                companyTypesDictionary.Add((int)dt.Rows[i][0], dt.Rows[i][1].ToString());
             }
-            return arrCompanyTypes;
+            return companyTypesDictionary;
         }
     }
 }

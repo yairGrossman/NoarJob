@@ -22,7 +22,7 @@ namespace NoarJobUI
         private string userPassword;//הסיסמא של המשתמש
         private Employer employer;//עצם מטיפוס מעסיק
         private CompanyType companyTypes;//עצם מטיפוס קטגוריית חברה
-        private CompanyType chosenCompanyType;//הקטגוריית החברה שבחר המשתמש
+        private KeyValuePair<int,string> chosenCompanyType;//הקטגוריית החברה שבחר המשתמש
         private bool userChoose;//משתנה שמטרתו לבדוק האם המשתמש בחר קטגוריית חברה
         private MainPage mainPage;
         private Point companyEmailLblLoc;
@@ -108,11 +108,10 @@ namespace NoarJobUI
             }
             else
             {
-                this.CompanyTypeDropDown.DisplayMember = "CompanyTypeName";
-                this.CompanyTypeDropDown.ValueMember = "CompanyTypeID";
-                this.CompanyTypeDropDown.DataSource = companyTypes.GetAllCompanyTypes();
-            }
-            
+                this.CompanyTypeDropDown.DisplayMember = "Value";
+                this.CompanyTypeDropDown.ValueMember = "Key";
+                this.CompanyTypeDropDown.DataSource = companyTypes.GetAllCompanyTypes().ToList();
+            } 
         }
 
         /// <summary>
@@ -125,8 +124,8 @@ namespace NoarJobUI
             if (this.EmployerNameTxt.Text != "" && this.NumOfEmployeesTxt.Text != "" && this.userChoose
                 && this.CompanyNameTxt.Text != "" && this.CompanyEmailTxt.Text != "" && this.EmployerPasswordTxt.Text != "")
             {
-                bool succeeded = employer.CreateEmployer(this.EmployerNameTxt.Text, int.Parse(this.NumOfEmployeesTxt.Text), this.chosenCompanyType.CompanyTypeID,
-                                 this.chosenCompanyType.CompanyTypeName, this.CompanyNameTxt.Text,
+                bool succeeded = employer.CreateEmployer(this.EmployerNameTxt.Text, int.Parse(this.NumOfEmployeesTxt.Text), this.chosenCompanyType.Key,
+                                 this.chosenCompanyType.Value, this.CompanyNameTxt.Text,
                                  this.EmployerPasswordTxt.Text, this.CompanyEmailTxt.Text);
                 if (succeeded)
                 {
@@ -175,7 +174,7 @@ namespace NoarJobUI
         
         private void CompanyTypeDropDown_SelectedIndexChanged(object sender, EventArgs e)
         {
-           this.chosenCompanyType = (CompanyType)this.CompanyTypeDropDown.SelectedItem;
+           this.chosenCompanyType = (KeyValuePair<int, string>)this.CompanyTypeDropDown.SelectedItem;
            this.userChoose = true;
         }
 

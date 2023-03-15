@@ -12,8 +12,8 @@ namespace NoarJobAPI.Controllers
         public JsonResult GetAllCompanyTypes()
         {
             CompanyType companyType = new CompanyType();
-            CompanyType[] arrCompanyTypes = companyType.GetAllCompanyTypes();
-            return new JsonResult(arrCompanyTypes);
+            Dictionary<int,string> companyTypesDictionary = companyType.GetAllCompanyTypes();
+            return new JsonResult(companyTypesDictionary);
         }
     }
 }
