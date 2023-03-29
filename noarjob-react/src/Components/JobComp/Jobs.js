@@ -2,13 +2,10 @@ import React from "react";
 import Job from "./Job";
 import { useLocation } from "react-router-dom";
 
-const Jobs = () => {
-  const location = useLocation();
-  const jobs = location.state?.jobs;
-
+const Jobs = (props) => {
   return (
     <React.Fragment>
-      {jobs.map((job) => {
+      {props.jobs.map((job) => {
         return (
           <Job
             key={job.jobID}

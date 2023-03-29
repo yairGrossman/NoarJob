@@ -9,6 +9,7 @@ import Jobs from "../JobComp/Jobs";
 
 const Search = () => {
   const navigate = useNavigate();
+  const [jobs, setJobs] = useState();
 
   //משתנה ששומר את החיפוש לפי טקסט של המשתמש
   const [searchTxt, setSearchTxt] = useState("");
@@ -328,7 +329,8 @@ const Search = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        navigate("/Jobs", { state: { jobs: data } });
+        setJobs(data);
+        navigate("/Jobs");
       })
       .catch((error) => console.error(error));
   };
@@ -432,7 +434,7 @@ const Search = () => {
         )}
       </Card>
       <Routes>
-        <Route path="/Jobs" element={<Jobs />} />
+        <Route path="/Jobs" element={<Jobs jobs={jobs} />} />
       </Routes>
     </React.Fragment>
   );
