@@ -4,6 +4,7 @@ import { NavLink, Route, Routes, useNavigate } from "react-router-dom";
 import Login from "./Login";
 import Search from "./SearchComp/Search";
 import Signup from "./Signup";
+import SearchAgents from "./SearchAgentComp/SearchAgents";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -44,9 +45,12 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              <a href="#" className="nav-link px-2 link-dark myLink">
+              <NavLink
+                to="/SearchAgents"
+                className="nav-link px-2 link-dark myLink"
+              >
                 סוכן חכם
-              </a>
+              </NavLink>
             </li>
             <li>
               <a href="#" className="nav-link px-2 link-dark myLink">
@@ -86,6 +90,7 @@ const Header = () => {
       </div>
       <Routes>
         <Route path="*" element={<Search />} />
+        <Route path="/SearchAgents" element={<SearchAgents />} />
         <Route path="/Login" element={<Login onLogin={OnLogin} />} />
         <Route path="/Signup" element={<Signup onLogin={OnLogin} />} />
       </Routes>

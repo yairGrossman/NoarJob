@@ -4,6 +4,7 @@ import "../Styles/Search.css";
 const ShowChoice = (props) => {
   let keys;
   let count;
+  let choices;
   //אם המשתמש לא בחר אל תציג לא בחירות
   if (props.choices.length === 0) {
     return;
@@ -13,7 +14,9 @@ const ShowChoice = (props) => {
   if (props.isList) {
     keys = [];
     count = 0;
-    for (let i = 0; i < props.choices.length; i++) {
+    choices = [...props.choices];
+    choices.shift();
+    for (let i = 0; i < choices.length; i++) {
       keys.push(i);
     }
   }
@@ -32,14 +35,14 @@ const ShowChoice = (props) => {
           </button>
           <ul className="dropdown-menu">
             <li className="dropdown-item disabled">
-              {props.choices.map((choice) => {
+              {choices.map((choice) => {
                 return <p key={keys[count++]}>{choice}</p>;
               })}
             </li>
           </ul>
         </div>
       ) : (
-        <h4 className="fw-bold px-5 mx-3 showChoiceColor">{props.choices}</h4>
+        <h4 className="fw-bold px-4 mx-3 showChoiceColor">{props.choices}</h4>
       )}
     </React.Fragment>
   );

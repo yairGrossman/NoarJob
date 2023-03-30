@@ -1,6 +1,5 @@
 import React from "react";
 import Job from "./Job";
-import { useLocation } from "react-router-dom";
 
 const Jobs = (props) => {
   return (
