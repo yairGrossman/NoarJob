@@ -1,10 +1,13 @@
 import React from "react";
 import SearchAgent from "./SearchAgent";
 
-const SearchAgents = () => {
+const SearchAgents = (props) => {
+  let count = 0;
   return (
     <React.Fragment>
-      <SearchAgent />
+      {props.searchAgents.map((searchAgent) => (
+        <SearchAgent key={count++} searchAgent={searchAgent} />
+      ))}
     </React.Fragment>
   );
 };

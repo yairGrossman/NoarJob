@@ -23,7 +23,7 @@ const ShowChoice = (props) => {
 
   return (
     <React.Fragment>
-      {props.isList ? (
+      {props.isList && props.choices.length > 1 ? (
         <div className="dropdown">
           <button
             className="btn btn-outline-light btn-lg myBtn dropdown-toggle"
@@ -42,7 +42,7 @@ const ShowChoice = (props) => {
           </ul>
         </div>
       ) : (
-        <h4 className="fw-bold px-4 mx-3 showChoiceColor">{props.choices}</h4>
+        <h4 className="fw-bold px-0 mx-3 showChoiceColor">{props.choices}</h4>
       )}
     </React.Fragment>
   );

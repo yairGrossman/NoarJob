@@ -51,11 +51,15 @@ namespace NoarJobBL
                 }
                 else if (valueType == 3)
                 {
-                    searchAgent.CitiesDictionary.Add((int)dt.Rows[i]["ValueID"], dt.Rows[i]["ValueName"].ToString());
+                    searchAgent.CityKvp = new KeyValuePair<int, string>((int)dt.Rows[i]["ValueID"], dt.Rows[i]["ValueName"].ToString());
+                }
+                else if(valueType == 4)
+                {
+                    searchAgent.TypesDictionary.Add((int)dt.Rows[i]["ValueID"], dt.Rows[i]["ValueName"].ToString());
                 }
                 else
                 {
-                    searchAgent.TypesDictionary.Add((int)dt.Rows[i]["ValueID"], dt.Rows[i]["ValueName"].ToString());
+                    searchAgent.Text = dt.Rows[i]["ValueName"].ToString();
                 }
             }
             return searchAgentLst;

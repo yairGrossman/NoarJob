@@ -18,6 +18,16 @@ namespace NoarJobDAL
         /// <returns></returns>
         public static DataTable[] GetJobsBySearchAgent(int SearchAgentID, int UserID)
         {
+            string ParentCategorySql = $@"SELECT  SearchAgentsValues.ValueID
+                                         FROM    SearchAgents 
+                                                 INNER JOIN SearchAgentsValues 
+                                                 ON SearchAgents.SearchAgentID = SearchAgentsValues.SearchAgentID
+                                         WHERE   SearchAgents.SearchAgentID={SearchAgentID} 
+                                                 AND 
+                                                 SearchAgents.UserID={UserID} 
+                                                 AND 
+                                                 SearchAgentsValues.ValueType = 1;";
+
             string JobCategoriesSql = $@"SELECT  SearchAgentsValues.ValueID
                                          FROM    SearchAgents 
                                                  INNER JOIN SearchAgentsValues 
@@ -51,11 +61,24 @@ namespace NoarJobDAL
                                             SearchAgentsValues.ValueType=4;
                            ";
 
+            string TextSql = $@"SELECT  SearchAgentsValues.ValueTxt
+                                    FROM    SearchAgents 
+                                            INNER JOIN SearchAgentsValues 
+                                            ON SearchAgents.SearchAgentID = SearchAgentsValues.SearchAgentID
+                                    WHERE   SearchAgents.SearchAgentID={SearchAgentID} 
+                                            AND 
+                                            SearchAgents.UserID={UserID} 
+                                            AND 
+                                            SearchAgentsValues.ValueType=5;
+                           ";
+
+            int ParentCategory = DAL.DBHelper.GetScalar(ParentCategorySql);
             List<int> JobCategoriesLst = ConvertDtToList(DAL.DBHelper.GetDataTable(JobCategoriesSql));
             List<int> JobTypesLst = ConvertDtToList(DAL.DBHelper.GetDataTable(JobTypesSql));
-            List<int> CitiesLst = ConvertDtToList(DAL.DBHelper.GetDataTable(CitiesSql));
+            int CityId = DAL.DBHelper.GetScalar(CitiesSql);
+            string Text = DAL.DBHelper.GetDataTable(TextSql).Rows[0][0].ToString();
 
-            return Jobs.JobsSearch(0, JobCategoriesLst, JobTypesLst, CitiesLst[0], null, UserID);
+            return Jobs.JobsSearch(ParentCategory, JobCategoriesLst, JobTypesLst, CityId, Text, UserID);
         }
 
         /// <summary>
@@ -153,6 +176,22 @@ namespace NoarJobDAL
                           WHERE  (((SearchAgents.UserID)={UserID}) 
                                  AND 
                                  ((SearchAgentsValues.ValueType)=4))
+
+                          union all
+                    
+                          SELECT 
+                                 SearchAgents.SearchAgentID,
+                                 SearchAgents.UserID,
+                                 SearchAgentsValues.ValueType,
+                                 SearchAgents.IsActive,
+                                 SearchAgentsValues.ValueTxt,
+                                 SearchAgentsValues.ValueID
+                          FROM   (SearchAgents 
+                                 INNER JOIN SearchAgentsValues 
+                                 ON SearchAgents.SearchAgentID = SearchAgentsValues.SearchAgentID)
+                          WHERE  (((SearchAgents.UserID)={UserID}) 
+                                 AND 
+                                 ((SearchAgentsValues.ValueType)=5))
                     
                           order by SearchAgents.SearchAgentID, SearchAgentsValues.ValueType
                           ";

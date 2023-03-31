@@ -20,7 +20,7 @@ const Login = (props) => {
       .then((response) => response.json())
       .then((data) => {
         setUser(data);
-        props.onLogin(data.firstName);
+        props.onLogin(data);
       });
   };
 

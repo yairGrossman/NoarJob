@@ -5,13 +5,16 @@ import Login from "./Login";
 import Search from "./SearchComp/Search";
 import Signup from "./Signup";
 import SearchAgents from "./SearchAgentComp/SearchAgents";
+import { variables } from "../Variables";
 
 const Header = () => {
   const navigate = useNavigate();
   //משתנה שעוזר לי לדעת האם המשתמש התחבר לאתר
   const [logged, setLogged] = useState(false);
   //משתנה שלמירת השם של המשתמש
-  const [userName, setUserName] = useState("");
+  const [user, setUser] = useState([]);
+
+  const [searchAgents, setSearchAgents] = useState([]);
 
   /*פונקציה שמופעלת כאשר לוחצים על הכפתור של כניסה */
   const MoveToLogin = () => {
@@ -24,10 +27,27 @@ const Header = () => {
   };
 
   /*פונקציה שמופעלת כאשר המתמש נרשם/התחבר לאתר */
-  const OnLogin = (pUserName) => {
-    setUserName(pUserName);
+  const OnLogin = (user) => {
+    setUser(user);
     setLogged(true);
     navigate("/");
+  };
+
+  const UserLogged = () => {
+    if (logged) {
+      fetch(
+        variables.API_URL +
+          "SearchAgents/GetSearchAgentsByUser?userID=" +
+          user.userID
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setSearchAgents(data);
+        });
+      navigate("/SearchAgents");
+    } else {
+      navigate("/Login");
+    }
   };
 
   return (
@@ -45,29 +65,30 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink
-                to="/SearchAgents"
+              <span
+                role="button"
                 className="nav-link px-2 link-dark myLink"
+                onClick={UserLogged}
               >
                 סוכן חכם
-              </NavLink>
+              </span>
             </li>
             <li>
-              <a href="#" className="nav-link px-2 link-dark myLink">
+              <span role="button" className="nav-link px-2 link-dark myLink">
                 המשרות המתאימות לך
-              </a>
+              </span>
             </li>
             <li>
-              <a href="#" className="nav-link px-2 link-dark myLink">
+              <span role="button" className="nav-link px-2 link-dark myLink">
                 הגדרות
-              </a>
+              </span>
             </li>
           </ul>
 
           <div className="col-md-3 text-end">
             {logged ? (
               <h3 dir="rtl" className="fw-bold mb-2 me-3 userName">
-                שלום {userName}
+                שלום {user.firstName}
               </h3>
             ) : (
               <div>
@@ -90,7 +111,10 @@ const Header = () => {
       </div>
       <Routes>
         <Route path="*" element={<Search />} />
-        <Route path="/SearchAgents" element={<SearchAgents />} />
+        <Route
+          path="/SearchAgents"
+          element={<SearchAgents searchAgents={searchAgents} />}
+        />
         <Route path="/Login" element={<Login onLogin={OnLogin} />} />
         <Route path="/Signup" element={<Signup onLogin={OnLogin} />} />
       </Routes>

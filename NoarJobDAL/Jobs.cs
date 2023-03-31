@@ -215,75 +215,66 @@ namespace NoarJobDAL
                 ";
             }
 
+            string TextQuery = "";
             if (Text != null)
             {
-                string TextQuery = $@"
+                TextQuery = $@"
                     (
                        Jobs.Title Like '%{Text}%'
                        OR
                        Jobs.Description Like '%{Text}%'
                     )
                 ";
-
-                if (TextQuery != "" || UserQuery != "")
-                {
-                    sql += "WHERE Jobs.IsActive=True AND " +
-                            ((TextQuery != "") ? TextQuery + " AND " : "") +
-                            ((UserQuery != "") ? UserQuery + " AND " : "");
-
-                    sql = sql.Substring(0, sql.Length - 5);
-                }
             }
-            else
+
+            string JobCategoriesQuery = "";
+            if (JobCategories != null && JobCategories.Count != 0)
             {
-                string JobCategoriesQuery = "";
-                if (JobCategories != null && JobCategories.Count != 0)
-                {
-                    JobCategoriesQuery = $@"
-                    Jobs.JobID IN (
-					        select jc.JobID from Jobs_JobCategories jc WHERE jc.JobCategoryID IN ({String.Join(",", JobCategories)})
-			        )
+                JobCategoriesQuery = $@"
+                Jobs.JobID IN (
+					    select jc.JobID from Jobs_JobCategories jc WHERE jc.JobCategoryID IN ({String.Join(",", JobCategories)})
+			    )
                 ";
-                }
-                else if (ParentCategory != 0)
-                {
-                    JobCategoriesQuery = $@"
-                    Jobs.JobID IN (
-					        select jc.JobID from Jobs_JobCategories jc WHERE jc.JobCategoryID = {ParentCategory}
-			        )
-                ";
-                }
+            }
+            else if (ParentCategory != 0)
+            {
+                JobCategoriesQuery = $@"
+                Jobs.JobID IN (
+					    select jc.JobID from Jobs_JobCategories jc WHERE jc.JobCategoryID = {ParentCategory}
+			    )
+            ";
+            }
 
-                string JobTypesQuery = "";
-                if (JobTypes != null && JobTypes.Count != 0)
-                {
-                    JobTypesQuery = $@"
-                    Jobs.JobID IN (
-					        select jt.JobID from Jobs_JobTypes jt WHERE jt.JobTypeID IN ({String.Join(",", JobTypes)})
-			        )
-                ";
-                }
+            string JobTypesQuery = "";
+            if (JobTypes != null && JobTypes.Count != 0)
+            {
+                JobTypesQuery = $@"
+                Jobs.JobID IN (
+					    select jt.JobID from Jobs_JobTypes jt WHERE jt.JobTypeID IN ({String.Join(",", JobTypes)})
+			    )
+            ";
+            }
 
-                string CitiesQuery = "";
-                if (City != 0)
-                {
-                    CitiesQuery = $@"
+            string CitiesQuery = "";
+            if (City != 0)
+            {
+                CitiesQuery = $@"
                     Jobs.JobID IN (
 					        select jc.JobID from Jobs_Cities jc WHERE jc.CityID = {City}
 			        )
                 ";
-                }
+            }
 
-                if (JobCategoriesQuery != "" || JobTypesQuery != "" || CitiesQuery != "" || UserQuery != "")
-                {
-                    sql += "WHERE Jobs.IsActive=True AND " +
-                            ((JobCategoriesQuery != "") ? JobCategoriesQuery + " AND " : "") +
-                            ((JobTypesQuery != "") ? JobTypesQuery + " AND " : "") +
-                            ((CitiesQuery != "") ? CitiesQuery + " AND " : "") +
-                            ((UserQuery != "") ? UserQuery + " AND " : "");
+            if (JobCategoriesQuery != "" || JobTypesQuery != "" || CitiesQuery != "" || UserQuery != "" || TextQuery != "")
+            {
+                sql += "WHERE Jobs.IsActive=True AND " +
+                        ((JobCategoriesQuery != "") ? JobCategoriesQuery + " AND " : "") +
+                        ((JobTypesQuery != "") ? JobTypesQuery + " AND " : "") +
+                        ((CitiesQuery != "") ? CitiesQuery + " AND " : "") +
+                        ((UserQuery != "") ? UserQuery + " AND " : "") +
+                        ((TextQuery != "") ? TextQuery + " AND " : "");
 
-                    sql = sql.Substring(0, sql.Length - 5);
-                }
+                sql = sql.Substring(0, sql.Length - 5);
             }
 
             DataTable dtJobs = DAL.DBHelper.GetDataTable(sql);

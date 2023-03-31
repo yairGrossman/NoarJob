@@ -12,8 +12,9 @@ namespace NoarJobBL
         private int userID;//של מועמד ID
         private KeyValuePair<int, string> parentCategoryKvp;//תחום תפקיד
         private Dictionary<int, string> childCategoriesDictionary;//תפקידים
-        private Dictionary<int, string> citiesDictionary;//ערים
+        private KeyValuePair<int, string> cityKvp;//עיר
         private Dictionary<int, string> typesDictionary;//סוגי/היקפי משרות
+        private string text;
 
         #region תכונות
         public int SearchAgentID
@@ -40,10 +41,10 @@ namespace NoarJobBL
             set { this.childCategoriesDictionary = value; }
         }
 
-        public Dictionary<int, string> CitiesDictionary
+        public KeyValuePair<int, string> CityKvp
         {
-            get { return this.citiesDictionary; }
-            set { this.citiesDictionary = value; }
+            get { return this.cityKvp; }
+            set { this.cityKvp = value; }
         }
 
         public Dictionary<int, string> TypesDictionary
@@ -51,13 +52,18 @@ namespace NoarJobBL
             get { return this.typesDictionary; }
             set { this.typesDictionary = value; }
         }
+
+        public string Text
+        {
+            get { return this.text; }
+            set { this.text = value; }
+        }
         #endregion
 
         public SearchAgent(int userID)
         {
             this.userID = userID;
             this.childCategoriesDictionary = new Dictionary<int, string>();
-            this.citiesDictionary = new Dictionary<int, string>();
             this.typesDictionary = new Dictionary<int, string>();
         }
 
@@ -85,11 +91,10 @@ namespace NoarJobBL
         private void SetSearchAgentValues()
         {
             List<int> childCategoriesLst = ConvertDictionaryToList(this.childCategoriesDictionary);
-            List<int> citiesLst = ConvertDictionaryToList(this.citiesDictionary);
             List<int> typesLst = ConvertDictionaryToList(this.typesDictionary);
             NoarJobDAL.SearchAgentsValues.SetSearchAgentValues(this.searchAgentID, 1, new List<int> { this.parentCategoryKvp.Key });
             NoarJobDAL.SearchAgentsValues.SetSearchAgentValues(this.searchAgentID, 2, childCategoriesLst);
-            NoarJobDAL.SearchAgentsValues.SetSearchAgentValues(this.searchAgentID, 3, citiesLst);
+            NoarJobDAL.SearchAgentsValues.SetSearchAgentValues(this.searchAgentID, 3, new List<int> { this.cityKvp.Key });
             NoarJobDAL.SearchAgentsValues.SetSearchAgentValues(this.searchAgentID, 4, typesLst);
         }
 
