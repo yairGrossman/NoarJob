@@ -34,8 +34,11 @@ const SearchAgent = (props) => {
               <ShowChoice isList={false} choices={props.searchAgent.text} />
             </div>
             <div className="d-flex align-items-center">
-              <i className="bi bi-pencil-square iconStyle ms-4"></i>
-              <i className="bi bi-trash-fill iconStyle"></i>
+              <i
+                role="button"
+                className="bi bi-pencil-square iconStyle ms-4"
+              ></i>
+              <i role="button" className="bi bi-trash-fill iconStyle"></i>
             </div>
           </div>
         </div>

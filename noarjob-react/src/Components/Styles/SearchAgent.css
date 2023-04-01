@@ -1,3 +1,7 @@
 .iconStyle {
   font-size: 2rem;
 }
+
+.iconStyle:hover {
+  color: #ecb390;
+}

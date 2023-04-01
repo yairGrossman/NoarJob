@@ -354,9 +354,13 @@ const Search = () => {
         </div>
         <div className={visible ? "" : "visibleFalse"}>
           <div className="row form-outline form-white mb-4">
-            <a className="col-1 searchBtn" onClick={Search_Click}>
+            <span
+              role="button"
+              className="col-1 searchBtn"
+              onClick={Search_Click}
+            >
               <i className="bi bi-search"></i>
-            </a>
+            </span>
             <input
               dir="rtl"
               type="text"
@@ -367,9 +371,13 @@ const Search = () => {
           </div>
         </div>
         <div className={"row " + (visible ? "visibleFalse" : "")}>
-          <a className="col-1 searchBtn" onClick={Search_Click}>
+          <span
+            role="button"
+            className="col-1 searchBtn"
+            onClick={Search_Click}
+          >
             <i className="bi bi-search"></i>
-          </a>
+          </span>
           <button
             value="typeBtn"
             className="btn btn-outline-light btn-lg px-5 mx-3 myBtn col"
