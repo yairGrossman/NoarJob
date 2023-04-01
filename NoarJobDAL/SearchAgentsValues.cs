@@ -9,6 +9,21 @@ namespace NoarJobDAL
     public static class SearchAgentsValues
     {
         /// <summary>
+        /// שאילתה ליצירת רשומה חדשה של מילת מפתח לסוכן חכם
+        /// </summary>
+        /// <param name="SearchAgentID"></param>
+        /// <param name="ValueTxt"></param>
+        public static void InsertSearchAgentValueText(int SearchAgentID, string ValueTxt)
+        {
+            string sql = $@"
+                             INSERT INTO SearchAgentsValues (SearchAgentID, ValueType, ValueTxt) 
+                             VALUES({SearchAgentID}, 5, '{ValueTxt}');
+                           ";
+
+            DAL.DBHelper.ExecuteNonQuery(sql);
+        }
+
+        /// <summary>
         /// שאילתה ליצירת רשומה חדשה של פרטי הסוכן חכם
         /// </summary>
         /// <param name="SearchAgentID">של סוכן חכם ID</param>
@@ -53,6 +68,15 @@ namespace NoarJobDAL
         /// שאילתה לעדכון/יצירה של רשומות בטבלה זו כחלק מתהליך עדכון סוכן/יצירת סוכן
         /// </summary>
         public static void SetSearchAgentValues(int SearchAgentID, int ValueType, List<int> ValuesID)
+        {
+            DeleteAllSearchAgentValues(SearchAgentID, ValueType);
+            InsertSearchAgentValues(SearchAgentID, ValueType, ValuesID);
+        }
+
+        /// <summary>
+        /// שאילתה לעדכון/יצירה של רשומות בטבלה זו כחלק מתהליך עדכון סוכן/יצירת סוכן כאשר מתקבל תעודת זהות אחת
+        /// </summary>
+        public static void SetSearchAgentValues(int SearchAgentID, int ValueType, int ValuesID)
         {
             DeleteAllSearchAgentValues(SearchAgentID, ValueType);
             InsertSearchAgentValues(SearchAgentID, ValueType, ValuesID);

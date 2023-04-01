@@ -6,6 +6,7 @@ import Search from "./SearchComp/Search";
 import Signup from "./Signup";
 import SearchAgents from "./SearchAgentComp/SearchAgents";
 import { variables } from "../Variables";
+import AddSearchAgents from "./SearchAgentComp/AddSearchAgent";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ const Header = () => {
   const [logged, setLogged] = useState(false);
   //משתנה שלמירת השם של המשתמש
   const [user, setUser] = useState([]);
-
+  //משתנה לשמירת סוכנים חכמים
   const [searchAgents, setSearchAgents] = useState([]);
 
   /*פונקציה שמופעלת כאשר לוחצים על הכפתור של כניסה */
@@ -87,7 +88,7 @@ const Header = () => {
 
           <div className="col-md-3 text-end">
             {logged ? (
-              <h3 dir="rtl" className="fw-bold mb-2 me-3 userName">
+              <h3 dir="rtl" className="fw-bold mb-2 me-3 bodyColor">
                 שלום {user.firstName}
               </h3>
             ) : (
@@ -110,13 +111,17 @@ const Header = () => {
         </header>
       </div>
       <Routes>
-        <Route path="*" element={<Search />} />
+        <Route path="*" element={<Search isntAgent={true} />} />
         <Route
           path="/SearchAgents"
           element={<SearchAgents searchAgents={searchAgents} />}
         />
         <Route path="/Login" element={<Login onLogin={OnLogin} />} />
         <Route path="/Signup" element={<Signup onLogin={OnLogin} />} />
+        <Route
+          path="/AddAgent/*"
+          element={<AddSearchAgents user={user} addAgent={UserLogged} />}
+        />
       </Routes>
     </div>
   );

@@ -123,6 +123,8 @@ namespace NoarJobDAL
                            WHERE  (((SearchAgents.UserID) = {UserID})
                                   AND
                                   ((SearchAgentsValues.ValueType) = 1))
+                                  AND
+                                  SearchAgents.IsActive=true
 
                            union all
 
@@ -141,6 +143,8 @@ namespace NoarJobDAL
                           WHERE   (((SearchAgents.UserID) = {UserID})
                                   AND
                                   ((SearchAgentsValues.ValueType) = 2))
+                                  AND
+                                  SearchAgents.IsActive=true
 
                           union all
 
@@ -157,7 +161,9 @@ namespace NoarJobDAL
                                  ON SearchAgentsValues.ValueID = Cities.CityID
                           WHERE  (((SearchAgents.UserID)={UserID}) 
                                  AND 
-                          ((SearchAgentsValues.ValueType)=3))
+                                 ((SearchAgentsValues.ValueType)=3))
+                                 AND
+                                 SearchAgents.IsActive=true
 
                           union all
                     
@@ -176,6 +182,8 @@ namespace NoarJobDAL
                           WHERE  (((SearchAgents.UserID)={UserID}) 
                                  AND 
                                  ((SearchAgentsValues.ValueType)=4))
+                                  AND
+                                  SearchAgents.IsActive=true
 
                           union all
                     
@@ -192,7 +200,9 @@ namespace NoarJobDAL
                           WHERE  (((SearchAgents.UserID)={UserID}) 
                                  AND 
                                  ((SearchAgentsValues.ValueType)=5))
-                    
+                                 AND
+                                 SearchAgents.IsActive=true
+
                           order by SearchAgents.SearchAgentID, SearchAgentsValues.ValueType
                           ";
             DataTable dt = DBHelper.GetDataTable(sql);

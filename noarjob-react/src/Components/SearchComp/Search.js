@@ -7,7 +7,7 @@ import { variables } from "../../Variables";
 import ShowChoice from "./ShowChoice";
 import Jobs from "../JobComp/Jobs";
 
-const Search = () => {
+const Search = (props) => {
   const navigate = useNavigate();
   const [jobs, setJobs] = useState();
 
@@ -335,32 +335,84 @@ const Search = () => {
       .catch((error) => console.error(error));
   };
 
+  /*פונקציה להוספת או עדכון סוכן חכם*/
+  const AdditAgent_Click = () => {
+    let searchAgent = {
+      searchAgentID: 0,
+      userID: props.user.userID,
+      parentCategoryKvp: {
+        key: contentIds.domainId,
+        value: contentNames.domainName,
+      },
+      childCategoriesDictionary: (() => {
+        let childCategoryDic = {};
+        for (let i = 0; i < contentIds.roleIds.length; i++) {
+          childCategoryDic[contentIds.roleIds[i]] = contentNames.roleNames[i];
+        }
+        return childCategoryDic;
+      })(),
+      cityKvp: {
+        key: contentIds.cityId,
+        value: contentNames.cityName,
+      },
+      typesDictionary: (() => {
+        let typesDic = {};
+        for (let i = 0; i < contentIds.typeIds.length; i++) {
+          typesDic[contentIds.typeIds[i]] = contentNames.typeNames[i];
+        }
+        console.log(typesDic);
+        return typesDic;
+      })(),
+      text: searchTxt,
+    };
+
+    fetch(variables.API_URL + "SearchAgent/InsertSearchAgentValues", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(searchAgent),
+    })
+      .then((response) => response.json())
+      .then(() => {
+        props.addAgent();
+        navigate("/SearchAgents");
+      })
+      .catch((error) => console.error(error));
+  };
+
   return (
     <React.Fragment>
       <Card cardSize={"col-xl-12"}>
-        <div className="mb-5">
-          <button
-            className="btn btn-outline-light btn-lg px-5 mx-5 myBtn"
-            onClick={SearchByDomainBtn_Click}
-          >
-            חיפוש משרות לפי תחום
-          </button>
-          <button
-            className="btn btn-outline-light btn-lg px-5 mx-5 myBtn"
-            onClick={SearchByTxtBtn_Click}
-          >
-            חיפוש משרות חופשי
-          </button>
-        </div>
+        {props.isntAgent && (
+          <div className="mb-5">
+            <button
+              className="btn btn-outline-light btn-lg px-5 mx-5 myBtn"
+              onClick={SearchByDomainBtn_Click}
+            >
+              חיפוש משרות לפי תחום
+            </button>
+            <button
+              className="btn btn-outline-light btn-lg px-5 mx-5 myBtn"
+              onClick={SearchByTxtBtn_Click}
+            >
+              חיפוש משרות חופשי
+            </button>
+          </div>
+        )}
         <div className={visible ? "" : "visibleFalse"}>
           <div className="row form-outline form-white mb-4">
-            <span
-              role="button"
-              className="col-1 searchBtn"
-              onClick={Search_Click}
-            >
-              <i className="bi bi-search"></i>
-            </span>
+            {props.isntAgent ? (
+              <span
+                role="button"
+                className="col-1 searchBtn"
+                onClick={Search_Click}
+              >
+                <i className="bi bi-search"></i>
+              </span>
+            ) : (
+              <div className="col-1"></div>
+            )}
             <input
               dir="rtl"
               type="text"
@@ -370,14 +422,29 @@ const Search = () => {
             />
           </div>
         </div>
-        <div className={"row " + (visible ? "visibleFalse" : "")}>
-          <span
-            role="button"
-            className="col-1 searchBtn"
-            onClick={Search_Click}
-          >
-            <i className="bi bi-search"></i>
-          </span>
+
+        <div
+          className={
+            "row " + (visible && props.isntAgent ? "visibleFalse" : "")
+          }
+        >
+          {props.isntAgent ? (
+            <span
+              role="button"
+              className="col-1 searchBtn"
+              onClick={Search_Click}
+            >
+              <i className="bi bi-search"></i>
+            </span>
+          ) : (
+            <span
+              role="button"
+              className="col-1 searchBtn"
+              onClick={AdditAgent_Click}
+            >
+              <i role="button" className="bi bi-plus-circle agentIconStyle"></i>
+            </span>
+          )}
           <button
             value="typeBtn"
             className="btn btn-outline-light btn-lg px-5 mx-3 myBtn col"
@@ -411,7 +478,8 @@ const Search = () => {
         <div
           dir="rtl"
           className={
-            "row showChoiceMargin mt-3 mb-0 " + (visible ? "visibleFalse" : "")
+            "row showChoiceMargin mt-3 mb-0 " +
+            (visible && props.isntAgent ? "visibleFalse" : "")
           }
         >
           <div className="col m-0 p-0">
@@ -429,7 +497,7 @@ const Search = () => {
         </div>
 
         {(content.length !== 0 || typesContent.types.length !== 0) && (
-          <div className={visible ? "visibleFalse" : ""}>
+          <div className={visible && props.isntAgent ? "visibleFalse" : ""}>
             <SearchBody
               content={btnClicked !== "typeBtn" ? content : typesContent}
               onChoose={Choose_Click}

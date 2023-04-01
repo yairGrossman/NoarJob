@@ -36,9 +36,9 @@ const SearchAgent = (props) => {
             <div className="d-flex align-items-center">
               <i
                 role="button"
-                className="bi bi-pencil-square iconStyle ms-4"
+                className="bi bi-pencil-square agentIconStyle ms-4"
               ></i>
-              <i role="button" className="bi bi-trash-fill iconStyle"></i>
+              <i role="button" className="bi bi-trash-fill agentIconStyle"></i>
             </div>
           </div>
         </div>

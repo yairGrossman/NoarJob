@@ -92,10 +92,11 @@ namespace NoarJobBL
         {
             List<int> childCategoriesLst = ConvertDictionaryToList(this.childCategoriesDictionary);
             List<int> typesLst = ConvertDictionaryToList(this.typesDictionary);
-            NoarJobDAL.SearchAgentsValues.SetSearchAgentValues(this.searchAgentID, 1, new List<int> { this.parentCategoryKvp.Key });
+            NoarJobDAL.SearchAgentsValues.SetSearchAgentValues(this.searchAgentID, 1, this.parentCategoryKvp.Key);
             NoarJobDAL.SearchAgentsValues.SetSearchAgentValues(this.searchAgentID, 2, childCategoriesLst);
-            NoarJobDAL.SearchAgentsValues.SetSearchAgentValues(this.searchAgentID, 3, new List<int> { this.cityKvp.Key });
+            NoarJobDAL.SearchAgentsValues.SetSearchAgentValues(this.searchAgentID, 3, this.cityKvp.Key);
             NoarJobDAL.SearchAgentsValues.SetSearchAgentValues(this.searchAgentID, 4, typesLst);
+            NoarJobDAL.SearchAgentsValues.InsertSearchAgentValueText(this.searchAgentID, this.text);
         }
 
         /// <summary>
