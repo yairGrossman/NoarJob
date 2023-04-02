@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Card from "../Card";
 import "../Styles/Search.css";
@@ -403,23 +403,34 @@ const Search = (props) => {
         <div className={visible ? "" : "visibleFalse"}>
           <div className="row form-outline form-white mb-4">
             {props.isntAgent ? (
-              <span
-                role="button"
-                className="col-1 searchBtn"
-                onClick={Search_Click}
-              >
-                <i className="bi bi-search"></i>
-              </span>
+              <Fragment>
+                <span
+                  role="button"
+                  className="col-1 searchBtn"
+                  onClick={Search_Click}
+                >
+                  <i className="bi bi-search"></i>
+                </span>
+                <input
+                  dir="rtl"
+                  type="text"
+                  className="form-control form-control-lg col"
+                  placeholder="לדוגמא: מוכר שווארמה"
+                  onChange={SearchByText_TxtChanged}
+                />
+              </Fragment>
             ) : (
-              <div className="col-1"></div>
+              <Fragment>
+                <div className="col-10"></div>
+                <input
+                  dir="rtl"
+                  type="text"
+                  className="form-control form-control-lg col me-3"
+                  placeholder="מילת מפתח"
+                  onChange={SearchByText_TxtChanged}
+                />
+              </Fragment>
             )}
-            <input
-              dir="rtl"
-              type="text"
-              className="form-control form-control-lg col"
-              placeholder="לדוגמא: מוכר שווארמה"
-              onChange={SearchByText_TxtChanged}
-            />
           </div>
         </div>
 

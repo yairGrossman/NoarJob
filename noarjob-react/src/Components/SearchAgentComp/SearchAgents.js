@@ -6,10 +6,9 @@ const SearchAgents = (props) => {
   let count = 0;
   const navigate = useNavigate();
   const AddAgent_Click = () => {
-    navigate("/AddAgent/*");
+    navigate("/AddAgent");
   };
 
-  console.log(props.searchAgents);
   return (
     <React.Fragment>
       {props.searchAgents.map((searchAgent) => (
