@@ -9,10 +9,49 @@ import Jobs from "../JobComp/Jobs";
 
 const Search = (props) => {
   const navigate = useNavigate();
+
+  //משתנה עזר בשביל להכניס את התז של הערכים של הסוכן החכם לתוך
+  // משתנה ששומר את המזהה של הבחירה של המשתמש
+  let editAgentIds = {
+    domainId: 0,
+    roleIds: [],
+    cityId: 0,
+    typeIds: [],
+  };
+
+  //משתנה עזר בשביל להכניס את השמות של הערכים של הסוכן החכם לתוך
+  //משתנה ששומר את השם של הבחירה של המשתמש
+  let editAgentValues = {
+    domainName: "",
+    roleNames: [],
+    cityName: "",
+    typeNames: [],
+  };
+
+  let editAgentTxt = "";
+
+  if (props.isEditAgent) {
+    editAgentTxt = props.agentTxt;
+
+    editAgentIds = {
+      domainId: props.editAgentIds.domainId,
+      roleIds: props.editAgentIds.roleIds,
+      cityId: props.editAgentIds.cityId,
+      typeIds: props.editAgentIds.typeIds,
+    };
+
+    editAgentValues = {
+      domainName: props.editAgentValues.domainName,
+      roleNames: props.editAgentValues.roleNames,
+      cityName: props.editAgentValues.cityName,
+      typeNames: props.editAgentValues.typeNames,
+    };
+  }
+
   const [jobs, setJobs] = useState();
 
   //משתנה ששומר את החיפוש לפי טקסט של המשתמש
-  const [searchTxt, setSearchTxt] = useState("");
+  const [searchTxt, setSearchTxt] = useState(editAgentTxt);
 
   //משתנה שעוזר לי לדעת האם המשתמש מחפש לי תחומים או לפי טקסט משרות
   const [byDomain, setByDomain] = useState(false);
@@ -32,23 +71,14 @@ const Search = (props) => {
     types: [],
     subTypes: [],
   });
+
   /*
   משתנה ששומר את המזהה של הבחירה של המשתמש
   */
-  const [contentIds, setContentIds] = useState({
-    domainId: 0,
-    roleIds: [],
-    cityId: 0,
-    typeIds: [],
-  });
+  const [contentIds, setContentIds] = useState(editAgentIds);
 
   //משתנה ששומר את השם של הבחירה של המשתמש
-  const [contentNames, setContentNames] = useState({
-    domainName: "",
-    roleNames: [],
-    cityName: "",
-    typeNames: [],
-  });
+  const [contentNames, setContentNames] = useState(editAgentValues);
 
   /*
   משתנה לשמירת איזה כפתור בחירה המשתמש בחר (תחום תפקיד, תפקיד...)
@@ -428,6 +458,7 @@ const Search = (props) => {
                   className="form-control form-control-lg col me-3"
                   placeholder="מילת מפתח"
                   onChange={SearchByText_TxtChanged}
+                  value={searchTxt}
                 />
               </Fragment>
             )}

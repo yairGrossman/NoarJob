@@ -51,8 +51,8 @@ const SearchBody = (props) => {
       "btn btn-outline-light mb-2 btn-lg px-3 myBtn float-end BtnBlock ";
     if (props.btnClicked === "domainBtn" || props.btnClicked === "cityBtn") {
       if (
-        props.chosenBtns.domainId === contentId ||
-        props.chosenBtns.cityId === contentId
+        props.chosenBtns.domainId.toString() === contentId ||
+        props.chosenBtns.cityId.toString() === contentId
       ) {
         regularStyle += "chosenBtn";
       }

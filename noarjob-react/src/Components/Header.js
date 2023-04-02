@@ -16,6 +16,15 @@ const Header = () => {
   const [user, setUser] = useState([]);
   //משתנה לשמירת סוכנים חכמים
   const [searchAgents, setSearchAgents] = useState([]);
+  //משתנה לשמירת הכותרת של הוסה/עריכה של סוכן חכם
+  const [additAgentTitle, setAdditAgentTitle] = useState();
+
+  //משתנה לשימרת התז של הערכים של הסוכן חכם
+  const [editAgentIds, setEditAgentIds] = useState([]);
+  //משתנה לשמירת השמות של הערכים של הסוכן חכם
+  const [editAgentValues, setEditAgentValues] = useState([]);
+  //משתנה לשימרת מילת המפתח של הסוכן החכם
+  const [agentTxt, setAgentTxt] = useState("");
 
   /*פונקציה שמופעלת כאשר לוחצים על הכפתור של כניסה */
   const MoveToLogin = () => {
@@ -49,6 +58,17 @@ const Header = () => {
     } else {
       navigate("/Login");
     }
+  };
+  /*פונקציה שמופעלת כאשר לוחצים על כפתור הוספת/עריכת סוכן חכם ומוסיפה לכותרת את המילה
+  עריכת או הוספת */
+  const AdditAgentTitle = (titleName) => {
+    setAdditAgentTitle(titleName);
+  };
+
+  const EditAgntValues = (contentIds, contentNames, agentTxt) => {
+    setEditAgentIds(contentIds);
+    setEditAgentValues(contentNames);
+    setAgentTxt(agentTxt);
   };
 
   return (
@@ -111,16 +131,34 @@ const Header = () => {
         </header>
       </div>
       <Routes>
-        <Route path="*" element={<Search isntAgent={true} />} />
+        <Route
+          path="*"
+          element={<Search isntAgent={true} isEditAgent={false} />}
+        />
         <Route
           path="/SearchAgents"
-          element={<SearchAgents searchAgents={searchAgents} />}
+          element={
+            <SearchAgents
+              searchAgents={searchAgents}
+              titleNameFun={AdditAgentTitle}
+              EditAgntValues={EditAgntValues}
+            />
+          }
         />
         <Route path="/Login" element={<Login onLogin={OnLogin} />} />
         <Route path="/Signup" element={<Signup onLogin={OnLogin} />} />
         <Route
           path="/AddAgent/*"
-          element={<AddSearchAgents user={user} addAgent={UserLogged} />}
+          element={
+            <AddSearchAgents
+              user={user}
+              addAgent={UserLogged}
+              titleName={additAgentTitle}
+              editAgentIds={editAgentIds}
+              editAgentValues={editAgentValues}
+              agentTxt={agentTxt}
+            />
+          }
         />
       </Routes>
     </div>

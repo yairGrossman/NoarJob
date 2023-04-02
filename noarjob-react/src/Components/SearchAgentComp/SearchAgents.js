@@ -6,13 +6,19 @@ const SearchAgents = (props) => {
   let count = 0;
   const navigate = useNavigate();
   const AddAgent_Click = () => {
-    navigate("/AddAgent");
+    props.titleNameFun("הוספת");
+    navigate("/AddAgent/*");
   };
 
   return (
     <React.Fragment>
       {props.searchAgents.map((searchAgent) => (
-        <SearchAgent key={count++} searchAgent={searchAgent} />
+        <SearchAgent
+          key={count++}
+          searchAgent={searchAgent}
+          EditAgntValues={props.EditAgntValues}
+          titleNameFun={props.titleNameFun}
+        />
       ))}
       <div dir="rtl" className="row d-flex justify-content-center mb-3">
         <div className="col-12 col-md-8 col-lg-6 col-xl-8">
