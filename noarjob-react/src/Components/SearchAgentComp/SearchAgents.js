@@ -16,9 +16,10 @@ const SearchAgents = (props) => {
         <SearchAgent
           key={count++}
           searchAgent={searchAgent}
-          EditAgntValues={props.EditAgntValues}
+          EditAgentValues={props.EditAgentValues}
           titleNameFun={props.titleNameFun}
           deleteAgent={props.deleteAgent}
+          AgentSearch={props.AgentSearch}
         />
       ))}
       <div dir="rtl" className="row d-flex justify-content-center mb-3">

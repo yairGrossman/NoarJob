@@ -11,19 +11,21 @@ const SearchAgent = (props) => {
   );
   const jobTypes = Object.values(props.searchAgent.typesDictionary);
 
-  const EditAgent_Click = () => {
-    const jobCategorieIds = Object.keys(
-      props.searchAgent.childCategoriesDictionary
-    );
-    const jobTypesIds = Object.keys(props.searchAgent.typesDictionary);
-    const contentIds = {
-      searchAgentID: props.searchAgent.searchAgentID,
-      domainId: props.searchAgent.parentCategoryKvp.key,
-      roleIds: jobCategorieIds,
-      cityId: props.searchAgent.cityKvp.key,
-      typeIds: jobTypesIds,
-    };
+  const jobCategorieIds = Object.keys(
+    props.searchAgent.childCategoriesDictionary
+  );
+  const jobTypesIds = Object.keys(props.searchAgent.typesDictionary);
+  const contentIds = {
+    searchAgentID: props.searchAgent.searchAgentID,
+    domainId: props.searchAgent.parentCategoryKvp.key,
+    roleIds: jobCategorieIds,
+    cityId: props.searchAgent.cityKvp.key,
+    typeIds: jobTypesIds,
+  };
 
+  const agentTxt = props.searchAgent.text;
+
+  const EditAgent_Click = () => {
     const contentNames = {
       domainName: props.searchAgent.parentCategoryKvp.value,
       roleNames: jobCategories,
@@ -31,26 +33,51 @@ const SearchAgent = (props) => {
       typeNames: jobTypes,
     };
 
-    const agentTxt = props.searchAgent.text;
-    props.EditAgntValues(contentIds, contentNames, agentTxt);
+    props.EditAgentValues(contentIds, contentNames, agentTxt);
     props.titleNameFun("עריכת");
 
     navigate("/AddAgent/*");
   };
 
   const DeleteAgent_Click = () => {
-    fetch(
-      variables.API_URL +
-        "SearchAgent/UpdateSearchAgentActivity?searchAgentID=" +
-        props.searchAgent.searchAgentID
-    ).then(() => {
-      props.deleteAgent((prevAgents) => {
-        return prevAgents.filter(
-          (searchAgent) =>
-            searchAgent.searchAgentID !== props.searchAgent.searchAgentID
-        );
+    if (window.confirm("אתה עומד למחוק את הסוכן לצמיתות. אתה בטוח?")) {
+      fetch(
+        variables.API_URL +
+          "SearchAgent/UpdateSearchAgentActivity?searchAgentID=" +
+          props.searchAgent.searchAgentID
+      ).then(() => {
+        props.deleteAgent((prevAgents) => {
+          return prevAgents.filter(
+            (searchAgent) =>
+              searchAgent.searchAgentID !== props.searchAgent.searchAgentID
+          );
+        });
       });
-    });
+    }
+  };
+
+  const Search_Click = () => {
+    const req = {
+      parentCategory: contentIds.domainId,
+      jobCategories: contentIds.roleIds,
+      jobTypes: contentIds.typeIds,
+      city: contentIds.cityId,
+      text: agentTxt,
+      userID: props.searchAgent.userID,
+    };
+
+    fetch(variables.API_URL + "Jobs/GetJobsSearch", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(req),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        props.AgentSearch(data);
+      })
+      .catch((error) => console.error(error));
   };
 
   return (
@@ -89,6 +116,11 @@ const SearchAgent = (props) => {
                 role="button"
                 className="bi bi-trash-fill agentIconStyle"
                 onClick={DeleteAgent_Click}
+              ></i>
+              <i
+                role="button"
+                class="bi bi-search agentIconStyle me-4"
+                onClick={Search_Click}
               ></i>
             </div>
           </div>

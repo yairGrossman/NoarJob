@@ -7,6 +7,7 @@ import Signup from "./Signup";
 import SearchAgents from "./SearchAgentComp/SearchAgents";
 import { variables } from "../Variables";
 import AddSearchAgents from "./SearchAgentComp/AddSearchAgent";
+import Jobs from "./JobComp/Jobs";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -25,6 +26,8 @@ const Header = () => {
   const [editAgentValues, setEditAgentValues] = useState([]);
   //משתנה לשימרת מילת המפתח של הסוכן החכם
   const [agentTxt, setAgentTxt] = useState("");
+  //משתנה לשמירת המשרות של הוסכן החכם
+  const [jobs, setJobs] = useState();
 
   /*פונקציה שמופעלת כאשר לוחצים על הכפתור של כניסה */
   const MoveToLogin = () => {
@@ -64,11 +67,16 @@ const Header = () => {
   const AdditAgentTitle = (titleName) => {
     setAdditAgentTitle(titleName);
   };
-
+  //פונקציה שמופעלת כאשר המשתמש לוחץ על עריכת סוכן חכם ושמה את הערכים של הסוכן במשתנים
   const EditAgntValues = (contentIds, contentNames, agentTxt) => {
     setEditAgentIds(contentIds);
     setEditAgentValues(contentNames);
     setAgentTxt(agentTxt);
+  };
+
+  const AgentSearch = (jobs) => {
+    setJobs(jobs);
+    navigate("/Jobs");
   };
 
   return (
@@ -142,7 +150,8 @@ const Header = () => {
               searchAgents={searchAgents}
               deleteAgent={setSearchAgents}
               titleNameFun={AdditAgentTitle}
-              EditAgntValues={EditAgntValues}
+              EditAgentValues={EditAgntValues}
+              AgentSearch={AgentSearch}
             />
           }
         />
@@ -161,6 +170,7 @@ const Header = () => {
             />
           }
         />
+        <Route path="/Jobs" element={<Jobs jobs={jobs} />} />
       </Routes>
     </div>
   );
