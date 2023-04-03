@@ -96,7 +96,7 @@ namespace NoarJobBL
             NoarJobDAL.SearchAgentsValues.SetSearchAgentValues(this.searchAgentID, 2, childCategoriesLst);
             NoarJobDAL.SearchAgentsValues.SetSearchAgentValues(this.searchAgentID, 3, this.cityKvp.Key);
             NoarJobDAL.SearchAgentsValues.SetSearchAgentValues(this.searchAgentID, 4, typesLst);
-            NoarJobDAL.SearchAgentsValues.InsertSearchAgentValueText(this.searchAgentID, this.text);
+            NoarJobDAL.SearchAgentsValues.SetSearchAgentValues(this.searchAgentID, this.text);
         }
 
         /// <summary>

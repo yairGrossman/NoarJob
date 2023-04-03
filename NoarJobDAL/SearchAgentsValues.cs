@@ -81,5 +81,14 @@ namespace NoarJobDAL
             DeleteAllSearchAgentValues(SearchAgentID, ValueType);
             InsertSearchAgentValues(SearchAgentID, ValueType, ValuesID);
         }
+
+        /// <summary>
+        /// שאילתה לעדכון/יצירה של רשומות בטבלה זו כחלק מתהליך עדכון סוכן/יצירת סוכן כאשר מתקבל מילת מפתח
+        /// </summary>
+        public static void SetSearchAgentValues(int SearchAgentID, string ValueTxt)
+        {
+            DeleteAllSearchAgentValues(SearchAgentID, 5);
+            InsertSearchAgentValueText(SearchAgentID, ValueTxt);
+        }
     }
 }

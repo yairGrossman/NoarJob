@@ -140,6 +140,7 @@ const Header = () => {
           element={
             <SearchAgents
               searchAgents={searchAgents}
+              deleteAgent={setSearchAgents}
               titleNameFun={AdditAgentTitle}
               EditAgntValues={EditAgntValues}
             />
@@ -152,7 +153,7 @@ const Header = () => {
           element={
             <AddSearchAgents
               user={user}
-              addAgent={UserLogged}
+              additAgent={UserLogged}
               titleName={additAgentTitle}
               editAgentIds={editAgentIds}
               editAgentValues={editAgentValues}

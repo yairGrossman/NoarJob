@@ -13,14 +13,14 @@ const AddSearchAgents = (props) => {
         <Search
           isntAgent={false}
           user={props.user}
-          addAgent={props.addAgent}
+          additAgent={props.additAgent}
           isEditAgent={false}
         />
       ) : (
         <Search
           isntAgent={false}
           user={props.user}
-          addAgent={props.addAgent}
+          additAgent={props.additAgent}
           editAgentIds={props.editAgentIds}
           editAgentValues={props.editAgentValues}
           isEditAgent={true}

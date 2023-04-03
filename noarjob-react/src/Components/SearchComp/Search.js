@@ -368,7 +368,7 @@ const Search = (props) => {
   /*פונקציה להוספת או עדכון סוכן חכם*/
   const AdditAgent_Click = () => {
     let searchAgent = {
-      searchAgentID: 0,
+      searchAgentID: props.isEditAgent ? props.editAgentIds.searchAgentID : 0,
       userID: props.user.userID,
       parentCategoryKvp: {
         key: contentIds.domainId,
@@ -390,25 +390,37 @@ const Search = (props) => {
         for (let i = 0; i < contentIds.typeIds.length; i++) {
           typesDic[contentIds.typeIds[i]] = contentNames.typeNames[i];
         }
-        console.log(typesDic);
         return typesDic;
       })(),
       text: searchTxt,
     };
 
-    fetch(variables.API_URL + "SearchAgent/InsertSearchAgentValues", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(searchAgent),
-    })
-      .then((response) => response.json())
-      .then(() => {
-        props.addAgent();
-        navigate("/SearchAgents");
+    if (props.isEditAgent) {
+      fetch(variables.API_URL + "SearchAgent/UpdateSearchAgentValues", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(searchAgent),
       })
-      .catch((error) => console.error(error));
+        .then(() => {
+          props.additAgent();
+        })
+        .catch((error) => console.error(error));
+    } else {
+      fetch(variables.API_URL + "SearchAgent/InsertSearchAgentValues", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(searchAgent),
+      })
+        .then((response) => response.json())
+        .then(() => {
+          props.additAgent();
+        })
+        .catch((error) => console.error(error));
+    }
   };
 
   return (

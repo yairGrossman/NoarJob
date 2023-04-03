@@ -18,6 +18,7 @@ const SearchAgents = (props) => {
           searchAgent={searchAgent}
           EditAgntValues={props.EditAgntValues}
           titleNameFun={props.titleNameFun}
+          deleteAgent={props.deleteAgent}
         />
       ))}
       <div dir="rtl" className="row d-flex justify-content-center mb-3">

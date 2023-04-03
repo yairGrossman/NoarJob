@@ -2,6 +2,7 @@ import React from "react";
 import "../Styles/SearchAgent.css";
 import ShowChoice from "../SearchComp/ShowChoice";
 import { useNavigate } from "react-router-dom";
+import { variables } from "../../Variables";
 
 const SearchAgent = (props) => {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ const SearchAgent = (props) => {
     );
     const jobTypesIds = Object.keys(props.searchAgent.typesDictionary);
     const contentIds = {
+      searchAgentID: props.searchAgent.searchAgentID,
       domainId: props.searchAgent.parentCategoryKvp.key,
       roleIds: jobCategorieIds,
       cityId: props.searchAgent.cityKvp.key,
@@ -34,6 +36,21 @@ const SearchAgent = (props) => {
     props.titleNameFun("עריכת");
 
     navigate("/AddAgent/*");
+  };
+
+  const DeleteAgent_Click = () => {
+    fetch(
+      variables.API_URL +
+        "SearchAgent/UpdateSearchAgentActivity?searchAgentID=" +
+        props.searchAgent.searchAgentID
+    ).then(() => {
+      props.deleteAgent((prevAgents) => {
+        return prevAgents.filter(
+          (searchAgent) =>
+            searchAgent.searchAgentID !== props.searchAgent.searchAgentID
+        );
+      });
+    });
   };
 
   return (
@@ -68,7 +85,11 @@ const SearchAgent = (props) => {
                 className="bi bi-pencil-square agentIconStyle ms-4"
                 onClick={EditAgent_Click}
               ></i>
-              <i role="button" className="bi bi-trash-fill agentIconStyle"></i>
+              <i
+                role="button"
+                className="bi bi-trash-fill agentIconStyle"
+                onClick={DeleteAgent_Click}
+              ></i>
             </div>
           </div>
         </div>
