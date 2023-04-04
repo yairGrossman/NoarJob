@@ -8,6 +8,7 @@ import SearchAgents from "./SearchAgentComp/SearchAgents";
 import { variables } from "../Variables";
 import AddSearchAgents from "./SearchAgentComp/AddSearchAgent";
 import Jobs from "./JobComp/Jobs";
+import MostSoughtJob from "./MostSoughtJobComp/MostSoughtJob";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -46,7 +47,7 @@ const Header = () => {
     navigate("/");
   };
 
-  const UserLogged = () => {
+  const UserLogged = (event) => {
     if (logged) {
       fetch(
         variables.API_URL +
@@ -57,7 +58,15 @@ const Header = () => {
         .then((data) => {
           setSearchAgents(data);
         });
-      navigate("/SearchAgents");
+
+      if (
+        event === "searchAgent" ||
+        event.target.getAttribute("data-value") === "searchAgentLink"
+      ) {
+        navigate("/SearchAgents");
+      } else {
+        navigate("/MostSoughtJob");
+      }
     } else {
       navigate("/Login");
     }
@@ -68,7 +77,7 @@ const Header = () => {
     setAdditAgentTitle(titleName);
   };
   //פונקציה שמופעלת כאשר המשתמש לוחץ על עריכת סוכן חכם ושמה את הערכים של הסוכן במשתנים
-  const EditAgntValues = (contentIds, contentNames, agentTxt) => {
+  const EditAgentValues = (contentIds, contentNames, agentTxt) => {
     setEditAgentIds(contentIds);
     setEditAgentValues(contentNames);
     setAgentTxt(agentTxt);
@@ -95,6 +104,7 @@ const Header = () => {
             </li>
             <li>
               <span
+                data-value="searchAgentLink"
                 role="button"
                 className="nav-link px-2 link-dark myLink"
                 onClick={UserLogged}
@@ -103,7 +113,12 @@ const Header = () => {
               </span>
             </li>
             <li>
-              <span role="button" className="nav-link px-2 link-dark myLink">
+              <span
+                data-value="mostSoughtJobLink"
+                role="button"
+                className="nav-link px-2 link-dark myLink"
+                onClick={UserLogged}
+              >
                 המשרות המתאימות לך
               </span>
             </li>
@@ -150,7 +165,7 @@ const Header = () => {
               searchAgents={searchAgents}
               deleteAgent={setSearchAgents}
               titleNameFun={AdditAgentTitle}
-              EditAgentValues={EditAgntValues}
+              EditAgentValues={EditAgentValues}
               AgentSearch={AgentSearch}
             />
           }
@@ -171,6 +186,10 @@ const Header = () => {
           }
         />
         <Route path="/JobsAgent" element={<Jobs jobs={jobs} />} />
+        <Route
+          path="/MostSoughtJob"
+          element={<MostSoughtJob searchAgents={searchAgents} />}
+        />
       </Routes>
     </div>
   );
