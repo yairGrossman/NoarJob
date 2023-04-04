@@ -11,21 +11,21 @@ const SearchAgent = (props) => {
   );
   const jobTypes = Object.values(props.searchAgent.typesDictionary);
 
-  const jobCategorieIds = Object.keys(
-    props.searchAgent.childCategoriesDictionary
-  );
-  const jobTypesIds = Object.keys(props.searchAgent.typesDictionary);
-  const contentIds = {
-    searchAgentID: props.searchAgent.searchAgentID,
-    domainId: props.searchAgent.parentCategoryKvp.key,
-    roleIds: jobCategorieIds,
-    cityId: props.searchAgent.cityKvp.key,
-    typeIds: jobTypesIds,
-  };
-
-  const agentTxt = props.searchAgent.text;
-
   const EditAgent_Click = () => {
+    const jobCategorieIds = Object.keys(
+      props.searchAgent.childCategoriesDictionary
+    );
+    const jobTypesIds = Object.keys(props.searchAgent.typesDictionary);
+
+    const contentIds = {
+      searchAgentID: props.searchAgent.searchAgentID,
+      domainId: props.searchAgent.parentCategoryKvp.key,
+      roleIds: jobCategorieIds,
+      cityId: props.searchAgent.cityKvp.key,
+      typeIds: jobTypesIds,
+    };
+
+    const agentTxt = props.searchAgent.text;
     const contentNames = {
       domainName: props.searchAgent.parentCategoryKvp.value,
       roleNames: jobCategories,
@@ -57,22 +57,13 @@ const SearchAgent = (props) => {
   };
 
   const Search_Click = () => {
-    const req = {
-      parentCategory: contentIds.domainId,
-      jobCategories: contentIds.roleIds,
-      jobTypes: contentIds.typeIds,
-      city: contentIds.cityId,
-      text: agentTxt,
-      userID: props.searchAgent.userID,
-    };
-
-    fetch(variables.API_URL + "Jobs/GetJobsSearch", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(req),
-    })
+    fetch(
+      variables.API_URL +
+        "SearchAgents/GetJobsBySearchAgent?searchAgentID=" +
+        props.searchAgent.searchAgentID +
+        "&userID=" +
+        props.searchAgent.userID
+    )
       .then((response) => response.json())
       .then((data) => {
         props.AgentSearch(data);
