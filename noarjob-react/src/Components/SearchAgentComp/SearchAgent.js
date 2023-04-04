@@ -119,7 +119,7 @@ const SearchAgent = (props) => {
               ></i>
               <i
                 role="button"
-                class="bi bi-search agentIconStyle me-4"
+                className="bi bi-search agentIconStyle me-4"
                 onClick={Search_Click}
               ></i>
             </div>

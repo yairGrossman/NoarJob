@@ -2,6 +2,7 @@ import React from "react";
 import Job from "./Job";
 
 const Jobs = (props) => {
+  console.log(props.jobs);
   return (
     <React.Fragment>
       {props.jobs.map((job) => {

@@ -76,7 +76,7 @@ const Header = () => {
 
   const AgentSearch = (jobs) => {
     setJobs(jobs);
-    navigate("/Jobs");
+    navigate("/JobsAgent");
   };
 
   return (
@@ -170,7 +170,7 @@ const Header = () => {
             />
           }
         />
-        <Route path="/Jobs" element={<Jobs jobs={jobs} />} />
+        <Route path="/JobsAgent" element={<Jobs jobs={jobs} />} />
       </Routes>
     </div>
   );

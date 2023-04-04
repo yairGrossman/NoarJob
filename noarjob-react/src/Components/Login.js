@@ -1,11 +1,10 @@
-import React, { useRef, useState, useNavigate, navigate } from "react";
+import React, { useRef } from "react";
 import Card from "./Card";
 import { variables } from "../Variables";
 
 const Login = (props) => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
-  const [user, setUser] = useState();
 
   const Login_Click = () => {
     const email = emailRef.current.value;
@@ -19,7 +18,6 @@ const Login = (props) => {
     )
       .then((response) => response.json())
       .then((data) => {
-        setUser(data);
         props.onLogin(data);
       });
   };
@@ -58,15 +56,15 @@ const Login = (props) => {
         </button>
 
         <div className="d-flex justify-content-center text-center mt-4 pt-1">
-          <a className="text-white">
+          <span className="text-white">
             <i className="fab fa-facebook-f fa-lg"></i>
-          </a>
-          <a className="text-white">
+          </span>
+          <span className="text-white">
             <i className="fab fa-twitter fa-lg mx-4 px-2"></i>
-          </a>
-          <a className="text-white">
+          </span>
+          <span className="text-white">
             <i className="fab fa-google fa-lg"></i>
-          </a>
+          </span>
         </div>
       </div>
     </Card>
