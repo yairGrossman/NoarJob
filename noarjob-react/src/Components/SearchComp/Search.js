@@ -408,7 +408,7 @@ const Search = (props) => {
       })
         .then((response) => response.json())
         .then(() => {
-          props.additAgent();
+          props.additAgent("searchAgent");
         })
         .catch((error) => console.error(error));
     }
@@ -555,7 +555,9 @@ const Search = (props) => {
         )}
       </Card>
       <Routes>
-        <Route path="/Jobs" element={<Jobs jobs={jobs} />} />
+        {jobs !== undefined && jobs.length > 0 && (
+          <Route path="/Jobs" element={<Jobs jobs={jobs} />} />
+        )}
       </Routes>
     </React.Fragment>
   );

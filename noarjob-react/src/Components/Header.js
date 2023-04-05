@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Styles/Header.css";
 import { NavLink, Route, Routes, useNavigate } from "react-router-dom";
 import Login from "./Login";
@@ -47,6 +47,9 @@ const Header = () => {
     navigate("/");
   };
 
+  /*פונקציה שמופעלת כאשר המשתמש רוצה להכנס לסוכן חכם או למשרות הכי מבוקשות
+  ואם אין לו משתמש זה שולח אותו למסך ההתחברות 
+  ואם הוא התחבר זה שולח אותו למסך שבחר  */
   const UserLogged = (event) => {
     if (logged) {
       fetch(
@@ -56,7 +59,18 @@ const Header = () => {
       )
         .then((response) => response.json())
         .then((data) => {
-          setSearchAgents(data);
+          if (
+            event.target !== undefined &&
+            event.target.getAttribute("data-value") === "mostSoughtJobLink"
+          ) {
+            if (data !== null && data.length > 0) {
+              MostSoughtJobHelper(data);
+            } else {
+              alert("אין משרות מתאימות");
+            }
+          } else {
+            setSearchAgents(data);
+          }
         });
 
       if (
@@ -64,13 +78,50 @@ const Header = () => {
         event.target.getAttribute("data-value") === "searchAgentLink"
       ) {
         navigate("/SearchAgents");
-      } else {
-        navigate("/MostSoughtJob");
       }
     } else {
       navigate("/Login");
     }
   };
+
+  /*פונקציה עזר שמטרתה לשים במשתנה של המשרות 
+  את המשרות הכי מבוקשות של משתמשים הדומים לאותו משתמש */
+  const MostSoughtJobHelper = (searchAgents) => {
+    let jobCategorieIds = [];
+    let jobTypesIds = [];
+    let citiesIds = [];
+    let userId;
+    if (searchAgents.length > 0) {
+      userId = searchAgents[0].userID;
+    }
+
+    for (let i = 0; i < searchAgents.length; i++) {
+      jobCategorieIds.push(
+        ...Object.keys(searchAgents[i].childCategoriesDictionary)
+      );
+      jobTypesIds.push(...Object.keys(searchAgents[i].typesDictionary));
+      citiesIds.push(searchAgents[i].cityKvp.key);
+    }
+    fetch(variables.API_URL + "Jobs/GetTheMostSoughtJobBL", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userID: userId,
+        childCategoriesLst: jobCategorieIds,
+        citiesLst: citiesIds,
+        typesLst: jobTypesIds,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setJobs(data);
+        navigate("/MostSoughtJob");
+      })
+      .catch((error) => console.error(error));
+  };
+
   /*פונקציה שמופעלת כאשר לוחצים על כפתור הוספת/עריכת סוכן חכם ומוסיפה לכותרת את המילה
   עריכת או הוספת */
   const AdditAgentTitle = (titleName) => {
@@ -186,10 +237,7 @@ const Header = () => {
           }
         />
         <Route path="/JobsAgent" element={<Jobs jobs={jobs} />} />
-        <Route
-          path="/MostSoughtJob"
-          element={<MostSoughtJob searchAgents={searchAgents} />}
-        />
+        <Route path="/MostSoughtJob" element={<MostSoughtJob jobs={jobs} />} />
       </Routes>
     </div>
   );
