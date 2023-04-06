@@ -25,10 +25,10 @@ namespace NoarJobAPI.Controllers
         }
 
         [HttpPost("GetTheMostSoughtJobBL")]
-        public JsonResult GetTheMostSoughtJobBL(int userID, [FromQuery] List<int> childCategoriesLst, [FromQuery] List<int> citiesLst, [FromQuery] List<int> typesLst)
+        public JsonResult GetTheMostSoughtJobBL([FromBody] MostSoughtJobBL mostSoughtJobBL)
         {
             JobsBL jobsBL = new JobsBL();
-            Job[] arrJobs = jobsBL.GetTheMostSoughtJobBL(userID, childCategoriesLst, citiesLst, typesLst);
+            Job[] arrJobs = jobsBL.GetTheMostSoughtJobBL(mostSoughtJobBL.UserID, mostSoughtJobBL.ChildCategoriesLst, mostSoughtJobBL.CitiesLst, mostSoughtJobBL.TypesLst);
             return new JsonResult(arrJobs);
         }
     }

@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Card from "../Card";
 import "../Styles/Search.css";
@@ -9,49 +9,48 @@ import Jobs from "../JobComp/Jobs";
 
 const Search = (props) => {
   const navigate = useNavigate();
-
-  //משתנה עזר בשביל להכניס את התז של הערכים של הסוכן החכם לתוך
-  // משתנה ששומר את המזהה של הבחירה של המשתמש
-  let editAgentIds = {
+  /*
+  משתנה ששומר את המזהה של הבחירה של המשתמש
+  */
+  const [contentIds, setContentIds] = useState({
     domainId: 0,
     roleIds: [],
     cityId: 0,
     typeIds: [],
-  };
+  });
 
-  //משתנה עזר בשביל להכניס את השמות של הערכים של הסוכן החכם לתוך
   //משתנה ששומר את השם של הבחירה של המשתמש
-  let editAgentValues = {
+  const [contentNames, setContentNames] = useState({
     domainName: "",
     roleNames: [],
     cityName: "",
     typeNames: [],
-  };
-
-  let editAgentTxt = "";
-
-  if (props.isEditAgent) {
-    editAgentTxt = props.agentTxt;
-
-    editAgentIds = {
-      domainId: props.editAgentIds.domainId,
-      roleIds: props.editAgentIds.roleIds,
-      cityId: props.editAgentIds.cityId,
-      typeIds: props.editAgentIds.typeIds,
-    };
-
-    editAgentValues = {
-      domainName: props.editAgentValues.domainName,
-      roleNames: props.editAgentValues.roleNames,
-      cityName: props.editAgentValues.cityName,
-      typeNames: props.editAgentValues.typeNames,
-    };
-  }
-
-  const [jobs, setJobs] = useState();
+  });
 
   //משתנה ששומר את החיפוש לפי טקסט של המשתמש
-  const [searchTxt, setSearchTxt] = useState(editAgentTxt);
+  const [searchTxt, setSearchTxt] = useState("");
+
+  useEffect(() => {
+    if (props.isEditAgent) {
+      setSearchTxt(props.agentTxt);
+
+      setContentIds({
+        domainId: props.editAgentIds.domainId,
+        roleIds: props.editAgentIds.roleIds,
+        cityId: props.editAgentIds.cityId,
+        typeIds: props.editAgentIds.typeIds,
+      });
+
+      setContentNames({
+        domainName: props.editAgentValues.domainName,
+        roleNames: props.editAgentValues.roleNames,
+        cityName: props.editAgentValues.cityName,
+        typeNames: props.editAgentValues.typeNames,
+      });
+    }
+  }, []);
+
+  const [jobs, setJobs] = useState();
 
   //משתנה שעוזר לי לדעת האם המשתמש מחפש לי תחומים או לפי טקסט משרות
   const [byDomain, setByDomain] = useState(false);
@@ -71,14 +70,6 @@ const Search = (props) => {
     types: [],
     subTypes: [],
   });
-
-  /*
-  משתנה ששומר את המזהה של הבחירה של המשתמש
-  */
-  const [contentIds, setContentIds] = useState(editAgentIds);
-
-  //משתנה ששומר את השם של הבחירה של המשתמש
-  const [contentNames, setContentNames] = useState(editAgentValues);
 
   /*
   משתנה לשמירת איזה כפתור בחירה המשתמש בחר (תחום תפקיד, תפקיד...)
@@ -404,7 +395,7 @@ const Search = (props) => {
         body: JSON.stringify(searchAgent),
       })
         .then(() => {
-          props.additAgent();
+          props.additAgent("searchAgent");
         })
         .catch((error) => console.error(error));
     } else {
@@ -417,7 +408,7 @@ const Search = (props) => {
       })
         .then((response) => response.json())
         .then(() => {
-          props.additAgent();
+          props.additAgent("searchAgent");
         })
         .catch((error) => console.error(error));
     }
@@ -564,7 +555,9 @@ const Search = (props) => {
         )}
       </Card>
       <Routes>
-        <Route path="/Jobs" element={<Jobs jobs={jobs} />} />
+        {jobs !== undefined && jobs.length > 0 && (
+          <Route path="/Jobs" element={<Jobs jobs={jobs} />} />
+        )}
       </Routes>
     </React.Fragment>
   );

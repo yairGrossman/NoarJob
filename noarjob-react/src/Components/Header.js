@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Styles/Header.css";
 import { NavLink, Route, Routes, useNavigate } from "react-router-dom";
 import Login from "./Login";
@@ -8,6 +8,7 @@ import SearchAgents from "./SearchAgentComp/SearchAgents";
 import { variables } from "../Variables";
 import AddSearchAgents from "./SearchAgentComp/AddSearchAgent";
 import Jobs from "./JobComp/Jobs";
+import MostSoughtJob from "./MostSoughtJobComp/MostSoughtJob";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -46,7 +47,10 @@ const Header = () => {
     navigate("/");
   };
 
-  const UserLogged = () => {
+  /*פונקציה שמופעלת כאשר המשתמש רוצה להכנס לסוכן חכם או למשרות הכי מבוקשות
+  ואם אין לו משתמש זה שולח אותו למסך ההתחברות 
+  ואם הוא התחבר זה שולח אותו למסך שבחר  */
+  const UserLogged = (event) => {
     if (logged) {
       fetch(
         variables.API_URL +
@@ -55,20 +59,76 @@ const Header = () => {
       )
         .then((response) => response.json())
         .then((data) => {
-          setSearchAgents(data);
+          if (
+            event.target !== undefined &&
+            event.target.getAttribute("data-value") === "mostSoughtJobLink"
+          ) {
+            if (data !== null && data.length > 0) {
+              MostSoughtJobHelper(data);
+            } else {
+              alert("אין משרות מתאימות");
+            }
+          } else {
+            setSearchAgents(data);
+          }
         });
-      navigate("/SearchAgents");
+
+      if (
+        event === "searchAgent" ||
+        event.target.getAttribute("data-value") === "searchAgentLink"
+      ) {
+        navigate("/SearchAgents");
+      }
     } else {
       navigate("/Login");
     }
   };
+
+  /*פונקציה עזר שמטרתה לשים במשתנה של המשרות 
+  את המשרות הכי מבוקשות של משתמשים הדומים לאותו משתמש */
+  const MostSoughtJobHelper = (searchAgents) => {
+    let jobCategorieIds = [];
+    let jobTypesIds = [];
+    let citiesIds = [];
+    let userId;
+    if (searchAgents.length > 0) {
+      userId = searchAgents[0].userID;
+    }
+
+    for (let i = 0; i < searchAgents.length; i++) {
+      jobCategorieIds.push(
+        ...Object.keys(searchAgents[i].childCategoriesDictionary)
+      );
+      jobTypesIds.push(...Object.keys(searchAgents[i].typesDictionary));
+      citiesIds.push(searchAgents[i].cityKvp.key);
+    }
+    fetch(variables.API_URL + "Jobs/GetTheMostSoughtJobBL", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userID: userId,
+        childCategoriesLst: jobCategorieIds,
+        citiesLst: citiesIds,
+        typesLst: jobTypesIds,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setJobs(data);
+        navigate("/MostSoughtJob");
+      })
+      .catch((error) => console.error(error));
+  };
+
   /*פונקציה שמופעלת כאשר לוחצים על כפתור הוספת/עריכת סוכן חכם ומוסיפה לכותרת את המילה
   עריכת או הוספת */
   const AdditAgentTitle = (titleName) => {
     setAdditAgentTitle(titleName);
   };
   //פונקציה שמופעלת כאשר המשתמש לוחץ על עריכת סוכן חכם ושמה את הערכים של הסוכן במשתנים
-  const EditAgntValues = (contentIds, contentNames, agentTxt) => {
+  const EditAgentValues = (contentIds, contentNames, agentTxt) => {
     setEditAgentIds(contentIds);
     setEditAgentValues(contentNames);
     setAgentTxt(agentTxt);
@@ -95,6 +155,7 @@ const Header = () => {
             </li>
             <li>
               <span
+                data-value="searchAgentLink"
                 role="button"
                 className="nav-link px-2 link-dark myLink"
                 onClick={UserLogged}
@@ -103,7 +164,12 @@ const Header = () => {
               </span>
             </li>
             <li>
-              <span role="button" className="nav-link px-2 link-dark myLink">
+              <span
+                data-value="mostSoughtJobLink"
+                role="button"
+                className="nav-link px-2 link-dark myLink"
+                onClick={UserLogged}
+              >
                 המשרות המתאימות לך
               </span>
             </li>
@@ -150,7 +216,7 @@ const Header = () => {
               searchAgents={searchAgents}
               deleteAgent={setSearchAgents}
               titleNameFun={AdditAgentTitle}
-              EditAgentValues={EditAgntValues}
+              EditAgentValues={EditAgentValues}
               AgentSearch={AgentSearch}
             />
           }
@@ -171,6 +237,7 @@ const Header = () => {
           }
         />
         <Route path="/JobsAgent" element={<Jobs jobs={jobs} />} />
+        <Route path="/MostSoughtJob" element={<MostSoughtJob jobs={jobs} />} />
       </Routes>
     </div>
   );
