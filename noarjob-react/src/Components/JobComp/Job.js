@@ -18,9 +18,21 @@ const Job = (props) => {
           <p className="col-5">אמייל: {props.email}</p>
         </div>
         <h1 className="mt-2 jobTitle">{props.title}</h1>
-        <h2 className="fw-bold mb-5 text-uppercase subTitle text-decoration-underline">
-          {props.companyName}
-        </h2>
+        {props.userJobType === 1 ? (
+          <React.Fragment>
+            <h2 className="fw-bold mb-2 text-uppercase subTitle text-decoration-underline">
+              {props.companyName}
+            </h2>
+            <h4 className="mb-5 text-uppercase" style={{ color: "#CEE5D0" }}>
+              תאריך הגשת המועמדות: {props.dateApplicated}
+            </h4>
+          </React.Fragment>
+        ) : (
+          <h2 className="fw-bold mb-5 text-uppercase subTitle text-decoration-underline">
+            {props.companyName}
+          </h2>
+        )}
+
         <JobSettings
           categoryTitle="מיקום המשרה"
           categoryBtnTxt="בחר עיר"
@@ -46,7 +58,13 @@ const Job = (props) => {
           <p className="mb-3">{props.requirements}</p>
         </div>
       </div>
-      <JobChoices />
+      <JobChoices
+        jobId={props.jobId}
+        dateApplicated={props.dateApplicated}
+        userJobType={props.userJobType}
+        userId={props.userId}
+        setJobs={props.setJobs}
+      />
     </Card>
   );
 };

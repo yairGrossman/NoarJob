@@ -321,6 +321,7 @@ const Search = (props) => {
   /*פונקציה שמופעלת כאשר המשתמש מחליט לחפש משרה, לעבור למסך משרות */
   const Search_Click = () => {
     let req;
+    const userId = props.userId === undefined ? -1 : props.userId;
     if (byDomain) {
       req = {
         parentCategory: contentIds.domainId,
@@ -328,7 +329,7 @@ const Search = (props) => {
         jobTypes: contentIds.typeIds,
         city: contentIds.cityId,
         text: null,
-        userID: -1,
+        userID: userId,
       };
     } else {
       req = {
@@ -337,7 +338,7 @@ const Search = (props) => {
         jobTypes: [],
         city: 0,
         text: searchTxt,
-        userID: -1,
+        userID: userId,
       };
     }
 
@@ -360,7 +361,7 @@ const Search = (props) => {
   const AdditAgent_Click = () => {
     let searchAgent = {
       searchAgentID: props.isEditAgent ? props.editAgentIds.searchAgentID : 0,
-      userID: props.user.userID,
+      userID: props.userId,
       parentCategoryKvp: {
         key: contentIds.domainId,
         value: contentNames.domainName,
@@ -556,7 +557,12 @@ const Search = (props) => {
       </Card>
       <Routes>
         {jobs !== undefined && jobs.length > 0 && (
-          <Route path="/Jobs" element={<Jobs jobs={jobs} />} />
+          <Route
+            path="/Jobs"
+            element={
+              <Jobs jobs={jobs} setJobs={setJobs} userId={props.userId} />
+            }
+          />
         )}
       </Routes>
     </React.Fragment>

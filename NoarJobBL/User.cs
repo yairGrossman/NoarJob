@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using NoarJobDAL;
@@ -178,20 +179,27 @@ namespace NoarJobBL
         }
 
         /// <summary>
-        /// פונקצית עדכון שמעבירה את הסוג שהמשתמש בחר למשרה
-        /// אחד שליחת מועמדות, 2 - אהבתי את המשרה, 3 - מחקתי את המשרה
+        /// שאילתת עדכון שמעבירה את הסוג שהמשתמש בחר למשרה
+        /// שתיים אהבתי את המשרה, 3 - מחקתי את המשרה
         /// </summary>
-        /// <param name="jobID"></param>
-        /// <param name="userJobType"></param>
         public void UpdateUserJobType(int jobID, int userJobType)
         {
             NoarJobDAL.Users_Jobs.UpdateUserJobType(jobID, this.userID, userJobType);
         }
 
         /// <summary>
-        /// פונקציה ליצירת רשומה חדשה בעת הגשת מועמדות של משתמש למשרה
+        /// שאילתת עדכון שמעבירה את הסוג שהמשתמש בחר למשרה
+        /// לשליחת מועמדות
         /// </summary>
-        public void CreateUser_Job(int jobID, int cvID, DateTime dateApplicated)
+        public void UpdateUserJobType(int jobID, int userJobType, DateTime dateApplicated, int cvID)
+        {
+            Users_Jobs.UpdateUserJobType(jobID, this.userID, userJobType, dateApplicated, cvID);
+        }
+
+            /// <summary>
+            /// פונקציה ליצירת רשומה חדשה בעת הגשת מועמדות של משתמש למשרה
+            /// </summary>
+            public void CreateUser_Job(int jobID, int cvID, DateTime dateApplicated)
         {
             Users_Jobs.InsertUser_Job(jobID, this.userID, cvID, dateApplicated);
         }

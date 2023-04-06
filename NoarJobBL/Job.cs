@@ -1,4 +1,5 @@
 ﻿using NoarJobDAL;
+using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -8,6 +9,8 @@ namespace NoarJobBL
     public class Job
     {
         private int jobID;//מספר המשרה
+        private string dateApplicated;//התאריך שבו המועמד שלח קורות חיים למשרה
+        private int userJobType;//סוג הקשר של המועמד למשרה: אחד שליחת מועמדות, 2-אהבת משרה, 3-מחיקת משרה
         private string title;//כותרת המשרה
         private string description;//תיאור המשרה
         private string requirements;//דרישות של המשרה
@@ -26,6 +29,8 @@ namespace NoarJobBL
         private List<string> notesLst;//הערות של המעסיק
 
         public Job(int jobID, 
+            string dateApplicated,
+            int userJobType,
             string title, 
             string description, 
             string requirements, 
@@ -41,6 +46,8 @@ namespace NoarJobBL
             DataTable dtCategories)
         {
             this.jobID = jobID;
+            this.dateApplicated = dateApplicated;
+            this.userJobType = userJobType;
             this.title = title;
             this.description = description;
             this.requirements = requirements;
@@ -130,6 +137,14 @@ namespace NoarJobBL
         public Dictionary<int, string> CategoriesDictionary
         {
             get { return this.categoriesDictionary; }
+        }
+
+        public string DateApplicated { 
+            get { return dateApplicated; }
+        }
+
+        public int UserJobType { 
+            get { return userJobType; } 
         }
         #endregion
 

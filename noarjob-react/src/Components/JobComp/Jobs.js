@@ -8,6 +8,11 @@ const Jobs = (props) => {
         return (
           <Job
             key={job.jobID}
+            jobId={job.jobID}
+            dateApplicated={job.dateApplicated}
+            userJobType={job.userJobType}
+            userId={props.userId}
+            setJobs={props.setJobs}
             companyTypeName={job.companyTypeName}
             employerName={job.employerName}
             numOfEmployees={job.numOfEmployees}

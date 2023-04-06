@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -89,11 +90,13 @@ namespace NoarJobBL
         {
             Job[] jobsArr = new Job[arrDt[0].Rows.Count];
             int jobID;//מספר המשרה
+            string dateApplicated;//התאריך שבו המועמד שלח קורות חיים למשרה
+            int userJobType;//סוג הקשר של המועמד למשרה: אחד שליחת מועמדות, 2-אהבת משרה, 3-מחיקת משרה
             string title;//כותרת המשרה
             string description;//תיאור המשרה
             string requirements;//דרישות של המשרה
             string employerName;//שם המעסיק
-             int numOfEmployees;//מספר העובדים שיש למעסיק בחברה
+            int numOfEmployees;//מספר העובדים שיש למעסיק בחברה
             string companyTypeName;//שם הקטגורייה של החברה
             string phone;//מספר טלפון של המשרה
             string email;//האימייל של המשרה
@@ -102,6 +105,18 @@ namespace NoarJobBL
             for (int i = 0; i < jobsArr.Length; i++)
             {
                 jobID = (int)arrDt[0].Rows[i]["JobID"];
+                if(arrDt[0].Rows[i]["DateApplicated"] != DBNull.Value)
+                    dateApplicated = ((DateTime)arrDt[0].Rows[i]["DateApplicated"]).ToString("MM/dd/yyyy");
+                else
+                    dateApplicated = "";
+
+                if (arrDt[0].Rows[i]["UserJobType"] != DBNull.Value)
+                    userJobType = (int)arrDt[0].Rows[i]["UserJobType"];
+                else
+                    userJobType = 0;
+
+                
+                
                 title = arrDt[0].Rows[i]["Title"].ToString();
                 description = arrDt[0].Rows[i]["Description"].ToString();
                 requirements = arrDt[0].Rows[i]["Requirements"].ToString();
@@ -113,6 +128,8 @@ namespace NoarJobBL
                 isActive = (bool)arrDt[0].Rows[i]["IsActive"];
                 companyName = arrDt[0].Rows[i]["CompanyName"].ToString();
                 jobsArr[i] = new Job(jobID,
+                                     dateApplicated,
+                                     userJobType,
                                      title,
                                      description,
                                      requirements,

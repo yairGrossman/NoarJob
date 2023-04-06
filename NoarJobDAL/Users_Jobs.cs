@@ -125,12 +125,12 @@ namespace NoarJobDAL
         /// </summary>
         /// <param name="JobID">של משרה ID</param>
         /// <param name="UserID">של משתמש ID</param>
-        /// /// <param name="UserJobType">אחד - שליחת מועמדות, 2 - אהבתי את המשרה, 3 - מחקתי את המשרה</param>
+        /// /// <param name="UserJobType">2 - אהבתי את המשרה, 3 - מחקתי את המשרה</param>
         public static void InsertUser_Job(int JobID, int UserID, int UserJobType)
         {
             string sql = $@"
                          INSERT INTO Users_Jobs (JobID, UserID, UserJobType, CvID)
-                         VALUES ({JobID}, {UserID}, {UserJobType}, {30});
+                         VALUES ({JobID}, {UserID}, {UserJobType}, 30);
                         ";
 
             DAL.DBHelper.ExecuteNonQuery(sql);
@@ -173,31 +173,41 @@ namespace NoarJobDAL
 
         /// <summary>
         /// שאילתת עדכון שמעבירה את הסוג שהמשתמש בחר למשרה
-        /// אחד שליחת מועמדות, 2 - אהבתי את המשרה, 3 - מחקתי את המשרה
+        /// שתיים אהבתי את המשרה, 3 - מחקתי את המשרה
         /// </summary>
         /// <param name="JobID"></param>
         /// <param name="UserID"></param>
         /// <param name="UserJobType"></param>
         public static void UpdateUserJobType(int JobID, int UserID, int UserJobType)
         {
-            string sql;
-            if (UserJobType == 1)
-            {
-                sql = $@"
-                    UPDATE Users_Jobs SET Users_Jobs.UserJobType = {UserJobType},
-                                          Users_Jobs.TabType = 1
-                    WHERE  Users_Jobs.JobID={JobID} AND Users_Jobs.UserID={UserID};
-                   ";
-            }
-            else
-            {
-                sql = $@"
+            string sql = $@"
                     UPDATE Users_Jobs SET Users_Jobs.UserJobType = {UserJobType},
                                           Users_Jobs.TabType = 0
                     WHERE  Users_Jobs.JobID={JobID} AND Users_Jobs.UserID={UserID};
                    ";
-            }
             
+            DAL.DBHelper.ExecuteNonQuery(sql);
+        }
+
+
+        /// <summary>
+        /// שאילתת עדכון שמעבירה את הסוג שהמשתמש בחר למשרה
+        /// לשליחת מועמדות
+        /// </summary>
+        /// <param name="JobID"></param>
+        /// <param name="UserID"></param>
+        /// <param name="UserJobType"></param>
+        public static void UpdateUserJobType(int JobID, int UserID, int UserJobType, DateTime DateApplicated, int CvID)
+        {
+            string sql = $@"
+                    UPDATE Users_Jobs SET Users_Jobs.UserJobType = {UserJobType}, 
+                           Users_Jobs.DateApplicated = {DateApplicated}, 
+                           Users_Jobs.CvID = {CvID},
+                           Users_Jobs.UserJobType = 1,
+                           Users_Jobs.TabType = 1
+                    WHERE  Users_Jobs.JobID={JobID} AND Users_Jobs.UserID={UserID};
+                   ";
+
             DAL.DBHelper.ExecuteNonQuery(sql);
         }
     }

@@ -7,11 +7,20 @@
   font-size: 2.5rem;
 }
 
+.likedJob {
+  font-size: 2.5rem;
+  color: #e90064;
+}
+
+.iconStyle:hover {
+  color: white;
+}
+
 .sendCvBtn {
   background-color: #df7861;
 }
 
 .sendCvBtn:hover {
   background-color: #df7861;
-  color: #94b49f;
+  color: black;
 }

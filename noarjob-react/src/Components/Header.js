@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Styles/Header.css";
 import { NavLink, Route, Routes, useNavigate } from "react-router-dom";
 import Login from "./Login";
@@ -15,7 +15,7 @@ const Header = () => {
   //משתנה שעוזר לי לדעת האם המשתמש התחבר לאתר
   const [logged, setLogged] = useState(false);
   //משתנה שלמירת השם של המשתמש
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState({});
   //משתנה לשמירת סוכנים חכמים
   const [searchAgents, setSearchAgents] = useState([]);
   //משתנה לשמירת הכותרת של הוסה/עריכה של סוכן חכם
@@ -175,7 +175,7 @@ const Header = () => {
             </li>
             <li>
               <span role="button" className="nav-link px-2 link-dark myLink">
-                הגדרות
+                המשרות שלי
               </span>
             </li>
           </ul>
@@ -207,7 +207,9 @@ const Header = () => {
       <Routes>
         <Route
           path="*"
-          element={<Search isntAgent={true} isEditAgent={false} />}
+          element={
+            <Search isntAgent={true} isEditAgent={false} userId={user.userID} />
+          }
         />
         <Route
           path="/SearchAgents"
