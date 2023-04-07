@@ -95,6 +95,14 @@ const JobChoices = (props) => {
     return classes;
   };
 
+  const JobApplication = () => {
+    if (props.userId !== undefined) {
+      navigate("/JobApplication");
+    } else {
+      navigate("/Login");
+    }
+  };
+
   return (
     <div dir="rtl" className="divStyle rounded mx-auto row">
       <div className="col-2">
@@ -106,7 +114,10 @@ const JobChoices = (props) => {
         <i role="button" className={likeClass()} onClick={LikeJob}></i>
       </div>
       <div className="col-6"></div>
-      <button className="btn btn-outline-light btn-lg sendCvBtn col-4">
+      <button
+        className="btn btn-outline-light btn-lg sendCvBtn col-4"
+        onClick={JobApplication}
+      >
         הגשת מועמדות
       </button>
     </div>

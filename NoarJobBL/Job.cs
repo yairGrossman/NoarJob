@@ -237,7 +237,7 @@ namespace NoarJobBL
                     dt.Rows[i]["FirstName"].ToString(),
                     dt.Rows[i]["LastName"].ToString(),
                     dt.Rows[i]["Phone"].ToString(),
-                    dt.Rows[i]["CityName"].ToString(),
+                    new KeyValuePair<int,string>((int)dt.Rows[i]["CityID"], dt.Rows[i]["CityName"].ToString()),
                     dt.Rows[i]["CvFilePath"].ToString(),
                     (bool)dt.Rows[i]["IsActive"]
                     );

@@ -20,6 +20,13 @@ namespace NoarJobAPI.Controllers
             return new JsonResult("error");
         }
 
+        [HttpPost("UpdateUser")]
+        public void UpdateUser(User userReq)
+        {
+            User user = new User();
+            user.UpdateUser(userReq.UserID, userReq.Email, userReq.UserPassword, userReq.FirstName, userReq.LastName, userReq.Phone, userReq.City.Key);
+        }
+
         [HttpGet("CreateUser")]
         public JsonResult CreateUser(string email, string userPassword, string firstName, string lastName, string phone, int cityID, string cityName)
         {

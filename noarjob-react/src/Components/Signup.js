@@ -4,7 +4,6 @@ import "./Styles/SearchBody.css";
 import { variables } from "../Variables";
 
 const Signup = (props) => {
-  const [user, setUser] = useState();
   const [cityName, setCityName] = useState("");
   const [cityId, setCityId] = useState(0);
   const [chosenCity, setChosenCity] = useState([]);
@@ -25,7 +24,7 @@ const Signup = (props) => {
       email !== "" &&
       password !== "" &&
       firstName !== "" &&
-      lastName != "" &&
+      lastName !== "" &&
       phone !== "" &&
       chosenCity.length !== 0
     ) {
@@ -33,8 +32,7 @@ const Signup = (props) => {
       fetch(variables.API_URL + url)
         .then((response) => response.json())
         .then((data) => {
-          setUser(data);
-          props.onLogin(data.firstName);
+          props.onLogin(data);
         });
     }
   };
@@ -151,15 +149,15 @@ const Signup = (props) => {
         </button>
 
         <div className="d-flex justify-content-center text-center mt-4 pt-1">
-          <a className="text-white">
+          <span className="text-white">
             <i className="fab fa-facebook-f fa-lg"></i>
-          </a>
-          <a className="text-white">
+          </span>
+          <span className="text-white">
             <i className="fab fa-twitter fa-lg mx-4 px-2"></i>
-          </a>
-          <a className="text-white">
+          </span>
+          <span className="text-white">
             <i className="fab fa-google fa-lg"></i>
-          </a>
+          </span>
         </div>
       </div>
     </Card>

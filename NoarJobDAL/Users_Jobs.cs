@@ -33,7 +33,8 @@ namespace NoarJobDAL
                                    Users.FirstName, 
                                    Users.LastName, 
                                    Users.Phone, 
-                                   Cities.CityName
+                                   Cities.CityName,
+                                   Cities.CityID
                             FROM   Cvs 
                                    INNER JOIN (Cities 
                                    INNER JOIN (Users 
@@ -129,8 +130,8 @@ namespace NoarJobDAL
         public static void InsertUser_Job(int JobID, int UserID, int UserJobType)
         {
             string sql = $@"
-                         INSERT INTO Users_Jobs (JobID, UserID, UserJobType, CvID)
-                         VALUES ({JobID}, {UserID}, {UserJobType}, 30);
+                         INSERT INTO Users_Jobs (JobID, UserID, UserJobType)
+                         VALUES ({JobID}, {UserID}, {UserJobType});
                         ";
 
             DAL.DBHelper.ExecuteNonQuery(sql);

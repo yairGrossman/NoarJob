@@ -17,21 +17,21 @@ namespace NoarJobBL
         private string firstName;//שם פרטי
         private string lastName;//שם משפחה
         private string phone;//מספר הטלפון של המועמד
-        private string cityName;//שם העיר שבה גר המשתמש
+        private KeyValuePair<int,string> city;//שם העיר שבה גר המשתמש
         private List<Cv> lstCvs;//מערך קורות החיים של המשתמש
         private Cv chosenCvForJob;//קורות חיים ספציפיים שהמשתמש החליט לשלוח למשרה
 
         /// <summary>
         /// פעולה בונה שנועדה בשביל שהמעסיק יראה את את המועמדים ששלחו למשרה שלו מועמדות
         /// </summary>
-        public User(int userID, int cvID, string email, string firstName, string lastName, string phone, string cityName, string cvFilePath, bool isActive)
+        public User(int userID, int cvID, string email, string firstName, string lastName, string phone, KeyValuePair<int,string> city, string cvFilePath, bool isActive)
         {
             this.userID = userID;
             this.email = email;
             this.firstName = firstName;
             this.lastName = lastName;
             this.phone = phone;
-            this.cityName = cityName;
+            this.city = city;
             this.lstCvs = new List<Cv>();
             this.chosenCvForJob = new Cv(cvID, cvFilePath, isActive);
         }
@@ -51,6 +51,7 @@ namespace NoarJobBL
         public string Email
         {
             get { return this.email; }
+            set {this.email = value;}
         }
 
         public string UserPassword
@@ -61,21 +62,34 @@ namespace NoarJobBL
         public string FirstName
         {
             get { return this.firstName; }
+            set {this.firstName = value;}
         }
 
         public string LastName
         {
             get { return this.lastName; }
+            set
+            {
+                this.lastName = value;
+            }
         }
 
         public string Phone
         {
             get { return this.phone; }
+            set
+            {
+                this.phone = value;
+            }
         }
 
-        public string CityName
+        public KeyValuePair<int,string> City
         {
-            get { return this.cityName; }
+            get { return this.city; }
+            set
+            {
+                this.city = value;
+            }
         }
 
         public List<Cv> LstCvs
@@ -120,7 +134,7 @@ namespace NoarJobBL
                 this.firstName = dt.Rows[0]["FirstName"].ToString();
                 this.lastName = dt.Rows[0]["LastName"].ToString();
                 this.phone = dt.Rows[0]["Phone"].ToString();
-                this.cityName = dt.Rows[0]["CityName"].ToString();
+                this.city = new KeyValuePair<int,string>((int)dt.Rows[0]["CityID"], dt.Rows[0]["CityName"].ToString());
                 return true;
             }
             return false;
@@ -147,12 +161,19 @@ namespace NoarJobBL
                 this.firstName = firstName;
                 this.lastName = lastName;
                 this.phone = phone;
-                this.cityName = cityName;
+                this.city = new KeyValuePair<int,string>(cityID, cityName);
                 return true;
             }
             else
                 return false;
         }
+        
+        //פונקציה לעדכון פרטי המשתמש
+        public void UpdateUser(int userID, string email, string userPassword, string firstName, string lastName, string phone, int cityID) 
+        { 
+            Users.UpdateUser(userID, email, userPassword, firstName, lastName, phone, cityID);
+        }
+
 
         /// <summary>
         /// פונקציה המחזירה את המשרות שהמשתמש הגיש אליהם מועמדות
@@ -196,10 +217,10 @@ namespace NoarJobBL
             Users_Jobs.UpdateUserJobType(jobID, this.userID, userJobType, dateApplicated, cvID);
         }
 
-            /// <summary>
-            /// פונקציה ליצירת רשומה חדשה בעת הגשת מועמדות של משתמש למשרה
-            /// </summary>
-            public void CreateUser_Job(int jobID, int cvID, DateTime dateApplicated)
+        /// <summary>
+        /// פונקציה ליצירת רשומה חדשה בעת הגשת מועמדות של משתמש למשרה
+        /// </summary>
+        public void CreateUser_Job(int jobID, int cvID, DateTime dateApplicated)
         {
             Users_Jobs.InsertUser_Job(jobID, this.userID, cvID, dateApplicated);
         }

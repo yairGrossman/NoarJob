@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import "./Styles/Header.css";
 import { NavLink, Route, Routes, useNavigate } from "react-router-dom";
 import Login from "./Login";
-import Search from "./SearchComp/Search";
 import Signup from "./Signup";
+import Search from "./SearchComp/Search";
 import SearchAgents from "./SearchAgentComp/SearchAgents";
 import { variables } from "../Variables";
 import AddSearchAgents from "./SearchAgentComp/AddSearchAgent";
 import Jobs from "./JobComp/Jobs";
 import MostSoughtJob from "./MostSoughtJobComp/MostSoughtJob";
+import JobApplication from "./JobComp/JobApplication";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -211,6 +212,10 @@ const Header = () => {
             <Search isntAgent={true} isEditAgent={false} userId={user.userID} />
           }
         />
+        <Route
+          path="/JobApplication"
+          element={<JobApplication user={user} setUser={setUser} />}
+        ></Route>
         <Route
           path="/SearchAgents"
           element={
