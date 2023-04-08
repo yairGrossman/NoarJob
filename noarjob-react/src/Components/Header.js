@@ -10,6 +10,7 @@ import AddSearchAgents from "./SearchAgentComp/AddSearchAgent";
 import Jobs from "./JobComp/Jobs";
 import MostSoughtJob from "./MostSoughtJobComp/MostSoughtJob";
 import JobApplication from "./JobComp/JobApplication";
+import Cvs from "./JobComp/Cvs";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -245,6 +246,7 @@ const Header = () => {
         />
         <Route path="/JobsAgent" element={<Jobs jobs={jobs} />} />
         <Route path="/MostSoughtJob" element={<MostSoughtJob jobs={jobs} />} />
+        <Route path="/Cvs" element={<Cvs user={user} setUser={setUser} />} />
       </Routes>
     </div>
   );

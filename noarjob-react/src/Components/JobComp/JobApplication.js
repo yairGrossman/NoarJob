@@ -1,21 +1,22 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import "../Styles/JobApplication.css";
 import { variables } from "../../Variables";
+import { useNavigate } from "react-router-dom";
 
 const JobApplication = (props) => {
-  const fileInputRef = useRef(null);
+  const navigate = useNavigate();
   const [editable, setEditable] = useState(false);
   const [city, setCity] = useState();
 
-  /*פונקציה שמופעלת כאשר לוחצים על הוספת קובץ
-  ואז אתה יכול לבחור את הקובץ במחשב */
-  const openFiles = () => {
-    fileInputRef.current.click();
-  };
-
-  /*פונקציה ששומרת את קורות החיים שהמשתמש בחר */
-  const handleFileSelect = (event) => {
-    console.log(event.target.files);
+  const NavToCvs = () => {
+    fetch(variables.API_URL + "User/SetUserCvs?userID=" + props.user.userID)
+      .then((response) => response.json())
+      .then((data) => {
+        props.setUser((prevUser) => {
+          return { ...prevUser, lstCvs: data.lstCvs };
+        });
+        navigate("/Cvs");
+      });
   };
 
   //פונקציה לשמירת השם הפרטי
@@ -120,16 +121,10 @@ const JobApplication = (props) => {
               <i
                 role="button"
                 className="bi bi-file-earmark-plus me-3 addCvText"
-                onClick={openFiles}
+                onClick={NavToCvs}
               ></i>
               <span className="bodyColor">:הוספת קובץ קורות חיים</span>
             </h3>
-            <input
-              type="file"
-              ref={fileInputRef}
-              onChange={handleFileSelect}
-              style={{ display: "none" }}
-            />
           </div>
         </div>
       </div>

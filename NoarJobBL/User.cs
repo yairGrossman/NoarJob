@@ -1,11 +1,7 @@
-﻿using System;
+﻿using NoarJobDAL;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using NoarJobDAL;
 
 namespace NoarJobBL
 {
@@ -17,14 +13,14 @@ namespace NoarJobBL
         private string firstName;//שם פרטי
         private string lastName;//שם משפחה
         private string phone;//מספר הטלפון של המועמד
-        private KeyValuePair<int,string> city;//שם העיר שבה גר המשתמש
+        private KeyValuePair<int, string> city;//שם העיר שבה גר המשתמש
         private List<Cv> lstCvs;//מערך קורות החיים של המשתמש
         private Cv chosenCvForJob;//קורות חיים ספציפיים שהמשתמש החליט לשלוח למשרה
 
         /// <summary>
         /// פעולה בונה שנועדה בשביל שהמעסיק יראה את את המועמדים ששלחו למשרה שלו מועמדות
         /// </summary>
-        public User(int userID, int cvID, string email, string firstName, string lastName, string phone, KeyValuePair<int,string> city, string cvFilePath, bool isActive)
+        public User(int userID, int cvID, string email, string firstName, string lastName, string phone, KeyValuePair<int, string> city, string cvFilePath, bool isActive, string fileName)
         {
             this.userID = userID;
             this.email = email;
@@ -33,7 +29,7 @@ namespace NoarJobBL
             this.phone = phone;
             this.city = city;
             this.lstCvs = new List<Cv>();
-            this.chosenCvForJob = new Cv(cvID, cvFilePath, isActive);
+            this.chosenCvForJob = new Cv(cvID, cvFilePath, isActive, fileName);
         }
 
         public User()
@@ -45,13 +41,13 @@ namespace NoarJobBL
         public int UserID
         {
             get { return this.userID; }
-            set {this.userID = value;}
+            set { this.userID = value; }
         }
 
         public string Email
         {
             get { return this.email; }
-            set {this.email = value;}
+            set { this.email = value; }
         }
 
         public string UserPassword
@@ -62,7 +58,7 @@ namespace NoarJobBL
         public string FirstName
         {
             get { return this.firstName; }
-            set {this.firstName = value;}
+            set { this.firstName = value; }
         }
 
         public string LastName
@@ -83,7 +79,7 @@ namespace NoarJobBL
             }
         }
 
-        public KeyValuePair<int,string> City
+        public KeyValuePair<int, string> City
         {
             get { return this.city; }
             set
@@ -112,7 +108,13 @@ namespace NoarJobBL
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                this.lstCvs.Add(new Cv((int)dt.Rows[i]["CvID"], dt.Rows[i]["CvFilePath"].ToString(), (bool)dt.Rows[i]["IsActive"]));
+                this.lstCvs.Add(new Cv(
+                    (int)dt.Rows[i]["CvID"],
+                    dt.Rows[i]["CvFilePath"].ToString(),
+                    true,
+                    dt.Rows[i]["FileName"].ToString()
+                 )
+               );
             }
         }
 
@@ -134,7 +136,7 @@ namespace NoarJobBL
                 this.firstName = dt.Rows[0]["FirstName"].ToString();
                 this.lastName = dt.Rows[0]["LastName"].ToString();
                 this.phone = dt.Rows[0]["Phone"].ToString();
-                this.city = new KeyValuePair<int,string>((int)dt.Rows[0]["CityID"], dt.Rows[0]["CityName"].ToString());
+                this.city = new KeyValuePair<int, string>((int)dt.Rows[0]["CityID"], dt.Rows[0]["CityName"].ToString());
                 return true;
             }
             return false;
@@ -161,17 +163,17 @@ namespace NoarJobBL
                 this.firstName = firstName;
                 this.lastName = lastName;
                 this.phone = phone;
-                this.city = new KeyValuePair<int,string>(cityID, cityName);
+                this.city = new KeyValuePair<int, string>(cityID, cityName);
                 return true;
             }
             else
                 return false;
         }
-        
+
         //פונקציה לעדכון פרטי המשתמש
-        public void UpdateUser(int userID, string email, string userPassword, string firstName, string lastName, string phone, int cityID) 
-        { 
-            Users.UpdateUser(userID, email, userPassword, firstName, lastName, phone, cityID);
+        public void UpdateUser(int userID, string email, string firstName, string lastName, string phone, int cityID)
+        {
+            Users.UpdateUser(userID, email, firstName, lastName, phone, cityID);
         }
 
 

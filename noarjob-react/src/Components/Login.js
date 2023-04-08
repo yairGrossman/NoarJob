@@ -9,17 +9,20 @@ const Login = (props) => {
   const Login_Click = () => {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
-    fetch(
-      variables.API_URL +
-        "User/UserLogin?email=" +
-        email +
-        "&password=" +
-        password
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        props.onLogin(data);
-      });
+    if (password !== "" && email !== "") {
+      fetch(
+        variables.API_URL +
+          "User/UserLogin?email=" +
+          email +
+          "&password=" +
+          password
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          if (data !== "error") props.onLogin(data);
+        })
+        .catch((error) => console.error(error));
+    }
   };
 
   return (

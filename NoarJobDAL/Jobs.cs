@@ -20,6 +20,7 @@ namespace NoarJobDAL
                              SELECT Jobs.JobID, 
                                     Users_Jobs.UserID, 
                                     Users_Jobs.DateApplicated, 
+                                    Users_Jobs.UserJobType,
                                     Jobs.Title, 
                                     Jobs.Description, 
                                     Jobs.Requirements, 
@@ -36,7 +37,7 @@ namespace NoarJobDAL
                                     LEFT JOIN Users_Jobs 
                                     ON (Jobs.JobID = Users_Jobs.JobID 
                                         AND 
-                                        Users_Jobs.UserJobType = 1 
+                                        Users_Jobs.UserJobType <> 3 
                                         AND 
                                         Users_Jobs.UserID = {UserID})) 
                                     ON Employers.EmployerID = Jobs.EmployerID) 

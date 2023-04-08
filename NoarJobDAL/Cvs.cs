@@ -19,9 +19,10 @@ namespace NoarJobDAL
             string sql = $@"SELECT Cvs.CvID, 
                                    Cvs.UserID, 
                                    Cvs.CvFilePath, 
-                                   Cvs.IsActive
+                                   Cvs.IsActive,
+                                   Cvs.FileName
                             FROM   Cvs
-                            WHERE  Cvs.UserID={UserID};";
+                            WHERE  Cvs.UserID={UserID} AND Cvs.IsActive=true";
             DataTable dt = DAL.DBHelper.GetDataTable(sql);
             return dt;
         }
@@ -47,10 +48,10 @@ namespace NoarJobDAL
         /// <param name="cvFilePath">המיקום של קובץ קורות החיים</param>
         /// <param name="userID">של משתמש ID</param>
         /// <returns></returns>
-        public static int InsertUserCv(string cvFilePath, int userID)
+        public static int InsertUserCv(string cvFilePath, int userID, string FileName)
         {
-            string sql = $@"INSERT INTO Cvs (CvFilePath, UserID, IsActive)
-                            VALUES ('{cvFilePath}', {userID}, true);";
+            string sql = $@"INSERT INTO Cvs (CvFilePath, UserID, IsActive, FileName)
+                            VALUES ('{cvFilePath}', {userID}, true, '{FileName}');";
 
             int cvID = DAL.DBHelper.ExecuteInsertGetIdentity(sql);
             return cvID;

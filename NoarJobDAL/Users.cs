@@ -59,17 +59,14 @@ namespace NoarJobDAL
         /// שאילתה לעדכון רשומת משתמש
         /// </summary>
         /// <param name="UserID">של המשתמש ID</param>
-        /// <param name="UserType">סוג המשתמש: 1-מעסיק, 2 - מועמד</param>
         /// <param name="Email">אימייל</param>
-        /// <param name="UserPassword">סיסמא</param>
         /// <param name="FirstName">שם פרטי</param>
         /// <param name="LastName">שם משפחה</param>
         /// <returns></returns>
-        public static int UpdateUser(int UserID, string Email, string UserPassword, string FirstName, string LastName, string Phone, int CityID)
+        public static int UpdateUser(int UserID, string Email, string FirstName, string LastName, string Phone, int CityID)
         {
             string sql = $@" 
                               UPDATE Users SET Users.Email = '{Email}', 
-                                               Users.[UserPassword] = '{UserPassword}', 
                                                Users.FirstName = '{FirstName}', 
                                                Users.LastName = '{LastName}',
                                                Users.Phone = '{Phone}',

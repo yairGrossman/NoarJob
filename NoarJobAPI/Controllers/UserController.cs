@@ -24,7 +24,7 @@ namespace NoarJobAPI.Controllers
         public void UpdateUser(User userReq)
         {
             User user = new User();
-            user.UpdateUser(userReq.UserID, userReq.Email, userReq.UserPassword, userReq.FirstName, userReq.LastName, userReq.Phone, userReq.City.Key);
+            user.UpdateUser(userReq.UserID, userReq.Email, userReq.FirstName, userReq.LastName, userReq.Phone, userReq.City.Key);
         }
 
         [HttpGet("CreateUser")]
@@ -96,6 +96,24 @@ namespace NoarJobAPI.Controllers
             User user = new User();
             user.UserID = userID;
             user.CreateUser_Job(jobID, userJobType);
+        }
+
+        [HttpPost("Savefile")]
+        public async Task<IActionResult> SaveFile([FromForm] IFormFile file, [FromForm] string cvFileName)
+        {
+            if (file == null || file.Length == 0)
+                return BadRequest("No file was uploaded");
+
+            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+            var filePath = Path.Combine("Cvs", fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            var response = new { FilePath = filePath };
+            return Ok(response);
         }
     }
 }

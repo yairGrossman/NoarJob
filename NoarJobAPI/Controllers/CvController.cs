@@ -9,11 +9,22 @@ namespace NoarJobAPI.Controllers
     public class CvController : ControllerBase
     {
         [HttpPost("InsertCv")]
-        public JsonResult InsertCv(string cvFilePath, int userID)
+        public async Task<IActionResult> InsertCv([FromForm] int userID, [FromForm] string cvFileName, [FromForm] IFormFile file)
         {
+            if (file == null || file.Length == 0)
+                return BadRequest("No file was uploaded");
+
+            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+            var filePath = Path.Combine("Cvs", fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
             Cv cv = new Cv();
-            cv.InsertCv(cvFilePath, userID);
-            return new JsonResult(cv);
+            cv.InsertCv(filePath, userID, cvFileName);
+            return Ok(cv);
         }
 
         [HttpGet("UpdateCvActivity")]

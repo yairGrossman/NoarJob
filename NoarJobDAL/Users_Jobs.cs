@@ -29,6 +29,7 @@ namespace NoarJobDAL
                                    Users_Jobs.Notes,
                                    Cvs.CvFilePath, 
                                    Cvs.IsActive, 
+                                   Cvs.FileName,
                                    Users.Email, 
                                    Users.FirstName, 
                                    Users.LastName, 

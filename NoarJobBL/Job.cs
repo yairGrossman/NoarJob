@@ -239,7 +239,8 @@ namespace NoarJobBL
                     dt.Rows[i]["Phone"].ToString(),
                     new KeyValuePair<int,string>((int)dt.Rows[i]["CityID"], dt.Rows[i]["CityName"].ToString()),
                     dt.Rows[i]["CvFilePath"].ToString(),
-                    (bool)dt.Rows[i]["IsActive"]
+                    (bool)dt.Rows[i]["IsActive"],
+                    dt.Rows[i]["FileName"].ToString()
                     );
             }
             return arrUsers;

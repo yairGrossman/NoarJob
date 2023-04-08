@@ -17,4 +17,8 @@
     <ProjectReference Include="..\NoarJobBL\NoarJobBL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Cvs\" />
+  </ItemGroup>
+
 </Project>
