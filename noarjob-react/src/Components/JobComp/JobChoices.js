@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../Styles/JobChoices.css";
 import { variables } from "../../Variables";
 import { useNavigate } from "react-router-dom";
+import { AppContext } from "../../AppContext";
 
 const JobChoices = (props) => {
+  const { setJobForApplication } = useContext(AppContext);
   const navigate = useNavigate();
   const DeleteJob = () => {
     if (props.userId !== undefined) {
@@ -97,6 +99,7 @@ const JobChoices = (props) => {
 
   const JobApplication = () => {
     if (props.userId !== undefined) {
+      setJobForApplication(props.jobId);
       navigate("/JobApplication");
     } else {
       navigate("/Login");

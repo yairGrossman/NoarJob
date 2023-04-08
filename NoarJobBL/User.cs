@@ -214,7 +214,7 @@ namespace NoarJobBL
         /// שאילתת עדכון שמעבירה את הסוג שהמשתמש בחר למשרה
         /// לשליחת מועמדות
         /// </summary>
-        public void UpdateUserJobType(int jobID, int userJobType, DateTime dateApplicated, int cvID)
+        public void UpdateUserJobType(int jobID, int userJobType, string dateApplicated, int cvID)
         {
             Users_Jobs.UpdateUserJobType(jobID, this.userID, userJobType, dateApplicated, cvID);
         }
@@ -222,7 +222,7 @@ namespace NoarJobBL
         /// <summary>
         /// פונקציה ליצירת רשומה חדשה בעת הגשת מועמדות של משתמש למשרה
         /// </summary>
-        public void CreateUser_Job(int jobID, int cvID, DateTime dateApplicated)
+        public void CreateUser_Job(int jobID, int cvID, string dateApplicated)
         {
             Users_Jobs.InsertUser_Job(jobID, this.userID, cvID, dateApplicated);
         }

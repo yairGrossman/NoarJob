@@ -111,19 +111,45 @@ const JobApplication = (props) => {
     } else setEditable(true);
   };
 
+  const SendJobApplication = () => {
+    const now = new Date();
+    const dateApplicated = now.toLocaleDateString("en-US");
+    const formData = new FormData();
+    formData.append("jobID", props.jobForApplication);
+    formData.append("userID", props.user.userID);
+    formData.append("cvID", props.user.chosenCvForJob.cvID);
+    formData.append("dateApplicated", dateApplicated);
+    fetch(variables.API_URL + "User/CreateUser_Job", {
+      method: "POST",
+      body: formData,
+    })
+      .then(() => {
+        navigate("/");
+      })
+      .catch((error) => console.error(error));
+  };
+
   return (
     <React.Fragment>
       <h2 className="subTitle text-center mb-4">:הגשת מועמדות למשרה</h2>
-      <div className="row d-flex justify-content-center mb-5">
+      <div className="row d-flex justify-content-center mb-5 mx-0">
         <div className="card col-xl-4">
           <div className="card-body text-center">
             <h3>
-              <i
-                role="button"
-                className="bi bi-file-earmark-plus me-3 addCvText"
-                onClick={NavToCvs}
-              ></i>
-              <span className="bodyColor">:הוספת קובץ קורות חיים</span>
+              {props.userChooseCv ? (
+                <span className="bodyColor">
+                  {props.user.chosenCvForJob.fileName}
+                </span>
+              ) : (
+                <React.Fragment>
+                  <i
+                    role="button"
+                    className="bi bi-file-earmark-plus me-3 addCvText"
+                    onClick={NavToCvs}
+                  ></i>
+                  <span className="bodyColor">:הוספת קובץ קורות חיים</span>
+                </React.Fragment>
+              )}
             </h3>
           </div>
         </div>
@@ -131,7 +157,7 @@ const JobApplication = (props) => {
       <h2 className="subTitle text-center mb-4">
         :קורות החיים ישלחו עם הפרטים הבאים
       </h2>
-      <div className="row d-flex justify-content-center mb-5 bodyColor">
+      <div className="row d-flex justify-content-center mb-5 bodyColor mx-0">
         <div className="card col-xl-3">
           <div dir="rtl" className="card-body">
             <div className="row mb-2">
@@ -221,6 +247,14 @@ const JobApplication = (props) => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="d-flex justify-content-center">
+        <button
+          className="btn btn-outline-light btn-lg myBtn fs-4"
+          onClick={SendJobApplication}
+        >
+          הגש מועמדות
+        </button>
       </div>
     </React.Fragment>
   );

@@ -1,7 +1,10 @@
 import React, { useRef, useState } from "react";
 import { variables } from "../../Variables";
+import { useNavigate } from "react-router-dom";
+import "../Styles/Cvs.css";
 
 const Cvs = (props) => {
+  const navigate = useNavigate();
   const fileInputRef = useRef(null);
   const [cvFileName, setCvFileName] = useState("");
 
@@ -11,6 +14,8 @@ const Cvs = (props) => {
       return { ...prevUser, chosenCvForJob: cv };
     });
     alert("בחירתך נשמרה!");
+    props.setUserChooseCv(true);
+    navigate("/JobApplication");
   };
 
   const AddCv = () => {
@@ -44,7 +49,7 @@ const Cvs = (props) => {
   };
 
   const OpenFile = (event) => {
-    const filePath = event.target.getAttribute("data-filePath");
+    const filePath = event.target.getAttribute("data-filepath");
     window.open("http://localhost:5063/" + filePath);
   };
 
@@ -69,10 +74,10 @@ const Cvs = (props) => {
                       onClick={ChosenCv}
                     ></i>
                     <span
-                      data-filePath={cv.cvFilePath}
+                      data-filepath={cv.cvFilePath}
                       role="button"
                       dir="rtl"
-                      className="bodyColor col-10"
+                      className="bodyColor col-10 fileSelected"
                       onClick={OpenFile}
                     >
                       {cv.fileName}

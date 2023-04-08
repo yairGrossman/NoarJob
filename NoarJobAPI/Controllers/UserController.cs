@@ -75,15 +75,15 @@ namespace NoarJobAPI.Controllers
         }
 
         [HttpGet("UpdateJobApplication")]
-        public void UpdateJobApplication(int jobID, int userID, int userJobType, DateTime dateApplicated, int cvID)
+        public void UpdateJobApplication(int jobID, int userID, int userJobType, string dateApplicated, int cvID)
         {
             User user = new User();
             user.UserID = userID;
             user.UpdateUserJobType(jobID, userJobType, dateApplicated, cvID);
         }
 
-        [HttpGet("CreateUser_Job")]
-        public void CreateUser_Job(int jobID, int userID, int cvID, DateTime dateApplicated)
+        [HttpPost("CreateUser_Job")]
+        public void CreateUser_Job([FromForm]int jobID, [FromForm] int userID, [FromForm] int cvID, [FromForm] string dateApplicated)
         {
             User user = new User();
             user.UserID = userID;

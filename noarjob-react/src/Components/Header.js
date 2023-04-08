@@ -11,6 +11,7 @@ import Jobs from "./JobComp/Jobs";
 import MostSoughtJob from "./MostSoughtJobComp/MostSoughtJob";
 import JobApplication from "./JobComp/JobApplication";
 import Cvs from "./JobComp/Cvs";
+import { AppContext } from "../AppContext";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -31,6 +32,10 @@ const Header = () => {
   const [agentTxt, setAgentTxt] = useState("");
   //משתנה לשמירת המשרות של הוסכן החכם
   const [jobs, setJobs] = useState();
+  //משתנה לשמירת התז של המשרה שאליה רוצה להגיש המועמד קורות חיים
+  const [jobForApplication, setJobForApplication] = useState();
+  //משתנה לשמירת האם המשתמש בחר קורות חיים
+  const [userChooseCv, setUserChooseCv] = useState(false);
 
   /*פונקציה שמופעלת כאשר לוחצים על הכפתור של כניסה */
   const MoveToLogin = () => {
@@ -136,6 +141,7 @@ const Header = () => {
     setAgentTxt(agentTxt);
   };
 
+  //פונקציה שמופעלת כאשר המשתמש רוצה לחפש משרה דרך סוכן חכם
   const AgentSearch = (jobs) => {
     setJobs(jobs);
     navigate("/JobsAgent");
@@ -206,48 +212,79 @@ const Header = () => {
           </div>
         </header>
       </div>
-      <Routes>
-        <Route
-          path="*"
-          element={
-            <Search isntAgent={true} isEditAgent={false} userId={user.userID} />
-          }
-        />
-        <Route
-          path="/JobApplication"
-          element={<JobApplication user={user} setUser={setUser} />}
-        ></Route>
-        <Route
-          path="/SearchAgents"
-          element={
-            <SearchAgents
-              searchAgents={searchAgents}
-              deleteAgent={setSearchAgents}
-              titleNameFun={AdditAgentTitle}
-              EditAgentValues={EditAgentValues}
-              AgentSearch={AgentSearch}
-            />
-          }
-        />
-        <Route path="/Login" element={<Login onLogin={OnLogin} />} />
-        <Route path="/Signup" element={<Signup onLogin={OnLogin} />} />
-        <Route
-          path="/AddAgent/*"
-          element={
-            <AddSearchAgents
-              user={user}
-              additAgent={UserLogged}
-              titleName={additAgentTitle}
-              editAgentIds={editAgentIds}
-              editAgentValues={editAgentValues}
-              agentTxt={agentTxt}
-            />
-          }
-        />
-        <Route path="/JobsAgent" element={<Jobs jobs={jobs} />} />
-        <Route path="/MostSoughtJob" element={<MostSoughtJob jobs={jobs} />} />
-        <Route path="/Cvs" element={<Cvs user={user} setUser={setUser} />} />
-      </Routes>
+      <AppContext.Provider value={{ setJobForApplication }}>
+        <Routes>
+          <Route
+            path="*"
+            element={
+              <Search
+                isntAgent={true}
+                isEditAgent={false}
+                userId={user.userID}
+              />
+            }
+          />
+          <Route
+            path="/JobApplication"
+            element={
+              <JobApplication
+                user={user}
+                setUser={setUser}
+                jobForApplication={jobForApplication}
+                userChooseCv={userChooseCv}
+              />
+            }
+          />
+          <Route
+            path="/SearchAgents"
+            element={
+              <SearchAgents
+                searchAgents={searchAgents}
+                deleteAgent={setSearchAgents}
+                titleNameFun={AdditAgentTitle}
+                EditAgentValues={EditAgentValues}
+                AgentSearch={AgentSearch}
+              />
+            }
+          />
+          <Route
+            path="/MostSoughtJob"
+            element={
+              <MostSoughtJob
+                jobs={jobs}
+                setJobs={setJobs}
+                userId={user.userID}
+              />
+            }
+          />
+          <Route path="/JobsAgent" element={<Jobs jobs={jobs} />} />
+          <Route path="/Login" element={<Login onLogin={OnLogin} />} />
+          <Route path="/Signup" element={<Signup onLogin={OnLogin} />} />
+          <Route
+            path="/AddAgent/*"
+            element={
+              <AddSearchAgents
+                user={user}
+                additAgent={UserLogged}
+                titleName={additAgentTitle}
+                editAgentIds={editAgentIds}
+                editAgentValues={editAgentValues}
+                agentTxt={agentTxt}
+              />
+            }
+          />
+          <Route
+            path="/Cvs"
+            element={
+              <Cvs
+                user={user}
+                setUser={setUser}
+                setUserChooseCv={setUserChooseCv}
+              />
+            }
+          />
+        </Routes>
+      </AppContext.Provider>
     </div>
   );
 };

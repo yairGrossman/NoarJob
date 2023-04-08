@@ -113,7 +113,7 @@ namespace NoarJobDAL
         /// <param name="UserID">של משתמש ID</param>
         /// /// <param name="DateApplicated">תאריך הגשת המועמדות של המשתמש למשרה</param>
         /// <param name="CvID">של קורות חיים ID</param>
-        public static void InsertUser_Job(int JobID, int UserID, int CvID, DateTime DateApplicated)
+        public static void InsertUser_Job(int JobID, int UserID, int CvID, string DateApplicated)
         {
             string sql = $@"
                          INSERT INTO Users_Jobs (JobID, UserID, CvID, DateApplicated, UserJobType, TabType)
@@ -199,7 +199,7 @@ namespace NoarJobDAL
         /// <param name="JobID"></param>
         /// <param name="UserID"></param>
         /// <param name="UserJobType"></param>
-        public static void UpdateUserJobType(int JobID, int UserID, int UserJobType, DateTime DateApplicated, int CvID)
+        public static void UpdateUserJobType(int JobID, int UserID, int UserJobType, string DateApplicated, int CvID)
         {
             string sql = $@"
                     UPDATE Users_Jobs SET Users_Jobs.UserJobType = {UserJobType}, 
