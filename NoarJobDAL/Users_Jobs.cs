@@ -61,10 +61,11 @@ namespace NoarJobDAL
         public static DataTable[] GetApplyForOrLovedJobs(int UserID, int UserJobType)
         {
             string sql = $@"
-                            SELECT Users_Jobs.UserID, 
-	                               Jobs.JobID, 
+	                        SELECT Jobs.JobID, 
+                                   Users_Jobs.UserID, 
 	                               Users_Jobs.UserID, 
 	                               Users_Jobs.DateApplicated, 
+                                   Users_Jobs.UserJobType,
 	                               Jobs.Title, 
 	                               Jobs.Description, 
 	                               Jobs.Requirements, 

@@ -5,6 +5,8 @@ import JobChoices from "./JobChoices";
 import "../Styles/Job.css";
 
 const Job = (props) => {
+  const categoriesKeys = Object.keys(props.categories);
+  delete props.categories[categoriesKeys[0]];
   return (
     <Card cardSize={"col-xl-8"}>
       <div dir="rtl" className="container">

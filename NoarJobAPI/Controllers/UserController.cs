@@ -97,23 +97,5 @@ namespace NoarJobAPI.Controllers
             user.UserID = userID;
             user.CreateUser_Job(jobID, userJobType);
         }
-
-        [HttpPost("Savefile")]
-        public async Task<IActionResult> SaveFile([FromForm] IFormFile file, [FromForm] string cvFileName)
-        {
-            if (file == null || file.Length == 0)
-                return BadRequest("No file was uploaded");
-
-            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-            var filePath = Path.Combine("Cvs", fileName);
-
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                await file.CopyToAsync(stream);
-            }
-
-            var response = new { FilePath = filePath };
-            return Ok(response);
-        }
     }
 }

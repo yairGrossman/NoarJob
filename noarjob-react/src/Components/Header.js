@@ -12,6 +12,7 @@ import MostSoughtJob from "./MostSoughtJobComp/MostSoughtJob";
 import JobApplication from "./JobComp/JobApplication";
 import Cvs from "./JobComp/Cvs";
 import { AppContext } from "../AppContext";
+import MyJobs from "./MyJobs/MyJobs";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -79,7 +80,6 @@ const Header = () => {
             setSearchAgents(data);
           }
         });
-
       if (
         event === "searchAgent" ||
         event.target.getAttribute("data-value") === "searchAgentLink"
@@ -147,6 +147,20 @@ const Header = () => {
     navigate("/JobsAgent");
   };
 
+  const MoveToMyJobs = () => {
+    if (logged) {
+      fetch(variables.API_URL + "User/GetApplyForJobs?userID=" + user.userID)
+        .then((response) => response.json())
+        .then((data) => {
+          setJobs(data);
+          navigate("/MyJobs");
+        })
+        .catch((error) => console.log(error));
+    } else {
+      navigate("/Login");
+    }
+  };
+
   return (
     <div>
       <div className="container">
@@ -182,7 +196,11 @@ const Header = () => {
               </span>
             </li>
             <li>
-              <span role="button" className="nav-link px-2 link-dark myLink">
+              <span
+                role="button"
+                className="nav-link px-2 link-dark myLink"
+                onClick={MoveToMyJobs}
+              >
                 המשרות שלי
               </span>
             </li>
@@ -281,6 +299,12 @@ const Header = () => {
                 setUser={setUser}
                 setUserChooseCv={setUserChooseCv}
               />
+            }
+          />
+          <Route
+            path="/MyJobs"
+            element={
+              <MyJobs jobs={jobs} setJobs={setJobs} userId={user.userID} />
             }
           />
         </Routes>
