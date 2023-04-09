@@ -71,7 +71,7 @@ const MyJobs = (props) => {
               className="btn btn-outline-light btn-lg myBtn fs-4 col"
               onClick={ShowLovedJobs}
             >
-              היסטוריית משרות אליהם הגשתי מועמדות
+              משרות שאהבתי
             </button>
           </div>
         </div>
