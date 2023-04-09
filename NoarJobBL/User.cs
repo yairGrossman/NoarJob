@@ -214,9 +214,9 @@ namespace NoarJobBL
         /// שאילתת עדכון שמעבירה את הסוג שהמשתמש בחר למשרה
         /// לשליחת מועמדות
         /// </summary>
-        public void UpdateUserJobType(int jobID, int userJobType, string dateApplicated, int cvID)
+        public void UpdateUserJobType(int jobID, string dateApplicated, int cvID)
         {
-            Users_Jobs.UpdateUserJobType(jobID, this.userID, userJobType, dateApplicated, cvID);
+            Users_Jobs.UpdateUserJobType(jobID, this.userID, dateApplicated, cvID);
         }
 
         /// <summary>

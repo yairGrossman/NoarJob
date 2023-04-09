@@ -13,7 +13,7 @@ const Cvs = (props) => {
     props.setUser((prevUser) => {
       return { ...prevUser, chosenCvForJob: cv };
     });
-    alert("בחירתך נשמרה!");
+
     props.setUserChooseCv(true);
     navigate("/JobApplication");
   };
@@ -44,6 +44,7 @@ const Cvs = (props) => {
             lstCvs: [...prevUser.lstCvs, data],
           };
         });
+        setCvFileName("");
       })
       .catch((error) => console.error(error));
   };

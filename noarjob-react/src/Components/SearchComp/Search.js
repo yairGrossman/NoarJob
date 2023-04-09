@@ -387,31 +387,41 @@ const Search = (props) => {
       text: searchTxt,
     };
 
-    if (props.isEditAgent) {
-      fetch(variables.API_URL + "SearchAgent/UpdateSearchAgentValues", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(searchAgent),
-      })
-        .then(() => {
-          props.additAgent("searchAgent");
+    if (
+      searchAgent.parentCategoryKvp.key !== 0 &&
+      Object.keys(searchAgent.childCategoriesDictionary).length !== 0 &&
+      searchAgent.cityKvp.key !== 0 &&
+      Object.keys(searchAgent.typesDictionary).length !== 0 &&
+      searchAgent.text !== ""
+    ) {
+      if (props.isEditAgent) {
+        fetch(variables.API_URL + "SearchAgent/UpdateSearchAgentValues", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(searchAgent),
         })
-        .catch((error) => console.error(error));
+          .then(() => {
+            props.additAgent("searchAgent");
+          })
+          .catch((error) => console.error(error));
+      } else {
+        fetch(variables.API_URL + "SearchAgent/InsertSearchAgentValues", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(searchAgent),
+        })
+          .then((response) => response.json())
+          .then(() => {
+            props.additAgent("searchAgent");
+          })
+          .catch((error) => console.error(error));
+      }
     } else {
-      fetch(variables.API_URL + "SearchAgent/InsertSearchAgentValues", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(searchAgent),
-      })
-        .then((response) => response.json())
-        .then(() => {
-          props.additAgent("searchAgent");
-        })
-        .catch((error) => console.error(error));
+      alert("לא הכנסת את כל הנתונים");
     }
   };
 

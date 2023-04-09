@@ -29,6 +29,10 @@ namespace NoarJobAPI.Controllers
         {
             JobsBL jobsBL = new JobsBL();
             Job[] arrJobs = jobsBL.GetTheMostSoughtJobBL(mostSoughtJobBL.UserID, mostSoughtJobBL.ChildCategoriesLst, mostSoughtJobBL.CitiesLst, mostSoughtJobBL.TypesLst);
+            if(arrJobs == null)
+            {
+                return new JsonResult("error");
+            }
             return new JsonResult(arrJobs);
         }
     }

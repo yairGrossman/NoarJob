@@ -37,6 +37,8 @@ const Header = () => {
   const [jobForApplication, setJobForApplication] = useState();
   //משתנה לשמירת האם המשתמש בחר קורות חיים
   const [userChooseCv, setUserChooseCv] = useState(false);
+  //משתנה שעוזר לי לדעת האם המשתמש נמצא במשרות שלי
+  const [isMyJobs, setIsMyJobs] = useState(false);
 
   /*פונקציה שמופעלת כאשר לוחצים על הכפתור של כניסה */
   const MoveToLogin = () => {
@@ -123,8 +125,12 @@ const Header = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        setJobs(data);
-        navigate("/MostSoughtJob");
+        if (data === "error") {
+          alert("לא נמצאו משרות מתאימות");
+        } else {
+          setJobs(data);
+          navigate("/MostSoughtJob");
+        }
       })
       .catch((error) => console.error(error));
   };
@@ -143,8 +149,12 @@ const Header = () => {
 
   //פונקציה שמופעלת כאשר המשתמש רוצה לחפש משרה דרך סוכן חכם
   const AgentSearch = (jobs) => {
-    setJobs(jobs);
-    navigate("/JobsAgent");
+    if (jobs.length === 0) {
+      alert("לא נמצאו משרות מתאימות");
+    } else {
+      setJobs(jobs);
+      navigate("/JobsAgent");
+    }
   };
 
   const MoveToMyJobs = () => {
@@ -230,7 +240,9 @@ const Header = () => {
           </div>
         </header>
       </div>
-      <AppContext.Provider value={{ setJobForApplication }}>
+      <AppContext.Provider
+        value={{ setJobForApplication, setIsMyJobs, isMyJobs }}
+      >
         <Routes>
           <Route
             path="*"
@@ -250,6 +262,8 @@ const Header = () => {
                 setUser={setUser}
                 jobForApplication={jobForApplication}
                 userChooseCv={userChooseCv}
+                setUserChooseCv={setUserChooseCv}
+                setJobs={setJobs}
               />
             }
           />
@@ -282,7 +296,7 @@ const Header = () => {
             path="/AddAgent/*"
             element={
               <AddSearchAgents
-                user={user}
+                userId={user.userID}
                 additAgent={UserLogged}
                 titleName={additAgentTitle}
                 editAgentIds={editAgentIds}

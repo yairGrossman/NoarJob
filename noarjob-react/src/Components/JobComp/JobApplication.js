@@ -115,18 +115,44 @@ const JobApplication = (props) => {
     const now = new Date();
     const dateApplicated = now.toLocaleDateString("en-US");
     const formData = new FormData();
-    formData.append("jobID", props.jobForApplication);
+    formData.append("jobID", props.jobForApplication.jobId);
     formData.append("userID", props.user.userID);
     formData.append("cvID", props.user.chosenCvForJob.cvID);
     formData.append("dateApplicated", dateApplicated);
-    fetch(variables.API_URL + "User/CreateUser_Job", {
-      method: "POST",
-      body: formData,
-    })
-      .then(() => {
-        navigate("/");
+
+    if (props.jobForApplication.userJobType === 0) {
+      fetch(variables.API_URL + "User/CreateUser_Job", {
+        method: "POST",
+        body: formData,
       })
-      .catch((error) => console.error(error));
+        .then(() => {
+          RefreshJobs();
+          navigate("/MyJobs");
+        })
+        .catch((error) => console.error(error));
+    } else {
+      fetch(variables.API_URL + "User/UpdateJobApplication", {
+        method: "POST",
+        body: formData,
+      })
+        .then(() => {
+          RefreshJobs();
+          navigate("/MyJobs");
+        })
+        .catch((error) => console.error(error));
+    }
+    props.setUserChooseCv(false);
+  };
+
+  const RefreshJobs = () => {
+    fetch(
+      variables.API_URL + "User/GetApplyForJobs?userID=" + props.user.userID
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        props.setJobs(data);
+      })
+      .catch((error) => console.log(error));
   };
 
   return (

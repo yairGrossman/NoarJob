@@ -62,6 +62,9 @@ namespace NoarJobBL
         {
             DataTable dt = NoarJobDAL.MostSoughtJobs.GetTheMostSoughtJob(childCategoriesLst, citiesLst, typesLst);
             int[] arrJobsID = ConvertDtToArr(dt);
+            if(arrJobsID.Length == 0)
+                return null;
+
             Job[] arrJob = GetJobsByID(arrJobsID, userID);
             return arrJob;
         }

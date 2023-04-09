@@ -6,7 +6,8 @@ import "../Styles/Job.css";
 
 const Job = (props) => {
   const categoriesKeys = Object.keys(props.categories);
-  delete props.categories[categoriesKeys[0]];
+  if (categoriesKeys.length > 1) delete props.categories[categoriesKeys[0]];
+
   return (
     <Card cardSize={"col-xl-8"}>
       <div dir="rtl" className="container">
@@ -37,17 +38,11 @@ const Job = (props) => {
 
         <JobSettings
           categoryTitle="מיקום המשרה"
-          categoryBtnTxt="בחר עיר"
           categoryOptions={props.cities}
         />
-        <JobSettings
-          categoryTitle="סוג המשרה"
-          categoryBtnTxt="בחר סוג"
-          categoryOptions={props.types}
-        />
+        <JobSettings categoryTitle="סוג המשרה" categoryOptions={props.types} />
         <JobSettings
           categoryTitle="קטגוריית המשרה"
-          categoryBtnTxt="בחר קטגורייה"
           categoryOptions={props.categories}
         />
 

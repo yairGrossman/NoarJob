@@ -5,11 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../AppContext";
 
 const JobChoices = (props) => {
-  const { setJobForApplication } = useContext(AppContext);
+  const { setJobForApplication, isMyJobs } = useContext(AppContext);
   const navigate = useNavigate();
   const DeleteJob = () => {
     if (props.userId !== undefined) {
-      if (props.userJobType !== 2) {
+      if (props.userJobType === 0) {
         if (window.confirm("לעולם לא תוכל לראות את המשרה הזאת, אתה בטוח?")) {
           fetch(
             variables.API_URL +
@@ -49,7 +49,7 @@ const JobChoices = (props) => {
 
   const LikeJob = (event) => {
     if (props.userId !== undefined) {
-      if (props.userJobType !== 2) {
+      if (props.userJobType === 0) {
         fetch(
           variables.API_URL +
             "User/CreateUser_JobAtDeleteOrLove?jobID=" +
@@ -63,6 +63,7 @@ const JobChoices = (props) => {
             event.target.classList.remove("bi-heart");
             event.target.classList.add("likedJob");
             event.target.classList.add("bi-heart-fill");
+            RefreshJobs();
           })
           .catch((error) => console.error(error));
       } else {
@@ -79,11 +80,30 @@ const JobChoices = (props) => {
             event.target.classList.remove("bi-heart");
             event.target.classList.add("likedJob");
             event.target.classList.add("bi-heart-fill");
+            RefreshJobs();
           })
           .catch((error) => console.error(error));
       }
     } else {
       navigate("/Login");
+    }
+  };
+
+  const RefreshJobs = () => {
+    if (isMyJobs) {
+      fetch(variables.API_URL + "User/GetApplyForJobs?userID=" + props.userId)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          props.setJobs(data);
+        })
+        .catch((error) => console.log(error));
+    } else {
+      props.setJobs((prevJobs) => {
+        const job = prevJobs.find((job) => job.jobID === props.jobId);
+        job.userJobType = 2;
+        return [...prevJobs];
+      });
     }
   };
 
@@ -99,7 +119,10 @@ const JobChoices = (props) => {
 
   const JobApplication = () => {
     if (props.userId !== undefined) {
-      setJobForApplication(props.jobId);
+      setJobForApplication({
+        jobId: props.jobId,
+        userJobType: props.userJobType,
+      });
       navigate("/JobApplication");
     } else {
       navigate("/Login");

@@ -183,9 +183,11 @@ namespace NoarJobDAL
         /// <param name="UserJobType"></param>
         public static void UpdateUserJobType(int JobID, int UserID, int UserJobType)
         {
-            string sql = $@"
+              string sql = $@"
                     UPDATE Users_Jobs SET Users_Jobs.UserJobType = {UserJobType},
-                                          Users_Jobs.TabType = 0
+                                          Users_Jobs.TabType = 0,
+                                          Users_Jobs.DateApplicated = NULL,
+                                          Users_Jobs.CvID=NULL
                     WHERE  Users_Jobs.JobID={JobID} AND Users_Jobs.UserID={UserID};
                    ";
             
@@ -200,11 +202,11 @@ namespace NoarJobDAL
         /// <param name="JobID"></param>
         /// <param name="UserID"></param>
         /// <param name="UserJobType"></param>
-        public static void UpdateUserJobType(int JobID, int UserID, int UserJobType, string DateApplicated, int CvID)
+        public static void UpdateUserJobType(int JobID, int UserID, string DateApplicated, int CvID)
         {
             string sql = $@"
-                    UPDATE Users_Jobs SET Users_Jobs.UserJobType = {UserJobType}, 
-                           Users_Jobs.DateApplicated = {DateApplicated}, 
+                    UPDATE Users_Jobs SET 
+                           Users_Jobs.DateApplicated = '{DateApplicated}', 
                            Users_Jobs.CvID = {CvID},
                            Users_Jobs.UserJobType = 1,
                            Users_Jobs.TabType = 1

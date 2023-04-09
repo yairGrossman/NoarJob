@@ -1,10 +1,16 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
 import Jobs from "../JobComp/Jobs";
 import { variables } from "../../Variables";
+import { AppContext } from "../../AppContext";
 
 const MyJobs = (props) => {
   const lovedJobsBtn = useRef(null);
   const applyForBtn = useRef(null);
+
+  const { setIsMyJobs } = useContext(AppContext);
+  useEffect(() => {
+    setIsMyJobs(true);
+  }, []);
 
   //סוגי המשרה 1-משרות ששלחתי אליהם מועמדות
   //2-משרות שאהבתי
