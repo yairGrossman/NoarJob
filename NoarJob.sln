@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoarJobBL", "NoarJobBL\Noar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoarJobAPI", "NoarJobAPI\NoarJobAPI.csproj", "{0369E88F-AEEE-41B8-BB86-E13E32F8D6A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoarJobUI", "NoarJobUI\NoarJobUI.csproj", "{C96D86A9-BAAC-4A8C-BB96-4DA28BCE3CD4}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{0369E88F-AEEE-41B8-BB86-E13E32F8D6A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0369E88F-AEEE-41B8-BB86-E13E32F8D6A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0369E88F-AEEE-41B8-BB86-E13E32F8D6A3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C96D86A9-BAAC-4A8C-BB96-4DA28BCE3CD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C96D86A9-BAAC-4A8C-BB96-4DA28BCE3CD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C96D86A9-BAAC-4A8C-BB96-4DA28BCE3CD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C96D86A9-BAAC-4A8C-BB96-4DA28BCE3CD4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

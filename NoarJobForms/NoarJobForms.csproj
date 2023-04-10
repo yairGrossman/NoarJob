@@ -36,6 +36,10 @@
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\Documents\Project_12th_Grade\NoarJob\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NoarJobBL, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NoarJobBL\bin\Debug\NoarJobBL.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -174,12 +178,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\PlusIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\NoarJobBL\NoarJobBL.csproj">
-      <Project>{914500be-c730-4540-a19b-229178fe5d53}</Project>
-      <Name>NoarJobBL</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
