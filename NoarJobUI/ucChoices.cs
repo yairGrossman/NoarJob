@@ -34,13 +34,11 @@ namespace NoarJobUI
         private int jobTypeDictionaryLength;// JobType אורך המערך מטיפוס
         private bool DomainLblVisible = false;//אם המשתמש בחר תחום תפקיד אז המשתנה יהפוך לאמת
         private bool RolesDropDownVisible = false;//אם המשתמש בחר תפקיד/ים אז המשתנה יהפוך לאמת
-        private bool LocationLblVisible = false;//אם המשתמש בחר מיקום אז המשתנה יהפוך לאמת
         private bool JobTypesDropDownVisible = false;//אם המשתמש בחר סוגי משרה אז המשתנה יהפוך לאמת
         private bool CitiesDropDownVisible = false;
         private bool ContentPanelVisible = true;
-        private Form form;
+        private PostingJobPage postingJobPage;
         private bool cleanChoiceActive = false;
-        private User user;
 
         #region תכונות
         public JobCategoriesBL JC
@@ -58,15 +56,14 @@ namespace NoarJobUI
             get { return this.jt; }
         }
         #endregion 
-
         /// <summary>
-        /// פעולה בונה למשתמש שאין לו חשבון
+        /// פעולה בונה ליצירת משרה
         /// </summary>
         /// <param name="form"></param>
-        public ucChoices(Form form)
+        public ucChoices(PostingJobPage postingJobPage)
         {
             InitializeComponent();
-            this.form = form;
+            this.postingJobPage = postingJobPage;
             this.jc = new JobCategoriesBL();
             this.cities = new CitiesBL();
             this.jt = new JobTypesBL();
@@ -74,27 +71,11 @@ namespace NoarJobUI
         }
 
         /// <summary>
-        /// פעולה בונה למשתמש שיש לו חשבון
-        /// </summary>
-        /// <param name="form"></param>
-        /// <param name="user"></param>
-        public ucChoices(Form form, User user)
-        {
-            InitializeComponent();
-            this.form = form;
-            this.jc = new JobCategoriesBL();
-            this.cities = new CitiesBL();
-            this.jt = new JobTypesBL();
-            this.user = user;
-        }
-
-        /// <summary>
         /// פעולה בונה שנועדה לדף עדכון משרה של מעסיק
         /// בפעולה זו אני שם את כל הערכים הקיימים של המשרה 
         /// </summary>
-        /// <param name="form"></param>
         /// <param name="job"></param>
-        public ucChoices(Form form, Job job)
+        public ucChoices(PostingJobPage postingJobPage, Job job)
         {
             InitializeComponent();
             this.DomainLbl.Visible = true;
@@ -106,7 +87,7 @@ namespace NoarJobUI
             this.CitiesDropDownVisible = true;
             this.JobTypesDropDownVisible = true;
             this.RoleBtn.Enabled = true;
-            this.form = form;
+            this.postingJobPage = postingJobPage;
             this.jc = new JobCategoriesBL();
             this.cities = new CitiesBL();
             this.jt = new JobTypesBL();
@@ -152,13 +133,6 @@ namespace NoarJobUI
             this.DomainLbl.Location = new Point(this.DomainBtn.Location.X + 5, this.DomainLbl.Location.Y);
             this.CountDomainLbl.Location = new Point(this.DomainLbl.Location.X - this.CountDomainLbl.Width, this.DomainLbl.Location.Y);
 
-            if (this.form != null && this.form is PostingJobPage)
-            {
-                this.SearchByDomainBtn.Visible = false;
-                this.SearchByTxtBtn.Visible = false;
-                this.SearchTxt.Visible = false;
-                this.SearchBtn.Visible = false;
-
                 this.DomainBtn.Location = new Point(this.DomainBtn.Location.X, 23);
                 this.RoleBtn.Location = new Point(this.RoleBtn.Location.X, 23);
                 this.LocationBtn.Location = new Point(this.LocationBtn.Location.X, 23);
@@ -166,7 +140,6 @@ namespace NoarJobUI
                 this.navbar.Size = new Size(831, 82);
                 this.ContentPanel.Location = new Point(3, 153);
                 this.cities.LstCities = new List<int>();
-            }
 
             this.navbar.Location = new Point(
                                    this.ClientSize.Width / 2 - this.navbar.Size.Width / 2,
@@ -181,34 +154,6 @@ namespace NoarJobUI
             this.JobTypeLbl.Location = new Point(this.ChooseTxt.Location.X, 40);
             this.SubTypeLbl.Location = new Point(this.ChooseTxt.Location.X - 300, 40);
             this.CleanChoiceBtn.Location = new Point(this.CleanChoiceBtn.Location.X, this.ChooseTxt.Location.Y);
-        }
-
-        /// <summary>
-        /// כפתור שמעביר את המשתמש למסך משרות
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void SearchBtn_Click(object sender, EventArgs e)
-        {
-            JobsBL jobs = new JobsBL();
-            Job[] jobsArr;
-            int userID;
-
-            if (this.user != null)
-                userID = this.user.UserID;
-            else
-                userID = -1;
-
-            if (this.SearchTxt.Visible)
-                jobsArr = jobs.GetJobsSearch(0, null, null, 0, this.SearchTxt.Text, userID);
-            else
-            {
-                jobsArr = jobs.GetJobsSearch(this.jc.ChosenJobCategory, this.jc.ChosenJobCategoryLst, this.jt.ChosenJobTypeLst, this.cities.ChosenCity, null, userID);
-            }
-
-            JobsPage jobsPage = new JobsPage(jobsArr, this.user);
-            jobsPage.Show();
-            this.form.Close();
         }
 
         /// <summary>
@@ -313,8 +258,7 @@ namespace NoarJobUI
                 btn.BackColor = Color.FromArgb(236, 179, 144);
                 this.jt.ChosenJobTypeLst.Remove((int)btn.Tag);
                 this.JobTypesDropDown.Items.Remove(btn.Text);
-                if (this.form is PostingJobPage)
-                {
+                
                     int count;
                     if (this.cities.LstCities.Count != 0)
                     {
@@ -327,8 +271,7 @@ namespace NoarJobUI
                         count = 0;
                     }
 
-                    ((PostingJobPage)this.form).CountSameSearchesLbl.Text = count.ToString();
-                }
+                    this.postingJobPage.CountSameSearchesLbl.Text = count.ToString();
 
                 if (this.JobTypesDropDown.Items.Count == 0)
                 {
@@ -340,14 +283,11 @@ namespace NoarJobUI
                 btn.BackColor = Color.FromArgb(148, 180, 159);
                 this.jt.ChosenJobTypeLst.Add((int)btn.Tag);
                 this.JobTypesDropDown.Items.Add(btn.Text);
-                if (this.form is PostingJobPage)
-                {
                     this.sameSearchesOfUsers.SameChildCategoriesAndCitiesAndTypes(this.jc.ChosenJobCategoryLst, this.cities.LstCities, this.jt.ChosenJobTypeLst);
                     this.CountTypesLbl.Text = $"({this.sameSearchesOfUsers.CountSameParentCategoryAndChildCategoriesAndCitiesAndTypes})";
                     int count = this.sameSearchesOfUsers.CountSameParentCategoryAndChildCategoriesAndCitiesAndTypes;
 
-                    ((PostingJobPage)this.form).CountSameSearchesLbl.Text = count.ToString();
-                }
+                    this.postingJobPage.CountSameSearchesLbl.Text = count.ToString();
             }
         }
 
@@ -361,10 +301,7 @@ namespace NoarJobUI
         private void LocationClick(object sender, EventArgs e)
         {
             this.cleanChoiceActive = false;
-            this.LocationLblVisible = true;
             Button btn = (Button)sender;
-            if (this.form is PostingJobPage)
-            {
                 //אם הכפתור לא בצבעו המקורי אז אני מחזיר את צבעו לבצע הרגיל
                 //ומוחק את הבחירה שלו
                 if (btn.BackColor != Color.FromArgb(236, 179, 144))
@@ -385,7 +322,7 @@ namespace NoarJobUI
                         count = 0;
                     }
 
-                    ((PostingJobPage)this.form).CountSameSearchesLbl.Text = count.ToString();
+                    this.postingJobPage.CountSameSearchesLbl.Text = count.ToString();
 
                     if (this.CitiesDropDown.Items.Count == 0)
                     {
@@ -400,24 +337,10 @@ namespace NoarJobUI
                     this.sameSearchesOfUsers.SameChildCategoriesAndCities(this.jc.ChosenJobCategoryLst, this.cities.LstCities);
                     this.CountCitiesLbl.Text = $"({this.sameSearchesOfUsers.CountSameParentCategoryAndChildCategoriesAndCities})";
                     int count = this.sameSearchesOfUsers.CountSameParentCategoryAndChildCategoriesAndCities;
-                    ((PostingJobPage)this.form).CountSameSearchesLbl.Text = count.ToString();
+                    this.postingJobPage.CountSameSearchesLbl.Text = count.ToString();
                     this.CitiesDropDownVisible = true;
                     this.ContentPanelVisible = false;
                 }
-                
-            }
-            else
-            {
-                for (int i = 0; i < this.arrBtn.Length; i++)
-                {
-                    this.arrBtn[i].BackColor = Color.FromArgb(236, 179, 144);
-                }
-
-                this.cities.ChosenCity = (int)btn.Tag;
-                btn.BackColor = Color.FromArgb(148, 180, 159);
-                this.LocationLbl.Text = btn.Text;
-                this.LocationLbl.Location = new Point(this.LocationBtn.Location.X + 5, this.LocationLbl.Location.Y);
-            }
         }
 
         /// <summary>
@@ -439,8 +362,6 @@ namespace NoarJobUI
                 this.jc.ChosenJobCategoryLst.Remove((int)btn.Tag);
                 this.RolesDropDown.Items.Remove(btn.Text);
 
-                if (this.form is PostingJobPage)
-                {
                     int count;
                     if (this.jc.ChosenJobCategoryLst.Count != 0)
                     {
@@ -454,8 +375,7 @@ namespace NoarJobUI
                     }
 
 
-                    ((PostingJobPage)this.form).CountSameSearchesLbl.Text = count.ToString();
-                }
+                    this.postingJobPage.CountSameSearchesLbl.Text = count.ToString();
 
                 if (this.RolesDropDown.Items.Count == 0)
                 {
@@ -467,13 +387,10 @@ namespace NoarJobUI
                 btn.BackColor = Color.FromArgb(148, 180, 159);
                 this.jc.ChosenJobCategoryLst.Add((int)btn.Tag);
                 this.RolesDropDown.Items.Add(btn.Text);
-                if (this.form is PostingJobPage)
-                {
                     this.sameSearchesOfUsers.GetSameChildCategories(this.jc.ChosenJobCategoryLst);
                     this.CountRolesLbl.Text = $"({this.sameSearchesOfUsers.CountSameParentCategoryAndChildCategories})";
                     int count = this.sameSearchesOfUsers.CountSameParentCategoryAndChildCategories;
-                    ((PostingJobPage)this.form).CountSameSearchesLbl.Text = count.ToString();
-                }
+                    this.postingJobPage.CountSameSearchesLbl.Text = count.ToString();
             }
         }
 
@@ -493,13 +410,10 @@ namespace NoarJobUI
 
             Button btn = (Button)sender;
             this.jc.ChosenJobCategory = (int)btn.Tag;
-            if (this.form is PostingJobPage)
-            {
                 this.sameSearchesOfUsers.GetSameParentCategory(this.jc.ChosenJobCategory);
                 this.CountDomainLbl.Text = $"({this.sameSearchesOfUsers.CountSameParentCategory})";
                 int count = this.sameSearchesOfUsers.CountSameParentCategory;
-                ((PostingJobPage)this.form).CountSameSearchesLbl.Text = count.ToString();
-            }
+                this.postingJobPage.CountSameSearchesLbl.Text = count.ToString();
 
             btn.BackColor = Color.FromArgb(148, 180, 159);
             this.DomainLbl.Text = btn.Text;
@@ -653,10 +567,7 @@ namespace NoarJobUI
 
                     if (!this.cleanChoiceActive)
                     {
-                        if (this.form != null && this.form is PostingJobPage)
                             PaintButtons(this.City.LstCities);
-                        else
-                            PaintButton(this.cities.ChosenCity);
                     }
                 }
                 else
@@ -727,28 +638,12 @@ namespace NoarJobUI
         }
 
         /// <summary>
-        /// כפתור שמעביר את המשתמש לחיפוש על ידי טקסט
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void SearchByTxtBtn_Click(object sender, EventArgs e)
-        {
-            this.SearchTxt.Visible = true;
-            this.DomainBtn.Visible = false;
-            this.RoleBtn.Visible = false;
-            this.LocationBtn.Visible = false;
-            this.JobTypeBtn.Visible = false;
-            this.ContentPanel.Visible = false;
-        }
-
-        /// <summary>
         /// כפתור שמעביר את המשתמש לחיפוש על ידי תחומים
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void SearchByDomainBtn_Click(object sender, EventArgs e)
         {
-            this.SearchTxt.Visible = false;
             this.DomainBtn.Visible = true;
             this.RoleBtn.Visible = true;
             this.LocationBtn.Visible = true;
@@ -779,17 +674,13 @@ namespace NoarJobUI
             this.LocationLbl.Visible = false;
             this.JobTypesDropDown.Visible = false;
             this.CitiesDropDown.Visible = false;
+            this.BringToFront();
 
-            if (this.form != null && !(this.form is SearchPage))
-                this.BringToFront();
-
-            if (this.form != null && this.form is PostingJobPage)
-            {
+            
                 this.CountDomainLbl.Visible = false;
                 this.CountRolesLbl.Visible = false;
                 this.CountCitiesLbl.Visible = false;
                 this.CountTypesLbl.Visible = false;
-            }
         }
 
         /// <summary>
@@ -801,28 +692,12 @@ namespace NoarJobUI
             this.RolesDropDown.Visible = this.RolesDropDownVisible;
             this.JobTypesDropDown.Visible = this.JobTypesDropDownVisible;
 
-
-            if (this.form != null)
-            {
-                if(!(this.form is PostingJobPage))
-                    this.LocationLbl.Visible = this.LocationLblVisible;
-
-                if (this.form is JobsPage)
-                {
-                    JobsPage jobsPage = (JobsPage)this.form;
-                    jobsPage.UserControlJobs.BringToFront();
-                }
-                else if(this.form is PostingJobPage)
-                {
                     this.CitiesDropDown.Visible = this.CitiesDropDownVisible;
-                    PostingJobPage postingJobPage = (PostingJobPage)this.form;
                     this.CountDomainLbl.Visible = true;
                     this.CountRolesLbl.Visible = true;
                     this.CountCitiesLbl.Visible = true;
                     this.CountTypesLbl.Visible = true;
-                    postingJobPage.PostPanel.BringToFront();
-                }
-            }
+                    this.postingJobPage.PostPanel.BringToFront();
         }
 
         /// <summary>
@@ -864,13 +739,9 @@ namespace NoarJobUI
             }
             else if (this.category == Categories.Location)
             {
-                this.LocationLblVisible = false;
-                if (this.form is PostingJobPage)
-                {
                     this.CitiesDropDownVisible = false;
                     this.CitiesDropDown.Items.Clear();
                     this.cities.LstCities.Clear();
-                }
             }
             else
             {

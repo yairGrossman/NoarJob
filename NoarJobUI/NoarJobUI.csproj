@@ -37,6 +37,7 @@
       <HintPath>..\..\..\Documents\Project_12th_Grade\NoarJob\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\Documents\Project_12th_Grade\NoarJob\packages\Microsoft.AspNet.WebApi.Client.5.2.9\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -52,12 +53,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplyForPage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ApplyForPage.Designer.cs">
-      <DependentUpon>ApplyForPage.cs</DependentUpon>
-    </Compile>
     <Compile Include="ATSPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,30 +83,6 @@
     <Compile Include="PostingJobPage.Designer.cs">
       <DependentUpon>PostingJobPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="SearchPage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SearchPage.Designer.cs">
-      <DependentUpon>SearchPage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="JobsPage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="JobsPage.Designer.cs">
-      <DependentUpon>JobsPage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="LoginPage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="LoginPage.Designer.cs">
-      <DependentUpon>LoginPage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MainPage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainPage.Designer.cs">
-      <DependentUpon>MainPage.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ucChoices.cs">
@@ -132,9 +103,6 @@
     <Compile Include="ucJob.Designer.cs">
       <DependentUpon>ucJob.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ApplyForPage.resx">
-      <DependentUpon>ApplyForPage.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ATSPage.resx">
       <DependentUpon>ATSPage.cs</DependentUpon>
     </EmbeddedResource>
@@ -149,18 +117,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PostingJobPage.resx">
       <DependentUpon>PostingJobPage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SearchPage.resx">
-      <DependentUpon>SearchPage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="JobsPage.resx">
-      <DependentUpon>JobsPage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="LoginPage.resx">
-      <DependentUpon>LoginPage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainPage.resx">
-      <DependentUpon>MainPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

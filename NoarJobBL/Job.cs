@@ -77,67 +77,31 @@ namespace NoarJobBL
         #region תכונות
         public int JobID{ get { return this.jobID; } set { this.jobID = value; }}
 
-        public string Title
-        {
-            get { return this.title; }
-        }
+        public string Title { get { return this.title; } set { this.title = value; } }
 
-        public string Description
-        {
-            get { return this.description; }
-        }
+        public string Description { get { return this.description; } set { this.description = value; } }
 
-        public string Requirements
-        {
-            get { return this.requirements; }
-        }
+        public string Requirements { get { return this.requirements; } set { this.requirements = value; } }
 
-        public string EmployerName
-        {
-            get { return this.employerName; }
-        }
+        public string EmployerName { get { return this.employerName; } set { this.employerName = value; } }
 
-        public int NumOfEmployees
-        {
-            get { return this.numOfEmployees; }
-        }
+        public int NumOfEmployees { get { return this.numOfEmployees; } set { this.numOfEmployees = value; } }
 
-        public string CompanyTypeName
-        {
-            get { return this.companyTypeName; }
-        }
+        public string CompanyTypeName { get { return this.companyTypeName; } set { this.companyTypeName = value; } }
 
-        public string Phone
-        {
-            get { return this.phone; }
-        }
+        public string Phone { get { return this.phone; } set { this.phone = value; } }
 
-        public string Email
-        {
-            get { return this.email; }
-        }
+        public string Email { get { return this.email; } set { this.email = value; } }
 
-        public bool IsActive{get { return this.isActive; }set { this.isActive = value; }}
+        public bool IsActive { get { return this.isActive; } set { this.isActive = value; }}
 
-        public string CompanyName
-        {
-            get { return this.companyName; }
-        }
+        public string CompanyName { get { return this.companyName; } set { this.companyName = value; } }
 
-        public Dictionary<int, string> CitiesDictionary
-        {
-            get { return this.citiesDictionary; }
-        }
+        public Dictionary<int, string> CitiesDictionary { get { return this.citiesDictionary; } }
 
-        public Dictionary<int, string> TypesDictionary
-        {
-            get { return this.typesDictionary; }
-        }
+        public Dictionary<int, string> TypesDictionary { get { return this.typesDictionary; } }
 
-        public Dictionary<int, string> CategoriesDictionary
-        {
-            get { return this.categoriesDictionary; }
-        }
+        public Dictionary<int, string> CategoriesDictionary { get { return this.categoriesDictionary; } }
 
         public string DateApplicated { 
             get { return dateApplicated; }

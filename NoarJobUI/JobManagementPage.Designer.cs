@@ -33,7 +33,6 @@
             this.JobsInAirBtn = new System.Windows.Forms.Button();
             this.OldJobsBtn = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.DisconnectionBtn = new System.Windows.Forms.Button();
             this.ActiveJobPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -95,27 +94,12 @@
             this.panel2.TabIndex = 9;
             this.panel2.Visible = false;
             // 
-            // DisconnectionBtn
-            // 
-            this.DisconnectionBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(179)))), ((int)(((byte)(144)))));
-            this.DisconnectionBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.DisconnectionBtn.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.DisconnectionBtn.Location = new System.Drawing.Point(756, 41);
-            this.DisconnectionBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.DisconnectionBtn.Name = "DisconnectionBtn";
-            this.DisconnectionBtn.Size = new System.Drawing.Size(184, 39);
-            this.DisconnectionBtn.TabIndex = 18;
-            this.DisconnectionBtn.Text = "התנתק מהמשתמש";
-            this.DisconnectionBtn.UseVisualStyleBackColor = false;
-            this.DisconnectionBtn.Click += new System.EventHandler(this.DisconnectionBtn_Click);
-            // 
             // JobManagementPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
             this.ClientSize = new System.Drawing.Size(996, 855);
-            this.Controls.Add(this.DisconnectionBtn);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.ActiveJobPanel);
             this.Controls.Add(this.ProjectTitleLbl);
@@ -136,6 +120,5 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button JobsInAirBtn;
         private System.Windows.Forms.Button OldJobsBtn;
-        public System.Windows.Forms.Button DisconnectionBtn;
     }
 }

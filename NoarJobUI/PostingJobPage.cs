@@ -16,20 +16,18 @@ namespace NoarJobUI
         private Job job;
         private Employer employer;
         private ucChoices ucChoicesJob;
-        private MainPage mainPage;
 
         /// <summary>
         /// פעולה בונה שנועדה לפרסום משרה
         /// </summary>
         /// <param name="employer"></param>
         /// <param name="mainPage"></param>
-        public PostingJobPage(Employer employer, MainPage mainPage)
+        public PostingJobPage(Employer employer)
         {
             InitializeComponent();
             this.employer = employer;
             this.job = new Job();
             CreateUcChoicesJob(false);
-            this.mainPage = mainPage;
         }
 
         /// <summary>
@@ -38,10 +36,9 @@ namespace NoarJobUI
         /// <param name="user"></param>
         /// <param name="job"></param>
         /// <param name="mainPage"></param>
-        public PostingJobPage(Employer employer, Job job, MainPage mainPage)
+        public PostingJobPage(Employer employer, Job job)
         {
             InitializeComponent();
-            this.mainPage = mainPage;
             this.employer = employer;
 
             this.job = job;
@@ -82,7 +79,6 @@ namespace NoarJobUI
             this.PostPanel.BringToFront();
             this.PostPanel.Location = new Point(this.Width / 2 - this.PostPanel.Width / 2, this.PostPanel.Location.Y);
             this.ucChoicesJob.Location = new Point(this.Width / 2 - this.ucChoicesJob.Width / 2, this.ucChoicesJob.Location.Y);
-            this.DisconnectionBtn.Location = new Point(this.ucChoicesJob.Location.X + this.ucChoicesJob.Width + 40, this.ucChoicesJob.Location.Y + this.DisconnectionBtn.Height);
 
             this.JobTitleTxt.GotFocus += new EventHandler(RemoveJobTitleTxt);
             this.JobTitleTxt.LostFocus += new EventHandler(AddJobTitleTxt);
@@ -121,7 +117,7 @@ namespace NoarJobUI
 
                 MessageBox.Show("המשרה נרשמה במערכת!");
                 JobManagementPage jobManagementPage;
-                jobManagementPage = new JobManagementPage(this.employer, this.mainPage);
+                jobManagementPage = new JobManagementPage(this.employer);
 
                 jobManagementPage.Show();
                 this.Close();
@@ -154,7 +150,7 @@ namespace NoarJobUI
                 MessageBox.Show("המשרה עודכנה במערכת!");
 
                 JobManagementPage jobManagementPage;
-                jobManagementPage = new JobManagementPage(this.employer, this.mainPage);
+                jobManagementPage = new JobManagementPage(this.employer);
 
                 jobManagementPage.Show();
                 this.Close();
@@ -243,12 +239,6 @@ namespace NoarJobUI
             {
                 this.EmailTxt.Text = "";
             }
-        }
-
-        private void DisconnectionBtn_Click(object sender, EventArgs e)
-        {
-            this.mainPage.Show();
-            this.Close();
         }
     }
 }

@@ -18,23 +18,6 @@ namespace NoarJobUI
         private Form form;
         private bool isJobActive;
         private Employer employer;
-        //private User_Job user_Job;
-        private User user;
-        private MainPage mainPage;
-
-        /// <summary>
-        /// פעולה בונה שנועדה למשתמש
-        /// </summary>
-        /// <param name="arrJobs"></param>
-        /// <param name="form"></param>
-        public ucJob(Job[] arrJobs, Form form, User user)
-        {
-            InitializeComponent();
-            this.arrJobs = arrJobs;
-            this.form = form;
-            //this.user_Job = new User_Job();
-            this.user = user;
-        }
 
         /// <summary>
         /// פעולה בונה שנועדה למעסיק
@@ -43,15 +26,13 @@ namespace NoarJobUI
         /// <param name="form"></param>
         /// <param name="isJobActive"></param>
         /// <param name="employer"></param>
-        public ucJob(Job[] arrJobs, Form form, bool isJobActive, Employer employer, MainPage mainPage)
+        public ucJob(Job[] arrJobs, Form form, bool isJobActive, Employer employer)
         {
             InitializeComponent();
             this.arrJobs = arrJobs;
             this.form = form;
             this.isJobActive = isJobActive;
             this.employer = employer;
-
-            this.mainPage = mainPage;
         }
 
         private void ucJob_Load(object sender, EventArgs e)
@@ -119,22 +100,13 @@ namespace NoarJobUI
             Panel panel = new Panel();
             panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(179)))), ((int)(((byte)(144)))));
 
-            if (this.form is JobsPage)
-            {
-                panel.Controls.Add(this.ApplyForBtn(this.arrJobs[i].JobID));
-                panel.Controls.Add(this.EditApplyForPic(this.arrJobs[i].JobID));
-                panel.Controls.Add(this.LikePic(this.arrJobs[i].JobID));
-                panel.Controls.Add(this.TrashPic(this.arrJobs[i].JobID, i));
-            }
-            else
-            {
+            
                 if (this.isJobActive)
                     panel.Controls.Add(this.TrashPic(this.arrJobs[i].JobID, i));
                 else
                     panel.Controls.Add(this.UploadJobPic(this.arrJobs[i].JobID, i));
 
                 panel.Controls.Add(this.EditJobBtn(i));
-            }
 
             panel.Location = new System.Drawing.Point(1105, 701);
             panel.Name = "ChoseJobPanel";
@@ -492,64 +464,6 @@ namespace NoarJobUI
         }
 
         /// <summary>
-        /// פונקציה שיוצרת תמונת כפתור של לייק
-        /// </summary>
-        /// <param name="jobID"></param>
-        /// <returns></returns>
-        private PictureBox LikePic(int jobID)
-        {
-            PictureBox pic = new PictureBox();
-            pic.Image = global::NoarJobUI.Properties.Resources.like;
-            pic.Location = new System.Drawing.Point(424, 3);
-            pic.Tag = jobID;
-            pic.Size = new System.Drawing.Size(47, 40);
-            pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            pic.TabIndex = 1;
-            pic.TabStop = false;
-            pic.Click += new EventHandler(this.LikePic_Click);
-            return pic;
-        }
-
-        /// <summary>
-        /// פונקציה שיוצרת כפתור של הגשת מועמדות למשרה
-        /// </summary>
-        /// <param name="jobID"></param>
-        /// <returns></returns>
-        private Button ApplyForBtn(int jobID)
-        {
-            Button btn = new Button();
-            btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(120)))), ((int)(((byte)(97)))));
-            btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            btn.Location = new System.Drawing.Point(56, 0);
-            btn.Size = new System.Drawing.Size(167, 46);
-            btn.TabIndex = 2;
-            btn.Text = "הגשת מועמדות";
-            btn.Tag = jobID;
-            btn.UseVisualStyleBackColor = false;
-            btn.Click += new EventHandler(this.ApplyForBtn_Click);
-            return btn;
-        }
-
-        /// <summary>
-        /// פונקציה שיוצרת תמונת כפתור של עריכת קורות חיים 
-        /// </summary>
-        /// <param name="jobID"></param>
-        /// <returns></returns>
-        private PictureBox EditApplyForPic(int jobID)
-        {
-            PictureBox pic = new PictureBox();
-            pic.Image = global::NoarJobUI.Properties.Resources.edit;
-            pic.Location = new System.Drawing.Point(3, 3);
-            pic.Size = new System.Drawing.Size(47, 40);
-            pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            pic.TabIndex = 3;
-            pic.TabStop = false;
-            pic.Tag = jobID;
-            pic.Click += new EventHandler(this.EditApplyForPic_Click);
-            return pic;
-        }
-
-        /// <summary>
         /// פונקציה שיוצרת כפתור של עריכת משרה
         /// </summary>
         /// <param name="jobIndex">מיקום המשרה במערך המשרות</param>
@@ -599,24 +513,9 @@ namespace NoarJobUI
         {
             Button button = (Button)sender;
             int jobIndex = (int)button.Tag;
-            PostingJobPage postingJobPage = new PostingJobPage(this.employer, this.arrJobs[jobIndex], this.mainPage);
+            PostingJobPage postingJobPage = new PostingJobPage(this.employer, this.arrJobs[jobIndex]);
             postingJobPage.Show();
             this.form.Close();
-        }
-
-        private void EditApplyForPic_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void ApplyForBtn_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void LikePic_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         /// <summary>

@@ -10,44 +10,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NoarJobBL;
+using System.Configuration;
+using System.IO;
 
 namespace NoarJobUI
 {
     public partial class EmployerLoginPage : Form
     {
         private bool loginAccount;//משתנה שמטרתו לבדוק האם המשתמש בחר בהתחברות למערכת או יצירת חשבון
-        private string firstName;//שם פרטי
-        private string lastName;//שם משפחה
-        private string email;//האמייל של המשתמש
-        private string userPassword;//הסיסמא של המשתמש
-        private Employer employer;//עצם מטיפוס מעסיק
-        private CompanyType companyTypes;//עצם מטיפוס קטגוריית חברה
         private KeyValuePair<int,string> chosenCompanyType;//הקטגוריית החברה שבחר המשתמש
         private bool userChoose;//משתנה שמטרתו לבדוק האם המשתמש בחר קטגוריית חברה
-        private MainPage mainPage;
         private Point companyEmailLblLoc;
         private Point companyEmailTxtLoc;
         private Point employerPasswordLblLoc;
         private Point employerPasswordTxtLoc;
 
-        public EmployerLoginPage(bool loginAccount, string firstName, string lastName, string email, string userPassword, MainPage mainPage)
+        public EmployerLoginPage(bool loginAccount)
         {
             InitializeComponent();
             this.loginAccount = loginAccount;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.email = email;
-            this.userPassword = userPassword;
-            this.mainPage = mainPage;
-        }
-
-        public EmployerLoginPage(bool loginAccount, MainPage mainPage)
-        {
-            InitializeComponent();
-            this.loginAccount = loginAccount;
-            this.employer = new Employer();
-            this.companyTypes = new CompanyType();
-            this.mainPage = mainPage;
+            
         }
 
         /// <summary>
@@ -110,7 +92,14 @@ namespace NoarJobUI
             {
                 this.CompanyTypeDropDown.DisplayMember = "Value";
                 this.CompanyTypeDropDown.ValueMember = "Key";
-                this.CompanyTypeDropDown.DataSource = companyTypes.GetAllCompanyTypes().ToList();
+
+                using (HttpClient client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiBaseUrl"]);
+                    string path = "CompanyType/GetAllCompanyTypes";
+                    HttpResponseMessage response = client.GetAsync(path).Result;
+                    this.CompanyTypeDropDown.DataSource = response.Content.ReadAsAsync<Dictionary<int,string>>().Result.ToList();
+                }
             } 
         }
 
@@ -124,14 +113,26 @@ namespace NoarJobUI
             if (this.EmployerNameTxt.Text != "" && this.NumOfEmployeesTxt.Text != "" && this.userChoose
                 && this.CompanyNameTxt.Text != "" && this.CompanyEmailTxt.Text != "" && this.EmployerPasswordTxt.Text != "")
             {
-                bool succeeded = employer.CreateEmployer(this.EmployerNameTxt.Text, int.Parse(this.NumOfEmployeesTxt.Text), this.chosenCompanyType.Key,
-                                 this.chosenCompanyType.Value, this.CompanyNameTxt.Text,
-                                 this.EmployerPasswordTxt.Text, this.CompanyEmailTxt.Text);
-                if (succeeded)
+                Employer employer;
+                using (HttpClient client = new HttpClient())
                 {
-                    HomePage homePage = new HomePage(this.employer, this.mainPage);
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiBaseUrl"]);
+                    string path = $@"Employer/CreateEmployer?employerName={this.EmployerNameTxt.Text}
+&numOfEmployees={this.NumOfEmployeesTxt.Text}
+&companyTypeID={this.chosenCompanyType.Key}
+&companyTypeName={this.chosenCompanyType.Value}
+&companyName={this.CompanyNameTxt.Text}
+&employerPassword={this.EmployerPasswordTxt.Text}
+&companyEmail={this.CompanyEmailTxt.Text}";
+                    HttpResponseMessage response = client.GetAsync(path).Result;
+                    employer = response.Content.ReadAsAsync<Employer>().Result;
+                }
+
+                if (employer != null)
+                {
+                    HomePage homePage = new HomePage(employer);
                     homePage.Show();
-                    this.Close();
+                    this.Hide();
                 }
                 else
                     MessageBox.Show("מעסיק זה כבר קיים במערכת");
@@ -159,16 +160,20 @@ namespace NoarJobUI
         /// <param name="e"></param>
         private void LoginBtn_Click(object sender, EventArgs e)
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("http://localhost:5063/api/");
-            string path = $"Employer/GetEmployer?companyEmail={this.CompanyEmailTxt.Text}&employerPassword={this.EmployerPasswordTxt.Text}";
-            HttpResponseMessage response = client.GetAsync(path).Result;
-            Employer employer = response.Content.ReadAsAsync<Employer>().Result;
+            Employer employer;
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiBaseUrl"]);
+                string path = $"Employer/GetEmployer?companyEmail={this.CompanyEmailTxt.Text}&employerPassword={this.EmployerPasswordTxt.Text}";
+                HttpResponseMessage response = client.GetAsync(path).Result;
+                employer = response.Content.ReadAsAsync<Employer>().Result;
+            }
+
             if (employer != null)
             {
-                HomePage homePage = new HomePage(this.employer, this.mainPage);
+                HomePage homePage = new HomePage(employer);
                 homePage.Show();
-                this.Close();
+                this.Hide();
             }
         }
         

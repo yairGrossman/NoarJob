@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NoarJobBL;
+using System.Configuration;
+using System.Net.Http;
 
 namespace NoarJobUI
 {
@@ -17,14 +19,19 @@ namespace NoarJobUI
         private JobsBL jobs;
         private Employer employer;
         private Job[] arrJobs;
-        private MainPage mainPage;
-        public JobManagementPage(Employer employer, MainPage mainPage)
+        public JobManagementPage(Employer employer)
         {
             InitializeComponent();
             this.employer = employer;
             this.jobs = new JobsBL();
-            this.arrJobs = this.jobs.GetEmployerJobsByJobActivity(this.employer.EmployerID, true);
-            this.mainPage = mainPage;
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiBaseUrl"]);
+                string path = $"Jobs/GetEmployerJobsByJobActivity?employerID={employer.EmployerID}&isActive=true";
+                HttpResponseMessage response = client.GetAsync(path).Result;
+                this.arrJobs = response.Content.ReadAsAsync<Job[]>().Result;
+                Console.WriteLine();
+            }
         }
 
         /// <summary>
@@ -32,7 +39,7 @@ namespace NoarJobUI
         /// </summary>
         private void CreateUcJob(bool isJobActive)
         {
-            this.UserControlJob = new ucJob(this.arrJobs, this, isJobActive, this.employer, this.mainPage);
+            this.UserControlJob = new ucJob(this.arrJobs, this, isJobActive, this.employer);
             
             this.UserControlJob.Name = "UserControlJob";
             this.UserControlJob.Location = new Point(this.Width / 2 - this.UserControlJob.Width / 2, 177);
@@ -44,7 +51,6 @@ namespace NoarJobUI
             CreateUcJob(true);
             this.ActiveJobPanel.Location = new Point(this.ActiveJobPanel.Location.X + (this.UserControlJob.Location.X - 181), this.ActiveJobPanel.Location.Y);
             this.ProjectTitleLbl.Location = new Point(this.ProjectTitleLbl.Location.X + (this.UserControlJob.Location.X - 181), this.ProjectTitleLbl.Location.Y);
-            this.DisconnectionBtn.Location = new Point(this.UserControlJob.Location.X + this.UserControlJob.Width + 10, (this.ProjectTitleLbl.Location.Y + this.DisconnectionBtn.Height) / 2);
             this.JobsInAirBtn.Enabled = false;
         }
 
@@ -74,12 +80,6 @@ namespace NoarJobUI
             this.Controls.Remove(this.UserControlJob);
             this.arrJobs = this.jobs.GetEmployerJobsByJobActivity(this.employer.EmployerID, false);
             CreateUcJob(false);
-        }
-
-        private void DisconnectionBtn_Click(object sender, EventArgs e)
-        {
-            this.mainPage.Show();
-            this.Close();
         }
     }
 }

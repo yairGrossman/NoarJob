@@ -44,7 +44,6 @@ namespace NoarJobUI
             this.DescriptionLbl = new System.Windows.Forms.Label();
             this.JobTitleTxt = new System.Windows.Forms.TextBox();
             this.JobTitleLbl = new System.Windows.Forms.Label();
-            this.DisconnectionBtn = new System.Windows.Forms.Button();
             this.PostPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -246,27 +245,12 @@ namespace NoarJobUI
             this.JobTitleLbl.TabIndex = 7;
             this.JobTitleLbl.Text = "כותרת המשרה:";
             // 
-            // DisconnectionBtn
-            // 
-            this.DisconnectionBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(179)))), ((int)(((byte)(144)))));
-            this.DisconnectionBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.DisconnectionBtn.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.DisconnectionBtn.Location = new System.Drawing.Point(47, 325);
-            this.DisconnectionBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.DisconnectionBtn.Name = "DisconnectionBtn";
-            this.DisconnectionBtn.Size = new System.Drawing.Size(184, 39);
-            this.DisconnectionBtn.TabIndex = 17;
-            this.DisconnectionBtn.Text = "התנתק מהמשתמש";
-            this.DisconnectionBtn.UseVisualStyleBackColor = false;
-            this.DisconnectionBtn.Click += new System.EventHandler(this.DisconnectionBtn_Click);
-            // 
             // PostingJobPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
             this.ClientSize = new System.Drawing.Size(1132, 1061);
-            this.Controls.Add(this.DisconnectionBtn);
             this.Controls.Add(this.PostPanel);
             this.Name = "PostingJobPage";
             this.Text = "PostingJobPage";
@@ -292,7 +276,6 @@ namespace NoarJobUI
         private System.Windows.Forms.TextBox PhoneTxt;
         public System.Windows.Forms.Label PhoneLbl;
         public System.Windows.Forms.Button UpdateJobBtn;
-        public System.Windows.Forms.Button DisconnectionBtn;
         public System.Windows.Forms.Label SameSearchesLbl;
         public System.Windows.Forms.Label CountSameSearchesLbl;
     }
