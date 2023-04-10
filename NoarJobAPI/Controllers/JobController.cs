@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NoarJobBL;
+using NoarJobAPI.Models;
 
 namespace NoarJobAPI.Controllers
 {
@@ -8,23 +9,22 @@ namespace NoarJobAPI.Controllers
     public class JobController : ControllerBase
     {
         [HttpPost("CreateJob")]
-        public void CreateJob(string title, string description, string requirements, int employerID,
-            string phone, string email, [FromQuery] List<int> jobCategories, [FromQuery] List<int> cities, [FromQuery] List<int> jobTypes)
+        public void CreateJob([FromBody] JobRequest jobRequest)
         {
             Job job = new Job();
-            job.CreateJob(title, description, requirements, employerID,
-             phone, email, jobCategories, cities, jobTypes);
+            job.CreateJob(jobRequest.Title, jobRequest.Description, jobRequest.Requirements, jobRequest.EmployerID,
+             jobRequest.Phone, jobRequest.Email, jobRequest.JobCategories, jobRequest.Cities, jobRequest.JobTypes);
         }
 
         [HttpPost("UpdateJob")]
-        public void UpdateJob(int jobID, bool isActive, string title, string description, string requirements, int employerID,
-            string phone, string email, [FromQuery] List<int> jobCategories, [FromQuery] List<int> cities, [FromQuery] List<int> jobTypes)
+        public void UpdateJob([FromBody] JobRequest jobRequest)
         {
             Job job = new Job();
-            job.JobID = jobID;
-            job.IsActive = isActive;
-            job.UpdateJob(title, description, requirements, employerID, phone, email,
-                jobCategories, cities, jobTypes);
+            job.JobID = jobRequest.JobID;
+            job.IsActive = jobRequest.IsActive;
+            job.UpdateJob(jobRequest.Title, jobRequest.Description, jobRequest.Requirements, 
+                jobRequest.EmployerID, jobRequest.Phone, jobRequest.Email,
+                jobRequest.JobCategories, jobRequest.Cities, jobRequest.JobTypes);
         }
 
         [HttpGet("UpdateJobActivity")]

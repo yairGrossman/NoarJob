@@ -117,13 +117,13 @@ namespace NoarJobUI
                 using (HttpClient client = new HttpClient())
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiBaseUrl"]);
-                    string path = $@"Employer/CreateEmployer?employerName={this.EmployerNameTxt.Text}
-&numOfEmployees={this.NumOfEmployeesTxt.Text}
-&companyTypeID={this.chosenCompanyType.Key}
-&companyTypeName={this.chosenCompanyType.Value}
-&companyName={this.CompanyNameTxt.Text}
-&employerPassword={this.EmployerPasswordTxt.Text}
-&companyEmail={this.CompanyEmailTxt.Text}";
+                    string path = $"Employer/CreateEmployer?employerName={this.EmployerNameTxt.Text}"
+                                    + $"&numOfEmployees={this.NumOfEmployeesTxt.Text}"
+                                    + $"&companyTypeID={this.chosenCompanyType.Key}"
+                                    + $"&companyTypeName={this.chosenCompanyType.Value}"
+                                    + $"&companyName={this.CompanyNameTxt.Text}"
+                                    + $"&employerPassword={this.EmployerPasswordTxt.Text}"
+                                    + $"&companyEmail={this.CompanyEmailTxt.Text}";
                     HttpResponseMessage response = client.GetAsync(path).Result;
                     employer = response.Content.ReadAsAsync<Employer>().Result;
                 }

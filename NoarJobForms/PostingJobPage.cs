@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NoarJobBL;
+using System.Configuration;
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.Security.Cryptography;
 
 namespace NoarJobUI
 {
@@ -101,7 +105,7 @@ namespace NoarJobUI
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void PostJobBtn_Click(object sender, EventArgs e)
+        private async void PostJobBtn_Click(object sender, EventArgs e)
         {
             if (this.JobTitleTxt.Text != "למשל: מוכר בגדים בקניון עיר ימים" 
                 && this.DescriptionTxt.Text != "כאן מתארים את התפקיד, מה כולל התפקיד, ותחומי האחריות שעל התפקיד" 
@@ -110,10 +114,29 @@ namespace NoarJobUI
                 && this.EmailTxt.Text != "למשל: blabla@gmail.com" && this.ucChoicesJob.JC.ChosenJobCategoryLst.Count > 0 
                 && this.ucChoicesJob.City.LstCities.Count > 0 && this.ucChoicesJob.JT.ChosenJobTypeLst.Count > 0)
             {
+                using (HttpClient client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiBaseUrl"]);
+                    this.ucChoicesJob.JC.ChosenJobCategoryLst.Add(this.ucChoicesJob.JC.ChosenJobCategory);
+                    var jobRequest = new
+                    {
+                        Title = this.JobTitleTxt.Text,
+                        Description = this.DescriptionTxt.Text,
+                        Requirements = this.RequirementsTxt.Text,
+                        EmployerID = this.employer.EmployerID,
+                        Phone = this.PhoneTxt.Text,
+                        Email = this.EmailTxt.Text,
+                        JobCategories = this.ucChoicesJob.JC.ChosenJobCategoryLst,
+                        Cities = this.ucChoicesJob.City.LstCities,
+                        JobTypes = this.ucChoicesJob.JT.ChosenJobTypeLst
+                    };
 
-                this.job.CreateJob(this.JobTitleTxt.Text, this.DescriptionTxt.Text, this.RequirementsTxt.Text, this.employer.EmployerID, 
-                    this.PhoneTxt.Text, this.EmailTxt.Text, this.ucChoicesJob.JC.ChosenJobCategoryLst, this.ucChoicesJob.City.LstCities, 
-                    this.ucChoicesJob.JT.ChosenJobTypeLst);
+                    var jsonContent = JsonConvert.SerializeObject(jobRequest);
+
+                    var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+                    await client.PostAsync("Job/CreateJob", content);
+                }
 
                 MessageBox.Show("המשרה נרשמה במערכת!");
                 JobManagementPage jobManagementPage;
@@ -133,7 +156,7 @@ namespace NoarJobUI
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void UpdateJobBtn_Click(object sender, EventArgs e)
+        private async void UpdateJobBtn_Click(object sender, EventArgs e)
         {
             if (this.JobTitleTxt.Text != "למשל: מוכר בגדים בקניון עיר ימים"
                 && this.DescriptionTxt.Text != "כאן מתארים את התפקיד, מה כולל התפקיד, ותחומי האחריות שעל התפקיד"
@@ -142,10 +165,30 @@ namespace NoarJobUI
                 && this.EmailTxt.Text != "למשל: blabla@gmail.com" && this.ucChoicesJob.JC.ChosenJobCategoryLst.Count > 0
                 && this.ucChoicesJob.City.LstCities.Count > 0 && this.ucChoicesJob.JT.ChosenJobTypeLst.Count > 0)
             {
+                using (HttpClient client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiBaseUrl"]);
+                    var jobRequest = new
+                    {
+                        JobID = this.job.JobID,
+                        IsActive = this.job.IsActive,
+                        Title = this.JobTitleTxt.Text,
+                        Description = this.DescriptionTxt.Text,
+                        Requirements = this.RequirementsTxt.Text,
+                        EmployerID = this.employer.EmployerID,
+                        Phone = this.PhoneTxt.Text,
+                        Email = this.EmailTxt.Text,
+                        JobCategories = this.ucChoicesJob.JC.ChosenJobCategoryLst,
+                        Cities = this.ucChoicesJob.City.LstCities,
+                        JobTypes = this.ucChoicesJob.JT.ChosenJobTypeLst
+                    };
 
-                this.job.UpdateJob(this.JobTitleTxt.Text, this.DescriptionTxt.Text, this.RequirementsTxt.Text, this.employer.EmployerID,
-                    this.PhoneTxt.Text, this.EmailTxt.Text, this.ucChoicesJob.JC.ChosenJobCategoryLst, this.ucChoicesJob.City.LstCities,
-                    this.ucChoicesJob.JT.ChosenJobTypeLst);
+                    var jsonContent = JsonConvert.SerializeObject(jobRequest);
+
+                    var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+                    await client.PostAsync("Job/UpdateJob", content);
+                }
 
                 MessageBox.Show("המשרה עודכנה במערכת!");
 

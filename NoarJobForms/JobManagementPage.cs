@@ -16,21 +16,18 @@ namespace NoarJobUI
     public partial class JobManagementPage : Form
     {
         private ucJob UserControlJob;
-        private JobsBL jobs;
         private Employer employer;
         private Job[] arrJobs;
         public JobManagementPage(Employer employer)
         {
             InitializeComponent();
             this.employer = employer;
-            this.jobs = new JobsBL();
             using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiBaseUrl"]);
-                string path = $"Jobs/GetEmployerJobsByJobActivity?employerID={employer.EmployerID}&isActive=true";
+                string path = $"Jobs/GetEmployerJobsByJobActivity?employerID={this.employer.EmployerID}&isActive=true";
                 HttpResponseMessage response = client.GetAsync(path).Result;
                 this.arrJobs = response.Content.ReadAsAsync<Job[]>().Result;
-                Console.WriteLine();
             }
         }
 
@@ -64,7 +61,13 @@ namespace NoarJobUI
             this.JobsInAirBtn.Enabled = false;
             this.OldJobsBtn.Enabled = true;
             this.Controls.Remove(this.UserControlJob);
-            this.arrJobs = this.jobs.GetEmployerJobsByJobActivity(this.employer.EmployerID, true);
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiBaseUrl"]);
+                string path = $"Jobs/GetEmployerJobsByJobActivity?employerID={this.employer.EmployerID}&isActive=true";
+                HttpResponseMessage response = client.GetAsync(path).Result;
+                this.arrJobs = response.Content.ReadAsAsync<Job[]>().Result;
+            }
             CreateUcJob(true);
         }
 
@@ -78,7 +81,13 @@ namespace NoarJobUI
             this.JobsInAirBtn.Enabled = true;
             this.OldJobsBtn.Enabled = false;
             this.Controls.Remove(this.UserControlJob);
-            this.arrJobs = this.jobs.GetEmployerJobsByJobActivity(this.employer.EmployerID, false);
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiBaseUrl"]);
+                string path = $"Jobs/GetEmployerJobsByJobActivity?employerID={this.employer.EmployerID}&isActive=false";
+                HttpResponseMessage response = client.GetAsync(path).Result;
+                this.arrJobs = response.Content.ReadAsAsync<Job[]>().Result;
+            }
             CreateUcJob(false);
         }
     }

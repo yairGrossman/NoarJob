@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NoarJobBL;
+using System.Net.Http;
+using System.Configuration;
+using Newtonsoft.Json;
 
 namespace NoarJobUI
 {
@@ -29,7 +32,6 @@ namespace NoarJobUI
         private JobCategoriesBL jc;// JobCategoriesBL עצם מטיפוס 
         private CitiesBL cities;// CitiesBL עצם מטיפוס  
         private JobTypesBL jt;// JobTypesBL עצם מטיפוס
-        private SameSearchesOfUsersBL sameSearchesOfUsers;
         private Categories category;// זה נועד בשביל לדעת איזה כפתור נלחץ: כפתור בחירת תחום, כפתור בחירת תפקיד וכולי enum
         private int jobTypeDictionaryLength;// JobType אורך המערך מטיפוס
         private bool DomainLblVisible = false;//אם המשתמש בחר תחום תפקיד אז המשתנה יהפוך לאמת
@@ -67,7 +69,6 @@ namespace NoarJobUI
             this.jc = new JobCategoriesBL();
             this.cities = new CitiesBL();
             this.jt = new JobTypesBL();
-            this.sameSearchesOfUsers = new SameSearchesOfUsersBL();
         }
 
         /// <summary>
@@ -91,7 +92,6 @@ namespace NoarJobUI
             this.jc = new JobCategoriesBL();
             this.cities = new CitiesBL();
             this.jt = new JobTypesBL();
-            this.sameSearchesOfUsers = new SameSearchesOfUsersBL();
             int jobCategoryID;
             int citiesID;
             int jobTypeID;
@@ -246,7 +246,7 @@ namespace NoarJobUI
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void JobTypeClick(object sender, EventArgs e)
+        private async void JobTypeClick(object sender, EventArgs e)
         {
             this.cleanChoiceActive = false;
             this.JobTypesDropDownVisible = true;
@@ -259,19 +259,34 @@ namespace NoarJobUI
                 this.jt.ChosenJobTypeLst.Remove((int)btn.Tag);
                 this.JobTypesDropDown.Items.Remove(btn.Text);
                 
-                    int count;
-                    if (this.cities.LstCities.Count != 0)
+                int count;
+                if (this.cities.LstCities.Count != 0)
+                {
+                    using (HttpClient client = new HttpClient())
                     {
-                        this.sameSearchesOfUsers.SameChildCategoriesAndCitiesAndTypes(this.jc.ChosenJobCategoryLst, this.cities.LstCities, this.jt.ChosenJobTypeLst);
-                        this.CountTypesLbl.Text = $"({this.sameSearchesOfUsers.CountSameParentCategoryAndChildCategoriesAndCitiesAndTypes})";
-                        count = this.sameSearchesOfUsers.CountSameParentCategoryAndChildCategoriesAndCitiesAndTypes;
-                    }
-                    else
-                    {
-                        count = 0;
-                    }
+                        client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiBaseUrl"]);
+                        var sameSearchesOfUsersReq = new
+                        {
+                            ChildCategoriesLst = this.jc.ChosenJobCategoryLst,
+                            CitiesLst = this.cities.LstCities,
+                            TypesLst = this.jt.ChosenJobTypeLst
+                        };
 
-                    this.postingJobPage.CountSameSearchesLbl.Text = count.ToString();
+                        var jsonContent = JsonConvert.SerializeObject(sameSearchesOfUsersReq);
+
+                        var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+                        HttpResponseMessage response = await client.PostAsync("SameSearchesOfUsers/SameChildCategoriesAndCitiesAndTypes", content);
+                        count = response.Content.ReadAsAsync<int>().Result;
+                    }
+                    this.CountTypesLbl.Text = $"({count})";
+                }
+                else
+                {
+                    count = 0;
+                }
+
+                this.postingJobPage.CountSameSearchesLbl.Text = count.ToString();
 
                 if (this.JobTypesDropDown.Items.Count == 0)
                 {
@@ -283,11 +298,28 @@ namespace NoarJobUI
                 btn.BackColor = Color.FromArgb(148, 180, 159);
                 this.jt.ChosenJobTypeLst.Add((int)btn.Tag);
                 this.JobTypesDropDown.Items.Add(btn.Text);
-                    this.sameSearchesOfUsers.SameChildCategoriesAndCitiesAndTypes(this.jc.ChosenJobCategoryLst, this.cities.LstCities, this.jt.ChosenJobTypeLst);
-                    this.CountTypesLbl.Text = $"({this.sameSearchesOfUsers.CountSameParentCategoryAndChildCategoriesAndCitiesAndTypes})";
-                    int count = this.sameSearchesOfUsers.CountSameParentCategoryAndChildCategoriesAndCitiesAndTypes;
+                int count;
 
-                    this.postingJobPage.CountSameSearchesLbl.Text = count.ToString();
+                using (HttpClient client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiBaseUrl"]);
+                    var sameSearchesOfUsersReq = new
+                    {
+                        ChildCategoriesLst = this.jc.ChosenJobCategoryLst,
+                        CitiesLst = this.cities.LstCities,
+                        TypesLst = this.jt.ChosenJobTypeLst
+                    };
+
+                    var jsonContent = JsonConvert.SerializeObject(sameSearchesOfUsersReq);
+
+                    var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+                    HttpResponseMessage response = await client.PostAsync("SameSearchesOfUsers/SameChildCategoriesAndCitiesAndTypes", content);
+                    count = response.Content.ReadAsAsync<int>().Result;
+                }
+                this.CountTypesLbl.Text = $"({count})";
+
+                this.postingJobPage.CountSameSearchesLbl.Text = count.ToString();
             }
         }
 
@@ -298,49 +330,78 @@ namespace NoarJobUI
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void LocationClick(object sender, EventArgs e)
+        private async void LocationClick(object sender, EventArgs e)
         {
             this.cleanChoiceActive = false;
             Button btn = (Button)sender;
-                //אם הכפתור לא בצבעו המקורי אז אני מחזיר את צבעו לבצע הרגיל
-                //ומוחק את הבחירה שלו
-                if (btn.BackColor != Color.FromArgb(236, 179, 144))
+            //אם הכפתור לא בצבעו המקורי אז אני מחזיר את צבעו לבצע הרגיל
+            //ומוחק את הבחירה שלו
+            if (btn.BackColor != Color.FromArgb(236, 179, 144))
+            {
+                btn.BackColor = Color.FromArgb(236, 179, 144);
+                this.cities.LstCities.Remove((int)btn.Tag);
+                this.CitiesDropDown.Items.Remove(btn.Text);
+
+                int count;
+                if (this.cities.LstCities.Count != 0)
                 {
-                    btn.BackColor = Color.FromArgb(236, 179, 144);
-                    this.cities.LstCities.Remove((int)btn.Tag);
-                    this.CitiesDropDown.Items.Remove(btn.Text);
-
-                    int count;
-                    if (this.cities.LstCities.Count != 0)
+                    using (HttpClient client = new HttpClient())
                     {
-                        this.sameSearchesOfUsers.SameChildCategoriesAndCities(this.jc.ChosenJobCategoryLst, this.cities.LstCities);
-                        this.CountCitiesLbl.Text = $"({this.sameSearchesOfUsers.CountSameParentCategoryAndChildCategoriesAndCities})";
-                        count = this.sameSearchesOfUsers.CountSameParentCategoryAndChildCategoriesAndCities;
-                    }
-                    else
-                    {
-                        count = 0;
-                    }
+                        client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiBaseUrl"]);
+                        var sameSearchesOfUsersReq = new
+                        {
+                            ChildCategoriesLst = this.jc.ChosenJobCategoryLst,
+                            CitiesLst = this.cities.LstCities
+                        };
 
-                    this.postingJobPage.CountSameSearchesLbl.Text = count.ToString();
+                        var jsonContent = JsonConvert.SerializeObject(sameSearchesOfUsersReq);
 
-                    if (this.CitiesDropDown.Items.Count == 0)
-                    {
-                        this.CitiesDropDownVisible = false;
+                        var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+                        HttpResponseMessage response = await client.PostAsync("SameSearchesOfUsers/SameChildCategoriesAndCities", content);
+                        count = response.Content.ReadAsAsync<int>().Result;
                     }
+                    this.CountCitiesLbl.Text = $"({count})";
                 }
                 else
                 {
-                    btn.BackColor = Color.FromArgb(148, 180, 159);
-                    this.cities.LstCities.Add((int)btn.Tag);
-                    this.CitiesDropDown.Items.Add(btn.Text);
-                    this.sameSearchesOfUsers.SameChildCategoriesAndCities(this.jc.ChosenJobCategoryLst, this.cities.LstCities);
-                    this.CountCitiesLbl.Text = $"({this.sameSearchesOfUsers.CountSameParentCategoryAndChildCategoriesAndCities})";
-                    int count = this.sameSearchesOfUsers.CountSameParentCategoryAndChildCategoriesAndCities;
-                    this.postingJobPage.CountSameSearchesLbl.Text = count.ToString();
-                    this.CitiesDropDownVisible = true;
-                    this.ContentPanelVisible = false;
+                    count = 0;
                 }
+
+                this.postingJobPage.CountSameSearchesLbl.Text = count.ToString();
+
+                if (this.CitiesDropDown.Items.Count == 0)
+                {
+                    this.CitiesDropDownVisible = false;
+                }
+            }
+            else
+            {
+                btn.BackColor = Color.FromArgb(148, 180, 159);
+                this.cities.LstCities.Add((int)btn.Tag);
+                this.CitiesDropDown.Items.Add(btn.Text);
+                int count;
+                using (HttpClient client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiBaseUrl"]);
+                    var sameSearchesOfUsersReq = new
+                    {
+                        ChildCategoriesLst = this.jc.ChosenJobCategoryLst,
+                        CitiesLst = this.cities.LstCities
+                    };
+
+                    var jsonContent = JsonConvert.SerializeObject(sameSearchesOfUsersReq);
+
+                    var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+                    HttpResponseMessage response = await client.PostAsync("SameSearchesOfUsers/SameChildCategoriesAndCities", content);
+                    count = response.Content.ReadAsAsync<int>().Result;
+                }
+                this.CountCitiesLbl.Text = $"({count})";
+                this.postingJobPage.CountSameSearchesLbl.Text = count.ToString();
+                this.CitiesDropDownVisible = true;
+                this.ContentPanelVisible = false;
+            }
         }
 
         /// <summary>
@@ -348,7 +409,7 @@ namespace NoarJobUI
         /// הכפתור משנה את ציבעו ונשמר הבחירה של המשתמש
         /// jc בתוך העצם  
         /// </summary>
-        private void RoleClick(object sender, EventArgs e)
+        private async void RoleClick(object sender, EventArgs e)
         {
             this.cleanChoiceActive = false;
             this.RolesDropDownVisible = true;
@@ -362,20 +423,29 @@ namespace NoarJobUI
                 this.jc.ChosenJobCategoryLst.Remove((int)btn.Tag);
                 this.RolesDropDown.Items.Remove(btn.Text);
 
-                    int count;
-                    if (this.jc.ChosenJobCategoryLst.Count != 0)
+                int count;
+                if (this.jc.ChosenJobCategoryLst.Count != 0)
+                {
+                    using (HttpClient client = new HttpClient())
                     {
-                        this.sameSearchesOfUsers.GetSameChildCategories(this.jc.ChosenJobCategoryLst);
-                        this.CountRolesLbl.Text = $"({this.sameSearchesOfUsers.CountSameParentCategoryAndChildCategories})";
-                        count = this.sameSearchesOfUsers.CountSameParentCategoryAndChildCategories;
+                        var urlBuilder = new StringBuilder(ConfigurationManager.AppSettings["WebApiBaseUrl"] +
+                            "SameSearchesOfUsers/GetSameChildCategories");
+
+                        urlBuilder.Append("?childCategoriesLst=");
+                        urlBuilder.Append(string.Join(",", this.jc.ChosenJobCategoryLst));
+                        string url = urlBuilder.ToString();
+                        HttpResponseMessage response = await client.GetAsync(url);
+                        count = response.Content.ReadAsAsync<int>().Result;
                     }
-                    else
-                    {
-                        count = 0;
-                    }
+                    this.CountRolesLbl.Text = $"({count})";
+                }
+                else
+                {
+                    count = 0;
+                }
 
 
-                    this.postingJobPage.CountSameSearchesLbl.Text = count.ToString();
+                this.postingJobPage.CountSameSearchesLbl.Text = count.ToString();
 
                 if (this.RolesDropDown.Items.Count == 0)
                 {
@@ -387,10 +457,20 @@ namespace NoarJobUI
                 btn.BackColor = Color.FromArgb(148, 180, 159);
                 this.jc.ChosenJobCategoryLst.Add((int)btn.Tag);
                 this.RolesDropDown.Items.Add(btn.Text);
-                    this.sameSearchesOfUsers.GetSameChildCategories(this.jc.ChosenJobCategoryLst);
-                    this.CountRolesLbl.Text = $"({this.sameSearchesOfUsers.CountSameParentCategoryAndChildCategories})";
-                    int count = this.sameSearchesOfUsers.CountSameParentCategoryAndChildCategories;
-                    this.postingJobPage.CountSameSearchesLbl.Text = count.ToString();
+                int count;
+                using (HttpClient client = new HttpClient())
+                {
+                    var urlBuilder = new StringBuilder(ConfigurationManager.AppSettings["WebApiBaseUrl"] +
+                        "SameSearchesOfUsers/GetSameChildCategories");
+
+                    urlBuilder.Append("?childCategoriesLst=");
+                    urlBuilder.Append(string.Join(",", this.jc.ChosenJobCategoryLst));
+                    string url = urlBuilder.ToString();
+                    HttpResponseMessage response = await client.GetAsync(url);
+                    count = response.Content.ReadAsAsync<int>().Result;
+                }
+                this.CountRolesLbl.Text = $"({count})";
+                this.postingJobPage.CountSameSearchesLbl.Text = count.ToString();
             }
         }
 
@@ -410,10 +490,16 @@ namespace NoarJobUI
 
             Button btn = (Button)sender;
             this.jc.ChosenJobCategory = (int)btn.Tag;
-                this.sameSearchesOfUsers.GetSameParentCategory(this.jc.ChosenJobCategory);
-                this.CountDomainLbl.Text = $"({this.sameSearchesOfUsers.CountSameParentCategory})";
-                int count = this.sameSearchesOfUsers.CountSameParentCategory;
-                this.postingJobPage.CountSameSearchesLbl.Text = count.ToString();
+            int sameParentCategory;
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiBaseUrl"]);
+                string path = $"SameSearchesOfUsers/GetSameParentCategory?parentCategory={this.jc.ChosenJobCategory}";
+                HttpResponseMessage response = client.GetAsync(path).Result;
+                sameParentCategory = response.Content.ReadAsAsync<int>().Result;
+            }
+            this.CountDomainLbl.Text = $"({sameParentCategory})";
+            this.postingJobPage.CountSameSearchesLbl.Text = sameParentCategory.ToString();
 
             btn.BackColor = Color.FromArgb(148, 180, 159);
             this.DomainLbl.Text = btn.Text;
@@ -445,7 +531,14 @@ namespace NoarJobUI
             this.ChooseTxt.Visible = true;
             this.pictureBox1.Visible = true;
             this.category = Categories.Domain;
-            Dictionary<int, string> jcDictionary = jc.GetParentJobCategories();
+            Dictionary<int, string> jcDictionary;
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiBaseUrl"]);
+                string path = "JobCategories/GetParentJobCategories";
+                HttpResponseMessage response = client.GetAsync(path).Result;
+                jcDictionary = response.Content.ReadAsAsync<Dictionary<int, string>>().Result;
+            }
             AddButtons(jcDictionary);
             if(!this.cleanChoiceActive)
                PaintButton(this.jc.ChosenJobCategory);
@@ -473,7 +566,14 @@ namespace NoarJobUI
             this.ChooseTxt.Visible = true;
             this.pictureBox1.Visible = true;
             this.category = Categories.Role;
-            Dictionary<int, string> jcDictionary = jc.GetJobCategoriesByParentID();
+            Dictionary<int, string> jcDictionary;
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiBaseUrl"]);
+                string path = $"JobCategories/GetJobCategoriesByParentID?chosenJobCategory={this.jc.ChosenJobCategory}";
+                HttpResponseMessage response = client.GetAsync(path).Result;
+                jcDictionary = response.Content.ReadAsAsync<Dictionary<int, string>>().Result;
+            }
             AddButtons(jcDictionary);
             if (!this.cleanChoiceActive)
                 PaintButtons(this.jc.ChosenJobCategoryLst);
@@ -527,7 +627,23 @@ namespace NoarJobUI
             this.ChooseTxt.Visible = false;
             this.pictureBox1.Visible = false;
             this.category = Categories.JobType;
-            Dictionary<int, string> dictionary = TurnTypeArrAndSubArrToOneArr(jt.GetAllJobTypes(), jt.GetAllSubTypes());
+
+            Dictionary<int, string> allJobTypes;
+            Dictionary<int, string> allSubTypes;
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiBaseUrl"]);
+                string path = "JobTypes/GetAllJobTypes";
+                HttpResponseMessage response = client.GetAsync(path).Result;
+                allJobTypes = response.Content.ReadAsAsync<Dictionary<int, string>>().Result;
+
+                path = "JobTypes/GetAllSubTypes";
+                response = client.GetAsync(path).Result;
+                allSubTypes = response.Content.ReadAsAsync<Dictionary<int, string>>().Result;
+            }
+
+            Dictionary<int, string> dictionary = TurnTypeDicAndSubDicToOneDic(allJobTypes, allSubTypes);
             AddButtons(dictionary);
             if (!this.cleanChoiceActive)
                 PaintButtons(this.jt.ChosenJobTypeLst);
@@ -548,13 +664,25 @@ namespace NoarJobUI
 
             if (this.category == Categories.Domain)
             {
-                jcDictionary = jc.GetParentJobCategoriesByText(this.ChooseTxt.Text);
+                using (HttpClient client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiBaseUrl"]);
+                    string path = $"JobCategories/GetParentJobCategoriesByText?text={this.ChooseTxt.Text}";
+                    HttpResponseMessage response = client.GetAsync(path).Result;
+                    jcDictionary = response.Content.ReadAsAsync<Dictionary<int, string>>().Result;
+                }
                 AddButtons(jcDictionary);
                 PaintButton(this.jc.ChosenJobCategory);
             }
             else if (this.category == Categories.Role)
             {
-                jcDictionary = jc.GetJobCategoriesByParentIDAndByText(this.ChooseTxt.Text);
+                using (HttpClient client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiBaseUrl"]);
+                    string path = $"JobCategories/GetJobCategoriesByParentIDAndByText?chosenJobCategory={this.jc.ChosenJobCategory}&text={this.ChooseTxt.Text}";
+                    HttpResponseMessage response = client.GetAsync(path).Result;
+                    jcDictionary = response.Content.ReadAsAsync<Dictionary<int, string>>().Result;
+                }
                 AddButtons(jcDictionary);
                 PaintButtons(this.jc.ChosenJobCategoryLst);
             }
@@ -562,12 +690,19 @@ namespace NoarJobUI
             {
                 if (this.ChooseTxt.Text != "")
                 {
-                    Dictionary<int, string> citiesDictionary = cities.GetCities(this.ChooseTxt.Text);
+                    Dictionary<int, string> citiesDictionary;
+                    using (HttpClient client = new HttpClient())
+                    {
+                        client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiBaseUrl"]);
+                        string path = $"Cities/GetCities?text={this.ChooseTxt.Text}";
+                        HttpResponseMessage response = client.GetAsync(path).Result;
+                        citiesDictionary = response.Content.ReadAsAsync<Dictionary<int, string>>().Result;
+                    }
                     AddButtons(citiesDictionary);
 
                     if (!this.cleanChoiceActive)
                     {
-                            PaintButtons(this.City.LstCities);
+                       PaintButtons(this.City.LstCities);
                     }
                 }
                 else
@@ -586,7 +721,7 @@ namespace NoarJobUI
         /// <param name="jobTypeArr"></param>
         /// <param name="subTypeArr"></param>
         /// <returns></returns>
-        public Dictionary<int, string> TurnTypeArrAndSubArrToOneArr(Dictionary<int, string> jobTypeDictionary, Dictionary<int, string> subTypeDictionary)
+        public Dictionary<int, string> TurnTypeDicAndSubDicToOneDic(Dictionary<int, string> jobTypeDictionary, Dictionary<int, string> subTypeDictionary)
         {
             this.jobTypeDictionaryLength = jobTypeDictionary.Count;
             Dictionary<int, string> dictionary = new Dictionary<int, string>();
