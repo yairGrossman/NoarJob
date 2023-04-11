@@ -26,8 +26,6 @@ namespace NoarJobBL
         private Dictionary<int, string> typesDictionary;//רשימת סוגי המשרות שלמשרה יש 
         private Dictionary<int, string> categoriesDictionary;//רשימת הקטגוריות שלמשרה יש 
 
-        private List<string> notesLst;//הערות של המעסיק
-
         public Job(int jobID, 
             string dateApplicated,
             int userJobType,
@@ -190,10 +188,6 @@ namespace NoarJobBL
             User[] arrUsers = new User[dt.Rows.Count];
             for (int i = 0; i < arrUsers.Length; i++)
             {
-                if (dt.Rows[i]["Notes"].ToString() != "")
-                {
-                    this.notesLst.Add(dt.Rows[i]["Notes"].ToString());
-                }
                 arrUsers[i] = new User(
                     (int)dt.Rows[i]["UserID"],
                     (int)dt.Rows[i]["CvID"],
@@ -204,7 +198,8 @@ namespace NoarJobBL
                     new KeyValuePair<int,string>((int)dt.Rows[i]["CityID"], dt.Rows[i]["CityName"].ToString()),
                     dt.Rows[i]["CvFilePath"].ToString(),
                     (bool)dt.Rows[i]["IsActive"],
-                    dt.Rows[i]["FileName"].ToString()
+                    dt.Rows[i]["FileName"].ToString(),
+                    dt.Rows[i]["Notes"].ToString()
                     );
             }
             return arrUsers;

@@ -127,7 +127,6 @@ const JobApplication = (props) => {
       })
         .then(() => {
           RefreshJobs();
-          navigate("/MyJobs");
         })
         .catch((error) => console.error(error));
     } else {
@@ -137,7 +136,6 @@ const JobApplication = (props) => {
       })
         .then(() => {
           RefreshJobs();
-          navigate("/MyJobs");
         })
         .catch((error) => console.error(error));
     }
@@ -151,6 +149,7 @@ const JobApplication = (props) => {
       .then((response) => response.json())
       .then((data) => {
         props.setJobs(data);
+        navigate("/MyJobs");
       })
       .catch((error) => console.log(error));
   };

@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using NoarJobBL;
 using System.Configuration;
-using System.IO;
 
 namespace NoarJobUI
 {

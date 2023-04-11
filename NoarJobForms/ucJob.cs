@@ -1,13 +1,10 @@
 ﻿using NoarJobBL;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
+using System.Net.Http;
 
 namespace NoarJobUI
 {
@@ -15,7 +12,7 @@ namespace NoarJobUI
     {
         private Job[] arrJobs;
         private int y = 157;
-        private Form form;
+        private JobManagementPage jobManagement;
         private bool isJobActive;
         private Employer employer;
 
@@ -23,14 +20,13 @@ namespace NoarJobUI
         /// פעולה בונה שנועדה למעסיק
         /// </summary>
         /// <param name="arrJobs"></param>
-        /// <param name="form"></param>
         /// <param name="isJobActive"></param>
         /// <param name="employer"></param>
-        public ucJob(Job[] arrJobs, Form form, bool isJobActive, Employer employer)
+        public ucJob(Job[] arrJobs, JobManagementPage jobManagement, bool isJobActive, Employer employer)
         {
             InitializeComponent();
             this.arrJobs = arrJobs;
-            this.form = form;
+            this.jobManagement = jobManagement;
             this.isJobActive = isJobActive;
             this.employer = employer;
         }
@@ -52,7 +48,7 @@ namespace NoarJobUI
 
             this.Size = new Size(this.JobsFLP.Width, this.JobsFLP.Height);
         }
-        
+
         #region כרטיס משרה
         /// <summary>
         /// פונקציה שיוצרת פנל של משרה
@@ -80,6 +76,7 @@ namespace NoarJobUI
             panel.Controls.Add(CompanyNameLbl(this.arrJobs[i].CompanyName));
             panel.Controls.Add(JobTitleLbl(this.arrJobs[i].Title));
             panel.Controls.Add(CompanyTypeNameLbl(this.arrJobs[i].CompanyTypeName));
+
             panel.Cursor = System.Windows.Forms.Cursors.Default;
             panel.Name = "JobPanel";
             panel.Size = new System.Drawing.Size(548, 579);
@@ -100,13 +97,16 @@ namespace NoarJobUI
             Panel panel = new Panel();
             panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(179)))), ((int)(((byte)(144)))));
 
-            
-                if (this.isJobActive)
-                    panel.Controls.Add(this.TrashPic(this.arrJobs[i].JobID, i));
-                else
-                    panel.Controls.Add(this.UploadJobPic(this.arrJobs[i].JobID, i));
 
-                panel.Controls.Add(this.EditJobBtn(i));
+            if (this.isJobActive)
+            {
+                panel.Controls.Add(this.TrashPic(this.arrJobs[i].JobID));
+                panel.Controls.Add(ATSPageBtn(this.arrJobs[i].JobID));
+            }
+            else
+                panel.Controls.Add(this.UploadJobPic(this.arrJobs[i].JobID));
+
+            panel.Controls.Add(this.EditJobBtn(i));
 
             panel.Location = new System.Drawing.Point(1105, 701);
             panel.Name = "ChoseJobPanel";
@@ -449,12 +449,12 @@ namespace NoarJobUI
         /// <param name="jobID"></param>
         /// <param name="jobIndex">מיקום המשרה במערך המשרות</param>
         /// <returns></returns>
-        private PictureBox TrashPic(int jobID, int jobIndex)
+        private PictureBox TrashPic(int jobID)
         {
             PictureBox pic = new PictureBox();
             pic.Image = global::NoarJobUI.Properties.Resources.trash_can;
             pic.Location = new System.Drawing.Point(498, 3);
-            pic.Tag = new int[2] { jobID, jobIndex };
+            pic.Tag = jobID;
             pic.Size = new System.Drawing.Size(47, 40);
             pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             pic.TabIndex = 0;
@@ -489,18 +489,47 @@ namespace NoarJobUI
         /// <param name="jobID"></param>
         /// <param name="jobIndex">מיקום המשרה במערך המשרות</param>
         /// <returns></returns>
-        private PictureBox UploadJobPic(int jobID, int jobIndex)
+        private PictureBox UploadJobPic(int jobID)
         {
             PictureBox pic = new PictureBox();
             pic.Image = global::NoarJobUI.Properties.Resources.Upload_Icon;
             pic.Location = new System.Drawing.Point(498, 3);
-            pic.Tag = new int[2] { jobID, jobIndex };
+            pic.Tag = jobID;
             pic.Size = new System.Drawing.Size(47, 40);
             pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             pic.TabIndex = 0;
             pic.TabStop = false;
             pic.Click += new EventHandler(this.UploadJobPic_Click);
             return pic;
+        }
+
+        /// <summary>
+        /// פונקציה שיוצרת כפתור של העברת המעסיק ל ATS
+        /// </summary>
+        /// <param name="jobID"></param>
+        /// <returns></returns>
+        private Button ATSPageBtn(int jobID)
+        {
+            Button btn = new Button();
+            btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(120)))), ((int)(((byte)(97)))));
+            btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            btn.Location = new System.Drawing.Point(320, 0);
+            btn.Size = new System.Drawing.Size(167, 46);
+            btn.TabIndex = 2;
+            btn.Text = "ניהול מועמדים";
+            btn.Tag = jobID;
+            btn.UseVisualStyleBackColor = false;
+            btn.Click += new EventHandler(this.ATSPageBtn_Click);
+            return btn;
+        }
+
+        private void ATSPageBtn_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            int jobID = (int)button.Tag;
+            ATSPage aTSPage = new ATSPage(jobID);
+            aTSPage.Show();
+            this.jobManagement.Close();
         }
         #endregion
 
@@ -515,7 +544,7 @@ namespace NoarJobUI
             int jobIndex = (int)button.Tag;
             PostingJobPage postingJobPage = new PostingJobPage(this.employer, this.arrJobs[jobIndex]);
             postingJobPage.Show();
-            this.form.Close();
+            this.jobManagement.Close();
         }
 
         /// <summary>
@@ -527,23 +556,21 @@ namespace NoarJobUI
         private void TrashPic_Click(object sender, EventArgs e)
         {
             PictureBox pic = (PictureBox)sender;
-            int[] arr = (int[])pic.Tag;
-            int jobID = arr[0];
-            if (this.form is JobManagementPage)
-            {
-                int jobIndex = arr[1];
-                bool succeeded = this.arrJobs[jobIndex].UpdateJobActivity();
-                if (!succeeded)
-                    MessageBox.Show("משהו השתבש");
+            int jobID = (int)pic.Tag;
 
-                ((JobManagementPage)this.form).JobsInAirBtn_Click(null, null);
-            }
-            else
+            bool succeeded = false;
+            using (HttpClient client = new HttpClient())
             {
-                //DialogResult dialogResult = MessageBox.Show("אתה בטוח שאתה רוצה למחוק את המשרה?, אם תמחק את המשרה לעולם לא תראה יותר את המשרה הזאת", "",MessageBoxButtons.YesNo);
-                //if (dialogResult == DialogResult.Yes)
-                    //this.user_Job.CreateUser_Job(jobID, this.user.UserID, 3);
+                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiBaseUrl"]);
+                string path = $"Job/UpdateJobActivity?jobID={jobID}&isActive=true";
+                HttpResponseMessage response = client.GetAsync(path).Result;
+                succeeded = response.Content.ReadAsAsync<bool>().Result;
             }
+
+            if (!succeeded)
+                MessageBox.Show("משהו השתבש");
+
+            this.jobManagement.JobsInAirBtn_Click(null, null);
         }
 
         /// <summary>
@@ -554,14 +581,21 @@ namespace NoarJobUI
         private void UploadJobPic_Click(object sender, EventArgs e)
         {
             PictureBox pic = (PictureBox)sender;
-            int[] arr = (int[])pic.Tag;
-            int jobID = arr[0];
-            int jobIndex = arr[1];
-            bool succeeded = this.arrJobs[jobIndex].UpdateJobActivity();
+            int jobID = (int)pic.Tag;
+
+            bool succeeded = false;
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiBaseUrl"]);
+                string path = $"Job/UpdateJobActivity?jobID={jobID}&isActive=false";
+                HttpResponseMessage response = client.GetAsync(path).Result;
+                succeeded = response.Content.ReadAsAsync<bool>().Result;
+            }
+
             if (!succeeded)
                 MessageBox.Show("משהו השתבש");
 
-            ((JobManagementPage)this.form).OldJobsBtn_Click(null, null);
+            this.jobManagement.OldJobsBtn_Click(null, null);
         }
     }
 }

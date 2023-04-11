@@ -19,8 +19,6 @@ namespace NoarJobUI
         {
             InitializeComponent();
             this.employer = employer;
-            this.PostingJobPageBtn.Visible = true;
-            this.ManageJobsPageBtn.Visible = true;
         }
 
         private void HomePage_Load(object sender, EventArgs e)

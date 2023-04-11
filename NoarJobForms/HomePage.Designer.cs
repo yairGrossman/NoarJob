@@ -41,14 +41,13 @@ namespace NoarJobUI
             this.ManageJobsPageBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(179)))), ((int)(((byte)(144)))));
             this.ManageJobsPageBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.ManageJobsPageBtn.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.ManageJobsPageBtn.Location = new System.Drawing.Point(104, 235);
+            this.ManageJobsPageBtn.Location = new System.Drawing.Point(104, 210);
             this.ManageJobsPageBtn.Margin = new System.Windows.Forms.Padding(0);
             this.ManageJobsPageBtn.Name = "ManageJobsPageBtn";
             this.ManageJobsPageBtn.Size = new System.Drawing.Size(244, 39);
             this.ManageJobsPageBtn.TabIndex = 15;
             this.ManageJobsPageBtn.Text = "כניסה לדף ניהול משרות";
             this.ManageJobsPageBtn.UseVisualStyleBackColor = false;
-            this.ManageJobsPageBtn.Visible = false;
             this.ManageJobsPageBtn.Click += new System.EventHandler(this.ManageJobsPageBtn_Click);
             // 
             // PostingJobPageBtn
@@ -63,7 +62,6 @@ namespace NoarJobUI
             this.PostingJobPageBtn.TabIndex = 14;
             this.PostingJobPageBtn.Text = "כניסה לדף פרסום משרה";
             this.PostingJobPageBtn.UseVisualStyleBackColor = false;
-            this.PostingJobPageBtn.Visible = false;
             this.PostingJobPageBtn.Click += new System.EventHandler(this.PostingJobPageBtn_Click);
             // 
             // GreenPanel

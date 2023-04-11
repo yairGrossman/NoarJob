@@ -46,7 +46,7 @@ namespace NoarJobAPI.Controllers
             return new JsonResult(arrUsers);
         }
 
-        [HttpPost("UpdateEmployerNotes")]
+        [HttpGet("UpdateEmployerNotes")]
         public void UpdateEmployerNotes(int jobID, int userID, string notes)
         {
             Job job = new Job();

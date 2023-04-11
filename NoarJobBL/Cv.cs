@@ -18,6 +18,7 @@ namespace NoarJobBL
         public string CvFilePath
         {
             get { return cvFilePath; }
+            set { cvFilePath = value; }
         }
 
         public bool CvIsActive
@@ -30,6 +31,7 @@ namespace NoarJobBL
         public string FileName
         {
             get { return this.fileName; }
+            set { this.fileName = value; }
         }
 
         public Cv(int cvID, string cvFilePath, bool isActive, string fileName)

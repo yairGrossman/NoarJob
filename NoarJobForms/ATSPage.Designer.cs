@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.CvsFLP = new System.Windows.Forms.FlowLayoutPanel();
             this.TapTypePanel = new System.Windows.Forms.Panel();
             this.EmploymentContractBtn = new System.Windows.Forms.Button();
             this.ProfessionalInterviewBtn = new System.Windows.Forms.Button();
@@ -37,6 +38,14 @@
             this.NotCatalogedBtn = new System.Windows.Forms.Button();
             this.TapTypePanel.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // CvsFLP
+            // 
+            this.CvsFLP.AutoScroll = true;
+            this.CvsFLP.Location = new System.Drawing.Point(494, 189);
+            this.CvsFLP.Name = "CvsFLP";
+            this.CvsFLP.Size = new System.Drawing.Size(515, 395);
+            this.CvsFLP.TabIndex = 4;
             // 
             // TapTypePanel
             // 
@@ -63,6 +72,7 @@
             this.EmploymentContractBtn.TabIndex = 11;
             this.EmploymentContractBtn.Text = "עברו חתימה על חוזה העסקה";
             this.EmploymentContractBtn.UseVisualStyleBackColor = false;
+            this.EmploymentContractBtn.Click += new System.EventHandler(this.EmploymentContractBtn_Click);
             // 
             // ProfessionalInterviewBtn
             // 
@@ -76,6 +86,7 @@
             this.ProfessionalInterviewBtn.TabIndex = 10;
             this.ProfessionalInterviewBtn.Text = "עברו ראיון מקצועי";
             this.ProfessionalInterviewBtn.UseVisualStyleBackColor = false;
+            this.ProfessionalInterviewBtn.Click += new System.EventHandler(this.ProfessionalInterviewBtn_Click);
             // 
             // TelephoneInterviewBאמ
             // 
@@ -89,6 +100,7 @@
             this.TelephoneInterviewBאמ.TabIndex = 9;
             this.TelephoneInterviewBאמ.Text = "עברו ראיון טלפוני ראשוני";
             this.TelephoneInterviewBאמ.UseVisualStyleBackColor = false;
+            this.TelephoneInterviewBאמ.Click += new System.EventHandler(this.TelephoneInterviewBאמ_Click);
             // 
             // NotFoundSuitableBtn
             // 
@@ -102,6 +114,7 @@
             this.NotFoundSuitableBtn.TabIndex = 8;
             this.NotFoundSuitableBtn.Text = "נמצאו לא מתאימים למשרה";
             this.NotFoundSuitableBtn.UseVisualStyleBackColor = false;
+            this.NotFoundSuitableBtn.Click += new System.EventHandler(this.NotFoundSuitableBtn_Click);
             // 
             // FoundSuitableBtn
             // 
@@ -115,6 +128,7 @@
             this.FoundSuitableBtn.TabIndex = 7;
             this.FoundSuitableBtn.Text = "נמצאו מתאימים למשרה";
             this.FoundSuitableBtn.UseVisualStyleBackColor = false;
+            this.FoundSuitableBtn.Click += new System.EventHandler(this.FoundSuitableBtn_Click);
             // 
             // NotCatalogedBtn
             // 
@@ -128,14 +142,16 @@
             this.NotCatalogedBtn.TabIndex = 6;
             this.NotCatalogedBtn.Text = "לא קוטלגו\r\n(הגישו מועמדות)";
             this.NotCatalogedBtn.UseVisualStyleBackColor = false;
+            this.NotCatalogedBtn.Click += new System.EventHandler(this.NotCatalogedBtn_Click);
             // 
             // ATSPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(248)))), ((int)(((byte)(232)))));
-            this.ClientSize = new System.Drawing.Size(1496, 476);
+            this.ClientSize = new System.Drawing.Size(1496, 695);
             this.Controls.Add(this.TapTypePanel);
+            this.Controls.Add(this.CvsFLP);
             this.Name = "ATSPage";
             this.Text = "ATSPage";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -146,7 +162,7 @@
         }
 
         #endregion
-
+        public System.Windows.Forms.FlowLayoutPanel CvsFLP;
         private System.Windows.Forms.Panel TapTypePanel;
         public System.Windows.Forms.Button NotCatalogedBtn;
         public System.Windows.Forms.Button EmploymentContractBtn;
