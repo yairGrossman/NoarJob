@@ -55,8 +55,9 @@ const Cvs = (props) => {
   };
 
   const DeleteCv = (event) => {
-    const cvId = event.target.getAttribute("data-cvId");
     if (window.confirm("אתה עומד למחוק את הקורות חיים לצמיתות")) {
+      const cvId = parseInt(event.target.getAttribute("data-cvid"));
+
       fetch(variables.API_URL + "Cv/UpdateCvActivity?cvID=" + cvId).then(() => {
         props.setUser((prevUser) => {
           return {
@@ -93,7 +94,7 @@ const Cvs = (props) => {
                         onClick={ChosenCv}
                       ></i>
                       <i
-                        data-cvId={cv.cvID}
+                        data-cvid={cv.cvID}
                         role="button"
                         className="bi bi-trash-fill agentIconStyle col-2 px-0"
                         onClick={DeleteCv}
