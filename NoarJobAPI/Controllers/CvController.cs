@@ -28,12 +28,11 @@ namespace NoarJobAPI.Controllers
         }
 
         [HttpGet("UpdateCvActivity")]
-        public JsonResult UpdateCvActivity(int cvID)
+        public void UpdateCvActivity(int cvID)
         {
             Cv cv = new Cv();
             cv.CvID = cvID;
             cv.UpdateCvActivity();
-            return new JsonResult(cv);
         }
     }
 }

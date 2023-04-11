@@ -8,7 +8,7 @@ namespace NoarJobAPI.Controllers
     [ApiController]
     public class CompanyTypeController : ControllerBase
     {
-        [HttpGet]
+        [HttpGet("GetAllCompanyTypes")]
         public JsonResult GetAllCompanyTypes()
         {
             CompanyType companyType = new CompanyType();

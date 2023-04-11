@@ -34,7 +34,7 @@ namespace NoarJobAPI.Controllers
             {
                 return new JsonResult(employer);
             }
-            return new JsonResult("error");
+            return new JsonResult(null);
         }
     }
 }

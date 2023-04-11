@@ -54,42 +54,67 @@ const Cvs = (props) => {
     window.open("http://localhost:5063/" + filePath);
   };
 
+  const DeleteCv = (event) => {
+    if (window.confirm("אתה עומד למחוק את הקורות חיים לצמיתות")) {
+      const cvId = parseInt(event.target.getAttribute("data-cvid"));
+
+      fetch(variables.API_URL + "Cv/UpdateCvActivity?cvID=" + cvId).then(() => {
+        props.setUser((prevUser) => {
+          return {
+            ...prevUser,
+            lstCvs: prevUser.lstCvs.filter((cv) => cv.cvID !== cvId),
+          };
+        });
+      });
+    }
+  };
+
   return (
     <React.Fragment>
-      {props.user.lstCvs.map((cv) => {
-        return (
-          <div key={cv.cvID} className="row d-flex justify-content-center mb-4">
-            <div className="card col-xl-2">
-              <div className="card-body">
-                <h3>
-                  <div className="row">
-                    <i
-                      data-cv={JSON.stringify({
-                        cvFilePath: cv.cvFilePath,
-                        cvIsActive: true,
-                        cvID: cv.cvID,
-                        fileName: cv.fileName,
-                      })}
-                      role="button"
-                      className="bi bi-plus-circle addCvText col-2"
-                      onClick={ChosenCv}
-                    ></i>
-                    <span
-                      data-filepath={cv.cvFilePath}
-                      role="button"
-                      dir="rtl"
-                      className="bodyColor col-10 fileSelected"
-                      onClick={OpenFile}
-                    >
-                      {cv.fileName}
-                    </span>
-                  </div>
-                </h3>
+      {props.user.lstCvs !== undefined &&
+        props.user.lstCvs.map((cv) => {
+          return (
+            <div
+              key={cv.cvID}
+              className="row d-flex justify-content-center mb-4"
+            >
+              <div className="card col-xl-2">
+                <div className="card-body">
+                  <h3>
+                    <div className="row">
+                      <i
+                        data-cv={JSON.stringify({
+                          cvFilePath: cv.cvFilePath,
+                          cvIsActive: true,
+                          cvID: cv.cvID,
+                          fileName: cv.fileName,
+                        })}
+                        role="button"
+                        className="bi bi-plus-circle addCvText col-2 px-0"
+                        onClick={ChosenCv}
+                      ></i>
+                      <i
+                        data-cvid={cv.cvID}
+                        role="button"
+                        className="bi bi-trash-fill agentIconStyle col-2 px-0"
+                        onClick={DeleteCv}
+                      ></i>
+                      <span
+                        data-filepath={cv.cvFilePath}
+                        role="button"
+                        dir="rtl"
+                        className="bodyColor col-8 fileSelected"
+                        onClick={OpenFile}
+                      >
+                        {cv.fileName}
+                      </span>
+                    </div>
+                  </h3>
+                </div>
               </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
       <div dir="rtl" className="row d-flex justify-content-center">
         <div className="col-xl-2">
           <div className="row">

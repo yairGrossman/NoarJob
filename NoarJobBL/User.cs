@@ -16,11 +16,12 @@ namespace NoarJobBL
         private KeyValuePair<int, string> city;//שם העיר שבה גר המשתמש
         private List<Cv> lstCvs;//מערך קורות החיים של המשתמש
         private Cv chosenCvForJob;//קורות חיים ספציפיים שהמשתמש החליט לשלוח למשרה
+        private string notes;//הערות של המעסיק
 
         /// <summary>
         /// פעולה בונה שנועדה בשביל שהמעסיק יראה את את המועמדים ששלחו למשרה שלו מועמדות
         /// </summary>
-        public User(int userID, int cvID, string email, string firstName, string lastName, string phone, KeyValuePair<int, string> city, string cvFilePath, bool isActive, string fileName)
+        public User(int userID, int cvID, string email, string firstName, string lastName, string phone, KeyValuePair<int, string> city, string cvFilePath, bool isActive, string fileName, string notes)
         {
             this.userID = userID;
             this.email = email;
@@ -30,6 +31,7 @@ namespace NoarJobBL
             this.city = city;
             this.lstCvs = new List<Cv>();
             this.chosenCvForJob = new Cv(cvID, cvFilePath, isActive, fileName);
+            this.notes = notes;
         }
 
         public User()
@@ -64,19 +66,13 @@ namespace NoarJobBL
         public string LastName
         {
             get { return this.lastName; }
-            set
-            {
-                this.lastName = value;
-            }
+            set { this.lastName = value; }
         }
 
         public string Phone
         {
             get { return this.phone; }
-            set
-            {
-                this.phone = value;
-            }
+            set { this.phone = value; }
         }
 
         public KeyValuePair<int, string> City
@@ -91,11 +87,18 @@ namespace NoarJobBL
         public List<Cv> LstCvs
         {
             get { return this.lstCvs; }
+            set { this.lstCvs = value; }
         }
 
         public Cv ChosenCvForJob
         {
             get { return this.chosenCvForJob; }
+            set { this.chosenCvForJob = value; }
+        }
+
+        public string Notes { 
+            get { return this.notes; } 
+            set { this.notes = value; } 
         }
         #endregion
 

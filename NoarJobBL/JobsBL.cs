@@ -108,12 +108,12 @@ namespace NoarJobBL
             for (int i = 0; i < jobsArr.Length; i++)
             {
                 jobID = (int)arrDt[0].Rows[i]["JobID"];
-                if(arrDt[0].Rows[i]["DateApplicated"] != DBNull.Value)
+                if(arrDt[0].Columns.Contains("DateApplicated") && arrDt[0].Rows[i]["DateApplicated"] != DBNull.Value)
                     dateApplicated = ((DateTime)arrDt[0].Rows[i]["DateApplicated"]).ToString("MM/dd/yyyy");
                 else
                     dateApplicated = "";
 
-                if (arrDt[0].Rows[i]["UserJobType"] != DBNull.Value)
+                if (arrDt[0].Columns.Contains("UserJobType") && arrDt[0].Rows[i]["UserJobType"] != DBNull.Value)
                     userJobType = (int)arrDt[0].Rows[i]["UserJobType"];
                 else
                     userJobType = 0;

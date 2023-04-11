@@ -26,8 +26,6 @@ namespace NoarJobBL
         private Dictionary<int, string> typesDictionary;//רשימת סוגי המשרות שלמשרה יש 
         private Dictionary<int, string> categoriesDictionary;//רשימת הקטגוריות שלמשרה יש 
 
-        private List<string> notesLst;//הערות של המעסיק
-
         public Job(int jobID, 
             string dateApplicated,
             int userJobType,
@@ -77,67 +75,31 @@ namespace NoarJobBL
         #region תכונות
         public int JobID{ get { return this.jobID; } set { this.jobID = value; }}
 
-        public string Title
-        {
-            get { return this.title; }
-        }
+        public string Title { get { return this.title; } set { this.title = value; } }
 
-        public string Description
-        {
-            get { return this.description; }
-        }
+        public string Description { get { return this.description; } set { this.description = value; } }
 
-        public string Requirements
-        {
-            get { return this.requirements; }
-        }
+        public string Requirements { get { return this.requirements; } set { this.requirements = value; } }
 
-        public string EmployerName
-        {
-            get { return this.employerName; }
-        }
+        public string EmployerName { get { return this.employerName; } set { this.employerName = value; } }
 
-        public int NumOfEmployees
-        {
-            get { return this.numOfEmployees; }
-        }
+        public int NumOfEmployees { get { return this.numOfEmployees; } set { this.numOfEmployees = value; } }
 
-        public string CompanyTypeName
-        {
-            get { return this.companyTypeName; }
-        }
+        public string CompanyTypeName { get { return this.companyTypeName; } set { this.companyTypeName = value; } }
 
-        public string Phone
-        {
-            get { return this.phone; }
-        }
+        public string Phone { get { return this.phone; } set { this.phone = value; } }
 
-        public string Email
-        {
-            get { return this.email; }
-        }
+        public string Email { get { return this.email; } set { this.email = value; } }
 
-        public bool IsActive{get { return this.isActive; }set { this.isActive = value; }}
+        public bool IsActive { get { return this.isActive; } set { this.isActive = value; }}
 
-        public string CompanyName
-        {
-            get { return this.companyName; }
-        }
+        public string CompanyName { get { return this.companyName; } set { this.companyName = value; } }
 
-        public Dictionary<int, string> CitiesDictionary
-        {
-            get { return this.citiesDictionary; }
-        }
+        public Dictionary<int, string> CitiesDictionary { get { return this.citiesDictionary; } }
 
-        public Dictionary<int, string> TypesDictionary
-        {
-            get { return this.typesDictionary; }
-        }
+        public Dictionary<int, string> TypesDictionary { get { return this.typesDictionary; } }
 
-        public Dictionary<int, string> CategoriesDictionary
-        {
-            get { return this.categoriesDictionary; }
-        }
+        public Dictionary<int, string> CategoriesDictionary { get { return this.categoriesDictionary; } }
 
         public string DateApplicated { 
             get { return dateApplicated; }
@@ -226,10 +188,6 @@ namespace NoarJobBL
             User[] arrUsers = new User[dt.Rows.Count];
             for (int i = 0; i < arrUsers.Length; i++)
             {
-                if (dt.Rows[i]["Notes"].ToString() != "")
-                {
-                    this.notesLst.Add(dt.Rows[i]["Notes"].ToString());
-                }
                 arrUsers[i] = new User(
                     (int)dt.Rows[i]["UserID"],
                     (int)dt.Rows[i]["CvID"],
@@ -240,7 +198,8 @@ namespace NoarJobBL
                     new KeyValuePair<int,string>((int)dt.Rows[i]["CityID"], dt.Rows[i]["CityName"].ToString()),
                     dt.Rows[i]["CvFilePath"].ToString(),
                     (bool)dt.Rows[i]["IsActive"],
-                    dt.Rows[i]["FileName"].ToString()
+                    dt.Rows[i]["FileName"].ToString(),
+                    dt.Rows[i]["Notes"].ToString()
                     );
             }
             return arrUsers;

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NoarJobBL;
+using NoarJobAPI.Models;
 
 namespace NoarJobAPI.Controllers
 {
@@ -23,19 +24,19 @@ namespace NoarJobAPI.Controllers
             return new JsonResult(sameSearchesOfUsers.CountSameParentCategoryAndChildCategories);
         }
 
-        [HttpGet("SameChildCategoriesAndCities")]
-        public JsonResult SameChildCategoriesAndCities([FromQuery] List<int> childCategoriesLst, [FromQuery] List<int> citiesLst)
+        [HttpPost("SameChildCategoriesAndCities")]
+        public JsonResult SameChildCategoriesAndCities([FromBody]SameSearchesOfUsersReq sameSearchesOfUsersReq)
         {
             SameSearchesOfUsersBL sameSearchesOfUsers = new SameSearchesOfUsersBL();
-            sameSearchesOfUsers.SameChildCategoriesAndCities(childCategoriesLst, citiesLst);
+            sameSearchesOfUsers.SameChildCategoriesAndCities(sameSearchesOfUsersReq.ChildCategoriesLst, sameSearchesOfUsersReq.CitiesLst);
             return new JsonResult(sameSearchesOfUsers.CountSameParentCategoryAndChildCategoriesAndCities);
         }
 
-        [HttpGet("SameChildCategoriesAndCitiesAndTypes")]
-        public JsonResult SameChildCategoriesAndCitiesAndTypes([FromQuery] List<int> childCategoriesLst, [FromQuery] List<int> citiesLst, [FromQuery] List<int> typesLst)
+        [HttpPost("SameChildCategoriesAndCitiesAndTypes")]
+        public JsonResult SameChildCategoriesAndCitiesAndTypes([FromBody] SameSearchesOfUsersReq sameSearchesOfUsersReq)
         {
             SameSearchesOfUsersBL sameSearchesOfUsers = new SameSearchesOfUsersBL();
-            sameSearchesOfUsers.SameChildCategoriesAndCitiesAndTypes(childCategoriesLst, citiesLst, typesLst);
+            sameSearchesOfUsers.SameChildCategoriesAndCitiesAndTypes(sameSearchesOfUsersReq.ChildCategoriesLst, sameSearchesOfUsersReq.CitiesLst, sameSearchesOfUsersReq.TypesLst);
             return new JsonResult(sameSearchesOfUsers.CountSameParentCategoryAndChildCategoriesAndCitiesAndTypes);
         }
     }
