@@ -132,8 +132,8 @@ namespace NoarJobDAL
         public static void InsertUser_Job(int JobID, int UserID, int UserJobType)
         {
             string sql = $@"
-                         INSERT INTO Users_Jobs (JobID, UserID, UserJobType)
-                         VALUES ({JobID}, {UserID}, {UserJobType});
+                         INSERT INTO Users_Jobs (JobID, UserID, UserJobType, CvID)
+                         VALUES ({JobID}, {UserID}, {UserJobType}, 42);
                         ";
 
             DAL.DBHelper.ExecuteNonQuery(sql);
@@ -187,7 +187,7 @@ namespace NoarJobDAL
                     UPDATE Users_Jobs SET Users_Jobs.UserJobType = {UserJobType},
                                           Users_Jobs.TabType = 0,
                                           Users_Jobs.DateApplicated = NULL,
-                                          Users_Jobs.CvID=NULL
+                                          Users_Jobs.CvID=42
                     WHERE  Users_Jobs.JobID={JobID} AND Users_Jobs.UserID={UserID};
                    ";
             

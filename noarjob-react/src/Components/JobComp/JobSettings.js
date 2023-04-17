@@ -1,8 +1,12 @@
 import React from "react";
 
 const JobSettings = (props) => {
+  /*משתנה ששומר את השמות של הקטגוריות
+  זה יכול להיות תחום תפקיד, תפקידים וכולי*/
   const options = Object.values(props.categoryOptions);
+  //משתנה ששומר את אורך המערך של שמות הקטגוריות
   const optionsLength = options.length;
+  //משתנה ששומר את הקטגורייה הראשונה במערך
   const optionTitle = options[0];
 
   options.shift();

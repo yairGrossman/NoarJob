@@ -5,7 +5,10 @@ import JobChoices from "./JobChoices";
 import "../Styles/Job.css";
 
 const Job = (props) => {
+  //משתנה ששומר את התז של קטגוריות המשרה
   const categoriesKeys = Object.keys(props.categories);
+  //אם יש למשרה גם תחום תפקיד וגם תפקידים אז זה ימחק את תחום התפקיד
+  //בשביל להציג רק תפקידים
   if (categoriesKeys.length > 1) delete props.categories[categoriesKeys[0]];
 
   return (

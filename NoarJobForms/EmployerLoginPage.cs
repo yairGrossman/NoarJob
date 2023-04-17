@@ -143,12 +143,16 @@ namespace NoarJobUI
         private void SigninBtn_Click(object sender, EventArgs e)
         {
             LoginOrSignUpAccount(false);
+            this.SignUpLbl.Text = "התחברות";
+            this.SignUpLbl.Location = new Point(this.SignUpLbl.Location.X - 20, this.SignUpLbl.Location.Y);
             this.AccountLbl.Text = "צריך חשבון?";
         }
 
         private void SignUpBtn_Click(object sender, EventArgs e)
         {
             LoginOrSignUpAccount(true);
+            this.SignUpLbl.Text = "הרשמה";
+            this.SignUpLbl.Location = new Point(this.SignUpLbl.Location.X + 20, this.SignUpLbl.Location.Y);
             this.AccountLbl.Text = "כבר יש לך חשבון?";
         }
 

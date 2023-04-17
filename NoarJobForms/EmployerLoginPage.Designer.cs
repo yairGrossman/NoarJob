@@ -30,6 +30,8 @@ namespace NoarJobUI
         private void InitializeComponent()
         {
             this.SignUpPanel = new System.Windows.Forms.Panel();
+            this.SigninBtn = new System.Windows.Forms.Button();
+            this.AccountLbl = new System.Windows.Forms.Label();
             this.CompanyEmailLbl = new System.Windows.Forms.Label();
             this.CompanyEmailTxt = new System.Windows.Forms.TextBox();
             this.AccountBtn = new System.Windows.Forms.Button();
@@ -46,8 +48,6 @@ namespace NoarJobUI
             this.SignUpLbl = new System.Windows.Forms.Label();
             this.ProjectTitleLbl = new System.Windows.Forms.Label();
             this.LoginBtn = new System.Windows.Forms.Button();
-            this.SigninBtn = new System.Windows.Forms.Button();
-            this.AccountLbl = new System.Windows.Forms.Label();
             this.SignUpBtn = new System.Windows.Forms.Button();
             this.SignUpPanel.SuspendLayout();
             this.SuspendLayout();
@@ -76,6 +76,34 @@ namespace NoarJobUI
             this.SignUpPanel.Name = "SignUpPanel";
             this.SignUpPanel.Size = new System.Drawing.Size(491, 591);
             this.SignUpPanel.TabIndex = 18;
+            // 
+            // SigninBtn
+            // 
+            this.SigninBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(179)))), ((int)(((byte)(144)))));
+            this.SigninBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.SigninBtn.ForeColor = System.Drawing.Color.GhostWhite;
+            this.SigninBtn.Location = new System.Drawing.Point(135, 538);
+            this.SigninBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.SigninBtn.Name = "SigninBtn";
+            this.SigninBtn.Size = new System.Drawing.Size(76, 26);
+            this.SigninBtn.TabIndex = 26;
+            this.SigninBtn.Text = "להתחבר";
+            this.SigninBtn.UseVisualStyleBackColor = false;
+            this.SigninBtn.Click += new System.EventHandler(this.SigninBtn_Click);
+            // 
+            // AccountLbl
+            // 
+            this.AccountLbl.AutoSize = true;
+            this.AccountLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.AccountLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(179)))), ((int)(((byte)(144)))));
+            this.AccountLbl.Location = new System.Drawing.Point(221, 538);
+            this.AccountLbl.Margin = new System.Windows.Forms.Padding(0);
+            this.AccountLbl.Name = "AccountLbl";
+            this.AccountLbl.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.AccountLbl.Size = new System.Drawing.Size(177, 26);
+            this.AccountLbl.TabIndex = 25;
+            this.AccountLbl.Text = "כבר יש לך חשבון?";
+            this.AccountLbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // CompanyEmailLbl
             // 
@@ -237,12 +265,12 @@ namespace NoarJobUI
             this.SignUpLbl.AutoSize = true;
             this.SignUpLbl.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.SignUpLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(120)))), ((int)(((byte)(97)))));
-            this.SignUpLbl.Location = new System.Drawing.Point(165, 99);
+            this.SignUpLbl.Location = new System.Drawing.Point(176, 82);
             this.SignUpLbl.Margin = new System.Windows.Forms.Padding(0);
             this.SignUpLbl.Name = "SignUpLbl";
-            this.SignUpLbl.Size = new System.Drawing.Size(169, 46);
+            this.SignUpLbl.Size = new System.Drawing.Size(146, 46);
             this.SignUpLbl.TabIndex = 7;
-            this.SignUpLbl.Text = "Sign Up";
+            this.SignUpLbl.Text = "הרשמה";
             // 
             // ProjectTitleLbl
             // 
@@ -270,34 +298,6 @@ namespace NoarJobUI
             this.LoginBtn.UseVisualStyleBackColor = false;
             this.LoginBtn.Visible = false;
             this.LoginBtn.Click += new System.EventHandler(this.LoginBtn_Click);
-            // 
-            // SigninBtn
-            // 
-            this.SigninBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(179)))), ((int)(((byte)(144)))));
-            this.SigninBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.SigninBtn.ForeColor = System.Drawing.Color.GhostWhite;
-            this.SigninBtn.Location = new System.Drawing.Point(135, 538);
-            this.SigninBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.SigninBtn.Name = "SigninBtn";
-            this.SigninBtn.Size = new System.Drawing.Size(76, 26);
-            this.SigninBtn.TabIndex = 26;
-            this.SigninBtn.Text = "להתחבר";
-            this.SigninBtn.UseVisualStyleBackColor = false;
-            this.SigninBtn.Click += new System.EventHandler(this.SigninBtn_Click);
-            // 
-            // AccountLbl
-            // 
-            this.AccountLbl.AutoSize = true;
-            this.AccountLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.AccountLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(179)))), ((int)(((byte)(144)))));
-            this.AccountLbl.Location = new System.Drawing.Point(221, 538);
-            this.AccountLbl.Margin = new System.Windows.Forms.Padding(0);
-            this.AccountLbl.Name = "AccountLbl";
-            this.AccountLbl.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.AccountLbl.Size = new System.Drawing.Size(177, 26);
-            this.AccountLbl.TabIndex = 25;
-            this.AccountLbl.Text = "כבר יש לך חשבון?";
-            this.AccountLbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // SignUpBtn
             // 

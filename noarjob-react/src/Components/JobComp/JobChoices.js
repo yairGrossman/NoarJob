@@ -5,8 +5,13 @@ import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../AppContext";
 
 const JobChoices = (props) => {
+  //המשתנה הבוליאני של האם המשתמש נמצא במסך המשרות שלי
   const { setJobForApplication, isMyJobs } = useContext(AppContext);
+
   const navigate = useNavigate();
+
+  /*פונקציה שמופעלת כאשר המשתמש רוצה למחוק משרה ואז
+  הוא לא יכול לראות את אותה משרה לעולם */
   const DeleteJob = () => {
     if (props.userId !== undefined) {
       if (props.userJobType === 0) {
@@ -47,6 +52,8 @@ const JobChoices = (props) => {
     }
   };
 
+  /*פונקציה שמופעלת כאשר המשתמש אוהב משרה וזה שומר לו את בחירתו 
+  או שולח אותו למסך ההתחברות אם אין לו חשבון*/
   const LikeJob = (event) => {
     if (props.userId !== undefined) {
       if (props.userJobType === 0) {
@@ -89,12 +96,12 @@ const JobChoices = (props) => {
     }
   };
 
+  /* פונקציית עזר ששומרת את אהבת המשרה של המשתמש */
   const RefreshJobs = () => {
     if (isMyJobs) {
       fetch(variables.API_URL + "User/GetApplyForJobs?userID=" + props.userId)
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
           props.setJobs(data);
         })
         .catch((error) => console.log(error));
@@ -107,6 +114,7 @@ const JobChoices = (props) => {
     }
   };
 
+  /* פונקציה שמטרתה להוסיף למשרות שהמשתמש אהב לב אדום */
   const likeClass = () => {
     let classes;
     if (props.userJobType !== 2) {
@@ -117,6 +125,8 @@ const JobChoices = (props) => {
     return classes;
   };
 
+  /* פונקציה שמופעלת כאשר המשתמש רוצה להוסיף קורות חיים
+  וזה מעביר אותו למסך הגשת המועמדות אם יש לו חשבון*/
   const JobApplication = () => {
     if (props.userId !== undefined) {
       setJobForApplication({

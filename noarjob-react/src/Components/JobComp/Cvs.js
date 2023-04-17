@@ -5,9 +5,12 @@ import "../Styles/Cvs.css";
 
 const Cvs = (props) => {
   const navigate = useNavigate();
+  //משתנה שעוזר לי לגשת לפקד פתיחת קבצים
   const fileInputRef = useRef(null);
+  // משתנה ששומר את השם שנתן המשתמש לקובץ קורות החיים
   const [cvFileName, setCvFileName] = useState("");
 
+  /* פונקציה שמופעלת כאשר משתמש בחר קורות חיים ושומרת את בחירתו */
   const ChosenCv = (event) => {
     const cv = JSON.parse(event.target.getAttribute("data-cv"));
     props.setUser((prevUser) => {
@@ -18,14 +21,21 @@ const Cvs = (props) => {
     navigate("/JobApplication");
   };
 
+  /*פונקציה שמופעלת כאשר משתמש לוחץ על הוספת קורות חיים 
+  ואז נפתח לו סייר הקבצים שממנו הוא יכול להוסיף את קורות חייו */
   const AddCv = () => {
     fileInputRef.current.click();
   };
 
+  /*פונקציה שמופעלת כאשר המשתמש נותן שם לקורות חייו ושומרת את 
+  השם של קורות חייו */
   const CvFileName_TxtChanged = (event) => {
     setCvFileName(event.target.value);
   };
 
+  /*פונקציה שמופעלת כאשר המשתמש בחר את קובץ קורות חייו מסייר הקבצים ושומרת את בחירתו 
+  ומוסיפה את קובץ קורות חייו לתקייה בצד השרת
+  ואת הדרך לקובץ בבסיס הנתונים */
   const HandleFileSelect = (event) => {
     const file = event.target.files[0];
     const formData = new FormData();
@@ -49,11 +59,14 @@ const Cvs = (props) => {
       .catch((error) => console.error(error));
   };
 
+  /*פונקציה שמופעלת כאשר המשתמש רוצה לפתוח קובץ של קורות חיים
+  ופותחת לו את קובץ קורות החיים */
   const OpenFile = (event) => {
     const filePath = event.target.getAttribute("data-filepath");
     window.open("http://localhost:5063/" + filePath);
   };
 
+  /*פונקציה שמופעלת כאשר המשתמש רוצה למחוק משרה ומוחקת את המשרה שהמשתמש בחר */
   const DeleteCv = (event) => {
     if (window.confirm("אתה עומד למחוק את הקורות חיים לצמיתות")) {
       const cvId = parseInt(event.target.getAttribute("data-cvid"));

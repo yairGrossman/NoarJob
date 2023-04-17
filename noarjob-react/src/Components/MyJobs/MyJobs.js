@@ -4,10 +4,14 @@ import { variables } from "../../Variables";
 import { AppContext } from "../../AppContext";
 
 const MyJobs = (props) => {
+  //משתנה שמאפשר לי לגשת לכפתור המשרות שאהבתי
   const lovedJobsBtn = useRef(null);
+  //משתנה שמאפשר לי לגשת לכפתור היסטוריית המשרות שאליהם הגשתי מועמדות
   const applyForBtn = useRef(null);
 
+  //פונקציה שמקבלת אמת כאשר המשתמש נמצא במסך המשרות שלי
   const { setIsMyJobs } = useContext(AppContext);
+
   useEffect(() => {
     setIsMyJobs(true);
   }, []);

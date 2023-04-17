@@ -5,9 +5,13 @@ import { useNavigate } from "react-router-dom";
 
 const JobApplication = (props) => {
   const navigate = useNavigate();
+  //משתנה שבודק האם המשתמש במצב עריכת פרטים או לא
   const [editable, setEditable] = useState(false);
+  //משתנה לשמירת העיר שהמשתמש בחר
   const [city, setCity] = useState();
 
+  /*פונקציה שמופעלת כאשר המשתמש רוצה להוסיף/לבחור קורות חיים
+  ושולחת אותו למסך קורות החיים*/
   const NavToCvs = () => {
     fetch(variables.API_URL + "User/SetUserCvs?userID=" + props.user.userID)
       .then((response) => response.json())
@@ -111,6 +115,8 @@ const JobApplication = (props) => {
     } else setEditable(true);
   };
 
+  /*פונקציה שמופעלת כאשר המשתמש רוצה להגיש מועמדות 
+  ומוסיפה את מועמדותו לטבלה המקשרת בין משרה למועמד */
   const SendJobApplication = () => {
     const now = new Date();
     const dateApplicated = now.toLocaleDateString("en-US");
@@ -142,6 +148,8 @@ const JobApplication = (props) => {
     props.setUserChooseCv(false);
   };
 
+  /*פונקציה עזר שמופעלת אחרי שהמשתמש 
+  הגיש את מועמדותו ושולחת אותו למסך המשרות שלי */
   const RefreshJobs = () => {
     fetch(
       variables.API_URL + "User/GetApplyForJobs?userID=" + props.user.userID

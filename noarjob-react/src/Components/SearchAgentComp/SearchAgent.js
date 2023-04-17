@@ -6,11 +6,15 @@ import { variables } from "../../Variables";
 
 const SearchAgent = (props) => {
   const navigate = useNavigate();
+  //משתנה ששומר את השמות של התפקידים שהמשתמש בחר
   const jobCategories = Object.values(
     props.searchAgent.childCategoriesDictionary
   );
+
+  //משתנה ששומר את השמות של סוגי/הקפי המשרה
   const jobTypes = Object.values(props.searchAgent.typesDictionary);
 
+  //פונקציה שמופעלת כאשר המשתמש רוצה לערוך סוכן חכם ושולחת אותו למסך עריכת סוכן חכם
   const EditAgent_Click = () => {
     const jobCategorieIds = Object.keys(
       props.searchAgent.childCategoriesDictionary
@@ -39,6 +43,8 @@ const SearchAgent = (props) => {
     navigate("/AddAgent/*");
   };
 
+  /* פונקציה שמופעלת כאשר המשתמש רוצה למחוק סוכן חכם וכביכול מוחק לו את הסוכן חכם
+  אבל בבסיס הנתונים פעילות סוכן החכם היא שקר */
   const DeleteAgent_Click = () => {
     if (window.confirm("אתה עומד למחוק את הסוכן לצמיתות. אתה בטוח?")) {
       fetch(
@@ -56,6 +62,9 @@ const SearchAgent = (props) => {
     }
   };
 
+  /* פונקציה שמופעלת כאשר המשתמש רוצה לחפש משרות לפי סוכן חכם
+  ומוצאת לו את המשרות שמצאה לפי הסוכן החכם 
+  ומפנה אותו למסך המשרות*/
   const Search_Click = () => {
     fetch(
       variables.API_URL +

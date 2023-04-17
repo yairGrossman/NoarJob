@@ -5,6 +5,9 @@ import { useNavigate } from "react-router-dom";
 const SearchAgents = (props) => {
   let count = 0;
   const navigate = useNavigate();
+
+  /*פונקציה שמופעלת כאשר המשתמש רוצה להוסיף סוכן חכם ומפנה אותו
+  למסך הוספת סוכן חכם */
   const AddAgent_Click = () => {
     props.titleNameFun("הוספת");
     navigate("/AddAgent/*");
