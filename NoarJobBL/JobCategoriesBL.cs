@@ -13,6 +13,7 @@ namespace NoarJobBL
         private List<int> chosenJobCategoryLst = new List<int>();// התפקידים שהמשתמש בחר
         private int chosenJobCategory = 0;// תחום תפקיד שהמשתמש בחר
 
+        #region תכונות
         public List<int> ChosenJobCategoryLst
         {
             get { return this.chosenJobCategoryLst; }
@@ -23,6 +24,7 @@ namespace NoarJobBL
             get { return this.chosenJobCategory; }
             set { this.chosenJobCategory = value; }
         }
+        #endregion
 
         /// <summary>
         /// פונקציה שמחזירה יומן של קטגוריות

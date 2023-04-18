@@ -105,7 +105,8 @@ namespace NoarJobDAL
         /// <param name="Phone">טלפון המעסיק</param>
         /// <param name="Email">אימייל המעסיק</param>
         /// <returns></returns>
-        public static int InsertJob(string Title, string Description, string Requirements, int EmployerID, string Phone, string Email, List<int> JobCategories, List<int> Cities, List<int> JobTypes)
+        public static int InsertJob(string Title, string Description, string Requirements, int EmployerID, 
+            string Phone, string Email, List<int> JobCategories, List<int> Cities, List<int> JobTypes)
         {
             string sql = $@"
                              INSERT INTO Jobs (Title, Description, Requirements, EmployerID, Phone, Email, IsActive)
@@ -130,7 +131,8 @@ namespace NoarJobDAL
         /// <param name="Phone">טלפון המעסיק</param>
         /// <param name="IsActive">האם משרה פעילה</param>
         /// <returns></returns>
-        public static int UpdateJob(int JobID, string Title, string Description, string Requirements, int EmployerID, string Phone, string Email, bool IsActive,
+        public static int UpdateJob(int JobID, string Title, string Description, string Requirements, 
+            int EmployerID, string Phone, string Email, bool IsActive,
             List<int> JobCategories, List<int> Cities, List<int> JobTypes)
         {
             string sql = $@"
@@ -173,7 +175,8 @@ namespace NoarJobDAL
         /// <param name="Cities">של ערים ID</param>
         /// <param name="Text">טקסט</param>
         /// <returns></returns>
-        public static DataTable[] JobsSearch(int ParentCategory, List<int> JobCategories, List<int> JobTypes, int City, string Text, int UserID)
+        public static DataTable[] JobsSearch(int ParentCategory, List<int> JobCategories, List<int> JobTypes, 
+            int City, string Text, int UserID)
         {
             string sql = $@"
                              SELECT Jobs.JobID, 

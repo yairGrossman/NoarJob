@@ -3,7 +3,7 @@
     public class SameSearchesOfUsersReq
     {
         private List<int> childCategoriesLst;
-        private List<int> citiesLst;
+        private List<int> citiesLst = new List<int>();
         private List<int> typesLst = new List<int>();
 
         public List<int> ChildCategoriesLst { get => childCategoriesLst; set => childCategoriesLst = value; }

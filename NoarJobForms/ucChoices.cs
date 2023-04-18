@@ -428,13 +428,17 @@ namespace NoarJobUI
                 {
                     using (HttpClient client = new HttpClient())
                     {
-                        var urlBuilder = new StringBuilder(ConfigurationManager.AppSettings["WebApiBaseUrl"] +
-                            "SameSearchesOfUsers/GetSameChildCategories");
+                        client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiBaseUrl"]);
+                        var sameSearchesOfUsersReq = new
+                        {
+                            ChildCategoriesLst = this.jc.ChosenJobCategoryLst
+                        };
 
-                        urlBuilder.Append("?childCategoriesLst=");
-                        urlBuilder.Append(string.Join(",", this.jc.ChosenJobCategoryLst));
-                        string url = urlBuilder.ToString();
-                        HttpResponseMessage response = await client.GetAsync(url);
+                        var jsonContent = JsonConvert.SerializeObject(sameSearchesOfUsersReq);
+
+                        var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+                        HttpResponseMessage response = await client.PostAsync("SameSearchesOfUsers/GetSameChildCategories", content);
                         count = response.Content.ReadAsAsync<int>().Result;
                     }
                     this.CountRolesLbl.Text = $"({count})";
@@ -460,13 +464,17 @@ namespace NoarJobUI
                 int count;
                 using (HttpClient client = new HttpClient())
                 {
-                    var urlBuilder = new StringBuilder(ConfigurationManager.AppSettings["WebApiBaseUrl"] +
-                        "SameSearchesOfUsers/GetSameChildCategories");
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiBaseUrl"]);
+                    var sameSearchesOfUsersReq = new
+                    {
+                        ChildCategoriesLst = this.jc.ChosenJobCategoryLst
+                    };
 
-                    urlBuilder.Append("?childCategoriesLst=");
-                    urlBuilder.Append(string.Join(",", this.jc.ChosenJobCategoryLst));
-                    string url = urlBuilder.ToString();
-                    HttpResponseMessage response = await client.GetAsync(url);
+                    var jsonContent = JsonConvert.SerializeObject(sameSearchesOfUsersReq);
+
+                    var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+                    HttpResponseMessage response = await client.PostAsync("SameSearchesOfUsers/GetSameChildCategories", content);
                     count = response.Content.ReadAsAsync<int>().Result;
                 }
                 this.CountRolesLbl.Text = $"({count})";

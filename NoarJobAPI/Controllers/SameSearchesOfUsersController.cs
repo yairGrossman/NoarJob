@@ -16,11 +16,11 @@ namespace NoarJobAPI.Controllers
             return new JsonResult(sameSearchesOfUsers.CountSameParentCategory);
         }
 
-        [HttpGet("GetSameChildCategories")]
-        public JsonResult GetSameChildCategories([FromQuery] List<int> childCategoriesLst)
+        [HttpPost("GetSameChildCategories")]
+        public JsonResult GetSameChildCategories([FromBody] SameSearchesOfUsersReq sameSearchesOfUsersReq)
         {
             SameSearchesOfUsersBL sameSearchesOfUsers = new SameSearchesOfUsersBL();
-            sameSearchesOfUsers.GetSameChildCategories(childCategoriesLst);
+            sameSearchesOfUsers.GetSameChildCategories(sameSearchesOfUsersReq.ChildCategoriesLst);
             return new JsonResult(sameSearchesOfUsers.CountSameParentCategoryAndChildCategories);
         }
 

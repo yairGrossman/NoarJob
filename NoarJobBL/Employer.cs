@@ -18,6 +18,7 @@ namespace NoarJobBL
         private string employerPassword;//הסיסמא של המעסיק
         private string companyEmail;//האימייל של החברה
 
+        #region תכונות
         public int EmployerID{get { return this.employerID; } set { this.employerID = value; } }
 
         public string EmployerName{get { return this.employerName; }set { this.employerName = value; }}
@@ -31,6 +32,7 @@ namespace NoarJobBL
         public string EmployerPassword{get { return this.employerPassword; }set { this.employerPassword = value; }}
 
         public string CompanyEmail{get { return this.companyEmail; }set { this.companyEmail = value; }}
+        #endregion
 
 
         /// <summary>

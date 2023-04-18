@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="NoarJobDAL.Cities">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Cities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoarJobDAL.CompanyTypes">
+    <Position X="2.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CompanyTypes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoarJobDAL.Cvs">
+    <Position X="4.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAEEAAAAAAAAAAA=</HashCode>
+      <FileName>Cvs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoarJobDAL.Employers">
+    <Position X="6.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAABAEAA=</HashCode>
+      <FileName>Employers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoarJobDAL.JobCategories">
+    <Position X="8.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAACAAAAACAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>JobCategories.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoarJobDAL.Jobs">
+    <Position X="11.25" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAECAIAAAAAAAACEAAAAAAAAAAAAAAgAAgAAQAAA=</HashCode>
+      <FileName>Jobs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoarJobDAL.Jobs_Cities">
+    <Position X="14" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACEAAAAAgAAAAIAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Jobs_Cities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoarJobDAL.Jobs_JobCategories">
+    <Position X="14" Y="2.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAIAAADAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Jobs_JobCategories.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoarJobDAL.Jobs_JobTypes">
+    <Position X="0.5" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AIgAAAAAAAAAAAAAAAgAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Jobs_JobTypes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoarJobDAL.JobTypes">
+    <Position X="2.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>JobTypes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoarJobDAL.MostSoughtJobs">
+    <Position X="4.5" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>MostSoughtJobs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoarJobDAL.SameSearchesOfUsers">
+    <Position X="7" Y="2.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAIIAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SameSearchesOfUsers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoarJobDAL.SearchAgents">
+    <Position X="3.5" Y="4" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAEAQAAAAAAAAAAAAAAQAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>SearchAgents.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoarJobDAL.SearchAgentsValues">
+    <Position X="10.25" Y="3.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgQAAAAAAAAAAAgAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SearchAgentsValues.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoarJobDAL.Users">
+    <Position X="6.25" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAQAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Users.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoarJobDAL.Users_Jobs">
+    <Position X="0.5" Y="4" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAIAAEAAAACAFAA=</HashCode>
+      <FileName>Users_Jobs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

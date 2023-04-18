@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="DALUml.cd" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\NoarJobDB.accdb">

@@ -21,7 +21,8 @@ namespace NoarJobBL
         /// <summary>
         /// פעולה בונה שנועדה בשביל שהמעסיק יראה את את המועמדים ששלחו למשרה שלו מועמדות
         /// </summary>
-        public User(int userID, int cvID, string email, string firstName, string lastName, string phone, KeyValuePair<int, string> city, string cvFilePath, bool isActive, string fileName, string notes)
+        public User(int userID, int cvID, string email, string firstName, string lastName, string phone, KeyValuePair<int, string> city, 
+            string cvFilePath, bool isActive, string fileName, string notes)
         {
             this.userID = userID;
             this.email = email;

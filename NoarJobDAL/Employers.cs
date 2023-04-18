@@ -92,7 +92,8 @@ namespace NoarJobDAL
         /// <param name="companyTypeID">של קטגוריית החברה ID</param>
         /// <param name="companyName">שם החברה</param>
         /// <returns></returns>
-        public static int UpdateEmployerByID(int employerID, string employerName, int numOfEmployees, int companyTypeID, string companyName)
+        public static int UpdateEmployerByID(int employerID, string employerName, int numOfEmployees,
+            int companyTypeID, string companyName)
         {
             string sql = $@"UPDATE Employers SET Employers.EmployerName = '{employerName}', 
                                                  Employers.NumOfEmployees = {numOfEmployees}, 
@@ -103,6 +104,7 @@ namespace NoarJobDAL
             int rows = DAL.DBHelper.ExecuteNonQuery(sql);
             return rows;
         }
+
         /// <summary>
         /// שאילתה ליצירת רשומת מעסיק חדש לאחר הרשמה
         /// </summary>
@@ -113,7 +115,8 @@ namespace NoarJobDAL
         /// <param name="employerPassword">סיסמא</param>
         /// <param name="companyEmail">האמייל של החברה</param>
         /// <returns></returns>
-        public static int InsertEmployer(string employerName, int numOfEmployees, int companyTypeID, string companyName, string employerPassword, string companyEmail)
+        public static int InsertEmployer(string employerName, int numOfEmployees,
+            int companyTypeID, string companyName, string employerPassword, string companyEmail)
         {
             string sql = $@"INSERT INTO Employers (EmployerName, NumOfEmployees, CompanyTypeID, CompanyName, EmployerPassword, CompanyEmail)
                             VALUES ('{employerName}', {numOfEmployees}, {companyTypeID}, '{companyName}', '{employerPassword}', '{companyEmail}');";

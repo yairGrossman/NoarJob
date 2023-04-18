@@ -13,8 +13,7 @@ namespace NoarJobBL
         private bool cvIsActive;//פעילות קורות החיים
         private string fileName;//שם קובץ קורות החיים
 
-
-
+        #region תכונות
         public string CvFilePath
         {
             get { return cvFilePath; }
@@ -33,6 +32,7 @@ namespace NoarJobBL
             get { return this.fileName; }
             set { this.fileName = value; }
         }
+        #endregion
 
         public Cv(int cvID, string cvFilePath, bool isActive, string fileName)
         {

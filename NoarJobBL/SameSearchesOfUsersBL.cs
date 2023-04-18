@@ -16,10 +16,12 @@ namespace NoarJobBL
     {
         private int countSameParentCategory;//סכום למספר המשתמשים שחיפשו אותו תחום תפקיד כמו של המשרה שהמעסיק רוצה לפרסם
         private int countSameParentCategoryAndChildCategories;//סכום למספר המשתמשים שחיפשו אותו תחום תפקיד ואותם תפקידים כמו של המשרה שהמעסיק רוצה לפרסם
-        private int countSameParentCategoryAndChildCategoriesAndCities;//סכום למספר המשתמשים שחיפשו אותו תחום תפקיד ואותם תפקידים ואותם ערים כמו של המשרה שהמעסיק רוצה לפרסם
-        private int countSameParentCategoryAndChildCategoriesAndCitiesAndTypes;//סכום למספר המשתמשים שחיפשו אותו תחום תפקיד ואותם תפקידים ואותם ערים ואותם היקפי/סוגי משרה כמו של המשרה שהמעסיק רוצה לפרסם
+        private int countSameParentCategoryAndChildCategoriesAndCities;//סכום למספר המשתמשים שחיפשו אותו תחום תפקיד
+                                                                       //ואותם תפקידים ואותם ערים כמו של המשרה שהמעסיק רוצה לפרסם
+        private int countSameParentCategoryAndChildCategoriesAndCitiesAndTypes;//סכום למספר המשתמשים שחיפשו אותו תחום תפקיד ואותם תפקידים ואותם ערים
+                                                                               //ואותם היקפי/סוגי משרה כמו של המשרה שהמעסיק רוצה לפרסם
 
-
+        #region תכונות
         public int CountSameParentCategory
         {
             get { return this.countSameParentCategory; }
@@ -39,6 +41,7 @@ namespace NoarJobBL
         {
             get { return this.countSameParentCategoryAndChildCategoriesAndCitiesAndTypes; }
         }
+        #endregion
 
 
         public SameSearchesOfUsersBL()

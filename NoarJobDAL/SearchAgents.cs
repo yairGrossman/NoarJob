@@ -82,7 +82,7 @@ namespace NoarJobDAL
         }
 
         /// <summary>
-        /// פונקציה שהופכת טבלת נתונים למערך חד מימדי
+        /// פונקציה שהופכת טבלת נתונים לרשימה
         /// </summary>
         /// <param name="dt"></param>
         /// <returns></returns>
