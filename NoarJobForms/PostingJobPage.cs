@@ -12,6 +12,7 @@ using System.Configuration;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Security.Cryptography;
+using System.Text.RegularExpressions;
 
 namespace NoarJobUI
 {
@@ -107,11 +108,17 @@ namespace NoarJobUI
         /// <param name="e"></param>
         private async void PostJobBtn_Click(object sender, EventArgs e)
         {
+            Regex emailRegex = new Regex(@"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b");
+            Regex phoneRegex = new Regex(@"^0\d{2}-\d{7}$");
+
             if (this.JobTitleTxt.Text != "למשל: מוכר בגדים בקניון עיר ימים" 
                 && this.DescriptionTxt.Text != "כאן מתארים את התפקיד, מה כולל התפקיד, ותחומי האחריות שעל התפקיד" 
                 && this.RequirementsTxt.Text != "כאן צריך לרשום אילו דרישות לתפקיד יש,\r\nמה צריך כדי להתאים לתפקיד" 
                 && this.PhoneTxt.Text != "למשל: 055-5555555"
-                && this.EmailTxt.Text != "למשל: blabla@gmail.com" && this.ucChoicesJob.JC.ChosenJobCategoryLst.Count > 0 
+                && phoneRegex.IsMatch(this.PhoneTxt.Text)
+                && this.EmailTxt.Text != "למשל: blabla@gmail.com" 
+                && emailRegex.IsMatch(this.EmailTxt.Text)
+                && this.ucChoicesJob.JC.ChosenJobCategoryLst.Count > 0 
                 && this.ucChoicesJob.City.LstCities.Count > 0 && this.ucChoicesJob.JT.ChosenJobTypeLst.Count > 0)
             {
                 using (HttpClient client = new HttpClient())

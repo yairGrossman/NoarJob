@@ -19,13 +19,17 @@ const Signup = (props) => {
     const firstName = firstNameRef.current.value;
     const lastName = lastNameRef.current.value;
     const phone = phoneRef.current.value;
+    const emailRegex = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/;
+    const phoneRegex = /^0\d{2}-\d{7}$/;
 
     if (
       email !== "" &&
+      emailRegex.test(email) &&
       password !== "" &&
       firstName !== "" &&
       lastName !== "" &&
       phone !== "" &&
+      phoneRegex.test(phone) &&
       chosenCity.length !== 0
     ) {
       const url = `User/CreateUser?email=${email}&userPassword=${password}&firstName=${firstName}&lastName=${lastName}&phone=${phone}&cityID=${chosenCity.chosenId}&cityName=${chosenCity.chosenName}`;

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using NoarJobBL;
 using System.Configuration;
+using System.Text.RegularExpressions;
 
 namespace NoarJobUI
 {
@@ -109,22 +110,25 @@ namespace NoarJobUI
         /// <param name="e"></param>
         private void AccountBtn_Click(object sender, EventArgs e)
         {
+            Regex emailRegex = new Regex(@"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b");
+
             if (this.EmployerNameTxt.Text != "" && this.NumOfEmployeesTxt.Text != "" && this.userChoose
-                && this.CompanyNameTxt.Text != "" && this.CompanyEmailTxt.Text != "" && this.EmployerPasswordTxt.Text != "")
+                && this.CompanyNameTxt.Text != "" && this.CompanyEmailTxt.Text != "" && this.EmployerPasswordTxt.Text != ""
+                && emailRegex.IsMatch(this.CompanyEmailTxt.Text))
             {
                 Employer employer;
                 using (HttpClient client = new HttpClient())
                 {
-                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiBaseUrl"]);
-                    string path = $"Employer/CreateEmployer?employerName={this.EmployerNameTxt.Text}"
-                                    + $"&numOfEmployees={this.NumOfEmployeesTxt.Text}"
-                                    + $"&companyTypeID={this.chosenCompanyType.Key}"
-                                    + $"&companyTypeName={this.chosenCompanyType.Value}"
-                                    + $"&companyName={this.CompanyNameTxt.Text}"
-                                    + $"&employerPassword={this.EmployerPasswordTxt.Text}"
-                                    + $"&companyEmail={this.CompanyEmailTxt.Text}";
-                    HttpResponseMessage response = client.GetAsync(path).Result;
-                    employer = response.Content.ReadAsAsync<Employer>().Result;
+                        client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiBaseUrl"]);
+                        string path = $"Employer/CreateEmployer?employerName={this.EmployerNameTxt.Text}"
+                                        + $"&numOfEmployees={this.NumOfEmployeesTxt.Text}"
+                                        + $"&companyTypeID={this.chosenCompanyType.Key}"
+                                        + $"&companyTypeName={this.chosenCompanyType.Value}"
+                                        + $"&companyName={this.CompanyNameTxt.Text}"
+                                        + $"&employerPassword={this.EmployerPasswordTxt.Text}"
+                                        + $"&companyEmail={this.CompanyEmailTxt.Text}";
+                        HttpResponseMessage response = client.GetAsync(path).Result;
+                        employer = response.Content.ReadAsAsync<Employer>().Result;
                 }
 
                 if (employer != null)
