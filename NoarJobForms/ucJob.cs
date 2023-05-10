@@ -339,7 +339,7 @@ namespace NoarJobUI
             comboBox.ForeColor = System.Drawing.SystemColors.MenuText;
             comboBox.FormattingEnabled = true;
             comboBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            comboBox.Location = new System.Drawing.Point(299, 224);
+            comboBox.Location = new System.Drawing.Point(289, 224);
             comboBox.Name = "CitiesDropDown";
             comboBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             comboBox.Size = new System.Drawing.Size(123, 26);
@@ -365,7 +365,7 @@ namespace NoarJobUI
             comboBox.ForeColor = System.Drawing.SystemColors.MenuText;
             comboBox.FormattingEnabled = true;
             comboBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            comboBox.Location = new System.Drawing.Point(324, 264);
+            comboBox.Location = new System.Drawing.Point(289, 264);
             comboBox.Name = "TypesDropDown";
             comboBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             comboBox.Size = new System.Drawing.Size(123, 26);

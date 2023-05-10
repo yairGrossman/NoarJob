@@ -211,11 +211,17 @@ namespace NoarJobUI
             }
         }
 
+        /// <summary>
+        /// כאשר התיבת טקסט ריקה אז זה שם את הטקסט הזה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddJobTitleTxt(object sender, EventArgs e)
         {
             if (this.JobTitleTxt.Text == "")
             {
                 this.JobTitleTxt.Text = "למשל: מוכר בגדים בקניון עיר ימים";
+                this.JobTitleTxt.ForeColor = Color.Gray;
             }
         }
 
@@ -224,70 +230,105 @@ namespace NoarJobUI
             if (this.JobTitleTxt.Text == "למשל: מוכר בגדים בקניון עיר ימים")
             {
                 this.JobTitleTxt.Text = "";
+                this.JobTitleTxt.ForeColor = Color.Black;
             }
         }
 
+        /// <summary>
+        /// כאשר התיבת טקסט ריקה אז זה שם את הטקסט הזה
+        /// </summary>
         private void AddDescriptionTxt(object sender, EventArgs e)
         {
             if (this.DescriptionTxt.Text == "")
             {
                 this.DescriptionTxt.Text = "כאן מתארים את התפקיד, מה כולל התפקיד, ותחומי האחריות שעל התפקיד";
+                this.DescriptionTxt.ForeColor = Color.Gray;
             }
         }
 
+        /// <summary>
+        /// כאשר לוחצים על תיבת הטקסט הטקסט בתיבה הופך לריק
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RemoveDescriptionTxt(object sender, EventArgs e)
         {
             if (this.DescriptionTxt.Text == "כאן מתארים את התפקיד, מה כולל התפקיד, ותחומי האחריות שעל התפקיד")
             {
                 this.DescriptionTxt.Text = "";
+                this.DescriptionTxt.ForeColor = Color.Black;
             }
         }
 
+        /// <summary>
+        /// כאשר התיבת טקסט ריקה אז זה שם את הטקסט הזה
+        /// </summary>
         private void AddRequirementsTxt(object sender, EventArgs e)
         {
             if (this.RequirementsTxt.Text == "")
             {
                 this.RequirementsTxt.Text = "כאן צריך לרשום אילו דרישות לתפקיד יש,\r\nמה צריך כדי להתאים לתפקיד";
+                this.RequirementsTxt.ForeColor = Color.Gray;
             }
         }
 
+        /// <summary>
+        /// כאשר לוחצים על תיבת הטקסט הטקסט בתיבה הופך לריק
+        /// </summary>
         private void RemoveRequirementsTxt(object sender, EventArgs e)
         {
             if (this.RequirementsTxt.Text == "כאן צריך לרשום אילו דרישות לתפקיד יש,\r\nמה צריך כדי להתאים לתפקיד")
             {
                 this.RequirementsTxt.Text = "";
+                this.RequirementsTxt.ForeColor = Color.Black;
             }
         }
 
+        /// <summary>
+        /// כאשר התיבת טקסט ריקה אז זה שם את הטקסט הזה
+        /// </summary>
         private void AddPhoneTxt(object sender, EventArgs e)
         {
             if (this.PhoneTxt.Text == "")
             {
                 this.PhoneTxt.Text = "למשל: 055-5555555";
+                this.PhoneTxt.ForeColor = Color.Gray;
             }
         }
 
+        /// <summary>
+        /// כאשר לוחצים על תיבת הטקסט הטקסט בתיבה הופך לריק
+        /// </summary>
         private void RemovePhoneTxt(object sender, EventArgs e)
         {
             if (this.PhoneTxt.Text == "למשל: 055-5555555")
             {
                 this.PhoneTxt.Text = "";
+                this.PhoneTxt.ForeColor = Color.Black;
             }
         }
 
+        /// <summary>
+        /// כאשר התיבת טקסט ריקה אז זה שם את הטקסט הזה
+        /// </summary>
         private void AddEmailTxt(object sender, EventArgs e)
         {
             if (this.EmailTxt.Text == "")
             {
                 this.EmailTxt.Text = "למשל: blabla@gmail.com";
+                this.EmailTxt.ForeColor = Color.Gray;
             }
         }
 
+        /// <summary>
+        /// כאשר לוחצים על תיבת הטקסט הטקסט בתיבה הופך לריק
+        /// </summary>
         private void RemoveEmailTxt(object sender, EventArgs e)
         {
             if (this.EmailTxt.Text == "למשל: blabla@gmail.com")
             {
                 this.EmailTxt.Text = "";
+                this.EmailTxt.ForeColor = Color.Black;
             }
         }
     }

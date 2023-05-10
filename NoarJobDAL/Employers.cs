@@ -72,11 +72,7 @@ namespace NoarJobDAL
             string sql = $@"
                             SELECT COUNT(1)
                             FROM   Employers
-                            WHERE  Employers.CompanyEmail='{Email}'
-                                   OR
-                                   Employers.EmployerPassword='{EmployerPassword}'
-                                   OR
-                                   Employers.CompanyName = '{CompanyName}';
+                            WHERE  Employers.CompanyEmail='{Email}';
                            ";
 
             int isExists = DAL.DBHelper.GetScalar(sql);

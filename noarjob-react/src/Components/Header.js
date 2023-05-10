@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Styles/Header.css";
 import { NavLink, Route, Routes, useNavigate } from "react-router-dom";
 import Login from "./Login";
@@ -39,6 +39,14 @@ const Header = () => {
   const [userChooseCv, setUserChooseCv] = useState(false);
   //משתנה שעוזר לי לדעת האם המשתמש נמצא במשרות שלי
   const [isMyJobs, setIsMyJobs] = useState(false);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("user")) {
+      const user = JSON.parse(sessionStorage.getItem("user"));
+      setUser(user);
+      setLogged(true);
+    }
+  }, []);
 
   /*פונקציה שמופעלת כאשר לוחצים על הכפתור של כניסה */
   const MoveToLogin = () => {
@@ -174,7 +182,7 @@ const Header = () => {
   return (
     <div>
       <div className="container">
-        <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom border-dark">
           <h1 className="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-decoration-none title">
             NoarJob
           </h1>

@@ -113,6 +113,7 @@ namespace NoarJobUI
             // EmailTxt
             // 
             this.EmailTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.EmailTxt.ForeColor = System.Drawing.Color.Gray;
             this.EmailTxt.Location = new System.Drawing.Point(427, 670);
             this.EmailTxt.Multiline = true;
             this.EmailTxt.Name = "EmailTxt";
@@ -137,6 +138,7 @@ namespace NoarJobUI
             // PhoneTxt
             // 
             this.PhoneTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.PhoneTxt.ForeColor = System.Drawing.Color.Gray;
             this.PhoneTxt.Location = new System.Drawing.Point(427, 568);
             this.PhoneTxt.Multiline = true;
             this.PhoneTxt.Name = "PhoneTxt";
@@ -176,6 +178,7 @@ namespace NoarJobUI
             // RequirementsTxt
             // 
             this.RequirementsTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.RequirementsTxt.ForeColor = System.Drawing.Color.Gray;
             this.RequirementsTxt.Location = new System.Drawing.Point(427, 384);
             this.RequirementsTxt.Multiline = true;
             this.RequirementsTxt.Name = "RequirementsTxt";
@@ -200,6 +203,7 @@ namespace NoarJobUI
             // DescriptionTxt
             // 
             this.DescriptionTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.DescriptionTxt.ForeColor = System.Drawing.Color.Gray;
             this.DescriptionTxt.Location = new System.Drawing.Point(427, 195);
             this.DescriptionTxt.Multiline = true;
             this.DescriptionTxt.Name = "DescriptionTxt";
@@ -223,7 +227,9 @@ namespace NoarJobUI
             // 
             // JobTitleTxt
             // 
+            this.JobTitleTxt.BackColor = System.Drawing.SystemColors.Window;
             this.JobTitleTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.JobTitleTxt.ForeColor = System.Drawing.Color.Gray;
             this.JobTitleTxt.Location = new System.Drawing.Point(427, 94);
             this.JobTitleTxt.Multiline = true;
             this.JobTitleTxt.Name = "JobTitleTxt";

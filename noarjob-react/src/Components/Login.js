@@ -19,7 +19,10 @@ const Login = (props) => {
       )
         .then((response) => response.json())
         .then((data) => {
-          if (data !== "error") props.onLogin(data);
+          if (data !== "error") {
+            sessionStorage.setItem("user", JSON.stringify(data));
+            props.onLogin(data);
+          }
         })
         .catch((error) => console.error(error));
     }
