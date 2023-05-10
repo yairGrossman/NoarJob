@@ -4,15 +4,25 @@ import "./Styles/SearchBody.css";
 import { variables } from "../Variables";
 
 const Signup = (props) => {
+  //שם העיר שהמשתמש חיפש
   const [cityName, setCityName] = useState("");
+  //המזהה של העיר שהמשתמש חיפש
   const [cityId, setCityId] = useState(0);
+  //העיר שהמשתמש בחר
   const [chosenCity, setChosenCity] = useState([]);
+  //משתנה לגישה לתוכן של האימייל
   const emailRef = useRef(null);
+  //משתנה לגישה לתוכן של הסיסמה
   const passwordRef = useRef(null);
+  //משתנה לגישה לתוכן של השם הפרטי
   const firstNameRef = useRef(null);
+  //משתנה לגישה לתוכן של שם המשפחה
   const lastNameRef = useRef(null);
+  //משתנה לגישה לתוכן של הטלפון
   const phoneRef = useRef(null);
 
+  //פונקציה שמופעלת כאשר המשתמש רוצה להרשם
+  //ויוצרת לו חשבון והוא עובר למסך הבית
   const Signup_Click = () => {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
@@ -41,6 +51,8 @@ const Signup = (props) => {
     }
   };
 
+  //פונקציה שמופעלת כאשר המשתמש מחפש עיר
+  //ומביא לו את העיר לפי חיפושו
   const Search_TxtChanged = (event) => {
     const text = event.target.value;
     if (text !== "") {
@@ -62,6 +74,7 @@ const Signup = (props) => {
     }
   };
 
+  //פונקציה ששומרת את בחירת העיר של המשתמש
   const ChosenCity = (event) => {
     setChosenCity({ chosenId: cityId, chosenName: cityName });
     event.target.classList.add("chosenBtn");

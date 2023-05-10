@@ -23,7 +23,9 @@ namespace NoarJobDAL
                                    AND
                                    SearchAgentsValues.ValueType = 1
                                    AND
-                                   SearchAgentsValues.ValueID={ParentCategoryID};
+                                   SearchAgentsValues.ValueID={ParentCategoryID}
+                                   AND 
+                                   DATEDIFF(""d"", SearchAgents.CreatedDate, #{DateTime.Now}#) <= 30;
                            ";
 
             int numOfRows = DAL.DBHelper.GetScalar(sql);
@@ -50,6 +52,8 @@ namespace NoarJobDAL
                                             SearchAgentsValues.ValueType = 2
                                             AND
                                             SearchAgentsValues.ValueID IN ({String.Join(",", ChildCategoriesLst)})
+                                            AND 
+                                            DATEDIFF(""d"", SearchAgents.CreatedDate, #{DateTime.Now}#) <= 30
                                    ) Tbl;
                            ";
 
@@ -79,6 +83,8 @@ namespace NoarJobDAL
 								                     SearchAgentsValues.ValueType = 2
 								                     AND
 								                     SearchAgentsValues.ValueID IN ({String.Join(",", ChildCategoriesLst)})
+                                                     AND 
+                                                     DATEDIFF(""d"", SearchAgents.CreatedDate, #{DateTime.Now}#) <= 30
 					                        ) tblUsersByCategories
 					                        INNER JOIN
 					                        (
@@ -91,6 +97,8 @@ namespace NoarJobDAL
 								                     SearchAgentsValues.ValueType = 3
 								                     AND
 								                     SearchAgentsValues.ValueID IN ({String.Join(",", CitiesLst)})
+                                                     AND 
+                                                     DATEDIFF(""d"", SearchAgents.CreatedDate, #{DateTime.Now}#) <= 30
 					                       ) tblUsersByCities ON tblUsersByCategories.UserID = tblUsersByCities.UserID
 					
 		                            ) tblMatchUsers;
@@ -122,6 +130,8 @@ namespace NoarJobDAL
 								                     SearchAgentsValues.ValueType = 2
 								                     AND
 								                     SearchAgentsValues.ValueID IN ({String.Join(",", ChildCategoriesLst)})
+                                                     AND 
+                                                     DATEDIFF(""d"", SearchAgents.CreatedDate, #{DateTime.Now}#) <= 30
 					                        ) tblUsersByCategories
 					                        INNER JOIN
 					                        (
@@ -134,6 +144,8 @@ namespace NoarJobDAL
 								                     SearchAgentsValues.ValueType = 3
 								                     AND
 								                     SearchAgentsValues.ValueID IN ({String.Join(",", CitiesLst)})
+                                                     AND 
+                                                     DATEDIFF(""d"", SearchAgents.CreatedDate, #{DateTime.Now}#) <= 30
 					                        ) tblUsersByCities ON tblUsersByCategories.UserID = tblUsersByCities.UserID)
                                             INNER JOIN
                                             (
@@ -146,6 +158,8 @@ namespace NoarJobDAL
 								                      SearchAgentsValues.ValueType = 4
 								                      AND
 								                      SearchAgentsValues.ValueID IN ({String.Join(",", TypesLst)})
+                                                      AND 
+                                                      DATEDIFF(""d"", SearchAgents.CreatedDate, #{DateTime.Now}#) <= 30
                                             ) tblUsersByTypes ON tblUsersByCategories.UserID = tblUsersByTypes.UserID
 					
 		                            ) tblMatchUsers;

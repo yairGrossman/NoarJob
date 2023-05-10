@@ -6,6 +6,7 @@ const Login = (props) => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
+  //פונקציה שמחברת את המשתמש לאתר/המערכת
   const Login_Click = () => {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;

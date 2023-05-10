@@ -93,7 +93,7 @@ namespace NoarJobBL
         public bool CreateEmployer(string employerName, int numOfEmployees, int companyTypeID, string companyTypeName, 
             string companyName, string employerPassword, string companyEmail)
         {
-            int isExists = Employers.IsEmployerExist(companyEmail, employerPassword, companyName);
+            int isExists = Employers.IsEmployerExist(companyEmail);
             if (isExists == 0)
             {
                 int employerID = Employers.InsertEmployer(employerName, numOfEmployees, companyTypeID, companyName, employerPassword, companyEmail);

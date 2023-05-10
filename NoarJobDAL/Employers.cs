@@ -67,7 +67,7 @@ namespace NoarJobDAL
         /// <param name="EmployerPassword">הסיסמא של המעסיק</param>
         /// <param name="CompanyName">שם החברה</param>
         /// <returns></returns>
-        public static int IsEmployerExist(string Email, string EmployerPassword, string CompanyName)
+        public static int IsEmployerExist(string Email)
         {
             string sql = $@"
                             SELECT COUNT(1)
