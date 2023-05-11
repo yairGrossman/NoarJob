@@ -5,7 +5,6 @@ using System.Data;
 
 namespace NoarJobBL
 {
-    //חדש
     public class Job
     {
         private int jobID;//מספר המשרה
@@ -230,6 +229,16 @@ namespace NoarJobBL
         public void UpdateTabType(int userID, int tabType)
         {
             NoarJobDAL.Users_Jobs.UpdateTabType(this.jobID, userID, tabType);
+        }
+
+        /// <summary>
+        /// פונקציה שמוחקת משתמשים שהגישו למשרה מועמדות
+        /// כאשר עבר שבוע מחתימה על החוזה
+        /// או שלא נמצא מתאים למשרה
+        /// </summary>
+        public void DeleteOldUsersApplyForJob()
+        {
+            Users_Jobs.DeleteOldUsersApplyForJob(this.jobID);
         }
     }
 }

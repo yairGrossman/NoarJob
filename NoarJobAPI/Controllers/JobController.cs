@@ -61,5 +61,13 @@ namespace NoarJobAPI.Controllers
             job.JobID = jobID;
             job.UpdateTabType(userID, tabType);
         }
+
+        [HttpGet("DeleteOldUsersApplyForJob")]
+        public void DeleteOldUsersApplyForJob(int jobID)
+        {
+            Job job = new Job();
+            job.JobID = jobID;
+            job.DeleteOldUsersApplyForJob();
+        }
     }
 }
