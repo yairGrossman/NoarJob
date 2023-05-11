@@ -40,7 +40,7 @@ namespace NoarJobDAL
             ////Console.WriteLine(Users.InsertUser("Lior@gmail.com", "098kjh765", "Lior", "Gilboa", "000-0000000",23));
             //Console.WriteLine(Users.UpdateUser(7, "Smart@gmail.com", "7654390", "Smart", "Brown", "000-0000000", 23));
             //PrintDt(new DataTable[] { Users.GetUser("test", "test") });
-            ////Console.WriteLine(SearchAgents.InsertSearchAgent(48));
+            //Console.WriteLine(SearchAgents.InsertSearchAgent(48));
             ////Console.WriteLine(SearchAgents.UpdateSearchAgentActivity(15));
             ////SearchAgentsValues.SetSearchAgentValues(15, 4, new List<int> { 1, 2});
             //PrintDt(JobTypes.GetAllJobTypes());

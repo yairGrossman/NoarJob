@@ -218,7 +218,7 @@ namespace NoarJobDAL
         {
             string sql = $@"
                              INSERT INTO SearchAgents (UserID, IsActive, CreatedDate) 
-                             VALUES({UserID}, true, {DateTime.Now});
+                             VALUES({UserID}, true, '{DateTime.Now.ToShortDateString()}');
                            ";
 
             int searchAgentID = DAL.DBHelper.ExecuteInsertGetIdentity(sql);

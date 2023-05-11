@@ -54,6 +54,24 @@ namespace NoarJobDAL
         }
 
         /// <summary>
+        /// פונקציה שמוחקת משתמשים שהגישו למשרה מועמדות
+        /// כאשר עבר שבוע מחתימה על החוזה
+        /// או שלא נמצא מתאים למשרה
+        /// </summary>
+        /// <param name="JobID"></param>
+        public static void DeleteOldUsersApplyForJob(int JobID)
+        {
+            string sql = $@"DELETE FROM    Users_Jobs 
+                                   WHERE   Users_Jobs.JobID={JobID} 
+                                           AND 
+                                           Users_Jobs.TabType IN (3,6)  
+                                           AND
+                                           DATEDIFF(""d"", Users_Jobs.DateApplicated, #{DateTime.Now}#) >= 7;";
+
+            DAL.DBHelper.ExecuteNonQuery(sql);
+        }
+
+        /// <summary>
         /// שאילתה להחזרת המשרות שהמשתמש אהב  או הגיש אלהים מועמדות
         /// </summary>
         /// <param name="UserID"></param>
