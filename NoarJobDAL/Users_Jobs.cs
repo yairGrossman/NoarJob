@@ -62,11 +62,11 @@ namespace NoarJobDAL
         public static void DeleteOldUsersApplyForJob(int JobID)
         {
             string sql = $@"DELETE FROM    Users_Jobs 
-                                   WHERE   Users_Jobs.JobID=33 
+                                   WHERE   Users_Jobs.JobID={JobID} 
                                            AND 
                                            Users_Jobs.TabType IN (3,6)  
                                            AND
-                                           DATEDIFF(""d"", Users_Jobs.DateApplicated, #5/11/2023#) >= 7;";
+                                           DATEDIFF(""d"", Users_Jobs.DateApplicated, #{DateTime.Now}#) >= 7;";
 
             DAL.DBHelper.ExecuteNonQuery(sql);
         }

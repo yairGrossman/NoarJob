@@ -21,6 +21,12 @@ namespace NoarJobUI
         {
             InitializeComponent();
             this.jobID = jobID;
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["WebApiBaseUrl"]);
+                string path = $"Job/DeleteOldUsersApplyForJob?jobID={this.jobID}";
+                HttpResponseMessage response = client.GetAsync(path).Result;
+            }
         }
 
         private void GetUsersByTabType(int tabType)
