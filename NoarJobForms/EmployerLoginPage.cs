@@ -144,6 +144,12 @@ namespace NoarJobUI
                 MessageBox.Show("לא מילאת את כל הפרטים");
         }
 
+        /// <summary>
+        /// פונקציה שמופעלת כאשר המעסיק לחץ על כפתור להתחבר
+        /// ומעבירה אותו להתחברות למערכת
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SigninBtn_Click(object sender, EventArgs e)
         {
             LoginOrSignUpAccount(false);
@@ -152,6 +158,12 @@ namespace NoarJobUI
             this.AccountLbl.Text = "צריך חשבון?";
         }
 
+        /// <summary>
+        /// פונקציה שמופעלת כאשר המעסיק לחץ על כפתור להרשם
+        /// ומעבירה אותו להרשמה למערכת
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SignUpBtn_Click(object sender, EventArgs e)
         {
             LoginOrSignUpAccount(true);
@@ -184,6 +196,12 @@ namespace NoarJobUI
             }
         }
         
+        /// <summary>
+        /// פונקציה שמופעלת כאשר המעסיק בחר
+        /// קטגוריית חברה ושומרת את בחירתו
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CompanyTypeDropDown_SelectedIndexChanged(object sender, EventArgs e)
         {
            this.chosenCompanyType = (KeyValuePair<int, string>)this.CompanyTypeDropDown.SelectedItem;

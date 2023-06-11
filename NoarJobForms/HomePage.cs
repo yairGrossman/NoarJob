@@ -27,6 +27,11 @@ namespace NoarJobUI
             this.GreenPanel.Controls.Add(this.ManageJobsPageBtn);
         }
 
+        /// <summary>
+        /// פונקציה של כפתור שמעביר את המעסיק למסך פרסום משרה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PostingJobPageBtn_Click(object sender, EventArgs e)
         {
             PostingJobPage postingJobPage;
@@ -35,6 +40,11 @@ namespace NoarJobUI
             this.Close();
         }
 
+        /// <summary>
+        /// פונקציה של כפתור שמעביר את המעסיק למסך ניהול משרות
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ManageJobsPageBtn_Click(object sender, EventArgs e)
         {
             JobManagementPage jobManagementPage;

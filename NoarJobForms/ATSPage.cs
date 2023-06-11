@@ -29,6 +29,11 @@ namespace NoarJobUI
             }
         }
 
+        /// <summary>
+        /// פונקציה שמציגה את המועמדים של המעסיק למשרה
+        /// לפי הלשונית שהם נמצאים בה
+        /// </summary>
+        /// <param name="tabType"></param>
         private void GetUsersByTabType(int tabType)
         {
             using (HttpClient client = new HttpClient())
@@ -65,36 +70,72 @@ namespace NoarJobUI
             GetUsersByTabType(1);
         }
 
+        /// <summary>
+        /// פונקציה שמופעלת כאשר לוחצים על הכפתור של המעומדים שלא קוטלגו
+        /// ומביא את כל המועמדים שלא קוטלגו
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NotCatalogedBtn_Click(object sender, EventArgs e)
         {
             this.CvsFLP.Controls.Clear();
             GetUsersByTabType(1);
         }
 
+        /// <summary>
+        /// פונקציה שמופעלת כאשר לוחצים על הכפתור של המעומדים שנמצאו מתאימים למשרה
+        /// ומביא את כל המועמדים שנמצאו מתאימים למשרה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FoundSuitableBtn_Click(object sender, EventArgs e)
         {
             this.CvsFLP.Controls.Clear();
             GetUsersByTabType(2);
         }
 
+        /// <summary>
+        /// פונקציה שמופעלת כאשר לוחצים על הכפתור של המעומדים שנמצאו לא מתאימים למשרה
+        /// ומביא את כל המועמדים שנמצאו  לרמתאימים למשרה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NotFoundSuitableBtn_Click(object sender, EventArgs e)
         {
             this.CvsFLP.Controls.Clear();
             GetUsersByTabType(3);
         }
 
+        /// <summary>
+        /// פונקציה שמופעלת כאשר לוחצים על הכפתור של המעומדים שעברו רעיון טלפוני למשרה
+        /// ומביא את כל המועמדים שעברו רעיון טלפוני למשרה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TelephoneInterviewBאמ_Click(object sender, EventArgs e)
         {
             this.CvsFLP.Controls.Clear();
             GetUsersByTabType(4);
         }
 
+        /// <summary>
+        /// פונקציה שמופעלת כאשר לוחצים על הכפתור של המעומדים שעברו רעיון מקצועי למשרה
+        /// ומביא את כל המועמדים שעברו רעיון מקצועי למשרה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ProfessionalInterviewBtn_Click(object sender, EventArgs e)
         {
             this.CvsFLP.Controls.Clear();
             GetUsersByTabType(5);
         }
 
+        /// <summary>
+        /// פונקציה שמופעלת כאשר לוחצים על הכפתור של המעומדים שעברו חתימת חוזה למשרה
+        /// ומביא את כל המועמדים שעברו חתימת חוזה למשרה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EmploymentContractBtn_Click(object sender, EventArgs e)
         {
             this.CvsFLP.Controls.Clear();
