@@ -401,6 +401,7 @@ namespace NoarJobUI
                 this.postingJobPage.CountSameSearchesLbl.Text = count.ToString();
                 this.CitiesDropDownVisible = true;
                 this.ContentPanelVisible = false;
+                this.JobTypeBtn.Enabled = true;
             }
         }
 
@@ -479,6 +480,7 @@ namespace NoarJobUI
                 }
                 this.CountRolesLbl.Text = $"({count})";
                 this.postingJobPage.CountSameSearchesLbl.Text = count.ToString();
+                this.LocationBtn.Enabled = true;
             }
         }
 
@@ -873,18 +875,23 @@ namespace NoarJobUI
             {
                 this.DomainLblVisible = false;
                 this.RoleBtn.Enabled = false;
+                this.LocationBtn.Enabled = false;
+                this.JobTypeBtn.Enabled = false;
             }
             else if (this.category == Categories.Role)
             {
                 this.RolesDropDownVisible = false;
                 this.RolesDropDown.Items.Clear();
                 this.jc.ChosenJobCategoryLst.Clear();
+                this.LocationBtn.Enabled = false;
+                this.JobTypeBtn.Enabled = false;
             }
             else if (this.category == Categories.Location)
             {
-                    this.CitiesDropDownVisible = false;
-                    this.CitiesDropDown.Items.Clear();
-                    this.cities.LstCities.Clear();
+                this.CitiesDropDownVisible = false;
+                this.CitiesDropDown.Items.Clear();
+                this.cities.LstCities.Clear();
+                this.JobTypeBtn.Enabled = false;
             }
             else
             {
