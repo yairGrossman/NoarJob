@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import SearchAgent from "./SearchAgent";
 import { useNavigate } from "react-router-dom";
+import { AppContext } from "../../AppContext";
 
 const SearchAgents = (props) => {
   let count = 0;
   const navigate = useNavigate();
+  const { setIsMyJobs } = useContext(AppContext);
+
+  useEffect(() => {
+    setIsMyJobs(false);
+  }, []);
 
   /*פונקציה שמופעלת כאשר המשתמש רוצה להוסיף סוכן חכם ומפנה אותו
   למסך הוספת סוכן חכם */

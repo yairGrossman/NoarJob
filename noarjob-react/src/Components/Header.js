@@ -316,7 +316,12 @@ const Header = () => {
               />
             }
           />
-          <Route path="/JobsAgent" element={<Jobs jobs={jobs} />} />
+          <Route
+            path="/JobsAgent"
+            element={
+              <Jobs jobs={jobs} userId={user.userID} setJobs={setJobs} />
+            }
+          />
           <Route path="/Login" element={<Login onLogin={OnLogin} />} />
           <Route path="/Signup" element={<Signup onLogin={OnLogin} />} />
           <Route

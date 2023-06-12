@@ -194,6 +194,10 @@ namespace NoarJobUI
                 homePage.Show();
                 this.Hide();
             }
+            else
+            {
+                MessageBox.Show("פרטיך אינם נכונים אנא בדוק שוב");
+            }
         }
         
         /// <summary>

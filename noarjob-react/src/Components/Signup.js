@@ -48,6 +48,8 @@ const Signup = (props) => {
         .then((data) => {
           props.onLogin(data);
         });
+    } else {
+      alert("לא הזנת את כל הפרטים");
     }
   };
 

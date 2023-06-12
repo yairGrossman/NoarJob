@@ -23,9 +23,13 @@ const Login = (props) => {
           if (data !== "error") {
             sessionStorage.setItem("user", JSON.stringify(data));
             props.onLogin(data);
+          } else {
+            alert("התחברותך למערכת נכשלה אנא בדוק את סיסמתך ואת אמיילך");
           }
         })
         .catch((error) => console.error(error));
+    } else {
+      alert("התחברותך למערכת נכשלה אנא בדוק את סיסמתא ואת אמיילך");
     }
   };
 
