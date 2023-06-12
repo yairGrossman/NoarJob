@@ -296,6 +296,7 @@ namespace NoarJobUI
             // JobTypeBtn
             // 
             this.JobTypeBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(179)))), ((int)(((byte)(144)))));
+            this.JobTypeBtn.Enabled = false;
             this.JobTypeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.JobTypeBtn.ForeColor = System.Drawing.SystemColors.MenuText;
             this.JobTypeBtn.Location = new System.Drawing.Point(83, 117);
@@ -310,6 +311,7 @@ namespace NoarJobUI
             // LocationBtn
             // 
             this.LocationBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(179)))), ((int)(((byte)(144)))));
+            this.LocationBtn.Enabled = false;
             this.LocationBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.LocationBtn.ForeColor = System.Drawing.SystemColors.MenuText;
             this.LocationBtn.Location = new System.Drawing.Point(298, 117);

@@ -179,6 +179,13 @@ const Header = () => {
     }
   };
 
+  //פונקציה להתנתקות המחשבון
+  const Logout = () => {
+    sessionStorage.removeItem("user");
+    setLogged(false);
+    navigate("/");
+  };
+
   return (
     <div>
       <div className="container">
@@ -226,9 +233,21 @@ const Header = () => {
 
           <div className="col-md-3 text-end">
             {logged ? (
-              <h3 dir="rtl" className="fw-bold mb-2 me-3 bodyColor">
-                שלום {user.firstName}
-              </h3>
+              <div className="row">
+                <div className="col px-0">
+                  <button
+                    className="btn btn-outline-light myBtn"
+                    onClick={Logout}
+                  >
+                    התנתק
+                  </button>
+                </div>
+                <div className="col-5 ps-0 ms-3">
+                  <h3 dir="rtl" className="fw-bold mb-2 bodyColor">
+                    שלום {user.firstName}
+                  </h3>
+                </div>
+              </div>
             ) : (
               <div>
                 <button
@@ -297,7 +316,12 @@ const Header = () => {
               />
             }
           />
-          <Route path="/JobsAgent" element={<Jobs jobs={jobs} />} />
+          <Route
+            path="/JobsAgent"
+            element={
+              <Jobs jobs={jobs} userId={user.userID} setJobs={setJobs} />
+            }
+          />
           <Route path="/Login" element={<Login onLogin={OnLogin} />} />
           <Route path="/Signup" element={<Signup onLogin={OnLogin} />} />
           <Route

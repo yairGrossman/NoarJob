@@ -1,6 +1,14 @@
 import Jobs from "../JobComp/Jobs";
+import React, { useContext, useEffect } from "react";
+import { AppContext } from "../../AppContext";
 
 const MostSoughtJob = (props) => {
+  const { setIsMyJobs } = useContext(AppContext);
+
+  useEffect(() => {
+    setIsMyJobs(false);
+  }, []);
+
   return (
     <div className="row d-flex justify-content-center mb-3">
       <div className="col-12 col-md-8 col-lg-6 col-xl-8">
